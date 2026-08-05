@@ -1,55 +1,4 @@
-import Image from "next/image";
-
-const projects = [
-  {
-    number: "01",
-    title: "Amplify Case Management",
-    category: "Insurance operations",
-    status: "Prototype",
-    description:
-      "A high-fidelity workspace that brings cases, documents, requirements, tasks, and contextual AI into one clear insurance-operations flow.",
-    stack: ["React", "TypeScript", "Vite", "Tailwind"],
-    liveUrl: "https://cm-sandbox-jmr.vercel.app/",
-    sourceUrl: "https://github.com/jmramons-coder/CM-sandbox-jmr",
-    image: {
-      src: "/projects/amplify.png",
-      alt: "Case-management workspace with a document viewer, evidence summary, and requirement context",
-    },
-    visualClass: "project-visual--amplify",
-  },
-  {
-    number: "02",
-    title: "Snapuzzle",
-    category: "Kids’ creative play",
-    status: "Live web app",
-    description:
-      "A calm, touch-first puzzle-coloring app for children. Assemble cutout pieces, then scratch the artwork to reveal its colour.",
-    stack: ["JavaScript", "Supabase", "PWA", "Touch interaction"],
-    liveUrl: "https://snapuzzle.ca/",
-    sourceUrl: "https://github.com/jmramons-coder/colorcut-studio",
-    image: {
-      src: "/projects/snapuzzle.webp",
-      alt: "A smiling red panda character used in the Snapuzzle creative-play app",
-    },
-    visualClass: "project-visual--snapuzzle",
-  },
-  {
-    number: "03",
-    title: "Kidory",
-    category: "Interactive storytelling",
-    status: "Prototype",
-    description:
-      "A cinematic French-and-English picture-book experience with swipe reading, optional narration, bookmarks, and sharing.",
-    stack: ["JavaScript", "Responsive web", "EN / FR", "Audio"],
-    liveUrl: "https://interactive-stories-six.vercel.app/",
-    sourceUrl: "https://github.com/jmramons-coder/interactive-stories",
-    image: {
-      src: "/projects/kidory.jpg",
-      alt: "Warm illustrated story scene of two children building a blanket fort",
-    },
-    visualClass: "project-visual--kidory",
-  },
-] as const;
+const projectSlots = ["01", "02", "03"] as const;
 
 function ExternalLink({
   href,
@@ -110,8 +59,8 @@ export default function Home() {
 
           <div className="hero-footer reveal reveal--three">
             <p>
-              Selected web applications across complex operations, calm play,
-              and interactive storytelling.
+              An evolving collection of digital product work. Selected case
+              studies will appear here when they are ready to share.
             </p>
             <a className="down-link" href="#work">
               <span>Selected work</span>
@@ -125,66 +74,34 @@ export default function Home() {
             <p className="section-index">01—03 / Selected</p>
             <h2 id="work-title">Work</h2>
             <p className="section-note">
-              Three applications, each shaped around a different kind of
-              clarity.
+              A quiet framework for selected work, ready for each future case
+              study.
             </p>
           </div>
 
           <div className="project-list">
-            {projects.map((project) => (
-              <article className="project" key={project.number}>
+            {projectSlots.map((number) => (
+              <article className="project project--empty" key={number}>
                 <div className="project-meta">
-                  <span>{project.number}</span>
-                  <span>{project.category}</span>
-                  <span>{project.status}</span>
+                  <span>{number}</span>
+                  <span>Project slot</span>
+                  <span>Reserved</span>
                 </div>
 
-                <div className="project-grid">
-                  <div className="project-copy">
-                    <h3>{project.title}</h3>
-                    <p>{project.description}</p>
-
-                    <ul className="project-stack" aria-label="Technologies">
-                      {project.stack.map((item) => (
-                        <li key={item}>{item}</li>
-                      ))}
-                    </ul>
-
-                    <div className="project-links">
-                      <ExternalLink
-                        className="project-link project-link--primary"
-                        href={project.liveUrl}
-                      >
-                        View live
-                      </ExternalLink>
-                      <ExternalLink
-                        className="project-link"
-                        href={project.sourceUrl}
-                      >
-                        Source
-                      </ExternalLink>
-                    </div>
+                <div
+                  className="empty-project"
+                  aria-labelledby={`empty-project-${number}`}
+                >
+                  <span className="empty-project-marker" aria-hidden="true">
+                    +
+                  </span>
+                  <div className="empty-project-copy">
+                    <p className="empty-project-label">Case study {number}</p>
+                    <h3 id={`empty-project-${number}`}>Project coming soon.</h3>
                   </div>
-
-                  <a
-                    className={`project-visual ${project.visualClass}`}
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label={`Open ${project.title}`}
-                  >
-                    <div className="project-image-wrap">
-                      <Image
-                        src={project.image.src}
-                        alt={project.image.alt}
-                        fill
-                        sizes="(max-width: 900px) 100vw, 58vw"
-                      />
-                    </div>
-                    <span className="visual-label" aria-hidden="true">
-                      Open project ↗
-                    </span>
-                  </a>
+                  <p className="empty-project-note">
+                    Reserved for selected work.
+                  </p>
                 </div>
               </article>
             ))}
@@ -199,14 +116,13 @@ export default function Home() {
 
           <div className="about-grid">
             <p className="about-lead">
-              I build web products that make complicated workflows clearer and
-              playful ideas more tangible.
+              I turn clear ideas into useful, considered digital products.
             </p>
             <div className="about-detail">
               <p>
                 My work moves between product thinking, interface design, and
-                hands-on implementation—from enterprise case management to
-                learning and creative-play experiences.
+                hands-on implementation. This portfolio will grow as new work
+                is ready to share.
               </p>
               <ExternalLink
                 className="text-link"

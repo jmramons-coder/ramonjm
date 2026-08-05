@@ -32,7 +32,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const baseUrl = new URL(`${protocol}://${host}`);
   const title = "Ramon JM — Digital Product Portfolio";
   const description =
-    "Selected web applications by Ramon JM, spanning insurance operations, kids’ creative play, and interactive storytelling.";
+    "A minimal portfolio for digital product work by Ramon JM.";
 
   return {
     metadataBase: baseUrl,

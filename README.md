@@ -1,6 +1,6 @@
 # Ramon JM — Portfolio
 
-A deliberately simple, editorial portfolio for selected application work.
+A deliberately simple, editorial foundation for selected application work.
 
 ## Local development
 
@@ -22,8 +22,5 @@ npm start
 
 The project is built with Next.js and is ready for Vercel deployment.
 
-## Featured work
-
-- [Amplify Case Management](https://cm-sandbox-jmr.vercel.app/)
-- [Snapuzzle](https://snapuzzle.ca/)
-- [Kidory](https://interactive-stories-six.vercel.app/)
+The work section currently contains three polished empty states, ready to be
+replaced with case studies as the portfolio grows.
