@@ -803,54 +803,61 @@ main {
 }
 
 .clients-marquee-shell {
-  display: grid;
+  --clients-fade: clamp(24px, 7vw, 54px);
+  position: relative;
   margin-top: 28px;
-  grid-template-columns: minmax(0, 1fr) 44px;
-  align-items: center;
-  gap: 12px;
+}
+
+.clients-marquee-shell::before,
+.clients-marquee-shell::after {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  width: var(--clients-fade);
+  pointer-events: none;
+  content: "";
+}
+
+.clients-marquee-shell::before {
+  left: -1px;
+  background: linear-gradient(90deg, var(--page) 12%, transparent 100%);
+}
+
+.clients-marquee-shell::after {
+  right: -1px;
+  background: linear-gradient(270deg, var(--page) 12%, transparent 100%);
 }
 
 .clients-marquee {
   --clients-gap: clamp(52px, 12vw, 92px);
   max-width: 100%;
   min-width: 0;
-  overflow-x: hidden;
+  overflow-x: auto;
   overflow-y: hidden;
-  touch-action: pan-y;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: none;
+  cursor: grab;
+  touch-action: pan-x pan-y;
+  -webkit-overflow-scrolling: touch;
+}
+
+.clients-marquee::-webkit-scrollbar {
+  display: none;
+}
+
+.clients-marquee.is-dragging {
+  cursor: grabbing;
+}
+
+.clients-marquee:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
 }
 
 .clients-track {
   display: flex;
   width: max-content;
-  animation: client-logo-loop 32s linear infinite;
-  will-change: transform;
-}
-
-.clients-marquee:hover .clients-track,
-.clients-track.is-paused {
-  animation-play-state: paused;
-}
-
-.clients-motion-toggle {
-  display: grid;
-  width: 44px;
-  height: 44px;
-  padding: 0;
-  place-items: center;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  color: var(--ink);
-  background: transparent;
-  cursor: pointer;
-}
-
-.clients-motion-toggle:hover {
-  border-color: #b9b9b9;
-}
-
-.clients-motion-toggle:focus-visible {
-  outline: 2px solid var(--blue);
-  outline-offset: 3px;
 }
 
 .client-logo-group {
@@ -874,6 +881,9 @@ main {
   height: auto;
   max-height: 46px;
   object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 .client-logo--equisoft {
@@ -894,15 +904,10 @@ main {
   max-height: 58px;
 }
 
-@keyframes client-logo-loop {
-  to {
-    transform: translate3d(-25%, 0, 0);
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .clients-marquee-shell {
-    display: block;
+  .clients-marquee-shell::before,
+  .clients-marquee-shell::after {
+    display: none;
   }
 
   .clients-marquee {
@@ -911,12 +916,9 @@ main {
 
   .clients-track {
     width: 100%;
-    animation: none;
-    will-change: auto;
   }
 
-  .client-logo-group:not(:first-child),
-  .clients-motion-toggle {
+  .client-logo-group:not(:first-child) {
     display: none;
   }
 
@@ -1099,7 +1101,6 @@ a:focus-visible {
 
   .clients-marquee-shell {
     margin-top: 36px;
-    gap: 16px;
   }
 
   .clients-marquee {
