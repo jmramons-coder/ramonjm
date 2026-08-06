@@ -1,6 +1,6 @@
 # Ramon JM — Portfolio
 
-A deliberately simple, editorial foundation for selected application work.
+A spacious editorial portfolio for selected application work.
 
 ## Local development
 
@@ -22,5 +22,6 @@ npm start
 
 The project is built with Next.js and is ready for Vercel deployment.
 
-The work section currently contains three polished empty states, ready to be
-replaced with case studies as the portfolio grows.
+The application gallery presents seven art-directed canvases for Lounge,
+Maxing, Push, World, Add, Tracer, and Abeam. The gallery is responsive,
+keyboard accessible, and intentionally avoids unsupported project claims.

@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { headers } from "next/headers";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -15,9 +15,17 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-editorial",
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
 export const viewport: Viewport = {
   colorScheme: "light",
-  themeColor: "#f3f1ea",
+  themeColor: "#f1eee6",
 };
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -32,7 +40,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const baseUrl = new URL(`${protocol}://${host}`);
   const title = "Ramon JM — Digital Product Portfolio";
   const description =
-    "A minimal portfolio for digital product work by Ramon JM.";
+    "An editorial portfolio of selected application work by Ramon JM.";
 
   return {
     metadataBase: baseUrl,
@@ -47,10 +55,10 @@ export async function generateMetadata(): Promise<Metadata> {
       siteName: "Ramon JM",
       images: [
         {
-          url: "/og.png",
+          url: "/og-editorial.png",
           width: 1536,
           height: 1024,
-          alt: "Ramon JM — digital products, considered from system to screen",
+          alt: "Ramon JM — selected application work",
         },
       ],
     },
@@ -58,7 +66,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title,
       description,
-      images: ["/og.png"],
+      images: ["/og-editorial.png"],
     },
     robots: {
       index: true,
@@ -74,7 +82,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable}`}
+      >
         {children}
       </body>
     </html>
