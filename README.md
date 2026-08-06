@@ -22,7 +22,7 @@ npm start
 
 The project is built with Next.js and is ready for Vercel deployment.
 
-The site uses one continuous responsive flow: a concise introduction, a bright
-application index, and seven art-directed canvases for Lounge, Maxing, Push,
-World, Add, Tracer, and Abeam. It intentionally avoids invented project links
-or unsupported claims.
+The site uses one continuous responsive flow: a concise introduction, a
+horizontally scrollable application index, seven art-directed canvases for
+Lounge, Maxing, Push, World, Add, Tracer, and Abeam, and a three-step workflow
+section. It intentionally avoids invented project links or unsupported claims.

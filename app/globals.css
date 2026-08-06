@@ -144,7 +144,7 @@ main {
 }
 
 .hero {
-  padding: 104px var(--page-pad) 56px;
+  padding: 104px var(--page-pad) 8px;
 }
 
 .hero-copy {
@@ -235,28 +235,55 @@ main {
 }
 
 .app-strip {
-  width: calc(100% + var(--page-pad));
-  margin-top: 52px;
+  margin-top: 44px;
+  margin-right: calc(-1 * var(--page-pad));
+  padding: 8px var(--page-pad) 12px 0;
   overflow-x: auto;
+  overflow-y: hidden;
   overscroll-behavior-inline: contain;
-  scrollbar-width: none;
+  scroll-padding-inline: 0 var(--page-pad);
+  scroll-snap-type: x proximity;
+  scrollbar-color: #b8b8b8 transparent;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
 }
 
 .app-strip::-webkit-scrollbar {
-  display: none;
+  height: 4px;
+}
+
+.app-strip::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: #b8b8b8;
 }
 
 .app-strip ul {
   display: flex;
   width: max-content;
-  padding-right: var(--page-pad);
+  min-width: max-content;
   align-items: center;
-  gap: 38px;
+  gap: 24px;
+}
+
+.app-strip li {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 .app-strip a {
-  display: block;
+  position: relative;
+  display: grid;
+  min-width: 46px;
+  min-height: 46px;
+  place-items: center;
   border-radius: 11px;
+  scroll-margin-inline: 8px;
+}
+
+.app-strip:focus-visible,
+.app-strip a:focus-visible {
+  outline-offset: 2px;
 }
 
 .app-icon {
@@ -275,39 +302,20 @@ main {
   transform: translateY(-4px) rotate(-2deg);
 }
 
-.app-icon > span {
+.app-icon-glyph {
   position: relative;
   z-index: 2;
-  font-size: 1.2rem;
-  font-weight: 760;
-  letter-spacing: -0.08em;
-  line-height: 1;
+  display: grid;
+  place-items: center;
+  line-height: 0;
 }
 
 .app-icon--lounge {
   background: linear-gradient(135deg, #aaf3e7 0%, #13dfcd 100%);
 }
 
-.app-icon--lounge > span {
-  font-style: italic;
-  transform: rotate(-13deg);
-}
-
 .app-icon--maxing {
   background: #edff16;
-}
-
-.app-icon--maxing::after {
-  position: absolute;
-  width: 32px;
-  height: 10px;
-  background: var(--ink);
-  content: "";
-  transform: rotate(48deg);
-}
-
-.app-icon--maxing > span {
-  opacity: 0;
 }
 
 .app-icon--push {
@@ -315,44 +323,16 @@ main {
   color: #fff;
 }
 
-.app-icon--push > span {
-  font-size: 1.8rem;
-}
-
 .app-icon--world {
   background: #b9ef08;
-}
-
-.app-icon--world > span {
-  font-style: italic;
-  transform: rotate(10deg);
 }
 
 .app-icon--add {
   background: #f0ddf5;
 }
 
-.app-icon--add > span {
-  font-size: 1.75rem;
-  font-weight: 480;
-}
-
 .app-icon--tracer {
   background: linear-gradient(135deg, #fff 12%, #fad9f4 56%, #9c73ff 130%);
-}
-
-.app-icon--tracer::after {
-  position: absolute;
-  inset: 8px;
-  border: 2px solid var(--ink);
-  border-left-color: transparent;
-  border-radius: 50%;
-  content: "";
-  transform: rotate(-22deg);
-}
-
-.app-icon--tracer > span {
-  opacity: 0;
 }
 
 .app-icon--abeam {
@@ -360,23 +340,9 @@ main {
   color: #fff;
 }
 
-.app-icon--abeam::after {
-  position: absolute;
-  bottom: -13px;
-  width: 28px;
-  height: 48px;
-  clip-path: polygon(50% 0, 100% 100%, 0 100%);
-  background: #f8e9b8;
-  content: "";
-  opacity: 0.9;
-}
-
-.app-icon--abeam > span {
-  opacity: 0;
-}
-
 .work-section {
-  padding: 56px var(--page-pad) 112px;
+  padding: 12px var(--page-pad) 96px;
+  scroll-margin-top: 12px;
 }
 
 .work-intro {
@@ -389,6 +355,7 @@ main {
 }
 
 .work-intro h2,
+.workflow-intro h2,
 .about-content h2 {
   margin-top: 19px;
   font-size: clamp(2.55rem, 10.6vw, 4.25rem);
@@ -398,6 +365,7 @@ main {
 }
 
 .work-intro h2 span,
+.workflow-intro h2 > span,
 .about-content h2 span {
   display: block;
 }
@@ -405,6 +373,24 @@ main {
 .work-intro h2 span:first-child,
 .about-content h2 span {
   color: var(--muted);
+}
+
+.workflow-intro h2 > span:first-child {
+  color: var(--muted);
+}
+
+.workflow-result {
+  display: flex !important;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink);
+}
+
+.workflow-arrow {
+  display: inline-grid;
+  flex: 0 0 auto;
+  place-items: center;
+  line-height: 0;
 }
 
 .gallery-grid {
@@ -723,6 +709,85 @@ main {
   transform: translate(-50%, -50%);
 }
 
+.workflow-section {
+  padding: 0 var(--page-pad) 120px;
+}
+
+.workflow-intro {
+  max-width: 980px;
+}
+
+.workflow-list {
+  display: grid;
+  margin: 36px 0 0;
+  padding: 0;
+  gap: 8px;
+  list-style: none;
+}
+
+.workflow-step {
+  display: grid;
+  min-height: 210px;
+  grid-template-columns: minmax(0, 45fr) minmax(0, 55fr);
+  gap: 8px;
+}
+
+.workflow-number-card,
+.workflow-copy-card {
+  border-radius: 14px;
+  background: #fff;
+}
+
+.workflow-number-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.workflow-number-card > p {
+  font-size: 2.65rem;
+  font-weight: 520;
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+
+.workflow-progress {
+  display: flex;
+  margin-top: 10px;
+  gap: 4px;
+}
+
+.workflow-progress span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #eee;
+}
+
+.workflow-progress .is-active {
+  background: var(--ink);
+}
+
+.workflow-copy-card {
+  padding: 20px;
+}
+
+.workflow-copy-card h3 {
+  font-size: 1.65rem;
+  font-weight: 620;
+  letter-spacing: -0.045em;
+  line-height: 1.05;
+}
+
+.workflow-copy-card p {
+  margin-top: 8px;
+  color: var(--body);
+  font-size: 1.02rem;
+  letter-spacing: -0.025em;
+  line-height: 1.3;
+}
+
 .about-section {
   padding: 0 var(--page-pad) 120px;
 }
@@ -831,7 +896,7 @@ a:focus-visible {
 
   .hero {
     padding-top: 148px;
-    padding-bottom: 84px;
+    padding-bottom: 32px;
   }
 
   .hero-copy {
@@ -848,11 +913,11 @@ a:focus-visible {
   }
 
   .app-strip {
-    margin-top: 70px;
+    margin-top: 62px;
   }
 
   .app-strip ul {
-    gap: 56px;
+    gap: 42px;
   }
 
   .app-icon {
@@ -861,11 +926,12 @@ a:focus-visible {
   }
 
   .work-section {
-    padding-top: 94px;
-    padding-bottom: 150px;
+    padding-top: 44px;
+    padding-bottom: 112px;
   }
 
   .work-intro h2,
+  .workflow-intro h2,
   .about-content h2 {
     font-size: clamp(3.9rem, 6.2vw, 6rem);
     line-height: 1;
@@ -874,6 +940,10 @@ a:focus-visible {
   .gallery-grid {
     margin-top: 56px;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .workflow-section {
+    padding-bottom: 160px;
   }
 
   .about-section {
@@ -912,6 +982,40 @@ a:focus-visible {
   }
 }
 
+@media (min-width: 900px) {
+  .workflow-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .workflow-step {
+    display: flex;
+    min-height: 0;
+    flex-direction: column;
+  }
+
+  .workflow-number-card {
+    min-height: 145px;
+  }
+
+  .workflow-number-card > p {
+    font-size: 3.25rem;
+  }
+
+  .workflow-copy-card {
+    min-height: 245px;
+    padding: 24px;
+  }
+
+  .workflow-copy-card h3 {
+    font-size: 1.9rem;
+  }
+
+  .workflow-copy-card p {
+    font-size: 1.08rem;
+    line-height: 1.4;
+  }
+}
+
 @media (min-width: 1200px) {
   :root {
     --page-pad: 40px;
@@ -922,7 +1026,7 @@ a:focus-visible {
   }
 
   .work-section {
-    padding-top: 116px;
+    padding-top: 52px;
   }
 
   .application-label {

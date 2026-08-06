@@ -1,21 +1,51 @@
 import type { ReactNode } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
+  Add01Icon,
   ArrowDown01Icon,
+  ArrowRight02Icon,
   ArrowUp01Icon,
   ArrowUpRight01Icon,
+  ChartIncreaseIcon,
+  Globe02Icon,
   GithubIcon,
+  Route01Icon,
   RocketIcon,
+  Sofa01Icon,
+  Sun01Icon,
 } from "@hugeicons/core-free-icons";
 
 const applications = [
-  { name: "Lounge", slug: "lounge", mark: "L" },
-  { name: "Maxing", slug: "maxing", mark: "M" },
-  { name: "Push", slug: "push", mark: "P" },
-  { name: "World", slug: "world", mark: "W" },
-  { name: "Add", slug: "add", mark: "+" },
-  { name: "Tracer", slug: "tracer", mark: "T" },
-  { name: "Abeam", slug: "abeam", mark: "A" },
+  { name: "Lounge", slug: "lounge", mark: "L", icon: Sofa01Icon },
+  {
+    name: "Maxing",
+    slug: "maxing",
+    mark: "M",
+    icon: ChartIncreaseIcon,
+  },
+  { name: "Push", slug: "push", mark: "P", icon: RocketIcon },
+  { name: "World", slug: "world", mark: "W", icon: Globe02Icon },
+  { name: "Add", slug: "add", mark: "+", icon: Add01Icon },
+  { name: "Tracer", slug: "tracer", mark: "T", icon: Route01Icon },
+  { name: "Abeam", slug: "abeam", mark: "A", icon: Sun01Icon },
+] as const;
+
+const workflowSteps = [
+  {
+    title: "Discovery",
+    description:
+      "Start with the idea, the problem it should solve, and the simplest useful shape for the product.",
+  },
+  {
+    title: "Creation",
+    description:
+      "Turn that direction into a clear interface system, then build the interactions that make it feel complete.",
+  },
+  {
+    title: "Delivery",
+    description:
+      "Refine the responsive experience, check the essential paths, and prepare the product to ship.",
+  },
 ] as const;
 
 function ExternalLink({
@@ -97,7 +127,15 @@ export default function Home() {
             </a>
           </div>
 
-          <nav className="app-strip" aria-label="Jump to an application">
+          <p className="sr-only" id="app-strip-help">
+            Swipe or scroll horizontally, or use Tab, to browse the app links.
+          </p>
+          <nav
+            className="app-strip"
+            aria-label="Jump to an application"
+            aria-describedby="app-strip-help"
+            tabIndex={0}
+          >
             <ul>
               {applications.map((application) => (
                 <li key={application.slug}>
@@ -106,17 +144,13 @@ export default function Home() {
                       className={`app-icon app-icon--${application.slug}`}
                       aria-hidden="true"
                     >
-                      {application.slug === "push" ? (
-                        <span className="app-icon-glyph">
-                          <HugeiconsIcon
-                            icon={RocketIcon}
-                            size={27}
-                            strokeWidth={1.8}
-                          />
-                        </span>
-                      ) : (
-                        <span>{application.mark}</span>
-                      )}
+                      <span className="app-icon-glyph">
+                        <HugeiconsIcon
+                          icon={application.icon}
+                          size={27}
+                          strokeWidth={1.8}
+                        />
+                      </span>
                     </span>
                     <span className="sr-only">Go to {application.name}</span>
                   </a>
@@ -165,6 +199,50 @@ export default function Home() {
               </article>
             ))}
           </div>
+        </section>
+
+        <section
+          className="workflow-section"
+          aria-labelledby="workflow-title"
+        >
+          <div className="workflow-intro">
+            <p className="section-pill">Our workflow</p>
+            <h2 id="workflow-title">
+              <span>No guesswork, just a clear path from ideas</span>
+              <span className="workflow-result">
+                <span className="workflow-arrow" aria-hidden="true">
+                  <HugeiconsIcon
+                    icon={ArrowRight02Icon}
+                    size="1em"
+                    strokeWidth={1.5}
+                  />
+                </span>
+                working apps.
+              </span>
+            </h2>
+          </div>
+
+          <ol className="workflow-list">
+            {workflowSteps.map((step, index) => (
+              <li className="workflow-step" key={step.title}>
+                <div className="workflow-number-card">
+                  <p>{String(index + 1).padStart(2, "0")}</p>
+                  <div className="workflow-progress" aria-hidden="true">
+                    {[0, 1, 2].map((dot) => (
+                      <span
+                        className={dot <= index ? "is-active" : undefined}
+                        key={dot}
+                      />
+                    ))}
+                  </div>
+                </div>
+                <div className="workflow-copy-card">
+                  <h3>{step.title}</h3>
+                  <p>{step.description}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
         </section>
 
         <section className="about-section" aria-labelledby="about-title">
