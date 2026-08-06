@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowLeft02Icon } from "@hugeicons/core-free-icons";
@@ -16,12 +15,6 @@ export const metadata: Metadata = {
 export default function AbeamProjectPage() {
   return (
     <main className={styles.page}>
-      <div className={styles.ambient} aria-hidden="true">
-        <span />
-        <span />
-        <span />
-      </div>
-
       <header className={styles.header}>
         <Link className={styles.backLink} href="/#applications">
           <HugeiconsIcon
@@ -42,15 +35,7 @@ export default function AbeamProjectPage() {
           </p>
 
           <div className={styles.identity}>
-            <span className={styles.mark} aria-hidden="true">
-              <Image
-                src="/abeam/mark.png"
-                alt=""
-                fill
-                sizes="64px"
-                priority
-              />
-            </span>
+            <AbeamVideo className={styles.mark} sizes="88px" />
             <span>
               <strong>aBeam</strong>
               <small>AI copilot for travel advisors</small>
@@ -70,14 +55,11 @@ export default function AbeamProjectPage() {
         </div>
 
         <div className={styles.visual}>
-          <span className={styles.halo} aria-hidden="true" />
           <AbeamVideo
             className={styles.motion}
             priority
-            showControl
-            sizes="(max-width: 800px) 82vw, 46vw"
+            sizes="(max-width: 900px) 94vw, 51vw"
           />
-          <span className={styles.shadow} aria-hidden="true" />
         </div>
       </section>
     </main>

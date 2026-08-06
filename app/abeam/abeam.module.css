@@ -1,57 +1,16 @@
 .page {
   position: relative;
-  isolation: isolate;
   min-height: 100svh;
   overflow: hidden;
   background:
-    radial-gradient(circle at 75% 40%, rgb(22 84 148 / 26%), transparent 32rem),
-    linear-gradient(145deg, #020509 0%, #06111d 48%, #071526 100%);
-  color: #fff;
-}
-
-.ambient {
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.ambient span {
-  position: absolute;
-  display: block;
-  border-radius: 50%;
-  background: rgb(39 135 245 / 13%);
-  filter: blur(54px);
-  animation: drift 13s ease-in-out infinite alternate;
-}
-
-.ambient span:nth-child(1) {
-  top: -18%;
-  right: 2%;
-  width: 42vw;
-  min-width: 360px;
-  aspect-ratio: 1;
-}
-
-.ambient span:nth-child(2) {
-  right: -10%;
-  bottom: -26%;
-  width: 36vw;
-  min-width: 320px;
-  aspect-ratio: 1;
-  background: rgb(158 203 255 / 9%);
-  animation-delay: -5s;
-}
-
-.ambient span:nth-child(3) {
-  bottom: -34%;
-  left: -14%;
-  width: 42vw;
-  min-width: 360px;
-  aspect-ratio: 1;
-  background: rgb(18 111 217 / 8%);
-  animation-delay: -9s;
+    radial-gradient(
+      ellipse 76% 80% at 74% 40%,
+      rgb(39 135 245 / 22%) 0%,
+      rgb(158 203 255 / 13%) 38%,
+      rgb(255 255 255 / 0%) 72%
+    ),
+    linear-gradient(145deg, #fff 0%, #f7fbff 52%, #fff 100%);
+  color: #071727;
 }
 
 .header {
@@ -74,13 +33,13 @@
   padding: 0 16px;
   align-items: center;
   gap: 8px;
-  border: 1px solid rgb(255 255 255 / 13%);
+  border: 1px solid rgb(7 23 39 / 10%);
   border-radius: 999px;
-  background: rgb(255 255 255 / 8%);
+  background: rgb(255 255 255 / 76%);
+  color: #071727;
   font-size: 0.84rem;
   font-weight: 520;
   letter-spacing: -0.025em;
-  backdrop-filter: blur(16px);
   transition:
     border-color 180ms ease,
     background 180ms ease,
@@ -88,14 +47,14 @@
 }
 
 .backLink:hover {
-  border-color: rgb(255 255 255 / 24%);
-  background: rgb(255 255 255 / 13%);
+  border-color: rgb(39 135 245 / 28%);
+  background: #fff;
   transform: translateX(-2px);
 }
 
 .signature {
   padding-top: 12px;
-  color: rgb(255 255 255 / 64%);
+  color: #6f8599;
   font-size: 0.84rem;
   font-weight: 560;
   letter-spacing: -0.035em;
@@ -125,14 +84,13 @@
   padding: 0 13px;
   align-items: center;
   gap: 8px;
-  border: 1px solid rgb(255 255 255 / 12%);
+  border: 1px solid rgb(7 23 39 / 9%);
   border-radius: 999px;
-  background: rgb(255 255 255 / 7%);
-  color: rgb(255 255 255 / 69%);
+  background: rgb(255 255 255 / 72%);
+  color: #52697d;
   font-size: 0.74rem;
   font-weight: 530;
   letter-spacing: -0.015em;
-  backdrop-filter: blur(16px);
 }
 
 .status > span {
@@ -151,16 +109,9 @@
 }
 
 .mark {
-  position: relative;
   display: block;
-  width: 58px;
-  aspect-ratio: 1;
+  width: 88px;
   flex: 0 0 auto;
-}
-
-.mark img {
-  object-fit: contain;
-  transform: scale(1.48);
 }
 
 .identity > span:last-child {
@@ -175,7 +126,7 @@
 }
 
 .identity small {
-  color: rgb(255 255 255 / 48%);
+  color: #60778a;
   font-size: 0.7rem;
   font-weight: 510;
   letter-spacing: 0.01em;
@@ -194,13 +145,13 @@
 }
 
 .copy h1 span:first-child {
-  color: rgb(255 255 255 / 43%);
+  color: #7890a5;
 }
 
 .description {
   max-width: 610px;
   margin-top: 30px;
-  color: rgb(255 255 255 / 64%);
+  color: #536a7e;
   font-size: clamp(1.02rem, 1.7vw, 1.28rem);
   font-weight: 420;
   letter-spacing: -0.035em;
@@ -215,40 +166,8 @@
   grid-area: visual;
 }
 
-.halo {
-  position: absolute;
-  width: min(48vw, 610px);
-  aspect-ratio: 1;
-  border: 1px solid rgb(158 203 255 / 9%);
-  border-radius: 50%;
-  box-shadow:
-    0 0 0 54px rgb(39 135 245 / 2.5%),
-    0 0 120px rgb(39 135 245 / 10%);
-}
-
 .motion {
-  z-index: 2;
-  width: min(43vw, 560px);
-}
-
-.shadow {
-  position: absolute;
-  z-index: 1;
-  bottom: 12%;
-  width: min(26vw, 320px);
-  height: 42px;
-  border-radius: 50%;
-  background: rgb(0 0 0 / 50%);
-  filter: blur(22px);
-}
-
-@keyframes drift {
-  from {
-    transform: translate3d(-18px, -8px, 0) scale(0.98);
-  }
-  to {
-    transform: translate3d(22px, 14px, 0) scale(1.04);
-  }
+  width: min(51vw, 680px);
 }
 
 @media (max-width: 900px) {
@@ -274,16 +193,7 @@
   }
 
   .motion {
-    width: min(82vw, 430px);
-  }
-
-  .halo {
-    width: min(88vw, 480px);
-  }
-
-  .shadow {
-    bottom: 8%;
-    width: min(46vw, 250px);
+    width: min(94vw, 430px);
   }
 
   .copy {
@@ -320,7 +230,7 @@
   }
 
   .motion {
-    width: min(86vw, 370px);
+    width: min(94vw, 400px);
   }
 
   .copy h1 {
@@ -330,11 +240,5 @@
   .description {
     margin-top: 24px;
     font-size: 1rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .ambient span {
-    animation: none;
   }
 }

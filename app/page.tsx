@@ -156,13 +156,9 @@ export default function Home() {
                             sizes="62px"
                           />
                         ) : application.slug === "abeam" ? (
-                          <Image
-                            className="app-icon-image app-icon-image--abeam"
-                            src="/abeam/mark.png"
-                            alt=""
-                            width={256}
-                            height={256}
-                            sizes="62px"
+                          <AbeamVideo
+                            className="app-icon-video--abeam"
+                            sizes="70px"
                           />
                         ) : (
                           <HugeiconsIcon
@@ -270,21 +266,15 @@ export default function Home() {
                   className="app-canvas app-canvas--abeam-project"
                   aria-hidden="true"
                 >
-                  <span className="abeam-card-glow" />
                   <AbeamVideo
                     className="abeam-card-motion"
-                    sizes="(max-width: 759px) 72vw, 34vw"
+                    sizes="(max-width: 759px) 92vw, 46vw"
                   />
-                  <span className="abeam-card-status">Coming soon</span>
                 </div>
                 <div className="application-label application-label--project">
-                  <Image
+                  <AbeamVideo
                     className="application-project-icon application-project-icon--abeam"
-                    src="/abeam/mark.png"
-                    alt=""
-                    width={256}
-                    height={256}
-                    sizes="44px"
+                    sizes="66px"
                   />
                   <div>
                     <p>07 / Travel advisor AI</p>

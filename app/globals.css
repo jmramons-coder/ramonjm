@@ -337,11 +337,22 @@ main {
 
 .app-icon--abeam {
   background: transparent;
+  overflow: visible;
+  border-radius: 0;
+  box-shadow: none;
 }
 
-.app-icon-image--abeam {
-  object-fit: contain !important;
-  transform: scale(1.48);
+.app-icon--abeam .app-icon-glyph {
+  width: 100%;
+  height: 100%;
+}
+
+.app-icon-video--abeam {
+  width: 70px;
+}
+
+.app-strip a:hover .app-icon--abeam {
+  transform: none;
 }
 
 .work-section {
@@ -490,12 +501,13 @@ main {
   position: relative;
   display: grid;
   aspect-ratio: 1;
-  place-items: center;
+  line-height: 0;
 }
 
 .abeam-video-fallback,
 .abeam-video-media {
   grid-area: 1 / 1;
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: contain;
@@ -503,7 +515,7 @@ main {
 }
 
 .abeam-video-fallback {
-  transition: opacity 180ms ease;
+  transition: opacity 140ms ease;
 }
 
 .abeam-video-media {
@@ -512,38 +524,6 @@ main {
 
 .abeam-video.is-ready .abeam-video-fallback {
   opacity: 0;
-}
-
-.abeam-video-control {
-  position: absolute;
-  z-index: 3;
-  right: 5%;
-  bottom: 5%;
-  display: grid;
-  width: 42px;
-  aspect-ratio: 1;
-  padding: 0;
-  place-items: center;
-  border: 1px solid rgb(255 255 255 / 14%);
-  border-radius: 50%;
-  background: rgb(255 255 255 / 9%);
-  color: #fff;
-  cursor: pointer;
-  transition:
-    border-color 180ms ease,
-    background 180ms ease,
-    transform 180ms ease;
-}
-
-.abeam-video-control:hover {
-  border-color: rgb(255 255 255 / 26%);
-  background: rgb(255 255 255 / 15%);
-  transform: scale(1.04);
-}
-
-.abeam-video-control:focus-visible {
-  outline: 2px solid #fff;
-  outline-offset: 3px;
 }
 
 .workflow-section {
@@ -1259,15 +1239,21 @@ a:focus-visible {
 /* aBeam portfolio card */
 
 .application-card--abeam {
-  background: #02060b;
+  border: 1px solid rgb(7 23 39 / 8%);
+  background: #fff;
 }
 
 .app-canvas--abeam-project {
   display: grid;
   place-items: center;
   background:
-    radial-gradient(circle at 50% 39%, rgb(39 135 245 / 26%), transparent 29%),
-    linear-gradient(145deg, #020509 0%, #071526 100%);
+    radial-gradient(
+      ellipse 106% 82% at 50% 42%,
+      rgb(39 135 245 / 24%) 0%,
+      rgb(158 203 255 / 13%) 38%,
+      rgb(255 255 255 / 0%) 72%
+    ),
+    #fff;
   transform: none;
   transition: none;
 }
@@ -1276,60 +1262,27 @@ a:focus-visible {
   transform: none;
 }
 
-.abeam-card-glow {
-  position: absolute;
-  top: 10%;
-  left: 50%;
-  width: 74%;
-  aspect-ratio: 1;
-  border: 1px solid rgb(158 203 255 / 10%);
-  border-radius: 50%;
-  box-shadow:
-    0 0 0 38px rgb(39 135 245 / 2.5%),
-    0 0 90px rgb(39 135 245 / 13%);
-  transform: translateX(-50%);
-}
-
 .abeam-card-motion {
   position: absolute;
   z-index: 2;
-  top: 48%;
+  top: 46%;
   left: 50%;
-  width: min(76%, 430px);
+  width: min(92%, 520px);
   transform: translate(-50%, -50%);
 }
 
-.abeam-card-status {
-  position: absolute;
-  z-index: 3;
-  top: 4%;
-  left: 4%;
-  display: inline-flex;
-  min-height: 30px;
-  padding: 0 12px;
-  align-items: center;
-  border: 1px solid rgb(255 255 255 / 13%);
-  border-radius: 999px;
-  background: rgb(255 255 255 / 8%);
-  color: rgb(255 255 255 / 72%);
-  font-size: 0.66rem;
-  font-weight: 550;
-  letter-spacing: 0.01em;
-  backdrop-filter: blur(14px);
+.application-card--abeam .application-label {
+  border-color: rgb(7 23 39 / 10%);
+  background: rgb(255 255 255 / 92%);
+  backdrop-filter: none;
 }
 
 .application-project-icon--abeam {
-  object-fit: contain;
+  width: 66px;
+  height: 66px;
+  margin: -11px;
   border-radius: 0;
   box-shadow: none;
-  transform: scale(1.48);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .abeam-video-fallback,
-  .abeam-video-control {
-    transition: none;
-  }
 }
 
 /* PushedWorld project page */
