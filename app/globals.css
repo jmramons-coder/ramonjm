@@ -862,6 +862,7 @@ main {
 
 .client-logo-group {
   display: flex;
+  min-inline-size: calc(min(100vw, var(--max-width)) + 180px);
   flex: 0 0 auto;
   align-items: center;
   gap: var(--clients-gap);
@@ -871,11 +872,13 @@ main {
 .client-logo-item {
   display: grid;
   min-height: 92px;
+  overflow: hidden;
   flex: 0 0 clamp(132px, 38vw, 168px);
   place-items: center;
 }
 
 .client-logo {
+  display: block;
   width: auto;
   max-width: 100%;
   height: auto;
@@ -887,7 +890,7 @@ main {
 }
 
 .client-logo--equisoft {
-  max-width: 160px;
+  max-width: min(100%, 160px);
 }
 
 .client-logo--folks {
@@ -924,6 +927,7 @@ main {
 
   .client-logo-group:first-child {
     width: 100%;
+    min-inline-size: 0;
     flex-wrap: wrap;
     justify-content: space-around;
     gap: 24px;
@@ -1249,43 +1253,130 @@ a:focus-visible {
 }
 
 .app-canvas--world {
-  background:
-    radial-gradient(circle at 28% 24%, rgb(255 255 255 / 90%) 0 12%, transparent 34%),
-    linear-gradient(145deg, #f4f7ff 0%, #dbe8ff 47%, #e5dcff 100%);
+  background: #dce7d4;
   color: var(--ink);
 }
 
-.world-card-glow {
+.world-card-human {
+  object-fit: cover;
+  object-position: 47% center;
+}
+
+.world-card-shade {
   position: absolute;
-  top: 12%;
-  left: 50%;
-  width: 74%;
-  aspect-ratio: 1;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgb(9 19 16 / 12%) 0%,
+    transparent 38%,
+    rgb(5 12 9 / 42%) 100%
+  );
+}
+
+.world-card-live,
+.world-card-reps,
+.world-card-level {
+  position: absolute;
+  z-index: 2;
+  border: 1px solid rgb(255 255 255 / 72%);
+  background: rgb(255 255 255 / 88%);
+  box-shadow: 0 14px 36px rgb(18 26 20 / 16%);
+  backdrop-filter: blur(14px) saturate(1.08);
+}
+
+.world-card-live {
+  top: 4%;
+  left: 4%;
+  display: grid;
+  padding: 9px 11px;
+  align-items: center;
+  grid-template-columns: auto 1fr;
+  gap: 1px 8px;
+  border-radius: 12px;
+  font-size: 0.72rem;
+  font-weight: 650;
+}
+
+.world-card-live i {
+  width: 8px;
+  height: 8px;
+  grid-row: span 2;
   border-radius: 50%;
-  background: rgb(255 255 255 / 62%);
-  filter: blur(2px);
-  transform: translateX(-50%);
+  background: #12d96a;
+  box-shadow: 0 0 0 4px rgb(18 217 106 / 14%);
 }
 
-.world-card-screen {
-  position: absolute;
-  bottom: 7%;
-  height: auto;
-  border-radius: clamp(16px, 3vw, 30px);
-  box-shadow: 0 26px 60px rgb(39 32 88 / 22%);
+.world-card-live small,
+.world-card-reps small,
+.world-card-level small {
+  color: #777;
+  font-size: 0.53rem;
+  font-weight: 620;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
 }
 
-.world-card-screen--workout {
-  left: 7%;
-  width: 43%;
-  transform: translateY(5%) rotate(-5deg);
+.world-card-reps {
+  right: 4%;
+  bottom: 25%;
+  display: grid;
+  min-width: 128px;
+  padding: 12px;
+  border-radius: 14px;
 }
 
-.world-card-screen--path {
-  right: 7%;
-  z-index: 1;
-  width: 50%;
-  transform: rotate(4deg);
+.world-card-reps > span {
+  display: flex;
+  margin-top: 2px;
+  align-items: baseline;
+  gap: 5px;
+  color: #696969;
+  font-size: 0.62rem;
+  font-weight: 600;
+}
+
+.world-card-reps strong {
+  color: var(--ink);
+  font-size: 2rem;
+  letter-spacing: -0.08em;
+  line-height: 1;
+}
+
+.world-card-reps > i {
+  height: 4px;
+  margin-top: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e7e7e7;
+}
+
+.world-card-reps > i b {
+  display: block;
+  width: 58%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #763bff, #00bfe7);
+}
+
+.world-card-level {
+  top: 4%;
+  right: 4%;
+  display: grid;
+  max-width: 138px;
+  padding: 10px 12px;
+  border-radius: 13px;
+}
+
+.world-card-level strong {
+  margin-top: 3px;
+  font-size: 0.78rem;
+}
+
+.world-card-level > span {
+  margin-top: 2px;
+  color: #6d6d6d;
+  font-size: 0.56rem;
+  font-weight: 550;
 }
 
 .application-label--project {

@@ -204,23 +204,33 @@ export default function Home() {
                         className="app-canvas app-canvas--world"
                         aria-hidden="true"
                       >
-                        <span className="world-card-glow" />
                         <Image
-                          className="world-card-screen world-card-screen--workout"
-                          src="/world/workout.png"
+                          className="world-card-human"
+                          src="/world/hero-human.jpg"
                           alt=""
-                          width={240}
-                          height={522}
-                          sizes="(max-width: 759px) 46vw, 24vw"
+                          fill
+                          sizes="(max-width: 759px) 100vw, 50vw"
                         />
-                        <Image
-                          className="world-card-screen world-card-screen--path"
-                          src="/world/path.png"
-                          alt=""
-                          width={240}
-                          height={522}
-                          sizes="(max-width: 759px) 51vw, 27vw"
-                        />
+                        <span className="world-card-shade" />
+                        <span className="world-card-live">
+                          <i />
+                          <span>Live</span>
+                          <small>Tracking</small>
+                        </span>
+                        <span className="world-card-reps">
+                          <small>Session reps</small>
+                          <span>
+                            <strong>31</strong> reps
+                          </span>
+                          <i>
+                            <b />
+                          </i>
+                        </span>
+                        <span className="world-card-level">
+                          <small>Level 26</small>
+                          <strong>Black Iron</strong>
+                          <span>30 reps to Level 27</span>
+                        </span>
                       </div>
                       <div className="application-label application-label--project">
                         <Image

@@ -1,0 +1,975 @@
+.page:focus {
+  outline: none;
+}
+
+.hero {
+  padding: 92px var(--page-pad) 120px;
+}
+
+.heroCopy {
+  max-width: 820px;
+}
+
+.identity {
+  display: flex;
+  margin-top: 22px;
+  align-items: center;
+  gap: 14px;
+}
+
+.appIcon {
+  display: block;
+  width: 72px;
+  height: 72px;
+  border-radius: 17px;
+  box-shadow: 0 14px 34px rgb(34 23 90 / 14%);
+}
+
+.identity > div {
+  display: grid;
+  gap: 3px;
+}
+
+.identity span {
+  color: #7c7c7c;
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.identity strong {
+  font-size: 1.05rem;
+  font-weight: 630;
+  letter-spacing: -0.04em;
+}
+
+.hero h1 {
+  max-width: 8.6em;
+  margin-top: 28px;
+  font-size: clamp(3.25rem, 13.2vw, 5.6rem);
+  font-weight: 630;
+  letter-spacing: -0.075em;
+  line-height: 0.92;
+}
+
+.hero h1 span {
+  display: block;
+}
+
+.hero h1 span:nth-child(2) {
+  color: var(--muted);
+}
+
+.heroIntro {
+  max-width: 680px;
+  margin-top: 30px;
+  color: var(--body);
+  font-size: clamp(1.15rem, 4.9vw, 1.4rem);
+  font-weight: 420;
+  letter-spacing: -0.035em;
+  line-height: 1.42;
+}
+
+.primaryLink,
+.closingLink {
+  display: inline-flex;
+  min-height: 42px;
+  padding: 0 16px;
+  align-items: center;
+  gap: 9px;
+  border-radius: 999px;
+  font-size: 0.86rem;
+  font-weight: 530;
+  letter-spacing: -0.025em;
+  transition:
+    background 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.primaryLink {
+  margin-top: 30px;
+  background: var(--ink);
+  color: #fff;
+}
+
+.primaryLink:hover {
+  background: #713cf4;
+  transform: translateY(-2px);
+}
+
+.heroStage {
+  position: relative;
+  isolation: isolate;
+  aspect-ratio: 4 / 5;
+  margin: 52px 0 0;
+  overflow: hidden;
+  border-radius: var(--card-radius);
+  background: #dce7d4;
+}
+
+.heroImage {
+  z-index: -2;
+  object-fit: cover;
+  object-position: 47% center;
+}
+
+.heroShade {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgb(8 18 13 / 12%) 0%,
+    transparent 46%,
+    rgb(8 18 13 / 32%) 100%
+  );
+}
+
+.floatingCard {
+  position: absolute;
+  z-index: 2;
+  border: 1px solid rgb(255 255 255 / 78%);
+  background: rgb(255 255 255 / 89%);
+  box-shadow: 0 18px 46px rgb(21 32 24 / 17%);
+  backdrop-filter: blur(16px) saturate(1.08);
+}
+
+.floatingCard small {
+  color: #777;
+  font-size: 0.56rem;
+  font-weight: 640;
+  letter-spacing: 0.055em;
+  text-transform: uppercase;
+}
+
+.liveCard {
+  top: 16px;
+  left: 16px;
+  display: grid;
+  padding: 10px 12px;
+  align-items: center;
+  grid-template-columns: auto 1fr;
+  gap: 1px 9px;
+  border-radius: 13px;
+}
+
+.liveCard i {
+  width: 8px;
+  height: 8px;
+  grid-row: span 2;
+  border-radius: 50%;
+  background: #13db6a;
+  box-shadow: 0 0 0 5px rgb(19 219 106 / 14%);
+}
+
+.liveCard span {
+  font-size: 0.76rem;
+  font-weight: 660;
+}
+
+.repCard {
+  right: 16px;
+  bottom: 92px;
+  display: grid;
+  min-width: 138px;
+  padding: 13px;
+  border-radius: 15px;
+}
+
+.repCard > div {
+  display: flex;
+  margin-top: 3px;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.repCard strong {
+  font-size: 2.25rem;
+  letter-spacing: -0.08em;
+  line-height: 1;
+}
+
+.repCard > div span {
+  color: #666;
+  font-size: 0.66rem;
+  font-weight: 610;
+}
+
+.repCard > i,
+.progressCard > i {
+  height: 4px;
+  margin-top: 9px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e5e5e5;
+}
+
+.repCard > i b,
+.progressCard > i b {
+  display: block;
+  width: 58%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #763bff, #00bfe7);
+}
+
+.levelCard {
+  top: 16px;
+  right: 16px;
+  display: grid;
+  max-width: 148px;
+  padding: 11px 13px;
+  border-radius: 14px;
+}
+
+.levelCard strong {
+  margin-top: 4px;
+  font-size: 0.84rem;
+}
+
+.levelCard > span {
+  margin-top: 2px;
+  color: #666;
+  font-size: 0.58rem;
+  font-weight: 570;
+}
+
+.facts {
+  display: grid;
+  margin: 12px 0 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.facts div {
+  min-width: 0;
+  padding: 18px 12px 22px 0;
+  border-top: 1px solid var(--line);
+}
+
+.facts dt {
+  color: #828282;
+  font-size: 0.68rem;
+  letter-spacing: 0.035em;
+  text-transform: uppercase;
+}
+
+.facts dd {
+  margin: 8px 0 0;
+  font-size: 0.92rem;
+  font-weight: 550;
+  letter-spacing: -0.035em;
+  line-height: 1.25;
+}
+
+.sessionSection,
+.guideSection {
+  padding: 0 var(--page-pad) 120px;
+}
+
+.sectionHeading {
+  display: grid;
+  gap: 26px;
+}
+
+.sectionHeading h2,
+.pathCopy h2,
+.privacyCopy h2,
+.leagueCopy h2 {
+  margin-top: 19px;
+  font-size: clamp(2.65rem, 10.8vw, 4.6rem);
+  font-weight: 630;
+  letter-spacing: -0.065em;
+  line-height: 1.01;
+}
+
+.sectionHeading h2 span,
+.pathCopy h2 span,
+.privacyCopy h2 span,
+.leagueCopy h2 span {
+  color: var(--muted);
+}
+
+.sectionHeading > p,
+.pathCopy > p,
+.privacyCopy > p,
+.leagueCopy > p {
+  max-width: 660px;
+  color: var(--body);
+  font-size: 1.07rem;
+  letter-spacing: -0.027em;
+  line-height: 1.52;
+}
+
+.sessionDemo {
+  position: relative;
+  isolation: isolate;
+  aspect-ratio: 4 / 5;
+  margin-top: 40px;
+  overflow: hidden;
+  border-radius: var(--card-radius);
+  background: #070e1e;
+}
+
+.videoFallback,
+.sessionVideo,
+.guideMedia video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.videoFallback {
+  z-index: -1;
+}
+
+.sessionVideo,
+.guideMedia video {
+  z-index: 0;
+}
+
+.sessionDemo::after {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgb(2 7 15 / 22%) 0%,
+    transparent 45%,
+    rgb(2 7 15 / 52%) 100%
+  );
+  pointer-events: none;
+  content: "";
+}
+
+.sessionTop,
+.sessionCounter,
+.sessionFeedback {
+  position: absolute;
+  z-index: 2;
+  color: #fff;
+}
+
+.sessionTop {
+  top: 16px;
+  right: 16px;
+  left: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.sessionTop > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sessionTop i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #0bcae4;
+}
+
+.sessionCounter {
+  top: 19%;
+  left: 50%;
+  display: grid;
+  min-width: 154px;
+  padding: 14px 22px;
+  justify-items: center;
+  border: 1px solid rgb(11 202 228 / 78%);
+  border-radius: 16px;
+  background: rgb(3 10 25 / 84%);
+  transform: translateX(-50%);
+  backdrop-filter: blur(12px);
+}
+
+.sessionCounter strong {
+  font-size: 2.8rem;
+  letter-spacing: -0.07em;
+  line-height: 1;
+}
+
+.sessionCounter span {
+  margin-top: 4px;
+  color: #08cae4;
+  font-size: 0.56rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.sessionFeedback {
+  right: 14px;
+  bottom: 14px;
+  left: 14px;
+  display: flex;
+  padding: 15px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border: 1px solid rgb(255 79 50 / 84%);
+  border-radius: 15px;
+  background: rgb(4 10 24 / 88%);
+  backdrop-filter: blur(12px);
+}
+
+.sessionFeedback strong {
+  font-size: 0.82rem;
+  letter-spacing: -0.02em;
+}
+
+.sessionFeedback span {
+  color: #ff5a35;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.pathSection {
+  display: grid;
+  padding: 0 var(--page-pad) 120px;
+  gap: 40px;
+}
+
+.pathCopy > p,
+.leagueCopy > p {
+  margin-top: 26px;
+}
+
+.progressCard {
+  margin-top: 30px;
+  padding: 18px;
+  border: 1px solid #e5e5e5;
+  border-radius: 16px;
+  background: #fff;
+}
+
+.progressCard > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.progressCard img {
+  border-radius: 8px;
+}
+
+.progressCard > div span {
+  color: #6d6d6d;
+  font-size: 0.67rem;
+  font-weight: 650;
+  letter-spacing: 0.035em;
+  text-transform: uppercase;
+}
+
+.progressCard > strong {
+  display: block;
+  margin-top: 22px;
+  font-size: 3.8rem;
+  letter-spacing: -0.08em;
+  line-height: 0.9;
+}
+
+.progressCard > p {
+  margin-top: 7px;
+  color: #676767;
+  font-size: 0.92rem;
+  font-weight: 570;
+}
+
+.pathVisual {
+  position: relative;
+  isolation: isolate;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: var(--card-radius);
+  background: #dcefff;
+}
+
+.pathBackground {
+  z-index: -1;
+  object-fit: cover;
+  object-position: center 58%;
+}
+
+.pathVisual::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 52%, rgb(84 133 166 / 26%));
+  pointer-events: none;
+  content: "";
+}
+
+.pathNode {
+  position: absolute;
+  z-index: 1;
+  display: grid;
+  width: 50px;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 4px solid #fff;
+  border-radius: 50%;
+  background: #eee;
+  box-shadow: 0 10px 24px rgb(36 76 105 / 20%);
+  font-size: 0.8rem;
+  font-weight: 720;
+}
+
+.pathNode small {
+  position: absolute;
+  top: calc(100% + 5px);
+  padding: 4px 7px;
+  border-radius: 999px;
+  background: #fff;
+  font-size: 0.48rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.pathNodeNext {
+  top: 12%;
+  left: 51%;
+}
+
+.pathNodeActive {
+  top: 36%;
+  left: 35%;
+  background: #763bff;
+  color: #fff;
+}
+
+.pathNodeDone {
+  top: 60%;
+  left: 52%;
+  background: #00bfe7;
+  color: #fff;
+}
+
+.pathScreen {
+  position: absolute;
+  z-index: 2;
+  right: 5%;
+  bottom: -7%;
+  width: 43%;
+  height: auto;
+  border-radius: clamp(16px, 4vw, 28px);
+  box-shadow: 0 24px 48px rgb(34 40 88 / 25%);
+  transform: rotate(3deg);
+}
+
+.guideGrid {
+  display: grid;
+  margin-top: 40px;
+  gap: 32px;
+}
+
+.guideCard {
+  margin: 0;
+}
+
+.guideMedia {
+  position: relative;
+  isolation: isolate;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: var(--card-radius);
+  background: #e9e9e9;
+}
+
+.guideMedia > span {
+  position: absolute;
+  z-index: 2;
+  top: 14px;
+  left: 14px;
+  padding: 8px 10px;
+  border: 1px solid rgb(255 255 255 / 75%);
+  border-radius: 999px;
+  background: rgb(255 255 255 / 84%);
+  font-size: 0.6rem;
+  font-weight: 650;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+  backdrop-filter: blur(10px);
+}
+
+.guideCard figcaption {
+  margin-top: 17px;
+}
+
+.guideCard h3 {
+  font-size: 1.55rem;
+  font-weight: 630;
+  letter-spacing: -0.05em;
+  line-height: 1.05;
+}
+
+.guideCard figcaption p {
+  max-width: 38em;
+  margin-top: 9px;
+  color: var(--body);
+  font-size: 0.98rem;
+  letter-spacing: -0.025em;
+  line-height: 1.45;
+}
+
+.guideNote {
+  margin-top: 30px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  color: #7c7c7c;
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.privacySection {
+  display: grid;
+  margin: 0 var(--page-pad) 120px;
+  padding: 24px;
+  gap: 32px;
+  border-radius: 18px;
+  background: #fff;
+}
+
+.privacyMark {
+  position: relative;
+  display: grid;
+  width: 64px;
+  aspect-ratio: 1;
+  place-items: center;
+  border-radius: 50%;
+  background: #0e0e0e;
+}
+
+.privacyMark::before,
+.privacyMark::after,
+.privacyMark span {
+  position: absolute;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  content: "";
+}
+
+.privacyMark::before {
+  width: 34px;
+  height: 34px;
+}
+
+.privacyMark::after {
+  width: 20px;
+  height: 20px;
+}
+
+.privacyMark span {
+  width: 6px;
+  height: 6px;
+  background: #fff;
+}
+
+.privacyCopy > p {
+  margin-top: 22px;
+}
+
+.privacyFacts {
+  display: grid;
+  padding: 0;
+  gap: 0;
+  list-style: none;
+}
+
+.privacyFacts li {
+  display: grid;
+  padding: 15px 0;
+  gap: 4px;
+  border-top: 1px solid #e7e7e7;
+}
+
+.privacyFacts strong {
+  font-size: 0.9rem;
+  letter-spacing: -0.025em;
+}
+
+.privacyFacts span {
+  color: #777;
+  font-size: 0.82rem;
+}
+
+.leagueSection {
+  display: grid;
+  padding: 0 var(--page-pad) 120px;
+  gap: 40px;
+}
+
+.leagueVisual {
+  display: grid;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  place-items: end center;
+  border-radius: var(--card-radius);
+  background: linear-gradient(145deg, #f7f7ff 0%, #e7ddff 100%);
+}
+
+.leagueVisual img {
+  width: auto;
+  max-width: 72%;
+  height: 92%;
+  object-fit: contain;
+  object-position: bottom;
+  border-radius: clamp(16px, 4vw, 28px) clamp(16px, 4vw, 28px) 0 0;
+  filter: drop-shadow(0 24px 34px rgb(39 30 86 / 19%));
+  transform: translateY(5%);
+}
+
+.closing {
+  margin: 0 8px 8px;
+  padding: 28px 20px 22px;
+  border-radius: 20px;
+  background: var(--ink);
+  color: #fff;
+}
+
+.closing > p {
+  color: #8f8f8f;
+  font-size: 0.68rem;
+  letter-spacing: 0.035em;
+  text-transform: uppercase;
+}
+
+.closing h2 {
+  max-width: 9em;
+  margin-top: 100px;
+  font-size: clamp(2.6rem, 10.9vw, 4.6rem);
+  font-weight: 630;
+  letter-spacing: -0.065em;
+  line-height: 0.98;
+}
+
+.closing > div {
+  display: flex;
+  margin-top: 34px;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.closingLink {
+  background: #fff;
+  color: var(--ink);
+}
+
+.closingLink:hover {
+  background: var(--acid);
+  transform: translateY(-2px);
+}
+
+@media (min-width: 760px) {
+  .hero {
+    padding-top: 136px;
+    padding-bottom: 160px;
+  }
+
+  .appIcon {
+    width: 92px;
+    height: 92px;
+    border-radius: 21px;
+  }
+
+  .hero h1 {
+    margin-top: 38px;
+    font-size: clamp(5.2rem, 9.2vw, 8.25rem);
+  }
+
+  .heroIntro {
+    font-size: 1.42rem;
+  }
+
+  .heroStage {
+    aspect-ratio: 3 / 2;
+    margin-top: 76px;
+  }
+
+  .heroImage {
+    object-position: center;
+  }
+
+  .liveCard {
+    top: 24px;
+    left: 24px;
+    padding: 12px 15px;
+  }
+
+  .repCard {
+    bottom: 24px;
+    left: 24px;
+    right: auto;
+    min-width: 176px;
+    padding: 16px;
+  }
+
+  .repCard strong {
+    font-size: 3.2rem;
+  }
+
+  .levelCard {
+    top: 24px;
+    right: 24px;
+    max-width: 192px;
+    padding: 14px 16px;
+  }
+
+  .levelCard strong {
+    font-size: 1rem;
+  }
+
+  .facts {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .facts div {
+    padding-top: 22px;
+    padding-bottom: 28px;
+  }
+
+  .sessionSection,
+  .guideSection {
+    padding-bottom: 160px;
+  }
+
+  .sectionHeading {
+    align-items: end;
+    grid-template-columns: minmax(0, 2.1fr) minmax(260px, 1fr);
+    gap: 56px;
+  }
+
+  .sectionHeading h2,
+  .pathCopy h2,
+  .privacyCopy h2,
+  .leagueCopy h2 {
+    font-size: clamp(4.2rem, 6.3vw, 6rem);
+  }
+
+  .sectionHeading > p,
+  .pathCopy > p,
+  .privacyCopy > p,
+  .leagueCopy > p {
+    font-size: 1.16rem;
+  }
+
+  .sessionDemo {
+    aspect-ratio: 16 / 9;
+    margin-top: 58px;
+  }
+
+  .sessionVideo,
+  .sessionDemo > .videoFallback {
+    object-position: center 52%;
+  }
+
+  .sessionCounter {
+    top: 11%;
+    min-width: 210px;
+    padding: 17px 26px;
+  }
+
+  .sessionCounter strong {
+    font-size: 4rem;
+  }
+
+  .sessionFeedback {
+    right: 24px;
+    bottom: 24px;
+    left: 24px;
+    padding: 20px 22px;
+  }
+
+  .sessionFeedback strong {
+    font-size: 1.05rem;
+  }
+
+  .sessionFeedback span {
+    font-size: 0.86rem;
+  }
+
+  .pathSection,
+  .leagueSection {
+    padding-bottom: 160px;
+    align-items: center;
+    grid-template-columns: minmax(0, 1fr) minmax(360px, 0.88fr);
+    gap: clamp(54px, 7vw, 110px);
+  }
+
+  .progressCard {
+    max-width: 520px;
+    padding: 22px;
+  }
+
+  .pathVisual,
+  .leagueVisual {
+    aspect-ratio: 4 / 5;
+  }
+
+  .guideGrid {
+    margin-top: 58px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .guideCard figcaption {
+    padding-right: 22px;
+  }
+
+  .guideCard h3 {
+    font-size: 1.8rem;
+  }
+
+  .privacySection {
+    margin-bottom: 160px;
+    padding: 34px;
+    align-items: start;
+    grid-template-columns: 80px minmax(0, 1.65fr) minmax(260px, 0.85fr);
+    gap: 34px;
+  }
+
+  .privacyCopy > p {
+    font-size: 1.12rem;
+  }
+
+  .leagueSection {
+    grid-template-columns: minmax(0, 1fr) minmax(360px, 0.78fr);
+  }
+
+  .closing {
+    padding: 36px 32px 30px;
+    border-radius: 24px;
+  }
+
+  .closing h2 {
+    margin-top: 170px;
+    font-size: clamp(4.1rem, 6.6vw, 6.4rem);
+  }
+
+  .closing > div {
+    margin-top: 42px;
+    align-items: center;
+    flex-direction: row;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sessionVideo,
+  .guideMedia video {
+    display: none;
+  }
+
+  .primaryLink:hover,
+  .closingLink:hover {
+    transform: none;
+  }
+}
