@@ -127,6 +127,13 @@ main {
     transform 180ms ease;
 }
 
+.link-icon {
+  display: inline-grid;
+  flex: 0 0 auto;
+  place-items: center;
+  line-height: 0;
+}
+
 .header-action:hover {
   background: var(--ink);
   color: #fff;
@@ -764,6 +771,12 @@ main {
 
 .footer-top a {
   color: #fff;
+}
+
+.back-to-top {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .footer-main {

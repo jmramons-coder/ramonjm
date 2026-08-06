@@ -1,9 +1,17 @@
 import type { ReactNode } from "react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import {
+  ArrowDown01Icon,
+  ArrowUp01Icon,
+  ArrowUpRight01Icon,
+  GithubIcon,
+  RocketIcon,
+} from "@hugeicons/core-free-icons";
 
 const applications = [
   { name: "Lounge", slug: "lounge", mark: "L" },
   { name: "Maxing", slug: "maxing", mark: "M" },
-  { name: "Push", slug: "push", mark: "✦" },
+  { name: "Push", slug: "push", mark: "P" },
   { name: "World", slug: "world", mark: "W" },
   { name: "Add", slug: "add", mark: "+" },
   { name: "Tracer", slug: "tracer", mark: "T" },
@@ -27,7 +35,13 @@ function ExternalLink({
       rel="noopener noreferrer"
     >
       {children}
-      <span aria-hidden="true">↗</span>
+      <span className="link-icon" aria-hidden="true">
+        <HugeiconsIcon
+          icon={ArrowUpRight01Icon}
+          size={16}
+          strokeWidth={1.8}
+        />
+      </span>
       <span className="sr-only"> (opens in a new tab)</span>
     </a>
   );
@@ -48,7 +62,10 @@ export default function Home() {
           className="header-action"
           href="https://github.com/jmramons-coder"
         >
-          GitHub
+          <span className="link-icon" aria-hidden="true">
+            <HugeiconsIcon icon={GithubIcon} size={17} strokeWidth={1.7} />
+          </span>
+          <span>GitHub</span>
         </ExternalLink>
       </header>
 
@@ -70,7 +87,13 @@ export default function Home() {
             <a className="primary-action" href="#applications">
               <span className="action-dot" aria-hidden="true" />
               Explore the apps
-              <span aria-hidden="true">↓</span>
+              <span className="link-icon" aria-hidden="true">
+                <HugeiconsIcon
+                  icon={ArrowDown01Icon}
+                  size={16}
+                  strokeWidth={1.8}
+                />
+              </span>
             </a>
           </div>
 
@@ -83,7 +106,17 @@ export default function Home() {
                       className={`app-icon app-icon--${application.slug}`}
                       aria-hidden="true"
                     >
-                      <span>{application.mark}</span>
+                      {application.slug === "push" ? (
+                        <span className="app-icon-glyph">
+                          <HugeiconsIcon
+                            icon={RocketIcon}
+                            size={27}
+                            strokeWidth={1.8}
+                          />
+                        </span>
+                      ) : (
+                        <span>{application.mark}</span>
+                      )}
                     </span>
                     <span className="sr-only">Go to {application.name}</span>
                   </a>
@@ -153,7 +186,16 @@ export default function Home() {
       <footer className="site-footer">
         <div className="footer-top">
           <p>Ramon JM · Digital product portfolio</p>
-          <a href="#top">Back to top ↑</a>
+          <a className="back-to-top" href="#top">
+            <span>Back to top</span>
+            <span className="link-icon" aria-hidden="true">
+              <HugeiconsIcon
+                icon={ArrowUp01Icon}
+                size={15}
+                strokeWidth={1.8}
+              />
+            </span>
+          </a>
         </div>
         <div className="footer-main">
           <h2>Keep exploring the work behind the apps.</h2>
@@ -161,7 +203,10 @@ export default function Home() {
             className="footer-action"
             href="https://github.com/jmramons-coder"
           >
-            Continue on GitHub
+            <span className="link-icon" aria-hidden="true">
+              <HugeiconsIcon icon={GithubIcon} size={18} strokeWidth={1.7} />
+            </span>
+            <span>Continue on GitHub</span>
           </ExternalLink>
         </div>
         <p className="copyright">© {new Date().getFullYear()} Ramon JM</p>
