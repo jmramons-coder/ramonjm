@@ -259,38 +259,33 @@ export default function Home() {
             <article
               className="application-card application-card--project application-card--abeam"
               id="abeam"
-              aria-labelledby="abeam-title"
+              aria-label="aBeam"
             >
-              <Link className="application-card-link" href="/abeam">
+              <Link
+                className="application-card-link"
+                href="/abeam"
+                aria-label="View aBeam project"
+              >
                 <div
                   className="app-canvas app-canvas--abeam-project"
                   aria-hidden="true"
                 >
                   <AbeamVideo
+                    alwaysPlay
                     className="abeam-card-motion"
                     sizes="(max-width: 759px) 92vw, 46vw"
                   />
                 </div>
-                <div className="application-label application-label--project">
-                  <AbeamVideo
-                    className="application-project-icon application-project-icon--abeam"
-                    sizes="66px"
+                <span
+                  className="application-project-arrow abeam-card-arrow"
+                  aria-hidden="true"
+                >
+                  <HugeiconsIcon
+                    icon={ArrowRight02Icon}
+                    size={24}
+                    strokeWidth={1.8}
                   />
-                  <div>
-                    <p>07 / Travel advisor AI</p>
-                    <h3 id="abeam-title">aBeam</h3>
-                  </div>
-                  <span
-                    className="application-project-arrow"
-                    aria-hidden="true"
-                  >
-                    <HugeiconsIcon
-                      icon={ArrowRight02Icon}
-                      size={18}
-                      strokeWidth={1.8}
-                    />
-                  </span>
-                </div>
+                </span>
               </Link>
             </article>
 

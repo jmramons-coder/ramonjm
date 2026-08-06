@@ -52,29 +52,24 @@
   transform: translateX(-2px);
 }
 
-.signature {
-  padding-top: 12px;
-  color: #6f8599;
-  font-size: 0.84rem;
-  font-weight: 560;
-  letter-spacing: -0.035em;
-}
-
 .hero {
   display: grid;
   width: min(100%, 1440px);
   min-height: 100svh;
   margin: 0 auto;
-  padding: 136px clamp(20px, 3vw, 40px) 72px;
-  align-items: center;
-  grid-template-columns: minmax(0, 0.86fr) minmax(420px, 1.14fr);
-  grid-template-areas: "copy visual";
-  gap: clamp(38px, 6vw, 104px);
+  padding: 96px clamp(20px, 3vw, 40px) 84px;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "visual"
+    "copy";
+  grid-template-rows: minmax(440px, 66svh) auto;
+  gap: 0;
 }
 
 .copy {
   z-index: 2;
-  max-width: 690px;
+  width: min(100%, 1080px);
+  margin: 0 auto;
   grid-area: copy;
 }
 
@@ -101,40 +96,9 @@
   box-shadow: 0 0 0 4px rgb(39 135 245 / 14%);
 }
 
-.identity {
-  display: flex;
-  margin-top: 34px;
-  align-items: center;
-  gap: 15px;
-}
-
-.mark {
-  display: block;
-  width: 88px;
-  flex: 0 0 auto;
-}
-
-.identity > span:last-child {
-  display: grid;
-  gap: 3px;
-}
-
-.identity strong {
-  font-size: 1.22rem;
-  font-weight: 640;
-  letter-spacing: -0.055em;
-}
-
-.identity small {
-  color: #60778a;
-  font-size: 0.7rem;
-  font-weight: 510;
-  letter-spacing: 0.01em;
-}
-
 .copy h1 {
-  margin: 36px 0 0;
-  font-size: clamp(3.55rem, 7vw, 6.9rem);
+  margin: 0;
+  font-size: clamp(4rem, 8.5vw, 8.4rem);
   font-weight: 590;
   letter-spacing: -0.075em;
   line-height: 0.91;
@@ -148,26 +112,15 @@
   color: #7890a5;
 }
 
-.description {
-  max-width: 610px;
-  margin-top: 30px;
-  color: #536a7e;
-  font-size: clamp(1.02rem, 1.7vw, 1.28rem);
-  font-weight: 420;
-  letter-spacing: -0.035em;
-  line-height: 1.46;
-}
-
 .visual {
   position: relative;
   display: grid;
-  min-height: min(70svh, 760px);
   place-items: center;
   grid-area: visual;
 }
 
 .motion {
-  width: min(51vw, 680px);
+  width: min(58vw, 64svh, 720px);
 }
 
 @media (max-width: 900px) {
@@ -177,36 +130,19 @@
 
   .hero {
     min-height: 100svh;
-    padding-top: 112px;
+    padding-top: 82px;
     padding-bottom: max(42px, env(safe-area-inset-bottom));
-    align-items: start;
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "visual"
-      "copy";
-    grid-template-rows: minmax(300px, 48svh) auto;
-    gap: 24px;
-  }
-
-  .visual {
-    min-height: 300px;
+    grid-template-rows: minmax(340px, 54svh) auto;
   }
 
   .motion {
-    width: min(94vw, 430px);
+    width: min(94vw, 51svh, 450px);
   }
 
   .copy {
     max-width: 760px;
   }
 
-  .identity {
-    margin-top: 26px;
-  }
-
-  .copy h1 {
-    margin-top: 30px;
-  }
 }
 
 @media (max-width: 560px) {
@@ -215,30 +151,17 @@
     padding-top: 18px;
   }
 
-  .signature {
-    display: none;
-  }
-
   .hero {
-    padding-top: 88px;
-    grid-template-rows: minmax(270px, 44svh) auto;
-    gap: 16px;
-  }
-
-  .visual {
-    min-height: 270px;
+    padding-top: 76px;
+    grid-template-rows: minmax(300px, 48svh) auto;
   }
 
   .motion {
-    width: min(94vw, 400px);
+    width: min(98vw, 46svh, 410px);
   }
 
   .copy h1 {
     font-size: clamp(3.15rem, 15vw, 4.7rem);
   }
 
-  .description {
-    margin-top: 24px;
-    font-size: 1rem;
-  }
 }

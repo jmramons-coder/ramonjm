@@ -1263,26 +1263,21 @@ a:focus-visible {
 }
 
 .abeam-card-motion {
-  position: absolute;
   z-index: 2;
-  top: 46%;
-  left: 50%;
-  width: min(92%, 520px);
-  transform: translate(-50%, -50%);
+  width: min(96%, 640px);
 }
 
-.application-card--abeam .application-label {
-  border-color: rgb(7 23 39 / 10%);
-  background: rgb(255 255 255 / 92%);
-  backdrop-filter: none;
-}
-
-.application-project-icon--abeam {
-  width: 66px;
-  height: 66px;
-  margin: -11px;
+.abeam-card-arrow {
+  position: absolute;
+  z-index: 6;
+  right: clamp(12px, 2vw, 16px);
+  bottom: clamp(12px, 2vw, 16px);
+  width: auto;
+  aspect-ratio: auto;
+  border: 0;
   border-radius: 0;
-  box-shadow: none;
+  background: transparent;
+  color: #071727;
 }
 
 /* PushedWorld project page */

@@ -4,10 +4,12 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 export function AbeamVideo({
+  alwaysPlay = false,
   className = "",
   priority = false,
   sizes = "320px",
 }: {
+  alwaysPlay?: boolean;
   className?: string;
   priority?: boolean;
   sizes?: string;
@@ -20,6 +22,26 @@ export function AbeamVideo({
     const container = containerRef.current;
     const video = videoRef.current;
     if (!container || !video) return;
+
+    if (alwaysPlay) {
+      const syncPlayback = () => {
+        if (document.visibilityState === "visible") {
+          void video.play().catch(() => undefined);
+        } else {
+          video.pause();
+        }
+      };
+
+      video.addEventListener("canplay", syncPlayback);
+      document.addEventListener("visibilitychange", syncPlayback);
+      syncPlayback();
+
+      return () => {
+        video.removeEventListener("canplay", syncPlayback);
+        document.removeEventListener("visibilitychange", syncPlayback);
+        video.pause();
+      };
+    }
 
     const motionPreference = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
@@ -60,7 +82,7 @@ export function AbeamVideo({
       motionPreference.removeEventListener("change", handleMotionChange);
       video.pause();
     };
-  }, []);
+  }, [alwaysPlay]);
 
   return (
     <span
@@ -79,10 +101,11 @@ export function AbeamVideo({
       <video
         className="abeam-video-media"
         ref={videoRef}
+        autoPlay={alwaysPlay}
         muted
         loop
         playsInline
-        preload={priority ? "auto" : "metadata"}
+        preload={priority || alwaysPlay ? "auto" : "metadata"}
         onLoadedData={() => setIsReady(true)}
         onError={() => setIsReady(false)}
       >

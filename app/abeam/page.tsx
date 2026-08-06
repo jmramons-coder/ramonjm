@@ -24,42 +24,27 @@ export default function AbeamProjectPage() {
           />
           <span>Selected work</span>
         </Link>
-        <span className={styles.signature}>Ramon JM</span>
+        <p className={styles.status}>
+          <span aria-hidden="true" />
+          Coming soon
+        </p>
       </header>
 
       <section className={styles.hero} aria-labelledby="abeam-title">
+        <div className={styles.visual}>
+          <AbeamVideo
+            alwaysPlay
+            className={styles.motion}
+            priority
+            sizes="(max-width: 900px) 94vw, 58vw"
+          />
+        </div>
+
         <div className={styles.copy}>
-          <p className={styles.status}>
-            <span aria-hidden="true" />
-            Coming soon
-          </p>
-
-          <div className={styles.identity}>
-            <AbeamVideo className={styles.mark} sizes="88px" />
-            <span>
-              <strong>aBeam</strong>
-              <small>AI copilot for travel advisors</small>
-            </span>
-          </div>
-
           <h1 id="abeam-title">
             <span>Every conversation.</span>
             <span>Already organized.</span>
           </h1>
-
-          <p className={styles.description}>
-            aBeam listens as each trip takes shape—quietly turning live client
-            conversations into structured briefs, timely travel context, and a
-            clear follow-up.
-          </p>
-        </div>
-
-        <div className={styles.visual}>
-          <AbeamVideo
-            className={styles.motion}
-            priority
-            sizes="(max-width: 900px) 94vw, 51vw"
-          />
         </div>
       </section>
     </main>
