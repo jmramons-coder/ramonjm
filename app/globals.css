@@ -521,10 +521,24 @@ main {
 
 .abeam-video-media {
   z-index: 1;
+  opacity: 0;
 }
 
-.abeam-video.is-ready .abeam-video-fallback {
+.abeam-video.is-playing .abeam-video-media {
+  opacity: 1;
+}
+
+.abeam-video.is-playing .abeam-video-fallback {
   opacity: 0;
+}
+
+.abeam-video-media::-webkit-media-controls,
+.abeam-video-media::-webkit-media-controls-panel,
+.abeam-video-media::-webkit-media-controls-start-playback-button,
+.abeam-video-media::-webkit-media-controls-overlay-play-button,
+.abeam-video-media::-webkit-media-controls-play-button {
+  display: none !important;
+  -webkit-appearance: none;
 }
 
 .workflow-section {

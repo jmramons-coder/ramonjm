@@ -16,7 +16,7 @@ export function AbeamVideo({
 }) {
   const containerRef = useRef<HTMLSpanElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [isReady, setIsReady] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -86,7 +86,7 @@ export function AbeamVideo({
 
   return (
     <span
-      className={`abeam-video${isReady ? " is-ready" : ""}${className ? ` ${className}` : ""}`}
+      className={`abeam-video${isPlaying ? " is-playing" : ""}${className ? ` ${className}` : ""}`}
       ref={containerRef}
       aria-hidden="true"
     >
@@ -101,13 +101,16 @@ export function AbeamVideo({
       <video
         className="abeam-video-media"
         ref={videoRef}
-        autoPlay={alwaysPlay}
+        controls={false}
+        disablePictureInPicture
+        disableRemotePlayback
         muted
         loop
         playsInline
         preload={priority || alwaysPlay ? "auto" : "metadata"}
-        onLoadedData={() => setIsReady(true)}
-        onError={() => setIsReady(false)}
+        onPlaying={() => setIsPlaying(true)}
+        onPause={() => setIsPlaying(false)}
+        onError={() => setIsPlaying(false)}
       >
         <source
           src="/abeam/loop-alpha.mov"
