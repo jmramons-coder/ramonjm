@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { headers } from "next/headers";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -9,15 +9,9 @@ const geistSans = Geist({
   display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-  display: "swap",
-});
-
 export const viewport: Viewport = {
   colorScheme: "light",
-  themeColor: "#ececea",
+  themeColor: "#f7f7f7",
 };
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -47,10 +41,10 @@ export async function generateMetadata(): Promise<Metadata> {
       siteName: "Ramon JM",
       images: [
         {
-          url: "/og-split.png",
-          width: 1727,
-          height: 911,
-          alt: "Ramon JM — selected application work",
+          url: "/og-mobile.png",
+          width: 1733,
+          height: 907,
+          alt: "Ramon JM — app portfolio",
         },
       ],
     },
@@ -58,7 +52,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title,
       description,
-      images: ["/og-split.png"],
+      images: ["/og-mobile.png"],
     },
     robots: {
       index: true,
@@ -74,9 +68,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
-      </body>
+      <body className={geistSans.variable}>{children}</body>
     </html>
   );
 }

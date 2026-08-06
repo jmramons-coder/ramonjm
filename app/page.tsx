@@ -1,19 +1,14 @@
 import type { ReactNode } from "react";
 
-const applications: ReadonlyArray<{
-  name: string;
-  slug: string;
-  mark: string;
-  featured?: boolean;
-}> = [
+const applications = [
   { name: "Lounge", slug: "lounge", mark: "L" },
   { name: "Maxing", slug: "maxing", mark: "M" },
-  { name: "Push", slug: "push", mark: "P" },
+  { name: "Push", slug: "push", mark: "✦" },
   { name: "World", slug: "world", mark: "W" },
   { name: "Add", slug: "add", mark: "+" },
   { name: "Tracer", slug: "tracer", mark: "T" },
-  { name: "Abeam", slug: "abeam", mark: "A", featured: true },
-];
+  { name: "Abeam", slug: "abeam", mark: "A" },
+] as const;
 
 function ExternalLink({
   href,
@@ -25,9 +20,15 @@ function ExternalLink({
   className?: string;
 }) {
   return (
-    <a className={className} href={href}>
+    <a
+      className={className}
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       {children}
       <span aria-hidden="true">↗</span>
+      <span className="sr-only"> (opens in a new tab)</span>
     </a>
   );
 }
@@ -35,95 +36,80 @@ function ExternalLink({
 export default function Home() {
   return (
     <>
-      <a className="skip-link" href="#applications">
-        Skip to applications
+      <a className="skip-link" href="#main-content">
+        Skip to selected work
       </a>
 
-      <main className="portfolio-shell" id="top">
-        <aside className="profile-panel" aria-labelledby="page-title">
-          <header className="profile-header">
-            <a className="wordmark" href="#top" aria-label="Ramon JM, home">
-              Ramon JM
-            </a>
-            <ExternalLink
-              className="header-link"
-              href="https://github.com/jmramons-coder"
-            >
-              GitHub
-            </ExternalLink>
-          </header>
+      <header className="site-header" id="top">
+        <a className="wordmark" href="#top" aria-label="Ramon JM, home">
+          Ramon JM
+        </a>
+        <ExternalLink
+          className="header-action"
+          href="https://github.com/jmramons-coder"
+        >
+          GitHub
+        </ExternalLink>
+      </header>
 
-          <div className="profile-intro">
-            <p className="availability">
+      <main id="main-content" tabIndex={-1}>
+        <section className="hero" aria-labelledby="page-title">
+          <div className="hero-copy">
+            <p className="status-pill">
               <span aria-hidden="true" />
-              Independent digital product work
+              Ramon JM · App portfolio
             </p>
-            <p className="eyebrow">Ramon JM / Selected work</p>
-            <h1 id="page-title">A clear view of the apps I build.</h1>
-            <p className="intro-copy">
-              A focused collection of digital products, gathered in one place.
+            <h1 id="page-title">
+              <span>Apps, made with a</span>
+              <span>clear point of view.</span>
+            </h1>
+            <p className="hero-description">
+              A focused collection of digital products by Ramon JM, gathered
+              in one place.
             </p>
-            <div className="intro-actions">
-              <a className="primary-action" href="#applications">
-                View applications <span aria-hidden="true">↓</span>
-              </a>
-              <ExternalLink
-                className="text-action"
-                href="https://github.com/jmramons-coder"
-              >
-                GitHub
-              </ExternalLink>
-            </div>
+            <a className="primary-action" href="#applications">
+              <span className="action-dot" aria-hidden="true" />
+              Explore the apps
+              <span aria-hidden="true">↓</span>
+            </a>
           </div>
 
-          <nav className="application-index" aria-label="Application index">
-            <p>Application index</p>
-            <ol>
-              {applications.map((application, index) => (
+          <nav className="app-strip" aria-label="Jump to an application">
+            <ul>
+              {applications.map((application) => (
                 <li key={application.slug}>
                   <a href={`#${application.slug}`}>
-                    <span>{String(index + 1).padStart(2, "0")}</span>
-                    <span>{application.name}</span>
-                    <span aria-hidden="true">↘</span>
+                    <span
+                      className={`app-icon app-icon--${application.slug}`}
+                      aria-hidden="true"
+                    >
+                      <span>{application.mark}</span>
+                    </span>
+                    <span className="sr-only">Go to {application.name}</span>
                   </a>
                 </li>
               ))}
-            </ol>
+            </ul>
           </nav>
-
-          <section className="profile-about" aria-labelledby="about-title">
-            <p className="eyebrow" id="about-title">
-              About
-            </p>
-            <p>
-              I build digital products with an emphasis on clarity, utility,
-              and considered interfaces. This portfolio is a simple record of
-              that work.
-            </p>
-          </section>
-
-          <footer className="profile-footer">
-            <p>© {new Date().getFullYear()} Ramon JM</p>
-            <a href="#top">Back to top ↑</a>
-          </footer>
-        </aside>
+        </section>
 
         <section
-          className="gallery-panel"
+          className="work-section"
           id="applications"
           aria-labelledby="applications-title"
         >
-          <header className="gallery-header">
-            <h2 id="applications-title">Selected applications</h2>
-            <p>07 / Digital products</p>
-          </header>
+          <div className="work-intro">
+            <p className="section-pill">Selected work · 07</p>
+            <h2 id="applications-title">
+              <span>Seven applications.</span>
+              <span>One evolving body of work.</span>
+            </h2>
+          </div>
 
           <div className="gallery-grid">
             {applications.map((application, index) => (
               <article
-                className={`application-card${
-                  application.featured ? " application-card--featured" : ""
-                }`}
+                className="application-card"
                 id={application.slug}
                 key={application.slug}
                 aria-labelledby={`${application.slug}-title`}
@@ -138,10 +124,7 @@ export default function Home() {
                   <span className="canvas-mark">{application.mark}</span>
                 </div>
                 <div className="application-label">
-                  <p>
-                    <span>{String(index + 1).padStart(2, "0")}</span>
-                    Application
-                  </p>
+                  <p>{String(index + 1).padStart(2, "0")} / Application</p>
                   <h3 id={`${application.slug}-title`}>
                     {application.name}
                   </h3>
@@ -150,7 +133,39 @@ export default function Home() {
             ))}
           </div>
         </section>
+
+        <section className="about-section" aria-labelledby="about-title">
+          <p className="section-pill">About</p>
+          <div className="about-content">
+            <h2 id="about-title">
+              <span>Clear products.</span>
+              Considered interfaces.
+            </h2>
+            <p>
+              I build digital products with an emphasis on clarity, utility,
+              and considered interfaces. This portfolio is a simple record of
+              that work.
+            </p>
+          </div>
+        </section>
       </main>
+
+      <footer className="site-footer">
+        <div className="footer-top">
+          <p>Ramon JM · Digital product portfolio</p>
+          <a href="#top">Back to top ↑</a>
+        </div>
+        <div className="footer-main">
+          <h2>Keep exploring the work behind the apps.</h2>
+          <ExternalLink
+            className="footer-action"
+            href="https://github.com/jmramons-coder"
+          >
+            Continue on GitHub
+          </ExternalLink>
+        </div>
+        <p className="copyright">© {new Date().getFullYear()} Ramon JM</p>
+      </footer>
     </>
   );
 }

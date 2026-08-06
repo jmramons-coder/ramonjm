@@ -1,6 +1,6 @@
 # Ramon JM — Portfolio
 
-A quiet, split-screen portfolio for selected application work.
+A quiet, mobile-first portfolio for selected application work.
 
 ## Local development
 
@@ -22,7 +22,7 @@ npm start
 
 The project is built with Next.js and is ready for Vercel deployment.
 
-The profile and application gallery become independent desktop scroll areas,
-then stack into one clean mobile flow. The gallery presents seven art-directed
-canvases for Lounge, Maxing, Push, World, Add, Tracer, and Abeam without
-invented project links or unsupported claims.
+The site uses one continuous responsive flow: a concise introduction, a bright
+application index, and seven art-directed canvases for Lounge, Maxing, Push,
+World, Add, Tracer, and Abeam. It intentionally avoids invented project links
+or unsupported claims.
