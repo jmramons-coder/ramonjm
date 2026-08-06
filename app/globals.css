@@ -1213,3 +1213,573 @@ a:focus-visible {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* PushedWorld portfolio card */
+
+.app-icon--world {
+  background: transparent;
+}
+
+.app-icon--world .app-icon-glyph,
+.app-icon-image {
+  width: 100%;
+  height: 100%;
+}
+
+.app-icon-image {
+  display: block;
+  object-fit: cover;
+}
+
+.application-card--project {
+  background: #e9ebf5;
+}
+
+.application-card-link {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  display: block;
+  border-radius: inherit;
+}
+
+.application-card-link:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: -4px;
+}
+
+.app-canvas--world {
+  background:
+    radial-gradient(circle at 28% 24%, rgb(255 255 255 / 90%) 0 12%, transparent 34%),
+    linear-gradient(145deg, #f4f7ff 0%, #dbe8ff 47%, #e5dcff 100%);
+  color: var(--ink);
+}
+
+.world-card-glow {
+  position: absolute;
+  top: 12%;
+  left: 50%;
+  width: 74%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 62%);
+  filter: blur(2px);
+  transform: translateX(-50%);
+}
+
+.world-card-screen {
+  position: absolute;
+  bottom: 7%;
+  height: auto;
+  border-radius: clamp(16px, 3vw, 30px);
+  box-shadow: 0 26px 60px rgb(39 32 88 / 22%);
+}
+
+.world-card-screen--workout {
+  left: 7%;
+  width: 43%;
+  transform: translateY(5%) rotate(-5deg);
+}
+
+.world-card-screen--path {
+  right: 7%;
+  z-index: 1;
+  width: 50%;
+  transform: rotate(4deg);
+}
+
+.application-label--project {
+  right: 12px;
+  display: grid;
+  padding: 8px;
+  align-items: center;
+  grid-template-columns: 44px minmax(0, 1fr) 34px;
+  gap: 10px;
+}
+
+.application-project-icon {
+  display: block;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  box-shadow: 0 1px 0 rgb(255 255 255 / 70%);
+}
+
+.application-project-arrow {
+  display: grid;
+  width: 34px;
+  aspect-ratio: 1;
+  place-items: center;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 180ms ease;
+}
+
+.application-card-link:hover .application-project-arrow {
+  transform: translateX(2px);
+}
+
+/* PushedWorld project page */
+
+.project-header {
+  display: flex;
+  width: 100%;
+  max-width: var(--max-width);
+  min-height: 76px;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 16px var(--page-pad);
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.project-back-link {
+  display: inline-flex;
+  min-height: 40px;
+  padding: 0 16px;
+  align-items: center;
+  gap: 7px;
+  border-radius: 999px;
+  background: #fff;
+  font-size: 0.86rem;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  transition:
+    background 180ms ease,
+    color 180ms ease;
+}
+
+.project-back-link:hover {
+  background: var(--ink);
+  color: #fff;
+}
+
+.project-page:focus {
+  outline: none;
+}
+
+.project-hero {
+  padding: 92px var(--page-pad) 112px;
+}
+
+.project-hero-copy {
+  max-width: 760px;
+  margin-top: 22px;
+}
+
+.project-identity {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.project-app-icon {
+  display: block;
+  width: 72px;
+  height: 72px;
+  border-radius: 17px;
+  box-shadow: 0 14px 34px rgb(34 23 90 / 14%);
+}
+
+.project-identity p {
+  font-size: 1.03rem;
+  font-weight: 620;
+  letter-spacing: -0.04em;
+}
+
+.project-hero h1 {
+  max-width: 9em;
+  margin-top: 28px;
+  font-size: clamp(3.2rem, 13vw, 5.5rem);
+  font-weight: 620;
+  letter-spacing: -0.07em;
+  line-height: 0.94;
+}
+
+.project-intro {
+  max-width: 650px;
+  margin-top: 28px;
+  color: var(--body);
+  font-size: clamp(1.15rem, 4.9vw, 1.38rem);
+  font-weight: 420;
+  letter-spacing: -0.035em;
+  line-height: 1.4;
+}
+
+.project-primary-link {
+  display: inline-flex;
+  min-height: 42px;
+  margin-top: 30px;
+  padding: 0 16px;
+  align-items: center;
+  gap: 9px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 0.86rem;
+  font-weight: 520;
+  letter-spacing: -0.02em;
+  transition:
+    background 180ms ease,
+    transform 180ms ease;
+}
+
+.project-primary-link:hover {
+  background: #6d39f6;
+  transform: translateY(-2px);
+}
+
+.world-hero-visual {
+  position: relative;
+  isolation: isolate;
+  aspect-ratio: 4 / 5;
+  margin-top: 52px;
+  overflow: hidden;
+  border-radius: var(--card-radius);
+  background: #eaf0f8;
+}
+
+.world-hero-background {
+  z-index: -2;
+  object-fit: cover;
+  object-position: 61% center;
+}
+
+.world-hero-wash {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgb(235 243 252 / 92%) 0%,
+    rgb(235 243 252 / 56%) 43%,
+    transparent 73%
+  );
+}
+
+.world-hero-phone {
+  position: absolute;
+  bottom: -5%;
+  left: 7%;
+  width: min(49%, 310px);
+  height: auto;
+  border-radius: clamp(16px, 3vw, 30px);
+  filter: drop-shadow(0 28px 42px rgb(37 32 80 / 24%));
+  transform: rotate(-2deg);
+}
+
+.project-facts {
+  display: grid;
+  margin: 12px 0 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.project-facts div {
+  min-width: 0;
+  padding: 18px 12px 22px 0;
+  border-top: 1px solid var(--line);
+}
+
+.project-facts dt {
+  color: #828282;
+  font-size: 0.68rem;
+  letter-spacing: 0.035em;
+  text-transform: uppercase;
+}
+
+.project-facts dd {
+  margin: 8px 0 0;
+  font-size: 0.92rem;
+  font-weight: 540;
+  letter-spacing: -0.035em;
+  line-height: 1.25;
+}
+
+.project-overview {
+  display: grid;
+  padding: 0 var(--page-pad) 120px;
+  gap: 24px;
+}
+
+.project-overview > div {
+  max-width: 900px;
+}
+
+.project-overview h2,
+.project-views-intro h2 {
+  font-size: clamp(2.55rem, 10.6vw, 4.5rem);
+  font-weight: 620;
+  letter-spacing: -0.06em;
+  line-height: 1.02;
+}
+
+.project-overview h2 {
+  max-width: 10em;
+}
+
+.project-overview > div > p {
+  max-width: 690px;
+  margin-top: 28px;
+  color: var(--body);
+  font-size: 1.08rem;
+  letter-spacing: -0.028em;
+  line-height: 1.55;
+}
+
+.project-views {
+  padding: 0 var(--page-pad) 120px;
+}
+
+.project-views-intro {
+  max-width: 900px;
+}
+
+.project-views-intro h2 {
+  margin-top: 19px;
+}
+
+.project-views-intro h2 span {
+  display: block;
+}
+
+.project-views-intro h2 span:first-child {
+  color: var(--muted);
+}
+
+.world-view-grid {
+  display: grid;
+  margin-top: 40px;
+  gap: 44px;
+}
+
+.world-view {
+  margin: 0;
+}
+
+.world-view-visual {
+  display: grid;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  place-items: end center;
+  border-radius: var(--card-radius);
+}
+
+.world-view-visual img {
+  width: auto;
+  max-width: 72%;
+  height: 91%;
+  object-fit: contain;
+  object-position: bottom;
+  border-radius: clamp(16px, 3vw, 28px) clamp(16px, 3vw, 28px) 0 0;
+  filter: drop-shadow(0 24px 32px rgb(35 29 78 / 18%));
+  transform: translateY(5%);
+}
+
+.world-view--path .world-view-visual {
+  background: linear-gradient(145deg, #f1f6ff 0%, #e3ddff 100%);
+}
+
+.world-view--workout .world-view-visual {
+  background: linear-gradient(145deg, #101a31 0%, #02070e 100%);
+}
+
+.world-view--league .world-view-visual {
+  background: linear-gradient(145deg, #f7f7ff 0%, #eae1ff 100%);
+}
+
+.world-view figcaption {
+  margin-top: 18px;
+}
+
+.world-view figcaption > p {
+  color: #858585;
+  font-size: 0.68rem;
+  letter-spacing: 0.035em;
+  text-transform: uppercase;
+}
+
+.world-view figcaption h3 {
+  margin-top: 7px;
+  font-size: 1.45rem;
+  font-weight: 620;
+  letter-spacing: -0.05em;
+  line-height: 1.08;
+}
+
+.world-view figcaption span {
+  display: block;
+  max-width: 36em;
+  margin-top: 9px;
+  color: var(--body);
+  font-size: 0.98rem;
+  letter-spacing: -0.025em;
+  line-height: 1.45;
+}
+
+.project-closing {
+  margin: 0 8px 8px;
+  padding: 28px 20px 22px;
+  border-radius: 20px;
+  background: var(--ink);
+  color: #fff;
+}
+
+.project-closing > p {
+  color: #8f8f8f;
+  font-size: 0.68rem;
+  letter-spacing: 0.035em;
+  text-transform: uppercase;
+}
+
+.project-closing h2 {
+  max-width: 9em;
+  margin-top: 100px;
+  font-size: clamp(2.55rem, 10.8vw, 4.5rem);
+  font-weight: 620;
+  letter-spacing: -0.06em;
+  line-height: 0.98;
+}
+
+.project-closing-links {
+  display: flex;
+  margin-top: 34px;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.project-closing-links a {
+  display: inline-flex;
+  min-height: 42px;
+  padding: 0 16px;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  background: #fff;
+  color: var(--ink);
+  font-size: 0.85rem;
+  font-weight: 520;
+  letter-spacing: -0.02em;
+  transition:
+    background 180ms ease,
+    transform 180ms ease;
+}
+
+.project-closing-links a:hover {
+  background: var(--acid);
+  transform: translateY(-2px);
+}
+
+@media (min-width: 760px) {
+  .application-label--project {
+    right: 16px;
+  }
+
+  .project-header {
+    min-height: 88px;
+    padding-top: 24px;
+  }
+
+  .project-hero {
+    padding-top: 136px;
+    padding-bottom: 150px;
+  }
+
+  .project-app-icon {
+    width: 92px;
+    height: 92px;
+    border-radius: 21px;
+  }
+
+  .project-hero h1 {
+    margin-top: 36px;
+    font-size: clamp(5rem, 9vw, 8rem);
+  }
+
+  .project-intro {
+    margin-top: 34px;
+    font-size: 1.4rem;
+  }
+
+  .world-hero-visual {
+    aspect-ratio: 16 / 10;
+    margin-top: 76px;
+  }
+
+  .world-hero-background {
+    object-position: center;
+  }
+
+  .world-hero-phone {
+    bottom: -11%;
+    left: 10%;
+    width: min(27%, 320px);
+  }
+
+  .project-facts {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .project-facts div {
+    padding-top: 22px;
+    padding-bottom: 28px;
+  }
+
+  .project-overview {
+    padding-bottom: 160px;
+    align-items: start;
+    grid-template-columns: minmax(160px, 1fr) minmax(0, 3fr);
+    gap: 48px;
+  }
+
+  .project-overview h2,
+  .project-views-intro h2 {
+    font-size: clamp(4.2rem, 6.3vw, 6rem);
+  }
+
+  .project-overview > div > p {
+    font-size: 1.18rem;
+  }
+
+  .project-views {
+    padding-bottom: 160px;
+  }
+
+  .world-view-grid {
+    margin-top: 56px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .world-view figcaption {
+    padding-right: 16px;
+  }
+
+  .world-view figcaption h3 {
+    font-size: 1.55rem;
+  }
+
+  .project-closing {
+    padding: 36px 32px 30px;
+    border-radius: 24px;
+  }
+
+  .project-closing h2 {
+    margin-top: 170px;
+    font-size: clamp(4rem, 6.5vw, 6.3rem);
+  }
+
+  .project-closing-links {
+    margin-top: 42px;
+    align-items: center;
+    flex-direction: row;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .application-card-link:hover .application-project-arrow,
+  .project-primary-link:hover,
+  .project-closing-links a:hover {
+    transform: none;
+  }
+}

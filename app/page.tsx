@@ -1,4 +1,6 @@
 import type { ReactNode } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
   Add01Icon,
@@ -7,7 +9,6 @@ import {
   ArrowUp01Icon,
   ArrowUpRight01Icon,
   ChartIncreaseIcon,
-  Globe02Icon,
   GithubIcon,
   Route01Icon,
   RocketIcon,
@@ -25,7 +26,7 @@ const applications = [
     icon: ChartIncreaseIcon,
   },
   { name: "Push", slug: "push", mark: "P", icon: RocketIcon },
-  { name: "World", slug: "world", mark: "W", icon: Globe02Icon },
+  { name: "PushedWorld", slug: "world", mark: "W", icon: null },
   { name: "Add", slug: "add", mark: "+", icon: Add01Icon },
   { name: "Tracer", slug: "tracer", mark: "T", icon: Route01Icon },
   { name: "Abeam", slug: "abeam", mark: "A", icon: Sun01Icon },
@@ -146,11 +147,22 @@ export default function Home() {
                       aria-hidden="true"
                     >
                       <span className="app-icon-glyph">
-                        <HugeiconsIcon
-                          icon={application.icon}
-                          size={27}
-                          strokeWidth={1.8}
-                        />
+                        {application.slug === "world" ? (
+                          <Image
+                            className="app-icon-image"
+                            src="/world/app-icon.png"
+                            alt=""
+                            width={256}
+                            height={256}
+                            sizes="62px"
+                          />
+                        ) : (
+                          <HugeiconsIcon
+                            icon={application.icon}
+                            size={27}
+                            strokeWidth={1.8}
+                          />
+                        )}
                       </span>
                     </span>
                     <span className="sr-only">Go to {application.name}</span>
@@ -175,30 +187,93 @@ export default function Home() {
           </div>
 
           <div className="gallery-grid">
-            {applications.map((application, index) => (
-              <article
-                className="application-card"
-                id={application.slug}
-                key={application.slug}
-                aria-labelledby={`${application.slug}-title`}
-              >
-                <div
-                  className={`app-canvas app-canvas--${application.slug}`}
-                  aria-hidden="true"
+            {applications.map((application, index) => {
+              const titleId = `${application.slug}-title`;
+              const position = String(index + 1).padStart(2, "0");
+
+              if (application.slug === "world") {
+                return (
+                  <article
+                    className="application-card application-card--project"
+                    id={application.slug}
+                    key={application.slug}
+                    aria-labelledby={titleId}
+                  >
+                    <Link className="application-card-link" href="/world">
+                      <div
+                        className="app-canvas app-canvas--world"
+                        aria-hidden="true"
+                      >
+                        <span className="world-card-glow" />
+                        <Image
+                          className="world-card-screen world-card-screen--workout"
+                          src="/world/workout.png"
+                          alt=""
+                          width={240}
+                          height={522}
+                          sizes="(max-width: 759px) 46vw, 24vw"
+                        />
+                        <Image
+                          className="world-card-screen world-card-screen--path"
+                          src="/world/path.png"
+                          alt=""
+                          width={240}
+                          height={522}
+                          sizes="(max-width: 759px) 51vw, 27vw"
+                        />
+                      </div>
+                      <div className="application-label application-label--project">
+                        <Image
+                          className="application-project-icon"
+                          src="/world/app-icon.png"
+                          alt=""
+                          width={256}
+                          height={256}
+                          sizes="44px"
+                        />
+                        <div>
+                          <p>{position} / iPhone app</p>
+                          <h3 id={titleId}>{application.name}</h3>
+                        </div>
+                        <span
+                          className="application-project-arrow"
+                          aria-hidden="true"
+                        >
+                          <HugeiconsIcon
+                            icon={ArrowRight02Icon}
+                            size={18}
+                            strokeWidth={1.8}
+                          />
+                        </span>
+                      </div>
+                    </Link>
+                  </article>
+                );
+              }
+
+              return (
+                <article
+                  className="application-card"
+                  id={application.slug}
+                  key={application.slug}
+                  aria-labelledby={titleId}
                 >
-                  <span className="motif motif--one" />
-                  <span className="motif motif--two" />
-                  <span className="motif motif--three" />
-                  <span className="canvas-mark">{application.mark}</span>
-                </div>
-                <div className="application-label">
-                  <p>{String(index + 1).padStart(2, "0")} / Application</p>
-                  <h3 id={`${application.slug}-title`}>
-                    {application.name}
-                  </h3>
-                </div>
-              </article>
-            ))}
+                  <div
+                    className={`app-canvas app-canvas--${application.slug}`}
+                    aria-hidden="true"
+                  >
+                    <span className="motif motif--one" />
+                    <span className="motif motif--two" />
+                    <span className="motif motif--three" />
+                    <span className="canvas-mark">{application.mark}</span>
+                  </div>
+                  <div className="application-label">
+                    <p>{position} / Application</p>
+                    <h3 id={titleId}>{application.name}</h3>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </section>
 

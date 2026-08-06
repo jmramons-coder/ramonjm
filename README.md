@@ -23,8 +23,9 @@ npm start
 The project is built with Next.js and is ready for Vercel deployment.
 
 The site uses one continuous responsive flow: a concise introduction, a
-horizontally scrollable application index, seven art-directed canvases for
-Lounge, Maxing, Push, World, Add, Tracer, and Abeam, and a three-step workflow
-section. A slow, seamlessly looping logo marquee presents selected client work
-for Equisoft, FolksHR, PetalMD, and Peak Media. It intentionally avoids
-invented project links or unsupported claims.
+horizontally scrollable application index, and seven project cards for Lounge,
+Maxing, Push, PushedWorld, Add, Tracer, and Abeam. PushedWorld uses its real app
+icon and product views, with a concise case study at `/world` and a link to the
+full product site. A three-step workflow and a slow, seamlessly looping logo
+marquee for Equisoft, FolksHR, PetalMD, and Peak Media complete the page. The
+portfolio intentionally avoids invented project links or unsupported claims.
