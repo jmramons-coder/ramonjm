@@ -802,63 +802,86 @@ main {
   max-width: 980px;
 }
 
-.clients-carousel {
-  display: flex;
+.clients-marquee-shell {
+  display: grid;
+  margin-top: 28px;
+  grid-template-columns: minmax(0, 1fr) 44px;
+  align-items: center;
+  gap: 12px;
+}
+
+.clients-marquee {
+  --clients-gap: clamp(52px, 12vw, 92px);
   max-width: 100%;
   min-width: 0;
-  margin-top: 28px;
-  padding: 4px var(--page-pad) 12px 0;
-  overflow-x: auto;
+  overflow-x: hidden;
   overflow-y: hidden;
-  gap: 8px;
-  overscroll-behavior-inline: contain;
-  scroll-padding-inline: 0 var(--page-pad);
-  scroll-snap-type: x proximity;
-  scrollbar-color: #b8b8b8 transparent;
-  scrollbar-width: thin;
-  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
 }
 
-.clients-carousel::-webkit-scrollbar {
-  height: 4px;
+.clients-track {
+  display: flex;
+  width: max-content;
+  animation: client-logo-loop 32s linear infinite;
+  will-change: transform;
 }
 
-.clients-carousel::-webkit-scrollbar-thumb {
-  border-radius: 999px;
-  background: #b8b8b8;
+.clients-marquee:hover .clients-track,
+.clients-track.is-paused {
+  animation-play-state: paused;
 }
 
-.clients-carousel:focus-visible {
-  border-radius: 8px;
-  outline: 2px solid var(--blue);
-  outline-offset: 2px;
-}
-
-.client-card {
+.clients-motion-toggle {
   display: grid;
-  min-height: 112px;
-  padding: 24px;
-  flex: 0 0 min(72vw, 260px);
+  width: 44px;
+  height: 44px;
+  padding: 0;
   place-items: center;
-  border-radius: 14px;
-  background: #fff;
-  scroll-snap-align: start;
-  scroll-snap-stop: normal;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink);
+  background: transparent;
+  cursor: pointer;
+}
+
+.clients-motion-toggle:hover {
+  border-color: #b9b9b9;
+}
+
+.clients-motion-toggle:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+
+.client-logo-group {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: var(--clients-gap);
+  padding-right: var(--clients-gap);
+}
+
+.client-logo-item {
+  display: grid;
+  min-height: 92px;
+  flex: 0 0 clamp(132px, 38vw, 168px);
+  place-items: center;
 }
 
 .client-logo {
   width: auto;
-  max-width: 72%;
+  max-width: 100%;
   height: auto;
-  max-height: 42px;
+  max-height: 46px;
   object-fit: contain;
 }
 
 .client-logo--equisoft {
-  max-width: 80%;
+  max-width: 160px;
 }
 
 .client-logo--folks {
+  width: 96px;
   max-height: 36px;
 }
 
@@ -867,8 +890,48 @@ main {
 }
 
 .client-logo--peak-media {
-  max-width: 66%;
+  max-width: 116px;
   max-height: 58px;
+}
+
+@keyframes client-logo-loop {
+  to {
+    transform: translate3d(-25%, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .clients-marquee-shell {
+    display: block;
+  }
+
+  .clients-marquee {
+    overflow: visible;
+  }
+
+  .clients-track {
+    width: 100%;
+    animation: none;
+    will-change: auto;
+  }
+
+  .client-logo-group:not(:first-child),
+  .clients-motion-toggle {
+    display: none;
+  }
+
+  .client-logo-group:first-child {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 24px;
+    padding-right: 0;
+  }
+
+  .client-logo-item {
+    min-height: 68px;
+    flex: 1 1 132px;
+  }
 }
 
 .about-section {
@@ -1034,13 +1097,18 @@ a:focus-visible {
     padding-bottom: 160px;
   }
 
-  .clients-carousel {
+  .clients-marquee-shell {
     margin-top: 36px;
+    gap: 16px;
   }
 
-  .client-card {
-    min-height: 132px;
-    flex-basis: clamp(240px, 24vw, 300px);
+  .clients-marquee {
+    --clients-gap: clamp(72px, 8vw, 116px);
+  }
+
+  .client-logo-item {
+    min-height: 112px;
+    flex-basis: clamp(168px, 17vw, 220px);
   }
 
   .about-section {

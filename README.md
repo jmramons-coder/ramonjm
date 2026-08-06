@@ -25,6 +25,6 @@ The project is built with Next.js and is ready for Vercel deployment.
 The site uses one continuous responsive flow: a concise introduction, a
 horizontally scrollable application index, seven art-directed canvases for
 Lounge, Maxing, Push, World, Add, Tracer, and Abeam, and a three-step workflow
-section. A second minimalist carousel presents selected client work for
-Equisoft, FolksHR, PetalMD, and Peak Media. It intentionally avoids invented
-project links or unsupported claims.
+section. A slow, seamlessly looping logo marquee presents selected client work
+for Equisoft, FolksHR, PetalMD, and Peak Media. It intentionally avoids
+invented project links or unsupported claims.
