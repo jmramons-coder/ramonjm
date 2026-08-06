@@ -488,7 +488,6 @@ main {
 
 .abeam-video {
   position: relative;
-  isolation: isolate;
   display: grid;
   aspect-ratio: 1;
   place-items: center;
@@ -501,20 +500,18 @@ main {
   height: 100%;
   object-fit: contain;
   pointer-events: none;
-  transition: opacity 320ms ease;
+}
+
+.abeam-video-fallback {
+  transition: opacity 180ms ease;
 }
 
 .abeam-video-media {
   z-index: 1;
-  opacity: 0;
 }
 
 .abeam-video.is-ready .abeam-video-fallback {
   opacity: 0;
-}
-
-.abeam-video.is-ready .abeam-video-media {
-  opacity: 1;
 }
 
 .abeam-video-control {
@@ -532,7 +529,6 @@ main {
   background: rgb(255 255 255 / 9%);
   color: #fff;
   cursor: pointer;
-  backdrop-filter: blur(16px);
   transition:
     border-color 180ms ease,
     background 180ms ease,
@@ -1272,6 +1268,12 @@ a:focus-visible {
   background:
     radial-gradient(circle at 50% 39%, rgb(39 135 245 / 26%), transparent 29%),
     linear-gradient(145deg, #020509 0%, #071526 100%);
+  transform: none;
+  transition: none;
+}
+
+.application-card--abeam:hover .app-canvas--abeam-project {
+  transform: none;
 }
 
 .abeam-card-glow {
@@ -1294,8 +1296,7 @@ a:focus-visible {
   top: 48%;
   left: 50%;
   width: min(76%, 430px);
-  animation: abeam-card-float 5.8s ease-in-out infinite;
-  filter: drop-shadow(0 28px 34px rgb(0 0 0 / 40%));
+  transform: translate(-50%, -50%);
 }
 
 .abeam-card-status {
@@ -1324,24 +1325,8 @@ a:focus-visible {
   transform: scale(1.48);
 }
 
-@keyframes abeam-card-float {
-  0%,
-  100% {
-    transform: translate(-50%, -52%) rotate(-0.8deg);
-  }
-  50% {
-    transform: translate(-50%, -47%) rotate(0.8deg);
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .abeam-card-motion {
-    animation: none;
-    transform: translate(-50%, -50%);
-  }
-
   .abeam-video-fallback,
-  .abeam-video-media,
   .abeam-video-control {
     transition: none;
   }
