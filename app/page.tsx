@@ -18,18 +18,17 @@ import {
 import { ClientMarquee } from "./client-marquee";
 
 const applications = [
-  { name: "Lounge", slug: "lounge", mark: "L", icon: Sofa01Icon },
+  { name: "Lounge", slug: "lounge", icon: Sofa01Icon },
   {
     name: "Maxing",
     slug: "maxing",
-    mark: "M",
     icon: ChartIncreaseIcon,
   },
-  { name: "Push", slug: "push", mark: "P", icon: RocketIcon },
-  { name: "PushedWorld", slug: "world", mark: "W", icon: null },
-  { name: "Add", slug: "add", mark: "+", icon: Add01Icon },
-  { name: "Tracer", slug: "tracer", mark: "T", icon: Route01Icon },
-  { name: "Abeam", slug: "abeam", mark: "A", icon: Sun01Icon },
+  { name: "Push", slug: "push", icon: RocketIcon },
+  { name: "PushedWorld", slug: "world", icon: null },
+  { name: "Add", slug: "add", icon: Add01Icon },
+  { name: "Tracer", slug: "tracer", icon: Route01Icon },
+  { name: "Abeam", slug: "abeam", icon: Sun01Icon },
 ] as const;
 
 const workflowSteps = [
@@ -187,103 +186,94 @@ export default function Home() {
           </div>
 
           <div className="gallery-grid">
-            {applications.map((application, index) => {
-              const titleId = `${application.slug}-title`;
-              const position = String(index + 1).padStart(2, "0");
-
-              if (application.slug === "world") {
-                return (
-                  <article
-                    className="application-card application-card--project"
-                    id={application.slug}
-                    key={application.slug}
-                    aria-labelledby={titleId}
-                  >
-                    <Link className="application-card-link" href="/world">
-                      <div
-                        className="app-canvas app-canvas--world"
-                        aria-hidden="true"
-                      >
-                        <Image
-                          className="world-card-human"
-                          src="/world/hero-human.jpg"
-                          alt=""
-                          fill
-                          sizes="(max-width: 759px) 100vw, 50vw"
-                        />
-                        <span className="world-card-shade" />
-                        <span className="world-card-live">
-                          <i />
-                          <span>Live</span>
-                          <small>Tracking</small>
-                        </span>
-                        <span className="world-card-reps">
-                          <small>Session reps</small>
-                          <span>
-                            <strong>31</strong> reps
-                          </span>
-                          <i>
-                            <b />
-                          </i>
-                        </span>
-                        <span className="world-card-level">
-                          <small>Level 26</small>
-                          <strong>Black Iron</strong>
-                          <span>30 reps to Level 27</span>
-                        </span>
-                      </div>
-                      <div className="application-label application-label--project">
-                        <Image
-                          className="application-project-icon"
-                          src="/world/app-icon.png"
-                          alt=""
-                          width={256}
-                          height={256}
-                          sizes="44px"
-                        />
-                        <div>
-                          <p>{position} / iPhone app</p>
-                          <h3 id={titleId}>{application.name}</h3>
-                        </div>
-                        <span
-                          className="application-project-arrow"
-                          aria-hidden="true"
-                        >
-                          <HugeiconsIcon
-                            icon={ArrowRight02Icon}
-                            size={18}
-                            strokeWidth={1.8}
-                          />
-                        </span>
-                      </div>
-                    </Link>
-                  </article>
-                );
-              }
-
-              return (
-                <article
-                  className="application-card"
-                  id={application.slug}
-                  key={application.slug}
-                  aria-labelledby={titleId}
+            <article
+              className="application-card application-card--project"
+              id="world"
+              aria-labelledby="world-title"
+            >
+              <Link className="application-card-link" href="/world">
+                <div
+                  className="app-canvas app-canvas--world"
+                  aria-hidden="true"
                 >
-                  <div
-                    className={`app-canvas app-canvas--${application.slug}`}
+                  <Image
+                    className="world-card-human"
+                    src="/world/hero-human.jpg"
+                    alt=""
+                    fill
+                    sizes="(max-width: 759px) 100vw, 50vw"
+                  />
+                  <span className="world-card-shade" />
+                  <span className="world-card-live">
+                    <i />
+                    <span>Live</span>
+                    <small>Tracking</small>
+                  </span>
+                  <span className="world-card-reps">
+                    <small>Session reps</small>
+                    <span>
+                      <strong>31</strong> reps
+                    </span>
+                    <i>
+                      <b />
+                    </i>
+                  </span>
+                  <span className="world-card-level">
+                    <small>Level 26</small>
+                    <strong>Black Iron</strong>
+                    <span>30 reps to Level 27</span>
+                  </span>
+                </div>
+                <div className="application-label application-label--project">
+                  <Image
+                    className="application-project-icon"
+                    src="/world/app-icon.png"
+                    alt=""
+                    width={256}
+                    height={256}
+                    sizes="44px"
+                  />
+                  <div>
+                    <p>04 / iPhone app</p>
+                    <h3 id="world-title">PushedWorld</h3>
+                  </div>
+                  <span
+                    className="application-project-arrow"
                     aria-hidden="true"
                   >
-                    <span className="motif motif--one" />
-                    <span className="motif motif--two" />
-                    <span className="motif motif--three" />
-                    <span className="canvas-mark">{application.mark}</span>
-                  </div>
-                  <div className="application-label">
-                    <p>{position} / Application</p>
-                    <h3 id={titleId}>{application.name}</h3>
-                  </div>
-                </article>
-              );
-            })}
+                    <HugeiconsIcon
+                      icon={ArrowRight02Icon}
+                      size={18}
+                      strokeWidth={1.8}
+                    />
+                  </span>
+                </div>
+              </Link>
+            </article>
+
+            <div className="application-placeholder-list">
+              {applications
+                .filter((application) => application.slug !== "world")
+                .map((application) => {
+                  const titleId = `${application.slug}-title`;
+
+                  return (
+                    <article
+                      className="application-card application-card--placeholder"
+                      id={application.slug}
+                      key={application.slug}
+                      aria-labelledby={titleId}
+                    >
+                      <h3
+                        className="application-placeholder-title"
+                        id={titleId}
+                      >
+                        {application.name}
+                      </h3>
+                    </article>
+                  );
+                })}
+            </div>
           </div>
         </section>
 
