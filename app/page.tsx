@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import Image from "next/image";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
   Add01Icon,
@@ -45,6 +46,37 @@ const workflowSteps = [
     title: "Delivery",
     description:
       "Refine the responsive experience, check the essential paths, and prepare the product to ship.",
+  },
+] as const;
+
+const clients = [
+  {
+    name: "Equisoft",
+    slug: "equisoft",
+    logo: "/client-equisoft.svg",
+    width: 160,
+    height: 40,
+  },
+  {
+    name: "FolksHR",
+    slug: "folks",
+    logo: "/client-folks.svg",
+    width: 77,
+    height: 24,
+  },
+  {
+    name: "PetalMD",
+    slug: "petalmd",
+    logo: "/client-petalmd.svg",
+    width: 163,
+    height: 72,
+  },
+  {
+    name: "Peak Media",
+    slug: "peak-media",
+    logo: "/client-peak-media.svg",
+    width: 462,
+    height: 253,
   },
 ] as const;
 
@@ -243,6 +275,40 @@ export default function Home() {
               </li>
             ))}
           </ol>
+        </section>
+
+        <section className="clients-section" aria-labelledby="clients-title">
+          <div className="clients-intro">
+            <p className="section-pill">Selected clients · 04</p>
+            <h2 id="clients-title">
+              <span>Clients I&apos;ve</span>
+              <span>worked with.</span>
+            </h2>
+          </div>
+
+          <p className="sr-only" id="client-strip-help">
+            Swipe or scroll horizontally, or use the arrow keys, to browse
+            client logos.
+          </p>
+          <ul
+            className="clients-carousel"
+            aria-label="Client logos"
+            aria-describedby="client-strip-help"
+            tabIndex={0}
+          >
+            {clients.map((client) => (
+              <li className="client-card" key={client.slug}>
+                <Image
+                  className={`client-logo client-logo--${client.slug}`}
+                  src={client.logo}
+                  alt={client.name}
+                  width={client.width}
+                  height={client.height}
+                  unoptimized
+                />
+              </li>
+            ))}
+          </ul>
         </section>
 
         <section className="about-section" aria-labelledby="about-title">

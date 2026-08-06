@@ -356,6 +356,7 @@ main {
 
 .work-intro h2,
 .workflow-intro h2,
+.clients-intro h2,
 .about-content h2 {
   margin-top: 19px;
   font-size: clamp(2.55rem, 10.6vw, 4.25rem);
@@ -366,6 +367,7 @@ main {
 
 .work-intro h2 span,
 .workflow-intro h2 > span,
+.clients-intro h2 span,
 .about-content h2 span {
   display: block;
 }
@@ -376,6 +378,10 @@ main {
 }
 
 .workflow-intro h2 > span:first-child {
+  color: var(--muted);
+}
+
+.clients-intro h2 span:first-child {
   color: var(--muted);
 }
 
@@ -788,6 +794,83 @@ main {
   line-height: 1.3;
 }
 
+.clients-section {
+  padding: 0 var(--page-pad) 120px;
+}
+
+.clients-intro {
+  max-width: 980px;
+}
+
+.clients-carousel {
+  display: flex;
+  max-width: 100%;
+  min-width: 0;
+  margin-top: 28px;
+  padding: 4px var(--page-pad) 12px 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  gap: 8px;
+  overscroll-behavior-inline: contain;
+  scroll-padding-inline: 0 var(--page-pad);
+  scroll-snap-type: x proximity;
+  scrollbar-color: #b8b8b8 transparent;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+}
+
+.clients-carousel::-webkit-scrollbar {
+  height: 4px;
+}
+
+.clients-carousel::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: #b8b8b8;
+}
+
+.clients-carousel:focus-visible {
+  border-radius: 8px;
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+.client-card {
+  display: grid;
+  min-height: 112px;
+  padding: 24px;
+  flex: 0 0 min(72vw, 260px);
+  place-items: center;
+  border-radius: 14px;
+  background: #fff;
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+}
+
+.client-logo {
+  width: auto;
+  max-width: 72%;
+  height: auto;
+  max-height: 42px;
+  object-fit: contain;
+}
+
+.client-logo--equisoft {
+  max-width: 80%;
+}
+
+.client-logo--folks {
+  max-height: 36px;
+}
+
+.client-logo--petalmd {
+  max-height: 46px;
+}
+
+.client-logo--peak-media {
+  max-width: 66%;
+  max-height: 58px;
+}
+
 .about-section {
   padding: 0 var(--page-pad) 120px;
 }
@@ -932,6 +1015,7 @@ a:focus-visible {
 
   .work-intro h2,
   .workflow-intro h2,
+  .clients-intro h2,
   .about-content h2 {
     font-size: clamp(3.9rem, 6.2vw, 6rem);
     line-height: 1;
@@ -944,6 +1028,19 @@ a:focus-visible {
 
   .workflow-section {
     padding-bottom: 160px;
+  }
+
+  .clients-section {
+    padding-bottom: 160px;
+  }
+
+  .clients-carousel {
+    margin-top: 36px;
+  }
+
+  .client-card {
+    min-height: 132px;
+    flex-basis: clamp(240px, 24vw, 300px);
   }
 
   .about-section {
