@@ -19,6 +19,7 @@
 }
 
 html {
+  background: var(--page);
   scroll-behavior: smooth;
 }
 

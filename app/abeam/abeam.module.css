@@ -1,15 +1,30 @@
 .page {
   position: relative;
   min-height: 100svh;
+  min-height: 100dvh;
   overflow: hidden;
   background:
+    linear-gradient(
+      180deg,
+      var(--page) 0%,
+      rgb(247 247 247 / 0%) 8%,
+      rgb(247 247 247 / 0%) 90%,
+      var(--page) 100%
+    ),
     radial-gradient(
       ellipse 76% 80% at 74% 40%,
       rgb(39 135 245 / 22%) 0%,
       rgb(158 203 255 / 13%) 38%,
       rgb(255 255 255 / 0%) 72%
     ),
-    linear-gradient(145deg, #fff 0%, #f7fbff 52%, #fff 100%);
+    linear-gradient(
+      180deg,
+      var(--page) 0%,
+      #fff 8%,
+      #f7fbff 52%,
+      #fff 90%,
+      var(--page) 100%
+    );
   color: #071727;
 }
 
@@ -56,6 +71,7 @@
   display: grid;
   width: min(100%, 1440px);
   min-height: 100svh;
+  min-height: 100dvh;
   margin: 0 auto;
   padding: 96px clamp(20px, 3vw, 40px) 84px;
   grid-template-columns: 1fr;
@@ -130,6 +146,7 @@
 
   .hero {
     min-height: 100svh;
+    min-height: 100dvh;
     padding-top: 82px;
     padding-bottom: max(42px, env(safe-area-inset-bottom));
     grid-template-rows: minmax(340px, 54svh) auto;
