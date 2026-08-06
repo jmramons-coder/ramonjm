@@ -597,6 +597,7 @@ main {
 
 .clients-marquee {
   --clients-gap: clamp(52px, 12vw, 92px);
+  --client-logo-slot: clamp(132px, 38vw, 168px);
   max-width: 100%;
   min-width: 0;
   overflow-x: auto;
@@ -628,6 +629,7 @@ main {
 
 .client-logo-group {
   display: flex;
+  inline-size: max-content;
   min-inline-size: calc(min(100vw, var(--max-width)) + 180px);
   flex: 0 0 auto;
   align-items: center;
@@ -637,9 +639,10 @@ main {
 
 .client-logo-item {
   display: grid;
+  inline-size: var(--client-logo-slot);
   min-height: 92px;
   overflow: hidden;
-  flex: 0 0 clamp(132px, 38vw, 168px);
+  flex: 0 0 var(--client-logo-slot);
   place-items: center;
 }
 
@@ -693,6 +696,7 @@ main {
 
   .client-logo-group:first-child {
     width: 100%;
+    inline-size: 100%;
     min-inline-size: 0;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -701,6 +705,7 @@ main {
   }
 
   .client-logo-item {
+    inline-size: auto;
     min-height: 68px;
     flex: 1 1 132px;
   }
@@ -885,11 +890,11 @@ a:focus-visible {
 
   .clients-marquee {
     --clients-gap: clamp(72px, 8vw, 116px);
+    --client-logo-slot: clamp(168px, 17vw, 220px);
   }
 
   .client-logo-item {
     min-height: 112px;
-    flex-basis: clamp(168px, 17vw, 220px);
   }
 
   .about-section {
