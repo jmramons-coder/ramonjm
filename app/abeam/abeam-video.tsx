@@ -20,95 +20,20 @@ export function AbeamVideo({
 }) {
   const containerRef = useRef<HTMLSpanElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
   const playbackPreferenceRef = useRef<PlaybackPreference>("auto");
   const syncPlaybackRef = useRef<() => void>(() => undefined);
-  const usesCanvasRef = useRef(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isReady, setIsReady] = useState(false);
-  const [usesCanvas, setUsesCanvas] = useState(false);
 
   useEffect(() => {
     const container = containerRef.current;
     const video = videoRef.current;
-    const canvas = canvasRef.current;
-    if (!container || !video || !canvas) return;
+    if (!container || !video) return;
 
     const motionPreference = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     );
-    const isWebKit = /AppleWebKit/i.test(navigator.userAgent);
-    const isChromium = /(Chrome|Chromium|Edg|OPR)/i.test(
-      navigator.userAgent,
-    );
-    const isIOS =
-      /iP(ad|hone|od)/i.test(navigator.userAgent) ||
-      (/Macintosh/i.test(navigator.userAgent) && navigator.maxTouchPoints > 1);
-    const canvasContext =
-      isWebKit && (isIOS || !isChromium)
-        ? canvas.getContext("2d", { willReadFrequently: true })
-        : null;
-    const shouldUseCanvas = Boolean(canvasContext);
-    usesCanvasRef.current = shouldUseCanvas;
-    setUsesCanvas(shouldUseCanvas);
-
     let isVisible = false;
-    let isRenderingCanvas = false;
-    let canvasFrameId = 0;
-    let previousCanvasFrame = 0;
-    let hasRenderedCanvas = false;
-
-    const renderCanvasFrame = (timestamp: number) => {
-      if (!isRenderingCanvas || !canvasContext) return;
-
-      if (
-        timestamp - previousCanvasFrame >= 1000 / 24 &&
-        video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA
-      ) {
-        previousCanvasFrame = timestamp;
-        canvasContext.clearRect(0, 0, canvas.width, canvas.height);
-        canvasContext.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-        const frame = canvasContext.getImageData(
-          0,
-          0,
-          canvas.width,
-          canvas.height,
-        );
-        const pixels = frame.data;
-
-        for (let index = 0; index < pixels.length; index += 4) {
-          const red = pixels[index];
-          const green = pixels[index + 1];
-          const blue = pixels[index + 2];
-          const maximum = Math.max(red, green, blue);
-          const minimum = Math.min(red, green, blue);
-          const neutralBackground = maximum - minimum < 14 && maximum < 253;
-
-          if (neutralBackground) pixels[index + 3] = 0;
-        }
-
-        canvasContext.putImageData(frame, 0, 0);
-
-        if (!hasRenderedCanvas) {
-          hasRenderedCanvas = true;
-          setIsReady(true);
-        }
-      }
-
-      canvasFrameId = window.requestAnimationFrame(renderCanvasFrame);
-    };
-
-    const startCanvasRendering = () => {
-      if (!canvasContext || isRenderingCanvas) return;
-      isRenderingCanvas = true;
-      canvasFrameId = window.requestAnimationFrame(renderCanvasFrame);
-    };
-
-    const stopCanvasRendering = () => {
-      isRenderingCanvas = false;
-      window.cancelAnimationFrame(canvasFrameId);
-    };
 
     const syncPlayback = () => {
       const preference = playbackPreferenceRef.current;
@@ -119,10 +44,8 @@ export function AbeamVideo({
         motionAllowed && isVisible && document.visibilityState === "visible";
 
       if (shouldPlay) {
-        startCanvasRendering();
         void video.play().catch(() => undefined);
       } else {
-        stopCanvasRendering();
         video.pause();
       }
     };
@@ -148,7 +71,6 @@ export function AbeamVideo({
       document.removeEventListener("visibilitychange", handleVisibilityChange);
       motionPreference.removeEventListener("change", handleMotionChange);
       syncPlaybackRef.current = () => undefined;
-      stopCanvasRendering();
       video.pause();
     };
   }, []);
@@ -163,7 +85,7 @@ export function AbeamVideo({
 
   return (
     <span
-      className={`abeam-video${isReady ? " is-ready" : ""}${usesCanvas ? " uses-canvas" : ""}${className ? ` ${className}` : ""}`}
+      className={`abeam-video${isReady ? " is-ready" : ""}${className ? ` ${className}` : ""}`}
       ref={containerRef}
       aria-hidden={showControl ? undefined : true}
     >
@@ -178,25 +100,21 @@ export function AbeamVideo({
       <video
         className="abeam-video-media"
         ref={videoRef}
-        src="/abeam/loop.webm"
         muted
         loop
         playsInline
         preload={priority ? "auto" : "metadata"}
-        onCanPlay={() => {
-          if (!usesCanvasRef.current) setIsReady(true);
-        }}
+        onCanPlay={() => setIsReady(true)}
         onError={() => setIsReady(false)}
         onPause={() => setIsPlaying(false)}
         onPlaying={() => setIsPlaying(true)}
-      />
-      <canvas
-        className="abeam-video-canvas"
-        ref={canvasRef}
-        width={320}
-        height={320}
-        aria-hidden="true"
-      />
+      >
+        <source
+          src="/abeam/loop-alpha.mov"
+          type={'video/quicktime; codecs="hvc1"'}
+        />
+        <source src="/abeam/loop.webm" type='video/webm; codecs="vp9"' />
+      </video>
       {showControl ? (
         <button
           className="abeam-video-control"
