@@ -13,9 +13,9 @@ import {
   Route01Icon,
   RocketIcon,
   Sofa01Icon,
-  Sun01Icon,
 } from "@hugeicons/core-free-icons";
 import { ClientMarquee } from "./client-marquee";
+import { AbeamVideo } from "./abeam/abeam-video";
 
 const applications = [
   { name: "Lounge", slug: "lounge", icon: Sofa01Icon },
@@ -28,7 +28,7 @@ const applications = [
   { name: "PushedWorld", slug: "world", icon: null },
   { name: "Add", slug: "add", icon: Add01Icon },
   { name: "Tracer", slug: "tracer", icon: Route01Icon },
-  { name: "Abeam", slug: "abeam", icon: Sun01Icon },
+  { name: "aBeam", slug: "abeam", icon: null },
 ] as const;
 
 const workflowSteps = [
@@ -155,6 +155,15 @@ export default function Home() {
                             height={256}
                             sizes="62px"
                           />
+                        ) : application.slug === "abeam" ? (
+                          <Image
+                            className="app-icon-image app-icon-image--abeam"
+                            src="/abeam/mark.png"
+                            alt=""
+                            width={256}
+                            height={256}
+                            sizes="62px"
+                          />
                         ) : (
                           <HugeiconsIcon
                             icon={application.icon}
@@ -251,9 +260,57 @@ export default function Home() {
               </Link>
             </article>
 
+            <article
+              className="application-card application-card--project application-card--abeam"
+              id="abeam"
+              aria-labelledby="abeam-title"
+            >
+              <Link className="application-card-link" href="/abeam">
+                <div
+                  className="app-canvas app-canvas--abeam-project"
+                  aria-hidden="true"
+                >
+                  <span className="abeam-card-glow" />
+                  <AbeamVideo
+                    className="abeam-card-motion"
+                    sizes="(max-width: 759px) 72vw, 34vw"
+                  />
+                  <span className="abeam-card-status">Coming soon</span>
+                </div>
+                <div className="application-label application-label--project">
+                  <Image
+                    className="application-project-icon application-project-icon--abeam"
+                    src="/abeam/mark.png"
+                    alt=""
+                    width={256}
+                    height={256}
+                    sizes="44px"
+                  />
+                  <div>
+                    <p>07 / Travel advisor AI</p>
+                    <h3 id="abeam-title">aBeam</h3>
+                  </div>
+                  <span
+                    className="application-project-arrow"
+                    aria-hidden="true"
+                  >
+                    <HugeiconsIcon
+                      icon={ArrowRight02Icon}
+                      size={18}
+                      strokeWidth={1.8}
+                    />
+                  </span>
+                </div>
+              </Link>
+            </article>
+
             <div className="application-placeholder-list">
               {applications
-                .filter((application) => application.slug !== "world")
+                .filter(
+                  (application) =>
+                    application.slug !== "world" &&
+                    application.slug !== "abeam",
+                )
                 .map((application) => {
                   const titleId = `${application.slug}-title`;
 

@@ -24,10 +24,11 @@ The project is built with Next.js and is ready for Vercel deployment.
 
 The site uses one continuous responsive flow: a concise introduction, a
 horizontally scrollable application index, and seven project cards for Lounge,
-Maxing, Push, PushedWorld, Add, Tracer, and Abeam. PushedWorld uses its real app
+Maxing, Push, PushedWorld, Add, Tracer, and aBeam. PushedWorld uses its real app
 icon and original website hero artwork. Its case study at `/world` covers live
 counting, the 100-level Path, in-app setup videos, on-device privacy, and the
-optional League, with a link to the full product site. A three-step workflow and
-a slow, seamlessly looping logo marquee for Equisoft, FolksHR, PetalMD, and
-Peak Media complete the page. The portfolio intentionally avoids invented
-project links or unsupported claims.
+optional League, with a link to the full product site. aBeam uses its real
+animated mark and opens an immersive coming-soon page at `/abeam`. A three-step
+workflow and a slow, seamlessly looping logo marquee for Equisoft, FolksHR,
+PetalMD, and Peak Media complete the page. The portfolio intentionally avoids
+invented project links or unsupported claims.
