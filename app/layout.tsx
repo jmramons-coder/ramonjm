@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { headers } from "next/headers";
-import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -15,17 +15,9 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-const instrumentSerif = Instrument_Serif({
-  variable: "--font-editorial",
-  subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
-  display: "swap",
-});
-
 export const viewport: Viewport = {
   colorScheme: "light",
-  themeColor: "#f1eee6",
+  themeColor: "#ececea",
 };
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -40,7 +32,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const baseUrl = new URL(`${protocol}://${host}`);
   const title = "Ramon JM — Digital Product Portfolio";
   const description =
-    "An editorial portfolio of selected application work by Ramon JM.";
+    "A focused portfolio of selected digital product work by Ramon JM.";
 
   return {
     metadataBase: baseUrl,
@@ -55,9 +47,9 @@ export async function generateMetadata(): Promise<Metadata> {
       siteName: "Ramon JM",
       images: [
         {
-          url: "/og-editorial.png",
-          width: 1536,
-          height: 1024,
+          url: "/og-split.png",
+          width: 1727,
+          height: 911,
           alt: "Ramon JM — selected application work",
         },
       ],
@@ -66,7 +58,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title,
       description,
-      images: ["/og-editorial.png"],
+      images: ["/og-split.png"],
     },
     robots: {
       index: true,
@@ -82,9 +74,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable}`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable}`}>
         {children}
       </body>
     </html>
