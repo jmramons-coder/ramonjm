@@ -213,7 +213,6 @@ export default function Home() {
                     className="world-card-video"
                     disablePictureInPicture
                     disableRemotePlayback
-                    loop
                     muted
                     playsInline
                     preload="metadata"
