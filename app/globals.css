@@ -333,7 +333,18 @@ main {
 }
 
 .app-icon--tracer {
-  background: linear-gradient(135deg, #fff 12%, #fad9f4 56%, #9c73ff 130%);
+  background: #fff;
+}
+
+.app-icon--tracer .app-icon-glyph {
+  width: 100%;
+  height: 100%;
+  padding: 8px;
+}
+
+.app-icon--tracer .app-icon-image--tracer {
+  object-fit: contain;
+  object-position: center;
 }
 
 .app-icon--abeam {
@@ -943,7 +954,7 @@ a:focus-visible {
   }
 
   .application-placeholder-list {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 10px;
   }
 
@@ -1311,6 +1322,89 @@ a:focus-visible {
   color: #071727;
 }
 
+/* Tracer portfolio card */
+
+.application-card--tracer {
+  border: 1px solid rgb(7 20 36 / 10%);
+  background: #0a4ca5;
+}
+
+.app-canvas--tracer {
+  background: #0a4ca5;
+  color: #fff;
+}
+
+.tracer-card-image {
+  object-fit: cover;
+  object-position: 56% center;
+}
+
+.tracer-card-shade {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgb(4 13 24 / 12%) 0%, rgb(4 13 24 / 66%) 100%),
+    linear-gradient(110deg, rgb(4 70 166 / 88%) 0%, transparent 68%);
+}
+
+.tracer-card-copy {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  display: flex;
+  width: 100%;
+  padding: clamp(20px, 2vw, 28px);
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.tracer-card-logo {
+  display: block;
+  width: clamp(48px, 4.6vw, 64px);
+  height: auto;
+  filter: drop-shadow(0 10px 24px rgb(0 0 0 / 18%));
+}
+
+.tracer-card-copy p {
+  margin-top: 15px;
+  color: rgb(255 255 255 / 66%);
+  font-size: 0.6rem;
+  font-weight: 620;
+  letter-spacing: 0.065em;
+  text-transform: uppercase;
+}
+
+.tracer-card-copy h3 {
+  margin-top: 5px;
+  font-size: clamp(2.5rem, 10vw, 4.1rem);
+  font-weight: 610;
+  letter-spacing: -0.07em;
+  line-height: 0.94;
+}
+
+.tracer-card-copy > span {
+  max-width: 15em;
+  margin-top: 10px;
+  color: rgb(255 255 255 / 76%);
+  font-size: clamp(0.76rem, 0.9vw, 0.88rem);
+  font-weight: 460;
+  letter-spacing: -0.025em;
+  line-height: 1.35;
+}
+
+.tracer-card-arrow {
+  position: absolute;
+  z-index: 6;
+  right: 14px;
+  bottom: 14px;
+  border: 1px solid rgb(255 255 255 / 32%);
+  background: rgb(255 255 255 / 90%);
+  color: #0b2442;
+  backdrop-filter: blur(10px);
+}
+
 /* CryptoCroc portfolio card */
 
 .application-card--crypto {
@@ -1400,55 +1494,46 @@ a:focus-visible {
   color: #062f20;
 }
 
-@media (min-width: 760px) {
-  .application-card--crypto {
-    grid-column: 1 / -1;
-    aspect-ratio: 16 / 7;
-  }
-
-  .crypto-card-copy {
-    top: 50%;
-    width: 48%;
-    max-width: 640px;
-    padding: clamp(34px, 4.5vw, 68px);
-    transform: translateY(-50%);
-  }
-
-  .crypto-card-logo {
-    width: clamp(84px, 7.5vw, 108px);
-    height: auto;
-  }
-
-  .crypto-card-copy p {
-    margin-top: 20px;
-    font-size: 0.72rem;
-  }
-
-  .crypto-card-copy h3 {
-    font-size: clamp(3.8rem, 7vw, 7rem);
-  }
-
-  .crypto-card-copy > span {
-    margin-top: 14px;
-    font-size: clamp(0.9rem, 1.3vw, 1.1rem);
-  }
-
-  .crypto-card-mascot {
-    right: 4%;
-    bottom: -8%;
-    width: min(49%, 650px);
-  }
-
-  .crypto-card-arrow {
-    right: 18px;
-    bottom: 18px;
-  }
-}
-
 @media (min-width: 1100px) {
   .gallery-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    column-gap: clamp(24px, 2.5vw, 36px);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: clamp(18px, 1.8vw, 24px);
+  }
+
+  .world-card-level {
+    display: none;
+  }
+
+  .world-card-reps {
+    min-width: 108px;
+    padding: 10px;
+  }
+
+  .world-card-reps strong {
+    font-size: 1.65rem;
+  }
+
+  .application-label--project {
+    grid-template-columns: 38px minmax(0, 1fr) 31px;
+    gap: 8px;
+  }
+
+  .application-project-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 9px;
+  }
+
+  .application-label--project h3 {
+    font-size: 1rem;
+  }
+
+  .application-label--project .application-project-arrow {
+    width: 31px;
+  }
+
+  .tracer-card-copy h3 {
+    font-size: clamp(2.2rem, 3vw, 3.15rem);
   }
 
   .application-card--crypto {

@@ -14,6 +14,7 @@ import { AbeamVideo } from "./abeam/abeam-video";
 
 const featuredApplications = [
   { name: "PushedWorld", slug: "world" },
+  { name: "Tracer", slug: "tracer" },
   { name: "aBeam", slug: "abeam" },
   { name: "CryptoCroc", slug: "crypto-inheritance" },
 ] as const;
@@ -23,7 +24,6 @@ const placeholderApplications = [
   { name: "Maxing", slug: "maxing" },
   { name: "Push", slug: "push" },
   { name: "Add", slug: "add" },
-  { name: "Tracer", slug: "tracer" },
 ] as const;
 
 const workflowSteps = [
@@ -142,6 +142,15 @@ export default function Home() {
                             height={256}
                             sizes="62px"
                           />
+                        ) : application.slug === "tracer" ? (
+                          <Image
+                            className="app-icon-image app-icon-image--tracer"
+                            src="/tracer/app-icon.png"
+                            alt=""
+                            width={192}
+                            height={192}
+                            sizes="62px"
+                          />
                         ) : application.slug === "abeam" ? (
                           <AbeamVideo
                             className="app-icon-video--abeam"
@@ -196,7 +205,7 @@ export default function Home() {
                     src="/world/hero-human.jpg"
                     alt=""
                     fill
-                    sizes="(max-width: 759px) 100vw, (max-width: 1099px) 50vw, 33vw"
+                    sizes="(max-width: 759px) 100vw, (max-width: 1099px) 50vw, 25vw"
                   />
                   <span className="world-card-shade" />
                   <span className="world-card-live">
@@ -247,6 +256,48 @@ export default function Home() {
             </article>
 
             <article
+              className="application-card application-card--project application-card--tracer"
+              id="tracer"
+              aria-labelledby="tracer-title"
+            >
+              <Link className="application-card-link" href="/tracer">
+                <div className="app-canvas app-canvas--tracer">
+                  <Image
+                    className="tracer-card-image"
+                    src="/tracer/screen-organizations.jpg"
+                    alt=""
+                    fill
+                    sizes="(max-width: 759px) 100vw, (max-width: 1099px) 50vw, 25vw"
+                  />
+                  <span className="tracer-card-shade" aria-hidden="true" />
+                  <div className="tracer-card-copy">
+                    <Image
+                      className="tracer-card-logo"
+                      src="/tracer/logo-light.png"
+                      alt=""
+                      width={363}
+                      height={318}
+                      sizes="64px"
+                    />
+                    <p>06 / Research security</p>
+                    <h3 id="tracer-title">Tracer</h3>
+                    <span>Screen research partners in minutes.</span>
+                  </div>
+                </div>
+                <span
+                  className="application-project-arrow tracer-card-arrow"
+                  aria-hidden="true"
+                >
+                  <HugeiconsIcon
+                    icon={ArrowRight02Icon}
+                    size={24}
+                    strokeWidth={1.8}
+                  />
+                </span>
+              </Link>
+            </article>
+
+            <article
               className="application-card application-card--project application-card--abeam"
               id="abeam"
               aria-label="aBeam"
@@ -263,7 +314,7 @@ export default function Home() {
                   <AbeamVideo
                     alwaysPlay
                     className="abeam-card-motion"
-                    sizes="(max-width: 759px) 92vw, (max-width: 1099px) 46vw, 31vw"
+                    sizes="(max-width: 759px) 92vw, (max-width: 1099px) 46vw, 24vw"
                   />
                 </div>
                 <span
@@ -311,7 +362,7 @@ export default function Home() {
                     alt=""
                     width={1432}
                     height={1432}
-                    sizes="(max-width: 759px) 76vw, (max-width: 1099px) 48vw, 24vw"
+                    sizes="(max-width: 759px) 76vw, (max-width: 1099px) 48vw, 18vw"
                   />
                 </div>
                 <span
