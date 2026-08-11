@@ -18,7 +18,7 @@ const featuredApplications = [
   { name: "Tracer", slug: "tracer" },
   { name: "aBeam", slug: "abeam" },
   { name: "CryptoCroc", slug: "crypto-inheritance" },
-  { name: "Equisoft Labs", slug: "equisoft-labs" },
+  { name: "Decision ROI", slug: "equisoft-labs" },
 ] as const;
 
 const placeholderApplications = [
@@ -154,16 +154,16 @@ export default function Home() {
                             alt=""
                             width={256}
                             height={256}
-                            sizes="62px"
+                            sizes="(min-width: 760px) 62px, 46px"
                           />
                         ) : application.slug === "tracer" ? (
                           <Image
-                            className="app-icon-image app-icon-image--tracer"
-                            src="/tracer/app-icon.png"
+                            className="app-icon-image app-icon-image--tracer-glass"
+                            src="/tracer/logo-glass.png"
                             alt=""
-                            width={192}
-                            height={192}
-                            sizes="62px"
+                            width={523}
+                            height={478}
+                            sizes="(min-width: 760px) 62px, 46px"
                           />
                         ) : application.slug === "abeam" ? (
                           <AbeamVideo
@@ -172,22 +172,27 @@ export default function Home() {
                           />
                         ) : application.slug === "crypto-inheritance" ? (
                           <Image
-                            className="app-icon-image app-icon-image--crypto"
-                            src="/crypto-inheritance/logo.png"
+                            className="app-icon-image app-icon-image--crypto-skull"
+                            src="/crypto-inheritance/skull.png"
                             alt=""
-                            width={1024}
-                            height={1024}
-                            sizes="62px"
+                            width={760}
+                            height={760}
+                            sizes="(min-width: 760px) 62px, 46px"
                           />
                         ) : (
-                          <Image
-                            className="app-icon-image app-icon-image--equisoft-labs"
-                            src="/equisoft-labs/icon.png"
-                            alt=""
-                            width={105}
-                            height={105}
-                            sizes="62px"
-                          />
+                          <span className="roi-loss-icon">
+                            <span className="roi-loss-label">Annual loss</span>
+                            <span className="roi-loss-value">
+                              <span className="roi-loss-reel">
+                                <span>$0</span>
+                                <span>$42K</span>
+                                <span>$105K</span>
+                              </span>
+                            </span>
+                            <span className="roi-loss-track">
+                              <span />
+                            </span>
+                          </span>
                         )}
                       </span>
                     </span>
