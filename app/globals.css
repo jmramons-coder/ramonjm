@@ -750,7 +750,6 @@ main {
 .client-logo-group {
   display: flex;
   inline-size: max-content;
-  min-inline-size: calc(min(100vw, var(--max-width)) + 180px);
   flex: 0 0 auto;
   align-items: center;
   gap: var(--clients-gap);
@@ -817,7 +816,6 @@ main {
   .client-logo-group:first-child {
     width: 100%;
     inline-size: 100%;
-    min-inline-size: 0;
     flex-wrap: wrap;
     justify-content: space-around;
     gap: 24px;
