@@ -390,17 +390,9 @@ export default function Home() {
                     aria-hidden="true"
                   />
                   <div className="equisoft-labs-card-copy">
-                    <Image
-                      className="equisoft-labs-card-logo"
-                      src="/equisoft-labs/wordmark.png"
-                      alt=""
-                      width={459}
-                      height={105}
-                      sizes="(max-width: 759px) 230px, (max-width: 1099px) 240px, (max-width: 1199px) 180px, 150px"
-                    />
-                    <p>09 / Insurance R&amp;D</p>
-                    <h3 id="equisoft-labs-title">Decision ROI</h3>
-                    <span>Make the cost of indecision visible.</span>
+                    <p>09 / Decision ROI</p>
+                    <h3 id="equisoft-labs-title">Equisoft Labs</h3>
+                    <span>Decision intelligence for insurance.</span>
                   </div>
                   <Image
                     className="equisoft-labs-card-persona"
@@ -410,14 +402,6 @@ export default function Home() {
                     height={700}
                     sizes="(max-width: 759px) 66vw, (max-width: 1099px) 40vw, (max-width: 1199px) 19vw, 15vw"
                   />
-                  <div
-                    className="equisoft-labs-card-result"
-                    aria-hidden="true"
-                  >
-                    <small>Illustrative annual loss</small>
-                    <strong>$105k</strong>
-                    <span>Decision cost model</span>
-                  </div>
                 </div>
                 <span
                   className="application-project-arrow equisoft-labs-card-arrow"

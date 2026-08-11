@@ -1447,15 +1447,7 @@ a:focus-visible {
   flex-direction: column;
 }
 
-.equisoft-labs-card-logo {
-  display: block;
-  width: min(100%, 230px);
-  height: auto;
-  object-fit: contain;
-}
-
 .equisoft-labs-card-copy p {
-  margin-top: 17px;
   color: rgb(0 72 111 / 58%);
   font-size: 0.62rem;
   font-weight: 650;
@@ -1465,6 +1457,7 @@ a:focus-visible {
 
 .equisoft-labs-card-copy h3 {
   margin-top: 6px;
+  max-width: 9ch;
   font-size: clamp(2.5rem, 10vw, 4.1rem);
   font-weight: 610;
   letter-spacing: -0.075em;
@@ -1490,45 +1483,6 @@ a:focus-visible {
   width: 70%;
   height: auto;
   filter: drop-shadow(0 24px 30px rgb(0 72 111 / 15%));
-}
-
-.equisoft-labs-card-result {
-  position: absolute;
-  z-index: 4;
-  bottom: 5%;
-  left: 5%;
-  display: flex;
-  width: min(45%, 164px);
-  padding: 13px 14px;
-  border: 1px solid rgb(255 255 255 / 76%);
-  border-radius: 13px;
-  background: rgb(255 255 255 / 88%);
-  box-shadow: 0 16px 36px rgb(0 72 111 / 14%);
-  flex-direction: column;
-  backdrop-filter: blur(14px);
-}
-
-.equisoft-labs-card-result small,
-.equisoft-labs-card-result span {
-  color: rgb(8 43 62 / 52%);
-  font-size: 0.52rem;
-  font-weight: 630;
-  letter-spacing: 0.045em;
-  text-transform: uppercase;
-}
-
-.equisoft-labs-card-result strong {
-  margin-top: 4px;
-  color: #ff4138;
-  font-size: clamp(1.55rem, 5vw, 2.25rem);
-  font-weight: 620;
-  letter-spacing: -0.07em;
-  line-height: 1;
-}
-
-.equisoft-labs-card-result span {
-  margin-top: 5px;
-  color: #008533;
 }
 
 .equisoft-labs-card-arrow {
@@ -1620,21 +1574,12 @@ a:focus-visible {
     max-width: 100%;
   }
 
-  .equisoft-labs-card-logo {
-    width: min(78%, 190px);
-  }
-
   .equisoft-labs-card-copy h3 {
     font-size: clamp(2.05rem, 3.4vw, 3.45rem);
   }
 
   .equisoft-labs-card-persona {
-    width: 75%;
-  }
-
-  .equisoft-labs-card-result {
-    width: 48%;
-    padding: 11px 12px;
+    width: 78%;
   }
 }
 
@@ -1681,22 +1626,6 @@ a:focus-visible {
     font-size: clamp(1.8rem, 2.6vw, 2.85rem);
   }
 
-  .equisoft-labs-card-copy p {
-    margin-top: 12px;
-  }
-
-  .equisoft-labs-card-result {
-    width: 50%;
-    padding: 9px 10px;
-  }
-
-  .equisoft-labs-card-result strong {
-    font-size: clamp(1.35rem, 2.2vw, 2rem);
-  }
-
-  .equisoft-labs-card-result span {
-    display: none;
-  }
 }
 
 /* PushedWorld project page */

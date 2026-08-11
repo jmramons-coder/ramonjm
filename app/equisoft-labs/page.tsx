@@ -126,90 +126,23 @@ export default function EquisoftLabsProjectPage() {
             <VisitProjectLink className={styles.heroLink} />
           </div>
 
-          <article
-            className={styles.calculator}
-            aria-label="Illustrative Decision ROI Calculator scenario"
-          >
-            <div className={styles.calculatorTopbar}>
-              <div>
-                <span className={styles.liveDot} aria-hidden="true" />
-                <span>Decision ROI</span>
-              </div>
-              <span>Illustrative scenario</span>
-            </div>
-
-            <div className={styles.calculatorBody}>
-              <div className={styles.scenario}>
-                <div className={styles.personaRow}>
-                  <Image
-                    className={styles.persona}
-                    src="/equisoft-labs/persona.png"
-                    alt=""
-                    width={700}
-                    height={700}
-                    sizes="82px"
-                    priority
-                  />
-                  <div>
-                    <span>Selected persona</span>
-                    <strong>Insurance leader</strong>
-                  </div>
-                </div>
-
-                <dl className={styles.scenarioInputs}>
-                  <div>
-                    <dt>Annual salary</dt>
-                    <dd>$120,000</dd>
-                  </div>
-                  <div>
-                    <dt>Team size</dt>
-                    <dd>8 people</dd>
-                  </div>
-                  <div>
-                    <dt>Critical decisions</dt>
-                    <dd>12 / month</dd>
-                  </div>
-                  <div>
-                    <dt>Delayed by data</dt>
-                    <dd>4 / month</dd>
-                  </div>
-                </dl>
-              </div>
-
-              <div className={styles.result}>
-                <div className={styles.resultHeading}>
-                  <span>Estimated annual decision loss</span>
-                  <strong>$105k*</strong>
-                </div>
-                <div className={styles.resultBar} aria-hidden="true">
-                  <span />
-                </div>
-                <dl className={styles.resultBreakdown}>
-                  <div>
-                    <dt>Search &amp; validation</dt>
-                    <dd>38%</dd>
-                  </div>
-                  <div>
-                    <dt>Delayed decisions</dt>
-                    <dd>34%</dd>
-                  </div>
-                  <div>
-                    <dt>Team ripple</dt>
-                    <dd>28%</dd>
-                  </div>
-                </dl>
-                <div className={styles.savings}>
-                  <span>Illustrative potential savings</span>
-                  <strong>$31.5k*</strong>
-                </div>
+          <div className={styles.tabletStage}>
+            <span className={styles.tabletGlow} aria-hidden="true" />
+            <div className={styles.tabletFrame}>
+              <span className={styles.tabletCamera} aria-hidden="true" />
+              <div className={styles.tabletScreen}>
+                <Image
+                  className={styles.tabletScreenshot}
+                  src="/equisoft-labs/app-screenshot.jpg"
+                  alt="Decision ROI app showing a Senior Executive scenario and decision impact calculator"
+                  width={1200}
+                  height={833}
+                  sizes="(max-width: 1060px) 92vw, 50vw"
+                  priority
+                />
               </div>
             </div>
-
-            <p className={styles.disclaimer}>
-              *Example values are illustrative only, not a forecast. Results
-              depend on the inputs and assumptions selected in the prototype.
-            </p>
-          </article>
+          </div>
         </div>
       </section>
 
