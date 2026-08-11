@@ -1,0 +1,309 @@
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { HugeiconsIcon } from "@hugeicons/react";
+import {
+  ArrowLeft02Icon,
+  ArrowUpRight01Icon,
+} from "@hugeicons/core-free-icons";
+import styles from "./equisoft-labs.module.css";
+
+export const metadata: Metadata = {
+  title: "Equisoft Lab Decision ROI — Ramon JM",
+  description:
+    "An insurance-focused Decision ROI Calculator prototype that makes the hidden cost of slow, data-poor decisions easier to understand.",
+  alternates: { canonical: "/equisoft-labs" },
+};
+
+const decisionInputs = [
+  {
+    number: "01",
+    label: "Annual salary",
+    description: "Establishes the value of the time involved in each decision.",
+  },
+  {
+    number: "02",
+    label: "Weekly work hours",
+    description: "Converts compensation into a practical hourly baseline.",
+  },
+  {
+    number: "03",
+    label: "Team size",
+    description: "Accounts for the ripple effect across collaborators.",
+  },
+  {
+    number: "04",
+    label: "Critical decisions",
+    description: "Captures how often consequential choices are made.",
+  },
+  {
+    number: "05",
+    label: "Missing-data delays",
+    description: "Surfaces how incomplete information slows the work.",
+  },
+] as const;
+
+const visionPillars = [
+  {
+    number: "01",
+    title: "Research & Development",
+    description:
+      "Explore how emerging technology and human behaviour can improve decision-making in insurance.",
+  },
+  {
+    number: "02",
+    title: "Data Accessibility",
+    description:
+      "Bring useful information closer to the moment a person needs to act on it.",
+  },
+  {
+    number: "03",
+    title: "Industry Innovation",
+    description:
+      "Turn early concepts into tangible experiments that invite better questions and clearer choices.",
+  },
+] as const;
+
+function VisitProjectLink({ className }: { className: string }) {
+  return (
+    <a
+      className={className}
+      href="https://www.equisoftlabs.com/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <span>Explore the prototype</span>
+      <HugeiconsIcon
+        icon={ArrowUpRight01Icon}
+        size={17}
+        strokeWidth={1.8}
+        aria-hidden="true"
+      />
+      <span className="sr-only"> (opens in a new tab)</span>
+    </a>
+  );
+}
+
+export default function EquisoftLabsProjectPage() {
+  return (
+    <main className={styles.page}>
+      <header className={styles.header}>
+        <Link className={styles.backLink} href="/#applications">
+          <HugeiconsIcon
+            icon={ArrowLeft02Icon}
+            size={17}
+            strokeWidth={1.8}
+            aria-hidden="true"
+          />
+          <span>Selected work</span>
+        </Link>
+        <VisitProjectLink className={styles.headerLink} />
+      </header>
+
+      <section className={styles.hero} aria-labelledby="equisoft-labs-title">
+        <span className={styles.heroGlow} aria-hidden="true" />
+        <div className={styles.heroInner}>
+          <div className={styles.heroCopy}>
+            <Image
+              className={styles.logo}
+              src="/equisoft-labs/wordmark.png"
+              alt="Equisoft Lab — Decision ROI"
+              width={459}
+              height={105}
+              sizes="(max-width: 700px) 260px, 360px"
+              priority
+            />
+            <p className={styles.eyebrow}>Insurance decision intelligence</p>
+            <h1 id="equisoft-labs-title">
+              <span>Make the cost of</span>
+              <span>indecision visible.</span>
+            </h1>
+            <p className={styles.summary}>
+              Decision ROI is an interactive prototype that models how time,
+              team scale, critical choices, and missing information can turn
+              decision friction into a measurable business conversation.
+            </p>
+            <VisitProjectLink className={styles.heroLink} />
+          </div>
+
+          <article
+            className={styles.calculator}
+            aria-label="Illustrative Decision ROI Calculator scenario"
+          >
+            <div className={styles.calculatorTopbar}>
+              <div>
+                <span className={styles.liveDot} aria-hidden="true" />
+                <span>Decision ROI</span>
+              </div>
+              <span>Illustrative scenario</span>
+            </div>
+
+            <div className={styles.calculatorBody}>
+              <div className={styles.scenario}>
+                <div className={styles.personaRow}>
+                  <Image
+                    className={styles.persona}
+                    src="/equisoft-labs/persona.png"
+                    alt=""
+                    width={700}
+                    height={700}
+                    sizes="82px"
+                    priority
+                  />
+                  <div>
+                    <span>Selected persona</span>
+                    <strong>Insurance leader</strong>
+                  </div>
+                </div>
+
+                <dl className={styles.scenarioInputs}>
+                  <div>
+                    <dt>Annual salary</dt>
+                    <dd>$120,000</dd>
+                  </div>
+                  <div>
+                    <dt>Team size</dt>
+                    <dd>8 people</dd>
+                  </div>
+                  <div>
+                    <dt>Critical decisions</dt>
+                    <dd>12 / month</dd>
+                  </div>
+                  <div>
+                    <dt>Delayed by data</dt>
+                    <dd>4 / month</dd>
+                  </div>
+                </dl>
+              </div>
+
+              <div className={styles.result}>
+                <div className={styles.resultHeading}>
+                  <span>Estimated annual decision loss</span>
+                  <strong>$105k*</strong>
+                </div>
+                <div className={styles.resultBar} aria-hidden="true">
+                  <span />
+                </div>
+                <dl className={styles.resultBreakdown}>
+                  <div>
+                    <dt>Search &amp; validation</dt>
+                    <dd>38%</dd>
+                  </div>
+                  <div>
+                    <dt>Delayed decisions</dt>
+                    <dd>34%</dd>
+                  </div>
+                  <div>
+                    <dt>Team ripple</dt>
+                    <dd>28%</dd>
+                  </div>
+                </dl>
+                <div className={styles.savings}>
+                  <span>Illustrative potential savings</span>
+                  <strong>$31.5k*</strong>
+                </div>
+              </div>
+            </div>
+
+            <p className={styles.disclaimer}>
+              *Example values are illustrative only, not a forecast. Results
+              depend on the inputs and assumptions selected in the prototype.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section className={styles.inputsSection} aria-labelledby="inputs-title">
+        <div className={styles.sectionIntro}>
+          <p>The model</p>
+          <h2 id="inputs-title">Five inputs. One clear business case.</h2>
+          <span>
+            A short guided flow reframes an abstract operational problem in
+            terms that an insurance team can discuss, test, and refine.
+          </span>
+        </div>
+
+        <div className={styles.inputsLayout}>
+          <ol className={styles.inputList}>
+            {decisionInputs.map((input) => (
+              <li key={input.number}>
+                <span>{input.number}</span>
+                <div>
+                  <h3>{input.label}</h3>
+                  <p>{input.description}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+
+          <div className={styles.startVisual}>
+            <span className={styles.startGlow} aria-hidden="true" />
+            <Image
+              src="/equisoft-labs/start.png"
+              alt=""
+              width={700}
+              height={700}
+              sizes="(max-width: 900px) 92vw, 42vw"
+            />
+            <div className={styles.startCaption}>
+              <span>Guided by role</span>
+              <strong>From assumptions to a shared starting point.</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className={styles.vision} aria-labelledby="vision-title">
+        <div className={styles.visionInner}>
+          <div className={styles.visionCopy}>
+            <p>Equisoft Labs vision</p>
+            <h2 id="vision-title">R&amp;D for better decisions.</h2>
+            <span>
+              A mobile-first concept for making intelligence more accessible,
+              useful, and human at the point of decision.
+            </span>
+
+            <div className={styles.deviceVisual}>
+              <span aria-hidden="true" />
+              <Image
+                src="/equisoft-labs/mobile-vision.png"
+                alt="Equisoft Labs mobile-first product vision"
+                width={248}
+                height={459}
+                sizes="(max-width: 700px) 52vw, 248px"
+              />
+            </div>
+          </div>
+
+          <ol className={styles.pillarList}>
+            {visionPillars.map((pillar) => (
+              <li key={pillar.number}>
+                <span>{pillar.number}</span>
+                <div>
+                  <h3>{pillar.title}</h3>
+                  <p>{pillar.description}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section className={styles.closing} aria-labelledby="closing-title">
+        <Image
+          className={styles.closingLogo}
+          src="/equisoft-labs/wordmark.png"
+          alt="Equisoft Lab — Decision ROI"
+          width={459}
+          height={105}
+          sizes="(max-width: 700px) 240px, 340px"
+        />
+        <div className={styles.closingCopy}>
+          <p>Interactive prototype</p>
+          <h2 id="closing-title">Put a number on what slows decisions down.</h2>
+          <VisitProjectLink className={styles.closingLink} />
+        </div>
+      </section>
+    </main>
+  );
+}

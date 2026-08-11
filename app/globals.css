@@ -244,18 +244,12 @@ main {
   overscroll-behavior-inline: contain;
   scroll-padding-inline: 0 var(--page-pad);
   scroll-snap-type: x proximity;
-  scrollbar-color: #b8b8b8 transparent;
-  scrollbar-width: thin;
+  scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
 }
 
 .app-strip::-webkit-scrollbar {
-  height: 4px;
-}
-
-.app-strip::-webkit-scrollbar-thumb {
-  border-radius: 999px;
-  background: #b8b8b8;
+  display: none;
 }
 
 .app-strip ul {
@@ -368,6 +362,21 @@ main {
   object-fit: contain;
   object-position: center;
   transform: none;
+}
+
+.app-icon--equisoft-labs {
+  background: #fff;
+}
+
+.app-icon--equisoft-labs .app-icon-glyph {
+  width: 100%;
+  height: 100%;
+  padding: 6px;
+}
+
+.app-icon--equisoft-labs .app-icon-image--equisoft-labs {
+  object-fit: contain;
+  object-position: center;
 }
 
 .app-icon--abeam .app-icon-glyph {
@@ -1494,6 +1503,142 @@ a:focus-visible {
   color: #062f20;
 }
 
+/* Equisoft Labs portfolio card */
+
+.application-card--equisoft-labs {
+  border: 1px solid rgb(0 98 150 / 10%);
+  background: #eaf4fa;
+}
+
+.app-canvas--equisoft-labs {
+  background:
+    radial-gradient(
+      circle at 77% 64%,
+      rgb(46 141 191 / 24%) 0%,
+      rgb(46 141 191 / 0%) 42%
+    ),
+    linear-gradient(145deg, #fbfdfe 0%, #e9f4fb 58%, #d9ebf5 100%);
+  color: #082b3e;
+}
+
+.equisoft-labs-card-glow {
+  position: absolute;
+  right: -12%;
+  bottom: 6%;
+  width: 78%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 78%);
+  filter: blur(32px);
+}
+
+.equisoft-labs-card-copy {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  display: flex;
+  width: 100%;
+  max-width: 82%;
+  padding: clamp(20px, 2vw, 28px);
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.equisoft-labs-card-logo {
+  display: block;
+  width: min(100%, 230px);
+  height: auto;
+  object-fit: contain;
+}
+
+.equisoft-labs-card-copy p {
+  margin-top: 17px;
+  color: rgb(0 72 111 / 58%);
+  font-size: 0.62rem;
+  font-weight: 650;
+  letter-spacing: 0.065em;
+  text-transform: uppercase;
+}
+
+.equisoft-labs-card-copy h3 {
+  margin-top: 6px;
+  font-size: clamp(2.5rem, 10vw, 4.1rem);
+  font-weight: 610;
+  letter-spacing: -0.075em;
+  line-height: 0.92;
+}
+
+.equisoft-labs-card-copy > span {
+  max-width: 18em;
+  margin-top: 10px;
+  color: rgb(8 43 62 / 65%);
+  font-size: 0.82rem;
+  font-weight: 470;
+  letter-spacing: -0.025em;
+  line-height: 1.35;
+}
+
+.equisoft-labs-card-persona {
+  position: absolute;
+  z-index: 2;
+  right: -7%;
+  bottom: -4%;
+  display: block;
+  width: 70%;
+  height: auto;
+  filter: drop-shadow(0 24px 30px rgb(0 72 111 / 15%));
+}
+
+.equisoft-labs-card-result {
+  position: absolute;
+  z-index: 4;
+  bottom: 5%;
+  left: 5%;
+  display: flex;
+  width: min(45%, 164px);
+  padding: 13px 14px;
+  border: 1px solid rgb(255 255 255 / 76%);
+  border-radius: 13px;
+  background: rgb(255 255 255 / 88%);
+  box-shadow: 0 16px 36px rgb(0 72 111 / 14%);
+  flex-direction: column;
+  backdrop-filter: blur(14px);
+}
+
+.equisoft-labs-card-result small,
+.equisoft-labs-card-result span {
+  color: rgb(8 43 62 / 52%);
+  font-size: 0.52rem;
+  font-weight: 630;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+}
+
+.equisoft-labs-card-result strong {
+  margin-top: 4px;
+  color: #ff4138;
+  font-size: clamp(1.55rem, 5vw, 2.25rem);
+  font-weight: 620;
+  letter-spacing: -0.07em;
+  line-height: 1;
+}
+
+.equisoft-labs-card-result span {
+  margin-top: 5px;
+  color: #008533;
+}
+
+.equisoft-labs-card-arrow {
+  position: absolute;
+  z-index: 6;
+  right: 14px;
+  bottom: 14px;
+  width: 44px;
+  border: 1px solid rgb(0 98 150 / 10%);
+  color: #006296;
+}
+
 @media (min-width: 1100px) {
   .gallery-grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -1578,6 +1723,92 @@ a:focus-visible {
   .crypto-card-arrow {
     right: 14px;
     bottom: 14px;
+  }
+
+  .equisoft-labs-card-copy {
+    max-width: 100%;
+  }
+
+  .equisoft-labs-card-logo {
+    width: min(78%, 190px);
+  }
+
+  .equisoft-labs-card-copy h3 {
+    font-size: clamp(2.05rem, 3.4vw, 3.45rem);
+  }
+
+  .equisoft-labs-card-persona {
+    width: 75%;
+  }
+
+  .equisoft-labs-card-result {
+    width: 48%;
+    padding: 11px 12px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .gallery-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    column-gap: clamp(14px, 1.35vw, 20px);
+  }
+
+  .world-card-reps,
+  .tracer-card-copy > span,
+  .crypto-card-copy > span,
+  .equisoft-labs-card-copy > span {
+    display: none;
+  }
+
+  .application-label--project {
+    right: 10px;
+    bottom: 10px;
+    left: 10px;
+    padding: 7px;
+    grid-template-columns: 34px minmax(0, 1fr) 29px;
+    gap: 7px;
+  }
+
+  .application-project-icon {
+    width: 34px;
+    height: 34px;
+  }
+
+  .application-label--project h3 {
+    font-size: 0.88rem;
+  }
+
+  .application-label--project .application-project-arrow {
+    width: 29px;
+  }
+
+  .tracer-card-copy,
+  .crypto-card-copy,
+  .equisoft-labs-card-copy {
+    padding: clamp(16px, 1.7vw, 24px);
+  }
+
+  .tracer-card-copy h3,
+  .crypto-card-copy h3,
+  .equisoft-labs-card-copy h3 {
+    font-size: clamp(1.8rem, 2.6vw, 2.85rem);
+  }
+
+  .equisoft-labs-card-copy p {
+    margin-top: 12px;
+  }
+
+  .equisoft-labs-card-result {
+    width: 50%;
+    padding: 9px 10px;
+  }
+
+  .equisoft-labs-card-result strong {
+    font-size: clamp(1.35rem, 2.2vw, 2rem);
+  }
+
+  .equisoft-labs-card-result span {
+    display: none;
   }
 }
 

@@ -17,6 +17,7 @@ const featuredApplications = [
   { name: "Tracer", slug: "tracer" },
   { name: "aBeam", slug: "abeam" },
   { name: "CryptoCroc", slug: "crypto-inheritance" },
+  { name: "Equisoft Labs", slug: "equisoft-labs" },
 ] as const;
 
 const placeholderApplications = [
@@ -156,13 +157,22 @@ export default function Home() {
                             className="app-icon-video--abeam"
                             sizes="70px"
                           />
-                        ) : (
+                        ) : application.slug === "crypto-inheritance" ? (
                           <Image
                             className="app-icon-image app-icon-image--crypto"
                             src="/crypto-inheritance/logo.png"
                             alt=""
                             width={1024}
                             height={1024}
+                            sizes="62px"
+                          />
+                        ) : (
+                          <Image
+                            className="app-icon-image app-icon-image--equisoft-labs"
+                            src="/equisoft-labs/icon.png"
+                            alt=""
+                            width={105}
+                            height={105}
                             sizes="62px"
                           />
                         )}
@@ -182,9 +192,9 @@ export default function Home() {
           aria-labelledby="applications-title"
         >
           <div className="work-intro">
-            <p className="section-pill">Selected work · 08</p>
+            <p className="section-pill">Selected work · 09</p>
             <h2 id="applications-title">
-              <span>Eight applications.</span>
+              <span>Nine applications.</span>
               <span>One evolving body of work.</span>
             </h2>
           </div>
@@ -205,7 +215,7 @@ export default function Home() {
                     src="/world/hero-human.jpg"
                     alt=""
                     fill
-                    sizes="(max-width: 759px) 100vw, (max-width: 1099px) 50vw, 25vw"
+                    sizes="(max-width: 759px) 100vw, (max-width: 1099px) 50vw, (max-width: 1199px) 25vw, 20vw"
                   />
                   <span className="world-card-shade" />
                   <span className="world-card-live">
@@ -267,7 +277,7 @@ export default function Home() {
                     src="/tracer/screen-organizations.jpg"
                     alt=""
                     fill
-                    sizes="(max-width: 759px) 100vw, (max-width: 1099px) 50vw, 25vw"
+                    sizes="(max-width: 759px) 100vw, (max-width: 1099px) 50vw, (max-width: 1199px) 25vw, 20vw"
                   />
                   <span className="tracer-card-shade" aria-hidden="true" />
                   <div className="tracer-card-copy">
@@ -314,7 +324,7 @@ export default function Home() {
                   <AbeamVideo
                     alwaysPlay
                     className="abeam-card-motion"
-                    sizes="(max-width: 759px) 92vw, (max-width: 1099px) 46vw, 24vw"
+                    sizes="(max-width: 759px) 92vw, (max-width: 1099px) 46vw, (max-width: 1199px) 24vw, 19vw"
                   />
                 </div>
                 <span
@@ -362,11 +372,68 @@ export default function Home() {
                     alt=""
                     width={1432}
                     height={1432}
-                    sizes="(max-width: 759px) 76vw, (max-width: 1099px) 48vw, 18vw"
+                    sizes="(max-width: 759px) 76vw, (max-width: 1099px) 48vw, (max-width: 1199px) 18vw, 14vw"
                   />
                 </div>
                 <span
                   className="application-project-arrow crypto-card-arrow"
+                  aria-hidden="true"
+                >
+                  <HugeiconsIcon
+                    icon={ArrowRight02Icon}
+                    size={24}
+                    strokeWidth={1.8}
+                  />
+                </span>
+              </Link>
+            </article>
+
+            <article
+              className="application-card application-card--project application-card--equisoft-labs"
+              id="equisoft-labs"
+              aria-labelledby="equisoft-labs-title"
+            >
+              <Link
+                className="application-card-link"
+                href="/equisoft-labs"
+              >
+                <div className="app-canvas app-canvas--equisoft-labs">
+                  <span
+                    className="equisoft-labs-card-glow"
+                    aria-hidden="true"
+                  />
+                  <div className="equisoft-labs-card-copy">
+                    <Image
+                      className="equisoft-labs-card-logo"
+                      src="/equisoft-labs/wordmark.png"
+                      alt=""
+                      width={459}
+                      height={105}
+                      sizes="(max-width: 759px) 230px, (max-width: 1099px) 240px, (max-width: 1199px) 180px, 150px"
+                    />
+                    <p>09 / Insurance R&amp;D</p>
+                    <h3 id="equisoft-labs-title">Decision ROI</h3>
+                    <span>Make the cost of indecision visible.</span>
+                  </div>
+                  <Image
+                    className="equisoft-labs-card-persona"
+                    src="/equisoft-labs/persona.png"
+                    alt=""
+                    width={700}
+                    height={700}
+                    sizes="(max-width: 759px) 66vw, (max-width: 1099px) 40vw, (max-width: 1199px) 19vw, 15vw"
+                  />
+                  <div
+                    className="equisoft-labs-card-result"
+                    aria-hidden="true"
+                  >
+                    <small>Illustrative annual loss</small>
+                    <strong>$105k</strong>
+                    <span>Decision cost model</span>
+                  </div>
+                </div>
+                <span
+                  className="application-project-arrow equisoft-labs-card-arrow"
                   aria-hidden="true"
                 >
                   <HugeiconsIcon
