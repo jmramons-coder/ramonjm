@@ -343,6 +343,22 @@ main {
   box-shadow: none;
 }
 
+.app-icon--crypto-inheritance {
+  background: #062f20;
+}
+
+.app-icon--crypto-inheritance .app-icon-glyph {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.app-icon-image--crypto {
+  object-fit: cover;
+  transform: scale(1.13);
+}
+
 .app-icon--abeam .app-icon-glyph {
   width: 100%;
   height: 100%;
@@ -1293,6 +1309,140 @@ a:focus-visible {
   border-radius: 0;
   background: transparent;
   color: #071727;
+}
+
+/* CryptoCroc portfolio card */
+
+.application-card--crypto {
+  border: 1px solid rgb(6 47 32 / 9%);
+  background: #edf2df;
+}
+
+.app-canvas--crypto {
+  background:
+    radial-gradient(
+      circle at 84% 25%,
+      rgb(249 138 12 / 28%) 0%,
+      rgb(249 138 12 / 0%) 31%
+    ),
+    radial-gradient(
+      circle at 62% 72%,
+      rgb(88 170 59 / 24%) 0%,
+      rgb(88 170 59 / 0%) 45%
+    ),
+    linear-gradient(145deg, #fbf7e8 0%, #e7efd3 100%);
+  color: #062f20;
+}
+
+.crypto-card-copy {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  display: flex;
+  max-width: 76%;
+  padding: 24px 22px;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.crypto-card-logo {
+  display: block;
+  width: 68px;
+  height: 68px;
+  object-fit: contain;
+}
+
+.crypto-card-copy p {
+  margin-top: 16px;
+  color: rgb(6 47 32 / 58%);
+  font-size: 0.64rem;
+  font-weight: 620;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.crypto-card-copy h3 {
+  margin-top: 5px;
+  font-size: clamp(2.45rem, 12vw, 4.1rem);
+  font-weight: 620;
+  letter-spacing: -0.07em;
+  line-height: 0.94;
+}
+
+.crypto-card-copy > span {
+  max-width: 20em;
+  margin-top: 10px;
+  color: rgb(6 47 32 / 66%);
+  font-size: 0.83rem;
+  font-weight: 480;
+  letter-spacing: -0.025em;
+  line-height: 1.35;
+}
+
+.crypto-card-mascot {
+  position: absolute;
+  z-index: 2;
+  right: -3%;
+  bottom: -3%;
+  display: block;
+  width: 76%;
+  height: auto;
+  filter: drop-shadow(0 26px 30px rgb(6 47 32 / 16%));
+}
+
+.crypto-card-arrow {
+  position: absolute;
+  z-index: 6;
+  right: 14px;
+  bottom: 14px;
+  width: 44px;
+  color: #062f20;
+}
+
+@media (min-width: 760px) {
+  .application-card--crypto {
+    grid-column: 1 / -1;
+    aspect-ratio: 16 / 7;
+  }
+
+  .crypto-card-copy {
+    top: 50%;
+    width: 48%;
+    max-width: 640px;
+    padding: clamp(34px, 4.5vw, 68px);
+    transform: translateY(-50%);
+  }
+
+  .crypto-card-logo {
+    width: clamp(84px, 7.5vw, 108px);
+    height: auto;
+  }
+
+  .crypto-card-copy p {
+    margin-top: 20px;
+    font-size: 0.72rem;
+  }
+
+  .crypto-card-copy h3 {
+    font-size: clamp(3.8rem, 7vw, 7rem);
+  }
+
+  .crypto-card-copy > span {
+    margin-top: 14px;
+    font-size: clamp(0.9rem, 1.3vw, 1.1rem);
+  }
+
+  .crypto-card-mascot {
+    right: 4%;
+    bottom: -8%;
+    width: min(49%, 650px);
+  }
+
+  .crypto-card-arrow {
+    right: 18px;
+    bottom: 18px;
+  }
 }
 
 /* PushedWorld project page */

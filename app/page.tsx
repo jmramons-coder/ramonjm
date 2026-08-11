@@ -29,6 +29,7 @@ const applications = [
   { name: "Add", slug: "add", icon: Add01Icon },
   { name: "Tracer", slug: "tracer", icon: Route01Icon },
   { name: "aBeam", slug: "abeam", icon: null },
+  { name: "CryptoCroc", slug: "crypto-inheritance", icon: null },
 ] as const;
 
 const workflowSteps = [
@@ -160,6 +161,15 @@ export default function Home() {
                             className="app-icon-video--abeam"
                             sizes="70px"
                           />
+                        ) : application.slug === "crypto-inheritance" ? (
+                          <Image
+                            className="app-icon-image app-icon-image--crypto"
+                            src="/crypto-inheritance/logo.png"
+                            alt=""
+                            width={1024}
+                            height={1024}
+                            sizes="62px"
+                          />
                         ) : (
                           <HugeiconsIcon
                             icon={application.icon}
@@ -183,9 +193,9 @@ export default function Home() {
           aria-labelledby="applications-title"
         >
           <div className="work-intro">
-            <p className="section-pill">Selected work · 07</p>
+            <p className="section-pill">Selected work · 08</p>
             <h2 id="applications-title">
-              <span>Seven applications.</span>
+              <span>Eight applications.</span>
               <span>One evolving body of work.</span>
             </h2>
           </div>
@@ -289,12 +299,61 @@ export default function Home() {
               </Link>
             </article>
 
+            <article
+              className="application-card application-card--project application-card--crypto"
+              id="crypto-inheritance"
+              aria-labelledby="crypto-inheritance-title"
+            >
+              <Link
+                className="application-card-link"
+                href="/crypto-inheritance"
+              >
+                <div className="app-canvas app-canvas--crypto">
+                  <div className="crypto-card-copy">
+                    <Image
+                      className="crypto-card-logo"
+                      src="/crypto-inheritance/logo.png"
+                      alt=""
+                      width={1024}
+                      height={1024}
+                      sizes="(max-width: 759px) 82px, 104px"
+                    />
+                    <p>08 / Crypto legacy planner</p>
+                    <h3 id="crypto-inheritance-title">CryptoCroc</h3>
+                    <span>
+                      Organize holdings. Prepare loved ones. Keep secrets
+                      offline.
+                    </span>
+                  </div>
+                  <Image
+                    className="crypto-card-mascot"
+                    src="/crypto-inheritance/mascot.png"
+                    alt=""
+                    width={1432}
+                    height={1432}
+                    sizes="(max-width: 759px) 92vw, 48vw"
+                  />
+                </div>
+                <span
+                  className="application-project-arrow crypto-card-arrow"
+                  aria-hidden="true"
+                >
+                  <HugeiconsIcon
+                    icon={ArrowRight02Icon}
+                    size={24}
+                    strokeWidth={1.8}
+                  />
+                </span>
+              </Link>
+            </article>
+
             <div className="application-placeholder-list">
               {applications
                 .filter(
                   (application) =>
                     application.slug !== "world" &&
-                    application.slug !== "abeam",
+                    application.slug !== "abeam" &&
+                    application.slug !== "crypto-inheritance",
                 )
                 .map((application) => {
                   const titleId = `${application.slug}-title`;

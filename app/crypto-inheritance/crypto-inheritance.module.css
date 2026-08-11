@@ -1,0 +1,258 @@
+.page {
+  position: relative;
+  min-height: 100svh;
+  min-height: 100dvh;
+  overflow: hidden;
+  background:
+    linear-gradient(
+      180deg,
+      var(--page) 0%,
+      rgb(247 247 247 / 0%) 8%,
+      rgb(247 247 247 / 0%) 91%,
+      var(--page) 100%
+    ),
+    radial-gradient(
+      ellipse 68% 74% at 76% 42%,
+      rgb(88 170 59 / 22%) 0%,
+      rgb(200 227 134 / 13%) 42%,
+      rgb(255 255 255 / 0%) 74%
+    ),
+    radial-gradient(
+      circle at 87% 22%,
+      rgb(249 138 12 / 16%) 0%,
+      rgb(249 138 12 / 0%) 29%
+    ),
+    linear-gradient(
+      180deg,
+      var(--page) 0%,
+      #fff 8%,
+      #fbfaef 55%,
+      #fff 91%,
+      var(--page) 100%
+    );
+  color: #062f20;
+}
+
+.header {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: 50%;
+  display: flex;
+  width: min(100%, 1440px);
+  min-height: 88px;
+  padding: 24px clamp(20px, 3vw, 40px);
+  align-items: flex-start;
+  transform: translateX(-50%);
+}
+
+.backLink {
+  display: inline-flex;
+  min-height: 40px;
+  padding: 0 16px;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgb(6 47 32 / 10%);
+  border-radius: 999px;
+  background: rgb(255 255 255 / 78%);
+  color: #062f20;
+  font-size: 0.84rem;
+  font-weight: 520;
+  letter-spacing: -0.025em;
+  transition:
+    border-color 180ms ease,
+    background 180ms ease,
+    transform 180ms ease;
+}
+
+.backLink:hover {
+  border-color: rgb(88 170 59 / 32%);
+  background: #fff;
+  transform: translateX(-2px);
+}
+
+.hero {
+  display: grid;
+  width: min(100%, 1440px);
+  min-height: 100svh;
+  min-height: 100dvh;
+  margin: 0 auto;
+  padding: 112px clamp(20px, 4vw, 64px) 76px;
+  align-items: center;
+  grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+  grid-template-areas: "copy visual";
+  gap: clamp(24px, 3vw, 54px);
+}
+
+.copy {
+  position: relative;
+  z-index: 2;
+  max-width: 660px;
+  grid-area: copy;
+}
+
+.logo {
+  display: block;
+  width: clamp(92px, 8vw, 116px);
+  height: auto;
+  object-fit: contain;
+}
+
+.eyebrow {
+  margin-top: 22px;
+  color: rgb(6 47 32 / 56%);
+  font-size: 0.74rem;
+  font-weight: 620;
+  letter-spacing: 0.065em;
+  text-transform: uppercase;
+}
+
+.copy h1 {
+  margin-top: 17px;
+  font-size: clamp(4.3rem, 7.1vw, 7.4rem);
+  font-weight: 590;
+  letter-spacing: -0.075em;
+  line-height: 0.9;
+}
+
+.copy h1 span {
+  display: block;
+}
+
+.copy h1 span:first-child {
+  color: #6c8c77;
+}
+
+.description {
+  max-width: 550px;
+  margin-top: 28px;
+  color: rgb(6 47 32 / 67%);
+  font-size: clamp(1.02rem, 1.45vw, 1.18rem);
+  font-weight: 430;
+  letter-spacing: -0.03em;
+  line-height: 1.48;
+}
+
+.description p + p {
+  margin-top: 12px;
+}
+
+.siteLink {
+  display: inline-flex;
+  min-height: 42px;
+  margin-top: 30px;
+  padding: 0 16px;
+  align-items: center;
+  gap: 9px;
+  border-radius: 999px;
+  background: #062f20;
+  color: #fff;
+  font-size: 0.86rem;
+  font-weight: 540;
+  letter-spacing: -0.02em;
+  transition:
+    background 180ms ease,
+    transform 180ms ease;
+}
+
+.siteLink:hover {
+  background: #4d9f36;
+  transform: translateY(-2px);
+}
+
+.visual {
+  position: relative;
+  display: grid;
+  min-width: 0;
+  place-items: center;
+  grid-area: visual;
+}
+
+.glow {
+  position: absolute;
+  width: min(82%, 620px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgb(200 227 134 / 40%) 0%,
+    rgb(88 170 59 / 15%) 48%,
+    transparent 72%
+  );
+  filter: blur(16px);
+}
+
+.mascot {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: min(100%, 720px);
+  height: auto;
+  filter: drop-shadow(0 34px 34px rgb(6 47 32 / 16%));
+}
+
+@media (max-width: 900px) {
+  .page {
+    overflow: auto;
+  }
+
+  .hero {
+    padding-top: 84px;
+    padding-bottom: max(46px, env(safe-area-inset-bottom));
+    align-items: stretch;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "visual"
+      "copy";
+    grid-template-rows: minmax(330px, 48svh) auto;
+    gap: 0;
+  }
+
+  .visual {
+    align-self: center;
+  }
+
+  .mascot {
+    width: min(92vw, 52svh, 520px);
+  }
+
+  .copy {
+    width: min(100%, 760px);
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 560px) {
+  .header {
+    min-height: 76px;
+    padding-top: 18px;
+  }
+
+  .hero {
+    padding-top: 74px;
+    grid-template-rows: minmax(286px, 42svh) auto;
+  }
+
+  .logo {
+    width: 82px;
+  }
+
+  .eyebrow {
+    margin-top: 16px;
+  }
+
+  .copy h1 {
+    font-size: clamp(3.25rem, 15vw, 4.75rem);
+  }
+
+  .description {
+    margin-top: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backLink:hover,
+  .siteLink:hover {
+    transform: none;
+  }
+}
