@@ -184,19 +184,14 @@ export default function Home() {
                             sizes="(min-width: 760px) 62px, 46px"
                           />
                         ) : (
-                          <span className="roi-loss-icon">
-                            <span className="roi-loss-label">Annual loss</span>
-                            <span className="roi-loss-value">
-                              <span className="roi-loss-reel">
-                                <span>$0</span>
-                                <span>$42K</span>
-                                <span>$105K</span>
-                              </span>
-                            </span>
-                            <span className="roi-loss-track">
-                              <span />
-                            </span>
-                          </span>
+                          <Image
+                            className="app-icon-image app-icon-image--equisoft-persona"
+                            src="/equisoft-labs/persona.png"
+                            alt=""
+                            width={700}
+                            height={700}
+                            sizes="(min-width: 760px) 62px, 46px"
+                          />
                         )}
                       </span>
                     </span>

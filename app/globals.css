@@ -376,12 +376,10 @@ main {
 }
 
 .app-icon--tracer {
-  background:
-    radial-gradient(circle at 20% 42%, rgb(38 105 206 / 52%), transparent 40%),
-    linear-gradient(135deg, #081526 0%, #0a315f 54%, #07111f 100%);
+  background: linear-gradient(145deg, #f8fbfd 0%, #e6f0f5 100%);
   box-shadow:
-    inset 0 0 0 1px rgb(255 255 255 / 16%),
-    0 7px 16px rgb(5 22 47 / 18%);
+    inset 0 0 0 1px rgb(7 37 58 / 7%),
+    0 7px 16px rgb(7 37 58 / 7%);
 }
 
 .app-icon--tracer .app-icon-glyph {
@@ -391,13 +389,13 @@ main {
 }
 
 .app-icon--tracer .app-icon-image--tracer-glass {
-  width: 106%;
-  height: 106%;
+  width: 76%;
+  height: 76%;
   max-width: none;
   object-fit: contain;
   object-position: center;
-  filter: drop-shadow(0 5px 7px rgb(0 0 0 / 32%));
-  transform: translateY(1px);
+  filter: drop-shadow(0 3px 5px rgb(6 27 45 / 18%));
+  transform: none;
 }
 
 .app-icon--abeam {
@@ -418,18 +416,16 @@ main {
 }
 
 .app-icon--crypto-inheritance .app-icon-image--crypto-skull {
-  width: 122%;
-  height: 122%;
+  width: 82%;
+  height: 82%;
   max-width: none;
   object-fit: contain;
   object-position: center;
-  filter: drop-shadow(0 2px 1px rgb(25 31 18 / 14%));
-  transform: rotate(-3deg);
+  filter: drop-shadow(0 2px 1px rgb(25 31 18 / 12%));
+  transform: none;
 }
 
 .app-icon--equisoft-labs {
-  --roi-row: 11px;
-
   background: linear-gradient(145deg, #fbfdfe 0%, #e8f4f9 100%);
   box-shadow:
     inset 0 0 0 1px rgb(0 98 150 / 10%),
@@ -439,110 +435,35 @@ main {
 .app-icon--equisoft-labs .app-icon-glyph {
   width: 100%;
   height: 100%;
-  padding: 6px;
+  padding: 0;
 }
 
-.roi-loss-icon {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  align-items: flex-start;
-  flex-direction: column;
-  justify-content: center;
-  color: #006296;
-  font-variant-numeric: tabular-nums;
-  line-height: 1;
+.app-icon--equisoft-labs .app-icon-image--equisoft-persona {
+  width: 108%;
+  height: 108%;
+  max-width: none;
+  object-fit: contain;
+  object-position: center;
+  filter: drop-shadow(0 3px 4px rgb(0 72 111 / 12%));
+  animation: roi-persona-in 650ms cubic-bezier(0.22, 1, 0.36, 1) 180ms both;
 }
 
-.roi-loss-label {
-  max-width: 100%;
-  overflow: hidden;
-  color: #527b8f;
-  font-size: 5px;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.roi-loss-value {
-  display: block;
-  height: var(--roi-row);
-  overflow: hidden;
-  margin-top: 2px;
-}
-
-.roi-loss-reel {
-  display: block;
-  animation: roi-loss-count 1.55s cubic-bezier(0.22, 1, 0.36, 1) 200ms both;
-}
-
-.roi-loss-reel > span {
-  display: block;
-  height: var(--roi-row);
-  color: #ff4138;
-  font-size: 10px;
-  font-weight: 780;
-  letter-spacing: -0.055em;
-  line-height: var(--roi-row);
-  white-space: nowrap;
-}
-
-.roi-loss-track {
-  width: 100%;
-  height: 2px;
-  overflow: hidden;
-  margin-top: 3px;
-  border-radius: 999px;
-  background: rgb(0 98 150 / 10%);
-}
-
-.roi-loss-track > span {
-  display: block;
-  width: 82%;
-  height: 100%;
-  border-radius: inherit;
-  background: #ff4138;
-  transform-origin: left;
-  animation: roi-loss-fill 1.55s cubic-bezier(0.22, 1, 0.36, 1) 200ms both;
-}
-
-@keyframes roi-loss-count {
-  0%,
-  20% {
-    transform: translateY(0);
-  }
-
-  45%,
-  62% {
-    transform: translateY(calc(var(--roi-row) * -1));
-  }
-
-  82%,
-  100% {
-    transform: translateY(calc(var(--roi-row) * -2));
-  }
-}
-
-@keyframes roi-loss-fill {
+@keyframes roi-persona-in {
   from {
-    transform: scaleX(0.08);
+    opacity: 0;
+    transform: translateY(6px) scale(0.92);
   }
 
   to {
-    transform: scaleX(1);
+    opacity: 1;
+    transform: translateY(1px) scale(1);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .roi-loss-reel {
+  .app-icon--equisoft-labs .app-icon-image--equisoft-persona {
     animation: none;
-    transform: translateY(calc(var(--roi-row) * -2));
-  }
-
-  .roi-loss-track > span {
-    animation: none;
-    transform: none;
+    transform: translateY(1px);
   }
 }
 
@@ -1086,27 +1007,6 @@ a:focus-visible {
     border-radius: 14px;
   }
 
-  .app-icon--equisoft-labs {
-    --roi-row: 15px;
-  }
-
-  .app-icon--equisoft-labs .app-icon-glyph {
-    padding: 8px;
-  }
-
-  .roi-loss-label {
-    font-size: 6px;
-  }
-
-  .roi-loss-reel > span {
-    font-size: 12px;
-  }
-
-  .roi-loss-track {
-    height: 3px;
-    margin-top: 4px;
-  }
-
   .work-section {
     padding-top: 44px;
     padding-bottom: 112px;
@@ -1562,18 +1462,19 @@ a:focus-visible {
 .crypto-card-skull {
   position: absolute;
   z-index: 2;
-  right: -20%;
-  bottom: -6%;
+  right: auto;
+  bottom: 4%;
+  left: 50%;
   display: block;
-  width: 96%;
+  width: 78%;
   height: auto;
   filter: drop-shadow(0 28px 34px rgb(0 0 0 / 28%));
-  transform: rotate(-4deg);
+  transform: translateX(-50%) rotate(-2deg);
   transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .application-card--crypto:hover .crypto-card-skull {
-  transform: translateX(-2%) rotate(-1deg) scale(1.015);
+  transform: translateX(-50%) translateY(-2%) rotate(0deg) scale(1.015);
 }
 
 .crypto-card-arrow {
@@ -1735,12 +1636,6 @@ a:focus-visible {
     max-width: 19em;
     margin-top: 8px;
     font-size: clamp(0.72rem, 0.85vw, 0.84rem);
-  }
-
-  .crypto-card-skull {
-    right: -24%;
-    bottom: -6%;
-    width: 102%;
   }
 
   .crypto-card-arrow {
