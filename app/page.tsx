@@ -86,16 +86,27 @@ export default function Home() {
         <a className="wordmark" href="#top" aria-label="Ramon JM, home">
           Ramon JM
         </a>
-        <a
-          className="header-action header-contact"
-          href="mailto:jmanuelr.99@gmail.com"
-          aria-label="Email Ramon JM at jmanuelr.99@gmail.com"
-        >
-          <span>Contact</span>
-          <span className="header-contact-plane" aria-hidden="true">
-            <HugeiconsIcon icon={SentIcon} size={16} strokeWidth={1.8} />
-          </span>
-        </a>
+        <div className="header-actions">
+          <button
+            className="header-cv"
+            type="button"
+            disabled
+            aria-label="CV — coming soon"
+            title="CV coming soon"
+          >
+            CV
+          </button>
+          <a
+            className="header-action header-contact"
+            href="mailto:jmanuelr.99@gmail.com"
+            aria-label="Email Ramon JM at jmanuelr.99@gmail.com"
+          >
+            <span>Contact</span>
+            <span className="header-contact-plane" aria-hidden="true">
+              <HugeiconsIcon icon={SentIcon} size={16} strokeWidth={1.8} />
+            </span>
+          </a>
+        </div>
       </header>
 
       <main id="main-content" tabIndex={-1}>
