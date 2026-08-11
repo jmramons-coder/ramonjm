@@ -344,19 +344,19 @@ main {
 }
 
 .app-icon--crypto-inheritance {
-  background: #062f20;
+  background: #fff;
 }
 
 .app-icon--crypto-inheritance .app-icon-glyph {
   width: 100%;
   height: 100%;
-  overflow: hidden;
-  border-radius: inherit;
+  padding: 4px;
 }
 
-.app-icon-image--crypto {
-  object-fit: cover;
-  transform: scale(1.13);
+.app-icon--crypto-inheritance .app-icon-image--crypto {
+  object-fit: contain;
+  object-position: center;
+  transform: none;
 }
 
 .app-icon--abeam .app-icon-glyph {

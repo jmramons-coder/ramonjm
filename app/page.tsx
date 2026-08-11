@@ -3,33 +3,27 @@ import Image from "next/image";
 import Link from "next/link";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
-  Add01Icon,
   ArrowDown01Icon,
   ArrowRight02Icon,
   ArrowUp01Icon,
   ArrowUpRight01Icon,
-  ChartIncreaseIcon,
   GithubIcon,
-  Route01Icon,
-  RocketIcon,
-  Sofa01Icon,
 } from "@hugeicons/core-free-icons";
 import { ClientMarquee } from "./client-marquee";
 import { AbeamVideo } from "./abeam/abeam-video";
 
-const applications = [
-  { name: "Lounge", slug: "lounge", icon: Sofa01Icon },
-  {
-    name: "Maxing",
-    slug: "maxing",
-    icon: ChartIncreaseIcon,
-  },
-  { name: "Push", slug: "push", icon: RocketIcon },
-  { name: "PushedWorld", slug: "world", icon: null },
-  { name: "Add", slug: "add", icon: Add01Icon },
-  { name: "Tracer", slug: "tracer", icon: Route01Icon },
-  { name: "aBeam", slug: "abeam", icon: null },
-  { name: "CryptoCroc", slug: "crypto-inheritance", icon: null },
+const featuredApplications = [
+  { name: "PushedWorld", slug: "world" },
+  { name: "aBeam", slug: "abeam" },
+  { name: "CryptoCroc", slug: "crypto-inheritance" },
+] as const;
+
+const placeholderApplications = [
+  { name: "Lounge", slug: "lounge" },
+  { name: "Maxing", slug: "maxing" },
+  { name: "Push", slug: "push" },
+  { name: "Add", slug: "add" },
+  { name: "Tracer", slug: "tracer" },
 ] as const;
 
 const workflowSteps = [
@@ -129,17 +123,9 @@ export default function Home() {
             </a>
           </div>
 
-          <p className="sr-only" id="app-strip-help">
-            Swipe or scroll horizontally, or use Tab, to browse the app links.
-          </p>
-          <nav
-            className="app-strip"
-            aria-label="Jump to an application"
-            aria-describedby="app-strip-help"
-            tabIndex={0}
-          >
+          <nav className="app-strip" aria-label="Featured applications">
             <ul>
-              {applications.map((application) => (
+              {featuredApplications.map((application) => (
                 <li key={application.slug}>
                   <a href={`#${application.slug}`}>
                     <span
@@ -161,7 +147,7 @@ export default function Home() {
                             className="app-icon-video--abeam"
                             sizes="70px"
                           />
-                        ) : application.slug === "crypto-inheritance" ? (
+                        ) : (
                           <Image
                             className="app-icon-image app-icon-image--crypto"
                             src="/crypto-inheritance/logo.png"
@@ -169,12 +155,6 @@ export default function Home() {
                             width={1024}
                             height={1024}
                             sizes="62px"
-                          />
-                        ) : (
-                          <HugeiconsIcon
-                            icon={application.icon}
-                            size={27}
-                            strokeWidth={1.8}
                           />
                         )}
                       </span>
@@ -348,32 +328,25 @@ export default function Home() {
             </article>
 
             <div className="application-placeholder-list">
-              {applications
-                .filter(
-                  (application) =>
-                    application.slug !== "world" &&
-                    application.slug !== "abeam" &&
-                    application.slug !== "crypto-inheritance",
-                )
-                .map((application) => {
-                  const titleId = `${application.slug}-title`;
+              {placeholderApplications.map((application) => {
+                const titleId = `${application.slug}-title`;
 
-                  return (
-                    <article
-                      className="application-card application-card--placeholder"
-                      id={application.slug}
-                      key={application.slug}
-                      aria-labelledby={titleId}
+                return (
+                  <article
+                    className="application-card application-card--placeholder"
+                    id={application.slug}
+                    key={application.slug}
+                    aria-labelledby={titleId}
+                  >
+                    <h3
+                      className="application-placeholder-title"
+                      id={titleId}
                     >
-                      <h3
-                        className="application-placeholder-title"
-                        id={titleId}
-                      >
-                        {application.name}
-                      </h3>
-                    </article>
-                  );
-                })}
+                      {application.name}
+                    </h3>
+                  </article>
+                );
+              })}
             </div>
           </div>
         </section>
