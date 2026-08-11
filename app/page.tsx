@@ -30,19 +30,19 @@ const placeholderApplications = [
 
 const workflowSteps = [
   {
-    title: "Discovery",
+    title: "Insight",
     description:
-      "Start with the idea, the problem it should solve, and the simplest useful shape for the product.",
+      "Study people, context, behavior, and emerging signals to uncover the problem worth solving.",
   },
   {
-    title: "Creation",
+    title: "Direction",
     description:
-      "Turn that direction into a clear interface system, then build the interactions that make it feel complete.",
+      "Turn insight into a focused strategy, intuitive flows, and a distinct product direction.",
   },
   {
-    title: "Delivery",
+    title: "Validation",
     description:
-      "Refine the responsive experience, check the essential paths, and prepare the product to ship.",
+      "Prototype, test, and refine the experience—using AI when it creates genuine value.",
   },
 ] as const;
 
@@ -114,19 +114,20 @@ export default function Home() {
           <div className="hero-copy">
             <p className="status-pill">
               <span aria-hidden="true" />
-              Ramon JM · App portfolio
+              Ramon JM · Product design &amp; UX
             </p>
             <h1 id="page-title">
-              <span>Apps, made with a</span>
-              <span>clear point of view.</span>
+              <span>Designing products</span>
+              <span>for how people think.</span>
             </h1>
             <p className="hero-description">
-              A focused collection of digital products by Ramon JM, gathered
-              in one place.
+              I turn human behavior, emerging trends, and complex problems into
+              clear product experiences—using AI where it creates meaningful
+              value.
             </p>
             <a className="primary-action" href="#applications">
               <span className="action-dot" aria-hidden="true" />
-              Explore the apps
+              Explore selected work
               <span className="link-icon" aria-hidden="true">
                 <HugeiconsIcon
                   icon={ArrowDown01Icon}
@@ -137,7 +138,10 @@ export default function Home() {
             </a>
           </div>
 
-          <nav className="app-strip" aria-label="Featured applications">
+          <nav
+            className="app-strip"
+            aria-label="Featured product design projects"
+          >
             <ul>
               {featuredApplications.map((application) => (
                 <li key={application.slug}>
@@ -212,8 +216,8 @@ export default function Home() {
           <div className="work-intro">
             <p className="section-pill">Selected work · 09</p>
             <h2 id="applications-title">
-              <span>Nine applications.</span>
-              <span>One evolving body of work.</span>
+              <span>Nine projects.</span>
+              <span>One evolving design practice.</span>
             </h2>
           </div>
 
@@ -452,9 +456,9 @@ export default function Home() {
           aria-labelledby="workflow-title"
         >
           <div className="workflow-intro">
-            <p className="section-pill">Our workflow</p>
+            <p className="section-pill">Design approach</p>
             <h2 id="workflow-title">
-              <span>No guesswork, just a clear path from ideas</span>
+              <span>From human insight to</span>
               <span className="workflow-result">
                 <span className="workflow-arrow" aria-hidden="true">
                   <HugeiconsIcon
@@ -463,7 +467,7 @@ export default function Home() {
                     strokeWidth={1.5}
                   />
                 </span>
-                working apps.
+                useful outcomes.
               </span>
             </h2>
           </div>
@@ -507,13 +511,14 @@ export default function Home() {
           <p className="section-pill">About</p>
           <div className="about-content">
             <h2 id="about-title">
-              <span>Clear products.</span>
-              Considered interfaces.
+              <span>Human insight.</span>
+              Useful innovation.
             </h2>
             <p>
-              I build digital products with an emphasis on clarity, utility,
-              and considered interfaces. This portfolio is a simple record of
-              that work.
+              I work across product design, UX, and innovation. My approach
+              combines a deep understanding of human behavior and emerging
+              trends with thoughtful AI to solve complex problems and shape
+              useful experiences.
             </p>
           </div>
         </section>
@@ -521,7 +526,7 @@ export default function Home() {
 
       <footer className="site-footer">
         <div className="footer-top">
-          <p>Ramon JM · Digital product portfolio</p>
+          <p>Ramon JM · Product design &amp; UX</p>
           <a className="back-to-top" href="#top">
             <span>Back to top</span>
             <span className="link-icon" aria-hidden="true">
@@ -534,7 +539,7 @@ export default function Home() {
           </a>
         </div>
         <div className="footer-main">
-          <h2>Keep exploring the work behind the apps.</h2>
+          <h2>Explore the thinking behind the work.</h2>
           <ExternalLink
             className="footer-action"
             href="https://github.com/jmramons-coder"
