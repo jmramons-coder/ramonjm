@@ -216,7 +216,7 @@ export default function Home() {
                     src="/world/hero-human.jpg"
                     alt=""
                     fill
-                    sizes="(max-width: 759px) 100vw, 50vw"
+                    sizes="(max-width: 759px) 100vw, (max-width: 1099px) 50vw, 33vw"
                   />
                   <span className="world-card-shade" />
                   <span className="world-card-live">
@@ -283,7 +283,7 @@ export default function Home() {
                   <AbeamVideo
                     alwaysPlay
                     className="abeam-card-motion"
-                    sizes="(max-width: 759px) 92vw, 46vw"
+                    sizes="(max-width: 759px) 92vw, (max-width: 1099px) 46vw, 31vw"
                   />
                 </div>
                 <span
@@ -316,7 +316,7 @@ export default function Home() {
                       alt=""
                       width={1024}
                       height={1024}
-                      sizes="(max-width: 759px) 82px, 104px"
+                      sizes="(max-width: 759px) 68px, (max-width: 1099px) 104px, 70px"
                     />
                     <p>08 / Crypto legacy planner</p>
                     <h3 id="crypto-inheritance-title">CryptoCroc</h3>
@@ -331,7 +331,7 @@ export default function Home() {
                     alt=""
                     width={1432}
                     height={1432}
-                    sizes="(max-width: 759px) 92vw, 48vw"
+                    sizes="(max-width: 759px) 76vw, (max-width: 1099px) 48vw, 24vw"
                   />
                 </div>
                 <span
