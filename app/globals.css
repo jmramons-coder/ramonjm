@@ -717,7 +717,7 @@ main {
 
 .clients-marquee {
   --clients-gap: clamp(52px, 12vw, 92px);
-  --client-logo-slot: clamp(132px, 38vw, 168px);
+  --client-logo-slot: clamp(160px, 46vw, 210px);
   max-width: 100%;
   min-width: 0;
   overflow-x: auto;
@@ -759,7 +759,7 @@ main {
 .client-logo-item {
   display: grid;
   inline-size: var(--client-logo-slot);
-  min-height: 92px;
+  min-height: 128px;
   overflow: hidden;
   flex: 0 0 var(--client-logo-slot);
   place-items: center;
@@ -770,7 +770,7 @@ main {
   width: auto;
   max-width: 100%;
   height: auto;
-  max-height: 46px;
+  max-height: 92px;
   object-fit: contain;
   pointer-events: none;
   user-select: none;
@@ -778,21 +778,27 @@ main {
 }
 
 .client-logo--equisoft {
-  max-width: min(100%, 160px);
+  width: min(100%, 280px);
+  max-width: none;
+  max-height: 80px;
 }
 
 .client-logo--folks {
-  width: 96px;
-  max-height: 36px;
+  width: min(100%, 170px);
+  max-width: none;
+  max-height: 64px;
 }
 
 .client-logo--petalmd {
-  max-height: 46px;
+  width: min(100%, 220px);
+  max-width: none;
+  max-height: 90px;
 }
 
 .client-logo--peak-media {
-  max-width: 116px;
-  max-height: 58px;
+  width: min(100%, 210px);
+  max-width: none;
+  max-height: 105px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -824,8 +830,8 @@ main {
 
   .client-logo-item {
     inline-size: auto;
-    min-height: 68px;
-    flex: 1 1 132px;
+    min-height: 120px;
+    flex: 1 1 180px;
   }
 }
 
@@ -998,11 +1004,11 @@ a:focus-visible {
 
   .clients-marquee {
     --clients-gap: clamp(72px, 8vw, 116px);
-    --client-logo-slot: clamp(168px, 17vw, 220px);
+    --client-logo-slot: clamp(220px, 22vw, 280px);
   }
 
   .client-logo-item {
-    min-height: 112px;
+    min-height: 144px;
   }
 
   .about-section {
