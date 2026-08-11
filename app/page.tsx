@@ -8,6 +8,7 @@ import {
   ArrowUp01Icon,
   ArrowUpRight01Icon,
   GithubIcon,
+  SentIcon,
 } from "@hugeicons/core-free-icons";
 import { ClientMarquee } from "./client-marquee";
 import { AbeamVideo } from "./abeam/abeam-video";
@@ -85,15 +86,16 @@ export default function Home() {
         <a className="wordmark" href="#top" aria-label="Ramon JM, home">
           Ramon JM
         </a>
-        <ExternalLink
-          className="header-action"
-          href="https://github.com/jmramons-coder"
+        <a
+          className="header-action header-contact"
+          href="mailto:jmanuelr.99@gmail.com"
+          aria-label="Email Ramon JM at jmanuelr.99@gmail.com"
         >
-          <span className="link-icon" aria-hidden="true">
-            <HugeiconsIcon icon={GithubIcon} size={17} strokeWidth={1.7} />
+          <span>Contact</span>
+          <span className="header-contact-plane" aria-hidden="true">
+            <HugeiconsIcon icon={SentIcon} size={16} strokeWidth={1.8} />
           </span>
-          <span>GitHub</span>
-        </ExternalLink>
+        </a>
       </header>
 
       <main id="main-content" tabIndex={-1}>
@@ -338,28 +340,17 @@ export default function Home() {
               >
                 <div className="app-canvas app-canvas--crypto">
                   <div className="crypto-card-copy">
-                    <Image
-                      className="crypto-card-logo"
-                      src="/crypto-inheritance/logo.png"
-                      alt=""
-                      width={1024}
-                      height={1024}
-                      sizes="(max-width: 759px) 68px, (max-width: 1099px) 104px, 70px"
-                    />
                     <p>08 / Crypto legacy planner</p>
                     <h3 id="crypto-inheritance-title">CryptoCroc</h3>
-                    <span>
-                      Organize holdings. Prepare loved ones. Keep secrets
-                      offline.
-                    </span>
+                    <span>Plan the handoff.</span>
                   </div>
                   <Image
-                    className="crypto-card-mascot"
-                    src="/crypto-inheritance/mascot.png"
+                    className="crypto-card-skull"
+                    src="/crypto-inheritance/skull.png"
                     alt=""
-                    width={1432}
-                    height={1432}
-                    sizes="(max-width: 759px) 76vw, (max-width: 1099px) 48vw, (max-width: 1199px) 18vw, 14vw"
+                    width={760}
+                    height={760}
+                    sizes="(max-width: 759px) 92vw, (max-width: 1099px) 46vw, (max-width: 1199px) 24vw, 19vw"
                   />
                 </div>
                 <span
