@@ -354,25 +354,8 @@ main {
   line-height: 0;
 }
 
-.app-icon--lounge {
-  background: linear-gradient(135deg, #aaf3e7 0%, #13dfcd 100%);
-}
-
-.app-icon--maxing {
-  background: #edff16;
-}
-
-.app-icon--push {
-  background: var(--orange);
-  color: #fff;
-}
-
 .app-icon--world {
   background: #b9ef08;
-}
-
-.app-icon--add {
-  background: #f0ddf5;
 }
 
 .app-icon--tracer {
@@ -558,21 +541,6 @@ main {
   aspect-ratio: 4 / 5;
 }
 
-.application-placeholder-list {
-  display: grid;
-  grid-column: 1 / -1;
-  gap: 8px;
-}
-
-.application-card--placeholder {
-  display: flex;
-  min-height: 72px;
-  padding: 0 18px;
-  align-items: center;
-  border: 1px solid var(--line);
-  background: #fff;
-}
-
 .app-canvas {
   position: absolute;
   inset: 0;
@@ -583,13 +551,6 @@ main {
 
 .application-card--project:hover .app-canvas {
   transform: scale(1.016);
-}
-
-.application-placeholder-title {
-  font-size: clamp(1.08rem, 5vw, 1.28rem);
-  font-weight: 600;
-  letter-spacing: -0.045em;
-  line-height: 1;
 }
 
 .abeam-video {
@@ -1023,16 +984,6 @@ a:focus-visible {
   .gallery-grid {
     margin-top: 56px;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .application-placeholder-list {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 10px;
-  }
-
-  .application-card--placeholder {
-    min-height: 72px;
-    padding-inline: 22px;
   }
 
   .workflow-section {

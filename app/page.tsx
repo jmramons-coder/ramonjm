@@ -21,13 +21,6 @@ const featuredApplications = [
   { name: "Decision ROI", slug: "equisoft-labs" },
 ] as const;
 
-const placeholderApplications = [
-  { name: "Lounge", slug: "lounge" },
-  { name: "Maxing", slug: "maxing" },
-  { name: "Push", slug: "push" },
-  { name: "Add", slug: "add" },
-] as const;
-
 const workflowSteps = [
   {
     title: "Insight",
@@ -422,27 +415,6 @@ export default function Home() {
               </Link>
             </article>
 
-            <div className="application-placeholder-list">
-              {placeholderApplications.map((application) => {
-                const titleId = `${application.slug}-title`;
-
-                return (
-                  <article
-                    className="application-card application-card--placeholder"
-                    id={application.slug}
-                    key={application.slug}
-                    aria-labelledby={titleId}
-                  >
-                    <h3
-                      className="application-placeholder-title"
-                      id={titleId}
-                    >
-                      {application.name}
-                    </h3>
-                  </article>
-                );
-              })}
-            </div>
           </div>
         </section>
 
