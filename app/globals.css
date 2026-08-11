@@ -497,36 +497,6 @@ main {
   transform: scale(1.016);
 }
 
-.application-label {
-  position: absolute;
-  bottom: 12px;
-  left: 12px;
-  z-index: 6;
-  padding: 10px 13px 11px;
-  border: 1px solid rgb(255 255 255 / 58%);
-  border-radius: 12px;
-  background: rgb(255 255 255 / 88%);
-  color: var(--ink);
-  backdrop-filter: blur(10px);
-}
-
-.application-label p {
-  color: #777;
-  font-size: 0.66rem;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  line-height: 1;
-  text-transform: uppercase;
-}
-
-.application-label h3 {
-  margin-top: 5px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  letter-spacing: -0.045em;
-  line-height: 1;
-}
-
 .application-placeholder-title {
   font-size: clamp(1.08rem, 5vw, 1.28rem);
   font-weight: 600;
@@ -572,7 +542,12 @@ main {
 .abeam-video-media::-webkit-media-controls-panel,
 .abeam-video-media::-webkit-media-controls-start-playback-button,
 .abeam-video-media::-webkit-media-controls-overlay-play-button,
-.abeam-video-media::-webkit-media-controls-play-button {
+.abeam-video-media::-webkit-media-controls-play-button,
+.world-card-video::-webkit-media-controls,
+.world-card-video::-webkit-media-controls-panel,
+.world-card-video::-webkit-media-controls-start-playback-button,
+.world-card-video::-webkit-media-controls-overlay-play-button,
+.world-card-video::-webkit-media-controls-play-button {
   display: none !important;
   -webkit-appearance: none;
 }
@@ -1076,10 +1051,6 @@ a:focus-visible {
     padding-top: 52px;
   }
 
-  .application-label {
-    bottom: 16px;
-    left: 16px;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1130,147 +1101,65 @@ a:focus-visible {
 }
 
 .app-canvas--world {
-  background: #dce7d4;
-  color: var(--ink);
+  background: #3d84b9;
+  color: #fff;
 }
 
-.world-card-human {
+.world-card-video {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  object-position: 47% center;
+  object-position: 50% 56%;
+  pointer-events: none;
 }
 
 .world-card-shade {
   position: absolute;
+  z-index: 1;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgb(9 19 16 / 12%) 0%,
-    transparent 38%,
-    rgb(5 12 9 / 42%) 100%
-  );
+  background:
+    linear-gradient(180deg, rgb(6 29 52 / 37%) 0%, transparent 32%),
+    linear-gradient(180deg, transparent 58%, rgb(4 21 37 / 34%) 100%);
 }
 
-.world-card-live,
-.world-card-reps,
-.world-card-level {
+.world-card-brand {
   position: absolute;
   z-index: 2;
-  border: 1px solid rgb(255 255 255 / 72%);
-  background: rgb(255 255 255 / 88%);
-  box-shadow: 0 14px 36px rgb(18 26 20 / 16%);
-  backdrop-filter: blur(14px) saturate(1.08);
-}
-
-.world-card-live {
-  top: 4%;
-  left: 4%;
-  display: grid;
-  padding: 9px 11px;
-  align-items: center;
-  grid-template-columns: auto 1fr;
-  gap: 1px 8px;
-  border-radius: 12px;
-  font-size: 0.72rem;
-  font-weight: 650;
-}
-
-.world-card-live i {
-  width: 8px;
-  height: 8px;
-  grid-row: span 2;
-  border-radius: 50%;
-  background: #12d96a;
-  box-shadow: 0 0 0 4px rgb(18 217 106 / 14%);
-}
-
-.world-card-live small,
-.world-card-reps small,
-.world-card-level small {
-  color: #777;
-  font-size: 0.53rem;
-  font-weight: 620;
-  letter-spacing: 0.045em;
-  text-transform: uppercase;
-}
-
-.world-card-reps {
-  right: 4%;
-  bottom: 25%;
-  display: grid;
-  min-width: 128px;
-  padding: 12px;
-  border-radius: 14px;
-}
-
-.world-card-reps > span {
+  top: 18px;
+  left: 18px;
   display: flex;
-  margin-top: 2px;
-  align-items: baseline;
-  gap: 5px;
-  color: #696969;
-  font-size: 0.62rem;
-  font-weight: 600;
-}
-
-.world-card-reps strong {
-  color: var(--ink);
-  font-size: 2rem;
-  letter-spacing: -0.08em;
-  line-height: 1;
-}
-
-.world-card-reps > i {
-  height: 4px;
-  margin-top: 8px;
-  overflow: hidden;
-  border-radius: 999px;
-  background: #e7e7e7;
-}
-
-.world-card-reps > i b {
-  display: block;
-  width: 58%;
-  height: 100%;
-  border-radius: inherit;
-  background: linear-gradient(90deg, #763bff, #00bfe7);
-}
-
-.world-card-level {
-  top: 4%;
-  right: 4%;
-  display: grid;
-  max-width: 138px;
-  padding: 10px 12px;
-  border-radius: 13px;
-}
-
-.world-card-level strong {
-  margin-top: 3px;
-  font-size: 0.78rem;
-}
-
-.world-card-level > span {
-  margin-top: 2px;
-  color: #6d6d6d;
-  font-size: 0.56rem;
-  font-weight: 550;
-}
-
-.application-label--project {
-  right: 12px;
-  display: grid;
-  padding: 8px;
   align-items: center;
-  grid-template-columns: 44px minmax(0, 1fr) 34px;
   gap: 10px;
+  filter: drop-shadow(0 5px 14px rgb(3 20 34 / 24%));
 }
 
-.application-project-icon {
+.world-card-icon {
   display: block;
   width: 44px;
   height: 44px;
   border-radius: 10px;
-  box-shadow: 0 1px 0 rgb(255 255 255 / 70%);
+  box-shadow: 0 10px 24px rgb(3 20 34 / 18%);
+}
+
+.world-card-brand p {
+  color: rgb(255 255 255 / 68%);
+  font-size: 0.58rem;
+  font-weight: 620;
+  letter-spacing: 0.055em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.world-card-brand h3 {
+  margin-top: 5px;
+  color: #fff;
+  font-size: clamp(1.15rem, 4.7vw, 1.5rem);
+  font-weight: 610;
+  letter-spacing: -0.05em;
+  line-height: 1;
 }
 
 .application-project-arrow {
@@ -1285,6 +1174,19 @@ a:focus-visible {
 
 .application-card-link:hover .application-project-arrow {
   transform: translateX(2px);
+}
+
+.world-card-arrow {
+  position: absolute;
+  z-index: 6;
+  right: 16px;
+  bottom: 16px;
+  width: auto;
+  aspect-ratio: auto;
+  border-radius: 0;
+  background: transparent;
+  color: #fff;
+  filter: drop-shadow(0 4px 10px rgb(3 20 34 / 32%));
 }
 
 /* aBeam portfolio card */
@@ -1645,36 +1547,25 @@ a:focus-visible {
     column-gap: clamp(18px, 1.8vw, 24px);
   }
 
-  .world-card-level {
-    display: none;
-  }
-
-  .world-card-reps {
-    min-width: 108px;
-    padding: 10px;
-  }
-
-  .world-card-reps strong {
-    font-size: 1.65rem;
-  }
-
-  .application-label--project {
-    grid-template-columns: 38px minmax(0, 1fr) 31px;
-    gap: 8px;
-  }
-
-  .application-project-icon {
+  .world-card-icon {
     width: 38px;
     height: 38px;
     border-radius: 9px;
   }
 
-  .application-label--project h3 {
-    font-size: 1rem;
+  .world-card-brand {
+    top: 14px;
+    left: 14px;
+    gap: 8px;
   }
 
-  .application-label--project .application-project-arrow {
-    width: 31px;
+  .world-card-brand h3 {
+    font-size: 1.05rem;
+  }
+
+  .world-card-arrow {
+    right: 14px;
+    bottom: 14px;
   }
 
   .tracer-card-copy h3 {
@@ -1753,33 +1644,29 @@ a:focus-visible {
     column-gap: clamp(14px, 1.35vw, 20px);
   }
 
-  .world-card-reps,
   .tracer-card-copy > span,
   .crypto-card-copy > span,
   .equisoft-labs-card-copy > span {
     display: none;
   }
 
-  .application-label--project {
-    right: 10px;
-    bottom: 10px;
-    left: 10px;
-    padding: 7px;
-    grid-template-columns: 34px minmax(0, 1fr) 29px;
-    gap: 7px;
-  }
-
-  .application-project-icon {
+  .world-card-icon {
     width: 34px;
     height: 34px;
   }
 
-  .application-label--project h3 {
-    font-size: 0.88rem;
+  .world-card-brand {
+    top: 12px;
+    left: 12px;
+    gap: 7px;
   }
 
-  .application-label--project .application-project-arrow {
-    width: 29px;
+  .world-card-brand p {
+    font-size: 0.5rem;
+  }
+
+  .world-card-brand h3 {
+    font-size: 0.95rem;
   }
 
   .tracer-card-copy,
@@ -2164,10 +2051,6 @@ a:focus-visible {
 }
 
 @media (min-width: 760px) {
-  .application-label--project {
-    right: 16px;
-  }
-
   .project-header {
     min-height: 88px;
     padding-top: 24px;

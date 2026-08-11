@@ -206,62 +206,50 @@ export default function Home() {
               aria-labelledby="world-title"
             >
               <Link className="application-card-link" href="/world">
-                <div
-                  className="app-canvas app-canvas--world"
+                <div className="app-canvas app-canvas--world">
+                  <video
+                    aria-hidden="true"
+                    autoPlay
+                    className="world-card-video"
+                    disablePictureInPicture
+                    disableRemotePlayback
+                    loop
+                    muted
+                    playsInline
+                    preload="metadata"
+                    tabIndex={-1}
+                  >
+                    <source
+                      src="/world/pushedworld-card.mp4"
+                      type="video/mp4"
+                    />
+                  </video>
+                  <span className="world-card-shade" aria-hidden="true" />
+                  <div className="world-card-brand">
+                    <Image
+                      className="world-card-icon"
+                      src="/world/app-icon.png"
+                      alt=""
+                      width={256}
+                      height={256}
+                      sizes="44px"
+                    />
+                    <div>
+                      <p>04 / iPhone app</p>
+                      <h3 id="world-title">PushedWorld</h3>
+                    </div>
+                  </div>
+                </div>
+                <span
+                  className="application-project-arrow world-card-arrow"
                   aria-hidden="true"
                 >
-                  <Image
-                    className="world-card-human"
-                    src="/world/hero-human.jpg"
-                    alt=""
-                    fill
-                    sizes="(max-width: 759px) 100vw, (max-width: 1099px) 50vw, (max-width: 1199px) 25vw, 20vw"
+                  <HugeiconsIcon
+                    icon={ArrowRight02Icon}
+                    size={24}
+                    strokeWidth={1.8}
                   />
-                  <span className="world-card-shade" />
-                  <span className="world-card-live">
-                    <i />
-                    <span>Live</span>
-                    <small>Tracking</small>
-                  </span>
-                  <span className="world-card-reps">
-                    <small>Session reps</small>
-                    <span>
-                      <strong>31</strong> reps
-                    </span>
-                    <i>
-                      <b />
-                    </i>
-                  </span>
-                  <span className="world-card-level">
-                    <small>Level 26</small>
-                    <strong>Black Iron</strong>
-                    <span>30 reps to Level 27</span>
-                  </span>
-                </div>
-                <div className="application-label application-label--project">
-                  <Image
-                    className="application-project-icon"
-                    src="/world/app-icon.png"
-                    alt=""
-                    width={256}
-                    height={256}
-                    sizes="44px"
-                  />
-                  <div>
-                    <p>04 / iPhone app</p>
-                    <h3 id="world-title">PushedWorld</h3>
-                  </div>
-                  <span
-                    className="application-project-arrow"
-                    aria-hidden="true"
-                  >
-                    <HugeiconsIcon
-                      icon={ArrowRight02Icon}
-                      size={18}
-                      strokeWidth={1.8}
-                    />
-                  </span>
-                </div>
+                </span>
               </Link>
             </article>
 
