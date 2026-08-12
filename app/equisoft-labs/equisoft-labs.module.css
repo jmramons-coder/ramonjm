@@ -350,14 +350,8 @@
   height: auto;
 }
 
-.prototypeSceneImage[data-mobile-src] {
-  content: url("/equisoft-labs/elevate-tablet-scene-mobile.png");
-}
-
-@media (min-width: 781px) {
-  .prototypeSceneImage[data-mobile-src] {
-    content: url("/equisoft-labs/elevate-tablet-scene-front.png");
-  }
+.prototypeSceneImageMobile {
+  display: none;
 }
 
 .prototypeTablet {
@@ -812,14 +806,26 @@
 
   .prototypeScene {
     width: 100vw;
+    aspect-ratio: 1122 / 1402;
     border-radius: 16px;
   }
 
+  .prototypeSceneImageDesktop {
+    display: none;
+  }
+
+  .prototypeSceneImageMobile {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
   .prototypeTablet {
-    top: 16.9%;
+    top: 17.1%;
     left: 27.3%;
-    width: 45.4%;
-    height: 58.3%;
+    width: 45.1%;
+    height: 54.4%;
     border-radius: 7px;
   }
 

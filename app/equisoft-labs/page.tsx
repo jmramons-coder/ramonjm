@@ -246,13 +246,21 @@ export default function EquisoftLabsProjectPage() {
 
           <div className={styles.prototypeScene}>
             <Image
-              className={styles.prototypeSceneImage}
+              className={`${styles.prototypeSceneImage} ${styles.prototypeSceneImageDesktop}`}
               src="/equisoft-labs/elevate-tablet-scene-front.png"
-              data-mobile-src="/equisoft-labs/elevate-tablet-scene-mobile.png"
               alt="Close point-of-view scene of a blank landscape iPad on a thin standing kiosk at the pale blue Elevate booth"
               width={1536}
               height={1024}
-              sizes="(max-width: 780px) 100vw, 1180px"
+              sizes="(min-width: 781px) min(100vw, 1200px)"
+            />
+            <Image
+              className={`${styles.prototypeSceneImage} ${styles.prototypeSceneImageMobile}`}
+              src="/equisoft-labs/elevate-tablet-scene-mobile.png"
+              alt=""
+              aria-hidden="true"
+              width={1122}
+              height={1402}
+              sizes="100vw"
             />
             <div className={styles.prototypeTablet}>
               <iframe
