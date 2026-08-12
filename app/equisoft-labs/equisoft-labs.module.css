@@ -187,11 +187,6 @@
   gap: 10px;
 }
 
-.followupGridSimple {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
-}
-
 .followupCard {
   min-width: 0;
   overflow: hidden;
@@ -206,19 +201,27 @@
   background: var(--lab-pale);
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: 200% 200%;
 }
 
-.followupPanelThrow {
-  background-image: url("/equisoft-labs/elevate-sequence-throw-roi-style.png");
+.followupPanelA {
+  background-image: url("/equisoft-labs/elevate-interaction-sequence-roi-style.png");
+  background-position: left top;
 }
 
-.followupPanelPop {
-  background-image: url("/equisoft-labs/elevate-sequence-pop-roi-style.png");
+.followupPanelB {
+  background-image: url("/equisoft-labs/elevate-interaction-sequence-roi-style.png");
+  background-position: right top;
 }
 
-.followupPanelRead {
-  background-image: url("/equisoft-labs/elevate-sequence-read-roi-style.png");
+.followupPanelC {
+  background-image: url("/equisoft-labs/elevate-interaction-sequence-roi-style.png");
+  background-position: left bottom;
+}
+
+.followupPanelD {
+  background-image: url("/equisoft-labs/elevate-interaction-sequence-roi-style.png");
+  background-position: right bottom;
 }
 
 .followupCopy {
@@ -776,10 +779,6 @@
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
-  }
-
-  .followupGridSimple {
-    display: flex;
   }
 
   .followupGrid::-webkit-scrollbar {
