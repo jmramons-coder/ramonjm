@@ -185,18 +185,29 @@ export default function EquisoftLabsProjectPage() {
             <h2 id="prototype-title">We gave the conversation a number.</h2>
             <span>
               Decision ROI turns the feeling of delay into a model people can
-              adjust together. The live prototype lets the conversation move.
+              adjust together. The live prototype now sits inside the same
+              booth moment that started the conversation.
             </span>
           </div>
 
-          <div className={styles.prototypeBoard}>
-            <iframe
-              src="https://www.equisoftlabs.com/"
-              title="Interactive Equisoft Labs Decision ROI prototype"
-              loading="lazy"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allow="fullscreen"
+          <div className={styles.prototypeScene}>
+            <Image
+              className={styles.prototypeSceneImage}
+              src="/equisoft-labs/elevate-tablet-scene.png"
+              alt="Close point-of-view scene of a blank landscape iPad on a pale blue Elevate booth table"
+              width={1586}
+              height={992}
+              sizes="(max-width: 780px) 100vw, 1180px"
             />
+            <div className={styles.prototypeTablet}>
+              <iframe
+                src="https://www.equisoftlabs.com/"
+                title="Interactive Equisoft Labs Decision ROI prototype"
+                loading="lazy"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allow="fullscreen"
+              />
+            </div>
           </div>
         </section>
 

@@ -232,27 +232,43 @@
   width: min(100%, 850px);
 }
 
-.prototypeBoard {
-  width: min(100%, 720px);
-  min-height: 640px;
+.prototypeScene {
+  position: relative;
+  width: min(100%, 1180px);
   margin: clamp(56px, 7vw, 92px) auto 0;
-  padding: 11px;
-  border: 1px solid rgb(14 14 14 / 32%);
-  border-radius: 32px;
-  background: #fff;
+  overflow: hidden;
+  border: 1px solid #d5e5ed;
+  border-radius: 28px;
+  background: #edf7fb;
   box-shadow:
-    0 28px 72px rgb(0 46 74 / 13%),
-    0 4px 14px rgb(0 0 0 / 8%);
-  aspect-ratio: 3 / 4;
+    0 34px 82px rgb(0 46 74 / 14%),
+    0 4px 16px rgb(0 0 0 / 7%);
 }
 
-.prototypeBoard iframe {
+.prototypeSceneImage {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.prototypeTablet {
+  position: absolute;
+  top: 45%;
+  left: 21%;
+  width: 58%;
+  height: 41%;
+  overflow: hidden;
+  clip-path: polygon(13% 0, 87% 0, 100% 100%, 0 100%);
+  border-radius: 18px;
+  background: #f8fbfd;
+  box-shadow: 0 4px 16px rgb(0 0 0 / 10%);
+}
+
+.prototypeTablet iframe {
   display: block;
   width: 100%;
   height: 100%;
-  min-height: 0;
   border: 0;
-  border-radius: 22px;
   background: #fff;
 }
 
@@ -634,15 +650,16 @@
     padding-left: 18px;
   }
 
-  .prototypeBoard {
-    min-height: 0;
-    padding: 8px;
-    border-radius: 24px;
-    aspect-ratio: 3 / 4;
+  .prototypeScene {
+    border-radius: 20px;
   }
 
-  .prototypeBoard iframe {
-    border-radius: 17px;
+  .prototypeTablet {
+    top: 45%;
+    left: 19%;
+    width: 62%;
+    height: 42%;
+    border-radius: 10px;
   }
 
   .inputList {
