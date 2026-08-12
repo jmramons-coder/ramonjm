@@ -191,6 +191,46 @@
   filter: drop-shadow(0 34px 34px rgb(6 47 32 / 16%));
 }
 
+.livePreviewSection {
+  width: min(100%, 1440px);
+  margin: 0 auto;
+  padding: clamp(86px, 11vw, 150px) clamp(20px, 4vw, 64px) 140px;
+}
+
+.livePreviewCopy {
+  max-width: 720px;
+}
+
+.livePreviewCopy > p {
+  color: rgb(6 47 32 / 56%);
+  font-size: 0.74rem;
+  font-weight: 620;
+  letter-spacing: 0.065em;
+  text-transform: uppercase;
+}
+
+.livePreviewCopy h2 {
+  margin-top: 17px;
+  font-size: clamp(3.3rem, 5.7vw, 6rem);
+  font-weight: 590;
+  letter-spacing: -0.075em;
+  line-height: 0.91;
+}
+
+.livePreviewCopy > span {
+  display: block;
+  max-width: 620px;
+  margin-top: 24px;
+  color: rgb(6 47 32 / 65%);
+  font-size: clamp(1rem, 1.4vw, 1.16rem);
+  letter-spacing: -0.025em;
+  line-height: 1.5;
+}
+
+.livePreviewFrame {
+  margin-top: clamp(46px, 6vw, 80px);
+}
+
 @media (max-width: 900px) {
   .page {
     overflow: auto;

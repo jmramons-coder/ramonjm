@@ -24,9 +24,9 @@ export async function generateMetadata(): Promise<Metadata> {
     requestHeaders.get("x-forwarded-proto") ??
     (host.startsWith("localhost") ? "http" : "https");
   const baseUrl = new URL(`${protocol}://${host}`);
-  const title = "Ramon JM — Product Design, UX & Innovation";
+  const title = "Ramon JM — Senior Product Designer & AI Builder";
   const description =
-    "Product design, UX, and innovation shaped by human behavior, emerging trends, thoughtful AI, and clear problem solving.";
+    "Senior product designer and AI-native builder turning ambiguous problems into clear product logic, functional prototypes, and experiences teams can ship.";
 
   return {
     metadataBase: baseUrl,
@@ -44,7 +44,7 @@ export async function generateMetadata(): Promise<Metadata> {
           url: "/og-product-design.png",
           width: 1733,
           height: 907,
-          alt: "Ramon JM — Product design and UX portfolio",
+          alt: "Ramon JM — Senior product designer and AI builder portfolio",
         },
       ],
     },

@@ -500,6 +500,15 @@ main {
   color: var(--muted);
 }
 
+.work-summary {
+  max-width: 560px;
+  margin-top: 22px;
+  color: var(--body);
+  font-size: 1.05rem;
+  letter-spacing: -0.025em;
+  line-height: 1.45;
+}
+
 .workflow-intro h2 > span:first-child {
   color: var(--muted);
 }
@@ -551,6 +560,114 @@ main {
 
 .application-card--project:hover .app-canvas {
   transform: scale(1.016);
+}
+
+.interactive-preview {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgb(14 14 14 / 11%);
+  border-radius: 26px;
+  background: #fff;
+  box-shadow:
+    0 30px 80px rgb(14 14 14 / 12%),
+    0 8px 24px rgb(14 14 14 / 7%);
+}
+
+.interactive-preview-toolbar {
+  display: flex;
+  min-height: 46px;
+  padding: 0 16px;
+  align-items: center;
+  gap: 14px;
+  border-bottom: 1px solid rgb(14 14 14 / 8%);
+  background: rgb(255 255 255 / 92%);
+  color: var(--muted);
+  font-size: 0.7rem;
+  letter-spacing: -0.01em;
+}
+
+.interactive-preview-dots {
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 5px;
+}
+
+.interactive-preview-dots i {
+  display: block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #d7d7d7;
+}
+
+.interactive-preview-dots i:first-child {
+  background: #ff6d5f;
+}
+
+.interactive-preview-dots i:nth-child(2) {
+  background: #f2c64d;
+}
+
+.interactive-preview-dots i:last-child {
+  background: #6ecb73;
+}
+
+.interactive-preview-url {
+  min-width: 0;
+  overflow: hidden;
+  padding: 7px 12px;
+  border: 1px solid rgb(14 14 14 / 7%);
+  border-radius: 999px;
+  background: #f7f7f7;
+  color: #777;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.interactive-preview-label {
+  margin-left: auto;
+  color: #999;
+  font-size: 0.62rem;
+  font-weight: 620;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.interactive-preview-viewport {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  min-height: 480px;
+  background: #f3f5f7;
+}
+
+.interactive-preview-viewport iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #fff;
+}
+
+@media (max-width: 700px) {
+  .interactive-preview {
+    border-radius: 20px;
+  }
+
+  .interactive-preview-toolbar {
+    min-height: 42px;
+    padding: 0 12px;
+    gap: 10px;
+  }
+
+  .interactive-preview-label {
+    display: none;
+  }
+
+  .interactive-preview-viewport {
+    aspect-ratio: 4 / 5;
+    min-height: 0;
+  }
 }
 
 .abeam-video {
@@ -856,6 +973,41 @@ main {
   font-size: 1.06rem;
   letter-spacing: -0.025em;
   line-height: 1.5;
+}
+
+.about-content > p + p {
+  margin-top: 16px;
+}
+
+.about-facts {
+  display: grid;
+  max-width: 760px;
+  margin-top: 42px;
+  grid-column: 1 / -1;
+  border-top: 1px solid var(--line);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 28px;
+}
+
+.about-facts > div {
+  padding: 15px 0 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.about-facts dt {
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 620;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.about-facts dd {
+  margin: 7px 0 0;
+  color: var(--ink);
+  font-size: 0.92rem;
+  letter-spacing: -0.025em;
+  line-height: 1.3;
 }
 
 .site-footer {
@@ -1234,6 +1386,94 @@ a:focus-visible {
   background: transparent;
   color: #fff;
   filter: drop-shadow(0 4px 10px rgb(3 20 34 / 32%));
+}
+
+/* PatternViewer portfolio card */
+
+.application-card--patternviewer {
+  border: 1px solid rgb(33 74 54 / 12%);
+  background: #e8f1e9;
+}
+
+.app-canvas--patternviewer {
+  display: grid;
+  padding: clamp(20px, 2vw, 28px);
+  align-content: space-between;
+  background:
+    radial-gradient(circle at 72% 26%, rgb(180 225 188 / 56%), transparent 35%),
+    linear-gradient(145deg, #f4f8f1 0%, #dcecdf 100%);
+  color: #173d2a;
+}
+
+.app-icon--patternviewer {
+  background: #e7f1e7;
+  box-shadow:
+    inset 0 0 0 1px rgb(33 74 54 / 8%),
+    0 7px 16px rgb(33 74 54 / 9%);
+}
+
+.app-icon--patternviewer .app-icon-glyph {
+  width: 100%;
+  height: 100%;
+  padding: 6%;
+}
+
+.app-icon-image--patternviewer {
+  width: 100%;
+  height: 100%;
+  border-radius: 24%;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
+.patternviewer-card-icon {
+  display: block;
+  width: clamp(54px, 5vw, 76px);
+  height: auto;
+  border-radius: 22%;
+  box-shadow: 0 14px 26px rgb(34 73 51 / 13%);
+  mix-blend-mode: multiply;
+}
+
+.patternviewer-card-copy {
+  position: relative;
+  z-index: 1;
+}
+
+.patternviewer-card-copy p {
+  color: rgb(23 61 42 / 58%);
+  font-size: 0.62rem;
+  font-weight: 650;
+  letter-spacing: 0.065em;
+  text-transform: uppercase;
+}
+
+.patternviewer-card-copy h3 {
+  margin-top: 6px;
+  font-size: clamp(2rem, 9vw, 3.5rem);
+  font-weight: 620;
+  letter-spacing: -0.075em;
+  line-height: 0.92;
+}
+
+.patternviewer-card-copy > span {
+  display: block;
+  margin-top: 10px;
+  color: rgb(23 61 42 / 66%);
+  font-size: 0.82rem;
+  letter-spacing: -0.025em;
+}
+
+.patternviewer-card-arrow {
+  position: absolute;
+  z-index: 6;
+  right: 14px;
+  bottom: 14px;
+  width: auto;
+  aspect-ratio: auto;
+  border-radius: 0;
+  background: transparent;
+  color: #173d2a;
 }
 
 /* aBeam portfolio card */
@@ -1619,7 +1859,8 @@ a:focus-visible {
 
   .tracer-card-copy > span,
   .crypto-card-copy > span,
-  .equisoft-labs-card-copy > span {
+  .equisoft-labs-card-copy > span,
+  .patternviewer-card-copy > span {
     display: none;
   }
 
@@ -1644,13 +1885,15 @@ a:focus-visible {
 
   .tracer-card-copy,
   .crypto-card-copy,
-  .equisoft-labs-card-copy {
+  .equisoft-labs-card-copy,
+  .patternviewer-card-copy {
     padding: clamp(16px, 1.7vw, 24px);
   }
 
   .tracer-card-copy h3,
   .crypto-card-copy h3,
-  .equisoft-labs-card-copy h3 {
+  .equisoft-labs-card-copy h3,
+  .patternviewer-card-copy h3 {
     font-size: clamp(1.8rem, 2.6vw, 2.85rem);
   }
 

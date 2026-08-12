@@ -8,7 +8,7 @@ import styles from "./abeam.module.css";
 export const metadata: Metadata = {
   title: "aBeam — Ramon JM",
   description:
-    "aBeam is an AI conversation copilot built specifically for travel advisors.",
+    "aBeam is an AI conversation copilot for travel advisors that turns client conversations into organized context, preferences, and next steps.",
   alternates: { canonical: "/abeam" },
 };
 
@@ -24,10 +24,6 @@ export default function AbeamProjectPage() {
           />
           <span>Selected work</span>
         </Link>
-        <p className={styles.status}>
-          <span aria-hidden="true" />
-          Coming soon
-        </p>
       </header>
 
       <section className={styles.hero} aria-labelledby="abeam-title">
@@ -41,10 +37,16 @@ export default function AbeamProjectPage() {
         </div>
 
         <div className={styles.copy}>
+          <p className={styles.eyebrow}>AI copilot for travel advisors</p>
           <h1 id="abeam-title">
             <span>Every conversation.</span>
             <span>Already organized.</span>
           </h1>
+          <p className={styles.summary}>
+            aBeam turns messy client conversations into a clear working memory
+            of preferences, context, and next steps—so advisors can spend more
+            time shaping the journey and less time reconstructing it.
+          </p>
         </div>
       </section>
     </main>

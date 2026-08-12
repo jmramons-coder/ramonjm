@@ -6,6 +6,7 @@ import {
   ArrowLeft02Icon,
   ArrowUpRight01Icon,
 } from "@hugeicons/core-free-icons";
+import { InteractivePreview } from "../interactive-preview";
 import styles from "./equisoft-labs.module.css";
 
 export const metadata: Metadata = {
@@ -144,6 +145,23 @@ export default function EquisoftLabsProjectPage() {
             </div>
           </div>
         </div>
+      </section>
+
+      <section className={styles.livePreview} aria-labelledby="live-preview-title">
+        <div className={styles.livePreviewIntro}>
+          <p>Try the working prototype</p>
+          <h2 id="live-preview-title">Make the cost of delay tangible.</h2>
+          <span>
+            Interact with the Decision ROI flow as it was designed: start with
+            a role, tune the inputs, and see how the story changes.
+          </span>
+        </div>
+        <InteractivePreview
+          className={styles.livePreviewFrame}
+          src="https://www.equisoftlabs.com/"
+          title="Interactive Equisoft Labs Decision ROI prototype"
+          hostname="equisoftlabs.com"
+        />
       </section>
 
       <section className={styles.inputsSection} aria-labelledby="inputs-title">

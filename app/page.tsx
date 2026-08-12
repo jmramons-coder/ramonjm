@@ -15,6 +15,7 @@ import { AbeamVideo } from "./abeam/abeam-video";
 
 const featuredApplications = [
   { name: "PushedWorld", slug: "world" },
+  { name: "PatternViewer", slug: "patternviewer" },
   { name: "Tracer", slug: "tracer" },
   { name: "aBeam", slug: "abeam" },
   { name: "CryptoCroc", slug: "crypto-inheritance" },
@@ -23,19 +24,19 @@ const featuredApplications = [
 
 const workflowSteps = [
   {
-    title: "Insight",
+    title: "Frame the problem",
     description:
-      "Study people, context, behavior, and emerging signals to uncover the problem worth solving.",
+      "Turn ambiguity into clear product logic: the user, the tension, the opportunity, and the decision the team needs to make.",
   },
   {
-    title: "Direction",
+    title: "Prototype at speed",
     description:
-      "Turn insight into a focused strategy, intuitive flows, and a distinct product direction.",
+      "Use AI, interaction design, and code to make the important behavior tangible early—before a team overbuilds the wrong thing.",
   },
   {
-    title: "Validation",
+    title: "Shape what ships",
     description:
-      "Prototype, test, and refine the experience—using AI when it creates genuine value.",
+      "Work with product and engineering to test the signal, refine the experience, and turn a promising prototype into a clear direction for delivery.",
   },
 ] as const;
 
@@ -80,15 +81,9 @@ export default function Home() {
           Ramon JM
         </a>
         <div className="header-actions">
-          <button
-            className="header-cv"
-            type="button"
-            disabled
-            aria-label="CV — coming soon"
-            title="CV coming soon"
-          >
-            CV
-          </button>
+          <a className="header-cv" href="#about" aria-label="Read profile">
+            Profile
+          </a>
           <a
             className="header-action header-contact"
             href="mailto:jmanuelr.99@gmail.com"
@@ -107,20 +102,20 @@ export default function Home() {
           <div className="hero-copy">
             <p className="status-pill">
               <span aria-hidden="true" />
-              Ramon JM · Product design &amp; UX
+              Senior product designer · AI-native builder
             </p>
             <h1 id="page-title">
-              <span>Designing products</span>
-              <span>for how people think.</span>
+              <span>I design and build</span>
+              <span>AI-native products.</span>
             </h1>
             <p className="hero-description">
-              I turn human behavior, emerging trends, and complex problems into
-              clear product experiences—using AI where it creates meaningful
-              value.
+              I turn ambiguous problems into clear product logic, functional
+              prototypes, and experiences teams can ship—using AI and code to
+              move from idea to signal quickly.
             </p>
             <a className="primary-action" href="#applications">
               <span className="action-dot" aria-hidden="true" />
-              Explore selected work
+              See selected work
               <span className="link-icon" aria-hidden="true">
                 <HugeiconsIcon
                   icon={ArrowDown01Icon}
@@ -151,6 +146,15 @@ export default function Home() {
                             alt=""
                             width={256}
                             height={256}
+                            sizes="(min-width: 760px) 62px, 46px"
+                          />
+                        ) : application.slug === "patternviewer" ? (
+                          <Image
+                            className="app-icon-image app-icon-image--patternviewer"
+                            src="/patternviewer/icon.jpg"
+                            alt=""
+                            width={192}
+                            height={192}
                             sizes="(min-width: 760px) 62px, 46px"
                           />
                         ) : application.slug === "tracer" ? (
@@ -202,11 +206,15 @@ export default function Home() {
           aria-labelledby="applications-title"
         >
           <div className="work-intro">
-            <p className="section-pill">Selected work · 09</p>
+            <p className="section-pill">Selected work · 06</p>
             <h2 id="applications-title">
-              <span>Nine projects.</span>
-              <span>One evolving design practice.</span>
+              <span>Products built</span>
+              <span>around clarity.</span>
             </h2>
+            <p className="work-summary">
+              A mix of enterprise product work and independent builds across
+              AI, security, insurance, crypto, and fitness experiences.
+            </p>
           </div>
 
           <div className="gallery-grid">
@@ -244,13 +252,47 @@ export default function Home() {
                       sizes="44px"
                     />
                     <div>
-                      <p>04 / iPhone app</p>
+                      <p>01 / Product design + build</p>
                       <h3 id="world-title">PushedWorld</h3>
                     </div>
                   </div>
                 </div>
                 <span
                   className="application-project-arrow world-card-arrow"
+                  aria-hidden="true"
+                >
+                  <HugeiconsIcon
+                    icon={ArrowRight02Icon}
+                    size={24}
+                    strokeWidth={1.8}
+                  />
+                </span>
+              </Link>
+            </article>
+
+            <article
+              className="application-card application-card--project application-card--patternviewer"
+              id="patternviewer"
+              aria-labelledby="patternviewer-title"
+            >
+              <Link className="application-card-link" href="/patternviewer">
+                <div className="app-canvas app-canvas--patternviewer">
+                  <Image
+                    className="patternviewer-card-icon"
+                    src="/patternviewer/icon.jpg"
+                    alt=""
+                    width={192}
+                    height={192}
+                    sizes="72px"
+                  />
+                  <div className="patternviewer-card-copy">
+                    <p>02 / Data intelligence</p>
+                    <h3 id="patternviewer-title">PatternViewer</h3>
+                    <span>Make a long story legible.</span>
+                  </div>
+                </div>
+                <span
+                  className="application-project-arrow patternviewer-card-arrow"
                   aria-hidden="true"
                 >
                   <HugeiconsIcon
@@ -286,7 +328,7 @@ export default function Home() {
                       height={318}
                       sizes="64px"
                     />
-                    <p>06 / Research security</p>
+                    <p>03 / Security intelligence</p>
                     <h3 id="tracer-title">Tracer</h3>
                     <span>Screen research partners in minutes.</span>
                   </div>
@@ -348,7 +390,7 @@ export default function Home() {
               >
                 <div className="app-canvas app-canvas--crypto">
                   <div className="crypto-card-copy">
-                    <p>08 / Crypto legacy planner</p>
+                    <p>05 / Crypto legacy planner</p>
                     <h3 id="crypto-inheritance-title">CryptoCroc</h3>
                     <span>Plan the handoff.</span>
                   </div>
@@ -389,7 +431,7 @@ export default function Home() {
                     aria-hidden="true"
                   />
                   <div className="equisoft-labs-card-copy">
-                    <p>09 / Decision ROI</p>
+                    <p>06 / Insurance R&amp;D</p>
                     <h3 id="equisoft-labs-title">Equisoft Labs</h3>
                     <span>Decision intelligence for insurance.</span>
                   </div>
@@ -425,7 +467,7 @@ export default function Home() {
           <div className="workflow-intro">
             <p className="section-pill">Design approach</p>
             <h2 id="workflow-title">
-              <span>From human insight to</span>
+              <span>From ambiguity to</span>
               <span className="workflow-result">
                 <span className="workflow-arrow" aria-hidden="true">
                   <HugeiconsIcon
@@ -434,7 +476,7 @@ export default function Home() {
                     strokeWidth={1.5}
                   />
                 </span>
-                useful outcomes.
+                signal that ships.
               </span>
             </h2>
           </div>
@@ -474,26 +516,55 @@ export default function Home() {
           <ClientMarquee />
         </section>
 
-        <section className="about-section" aria-labelledby="about-title">
+        <section
+          className="about-section"
+          id="about"
+          aria-labelledby="about-title"
+        >
           <p className="section-pill">About</p>
           <div className="about-content">
             <h2 id="about-title">
-              <span>Human insight.</span>
-              Useful innovation.
+              <span>Product thinking.</span>
+              A builder&apos;s bias.
             </h2>
             <p>
-              I work across product design, UX, and innovation. My approach
-              combines a deep understanding of human behavior and emerging
-              trends with thoughtful AI to solve complex problems and shape
-              useful experiences.
+              I&apos;m a Senior Product Designer at Equisoft, working across
+              product strategy, UX, interaction design, and AI. I&apos;m strongest
+              where the problem is still unclear: framing the opportunity,
+              prototyping the right behavior, and helping teams decide what
+              deserves to ship.
             </p>
+            <p>
+              Alongside enterprise work, I build independent products like
+              PushedWorld, PatternViewer, aBeam, Tracer, CryptoCroc, and
+              Decision ROI to test ideas in the real world and keep my practice
+              close to the making.
+            </p>
+            <dl className="about-facts">
+              <div>
+                <dt>Current</dt>
+                <dd>Senior Product Designer · Equisoft</dd>
+              </div>
+              <div>
+                <dt>Focus</dt>
+                <dd>AI workflows · enterprise UX · interaction design</dd>
+              </div>
+              <div>
+                <dt>Background</dt>
+                <dd>Interaction design · industrial design · architecture</dd>
+              </div>
+              <div>
+                <dt>Languages</dt>
+                <dd>French · English · Spanish</dd>
+              </div>
+            </dl>
           </div>
         </section>
       </main>
 
       <footer className="site-footer">
         <div className="footer-top">
-          <p>Ramon JM · Product design &amp; UX</p>
+          <p>Ramon JM · Product design, AI &amp; innovation</p>
           <a className="back-to-top" href="#top">
             <span>Back to top</span>
             <span className="link-icon" aria-hidden="true">
@@ -506,7 +577,7 @@ export default function Home() {
           </a>
         </div>
         <div className="footer-main">
-          <h2>Explore the thinking behind the work.</h2>
+          <h2>Make the next useful thing.</h2>
           <ExternalLink
             className="footer-action"
             href="https://github.com/jmramons-coder"
@@ -514,7 +585,7 @@ export default function Home() {
             <span className="link-icon" aria-hidden="true">
               <HugeiconsIcon icon={GithubIcon} size={18} strokeWidth={1.7} />
             </span>
-            <span>Continue on GitHub</span>
+            <span>View the builds on GitHub</span>
           </ExternalLink>
         </div>
         <p className="copyright">© {new Date().getFullYear()} Ramon JM</p>

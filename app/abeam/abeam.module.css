@@ -89,29 +89,6 @@
   grid-area: copy;
 }
 
-.status {
-  display: inline-flex;
-  min-height: 30px;
-  padding: 0 13px;
-  align-items: center;
-  gap: 8px;
-  border: 1px solid rgb(7 23 39 / 9%);
-  border-radius: 999px;
-  background: rgb(255 255 255 / 72%);
-  color: #52697d;
-  font-size: 0.74rem;
-  font-weight: 530;
-  letter-spacing: -0.015em;
-}
-
-.status > span {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #2787f5;
-  box-shadow: 0 0 0 4px rgb(39 135 245 / 14%);
-}
-
 .copy h1 {
   margin: 0;
   font-size: clamp(4rem, 8.5vw, 8.4rem);
@@ -122,6 +99,24 @@
 
 .copy h1 span {
   display: block;
+}
+
+.eyebrow {
+  margin-bottom: 22px;
+  color: #52697d;
+  font-size: 0.78rem;
+  font-weight: 620;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.summary {
+  max-width: 660px;
+  margin-top: 28px;
+  color: #52697d;
+  font-size: clamp(1rem, 2vw, 1.18rem);
+  letter-spacing: -0.025em;
+  line-height: 1.42;
 }
 
 .copy h1 span:first-child {

@@ -6,6 +6,7 @@ import {
   ArrowLeft02Icon,
   ArrowUpRight01Icon,
 } from "@hugeicons/core-free-icons";
+import { InteractivePreview } from "../interactive-preview";
 import styles from "./crypto-inheritance.module.css";
 
 export const metadata: Metadata = {
@@ -87,6 +88,26 @@ export default function CryptoInheritanceProjectPage() {
             priority
           />
         </div>
+      </section>
+
+      <section
+        className={styles.livePreviewSection}
+        aria-labelledby="crypto-preview-title"
+      >
+        <div className={styles.livePreviewCopy}>
+          <p>Try the live planner</p>
+          <h2 id="crypto-preview-title">Make the handoff less fragile.</h2>
+          <span>
+            Explore the flow directly: organize what matters, prepare the
+            people you trust, and keep recovery secrets outside the plan.
+          </span>
+        </div>
+        <InteractivePreview
+          className={styles.livePreviewFrame}
+          src="https://crypto-inheritance.xyz/"
+          title="Interactive CryptoCroc inheritance planner"
+          hostname="crypto-inheritance.xyz"
+        />
       </section>
     </main>
   );
