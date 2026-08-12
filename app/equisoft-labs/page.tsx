@@ -175,37 +175,18 @@ export default function EquisoftLabsProjectPage() {
             <h2 id="prototype-title">We gave the conversation a number.</h2>
             <span>
               Decision ROI turns the feeling of delay into a model people can
-              adjust together. The static view sets the context; the live
-              prototype lets the conversation move.
+              adjust together. The live prototype lets the conversation move.
             </span>
           </div>
 
           <div className={styles.prototypeBoard}>
-            <div className={styles.boardHeader}>
-              <span>Decision ROI / prototype</span>
-              <span>Live model</span>
-            </div>
-            <div className={styles.boardGrid}>
-              <div className={styles.boardPoster}>
-                <Image
-                  src="/equisoft-labs/app-screenshot.jpg"
-                  alt="Static view of the Decision ROI prototype"
-                  width={1200}
-                  height={833}
-                  sizes="(max-width: 780px) 100vw, 44vw"
-                />
-              </div>
-              <div className={styles.boardLive}>
-                <div className={styles.boardLiveLabel}>Try the working flow</div>
-                <iframe
-                  src="https://www.equisoftlabs.com/"
-                  title="Interactive Equisoft Labs Decision ROI prototype"
-                  loading="lazy"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  allow="fullscreen"
-                />
-              </div>
-            </div>
+            <iframe
+              src="https://www.equisoftlabs.com/"
+              title="Interactive Equisoft Labs Decision ROI prototype"
+              loading="lazy"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allow="fullscreen"
+            />
           </div>
         </section>
 
@@ -240,6 +221,28 @@ export default function EquisoftLabsProjectPage() {
                 <span className={styles.inputDescription}>{input.description}</span>
               </li>
             ))}
+            <li className={`${styles.inputCard} ${styles.outputCard}`}>
+              <div className={styles.outputCopy}>
+                <p>Example output</p>
+                <h3>Make the cost visible.</h3>
+                <span>
+                  A shared set of inputs becomes a number the room can react
+                  to, question, and carry forward.
+                </span>
+              </div>
+              <div
+                className={styles.outputResult}
+                aria-label="Example annual cost of waiting: 105,000 dollars"
+              >
+                <span className={styles.outputResultLabel}>
+                  Estimated annual impact
+                </span>
+                <span className={styles.outputAmountGhost} aria-hidden="true">
+                  $105,000
+                </span>
+                <strong className={styles.outputAmount}>$105,000</strong>
+              </div>
+            </li>
           </ol>
         </section>
 
