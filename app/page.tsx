@@ -71,7 +71,7 @@ export default function Home() {
   return (
     <>
       <a className="skip-link" href="#main-content">
-        Skip to selected work
+        Skip to side projects
       </a>
 
       <SiteHeader home />
@@ -89,11 +89,10 @@ export default function Home() {
               <span>and experiences.</span>
             </h1>
             <p className="hero-description">
-              Senior Product Designer at Equisoft in Montreal, working across
-              product strategy, UX, and AI. I turn ambiguous problems into
-              clear product logic and working prototypes—using AI and code to
-              help teams move from a fuzzy question to something useful they
-              can ship.
+              Senior Product Designer at Equisoft in Quebec City, working
+              across product strategy, UX, and AI. I lead 0-to-1 product
+              development—from a fuzzy question to clear product logic,
+              working prototypes, and something useful a team can ship.
             </p>
           </div>
 
@@ -168,7 +167,7 @@ export default function Home() {
           aria-labelledby="applications-title"
         >
           <div className="work-intro">
-            <p className="section-pill">Selected work · 05</p>
+            <p className="section-pill">Side projects · 05</p>
             <h2 id="applications-title">
               <span>Products built</span>
               <span>around clarity.</span>

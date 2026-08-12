@@ -18,7 +18,7 @@ export function SiteHeader({
   home = false,
   tone = "light",
   backHref,
-  backLabel = "Back to selected work",
+  backLabel = "Back to side projects",
 }: {
   home?: boolean;
   tone?: "light" | "dark";
