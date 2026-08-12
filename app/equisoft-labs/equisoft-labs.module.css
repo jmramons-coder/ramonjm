@@ -350,6 +350,16 @@
   height: auto;
 }
 
+.prototypeSceneImage[data-mobile-src] {
+  content: url("/equisoft-labs/elevate-tablet-scene-mobile.png");
+}
+
+@media (min-width: 781px) {
+  .prototypeSceneImage[data-mobile-src] {
+    content: url("/equisoft-labs/elevate-tablet-scene-front.png");
+  }
+}
+
 .prototypeTablet {
   position: absolute;
   top: 21.4%;
@@ -786,19 +796,6 @@
     scroll-snap-align: start;
   }
 
-  .followupPanelC {
-    aspect-ratio: 4 / 5;
-    background-size: 200% 200%;
-    background-position: left bottom;
-  }
-
-  .followupPanelCMobile {
-    aspect-ratio: 4 / 5;
-    background-image: url("/equisoft-labs/elevate-dart-card-mobile.png");
-    background-position: center;
-    background-size: cover;
-  }
-
   .storyQuestion {
     margin-top: 78px;
     padding: 28px 22px;
@@ -819,11 +816,17 @@
   }
 
   .prototypeTablet {
-    top: 21.4%;
-    left: 24.7%;
-    width: 54.6%;
-    height: 50%;
+    top: 16.9%;
+    left: 27.3%;
+    width: 45.4%;
+    height: 58.3%;
     border-radius: 7px;
+  }
+
+  .prototypeTablet iframe {
+    width: 113.64%;
+    height: 113.64%;
+    transform: scale(0.88);
   }
 
   .inputList {

@@ -200,7 +200,7 @@ export default function EquisoftLabsProjectPage() {
               </article>
               <article className={styles.followupCard}>
                 <div
-                  className={`${styles.followupImage} ${styles.followupPanelC} ${styles.followupPanelCMobile}`}
+                  className={`${styles.followupImage} ${styles.followupPanelC}`}
                   role="img"
                   aria-label="Deflated balloon and dart pinned against a small white card"
                 />
@@ -248,6 +248,7 @@ export default function EquisoftLabsProjectPage() {
             <Image
               className={styles.prototypeSceneImage}
               src="/equisoft-labs/elevate-tablet-scene-front.png"
+              data-mobile-src="/equisoft-labs/elevate-tablet-scene-mobile.png"
               alt="Close point-of-view scene of a blank landscape iPad on a thin standing kiosk at the pale blue Elevate booth"
               width={1536}
               height={1024}
