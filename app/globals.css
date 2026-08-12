@@ -128,11 +128,12 @@ main {
 
 .site-header--dark {
   background: transparent;
-  color: #fff;
+  color: var(--ink);
 }
 
 .site-header--dark.is-scrolled {
   background: rgb(7 16 25 / 88%);
+  color: #fff;
 }
 
 .wordmark {
@@ -171,14 +172,19 @@ main {
   transform: translateX(-2px);
 }
 
-.site-header--dark .header-back-link {
+.site-header--dark .header-back-link:hover {
+  background: #fff;
+  color: var(--ink);
+}
+
+.site-header--dark.is-scrolled .header-back-link {
   border-color: rgb(255 255 255 / 22%);
   background: rgb(12 16 20 / 72%);
   color: #fff;
   box-shadow: 0 6px 16px rgb(0 0 0 / 18%);
 }
 
-.site-header--dark .header-back-link:hover {
+.site-header--dark.is-scrolled .header-back-link:hover {
   background: #fff;
   color: var(--ink);
 }
