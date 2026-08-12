@@ -227,27 +227,29 @@ export default function Home() {
                   </span>
                 </Link>
               </div>
-              <div className="equisoft-product-grid">
-                <div className="equisoft-brand-mark" aria-label="Equisoft">
-                  <span className="equisoft-brand-glow" aria-hidden="true" />
-                  <Image
-                    src="/equisoft-pyramid-glass.svg"
-                    alt=""
-                    width={96}
-                    height={96}
-                    sizes="96px"
-                  />
-                  <span>Equisoft</span>
-                </div>
-                {equisoftProducts.map((product) => (
-                  <div className="equisoft-product" key={product.label}>
-                    <span className="equisoft-product-icon" aria-hidden="true">
-                      <HugeiconsIcon icon={product.icon} size={19} strokeWidth={1.7} />
-                    </span>
-                    <strong>{product.label}</strong>
-                    <span>{product.description}</span>
+              <div className="equisoft-product-rail" aria-label="Equisoft product areas">
+                <div className="equisoft-product-grid">
+                  <div className="equisoft-brand-mark" aria-label="Equisoft">
+                    <span className="equisoft-brand-glow" aria-hidden="true" />
+                    <Image
+                      src="/equisoft-pyramid-glass.svg"
+                      alt=""
+                      width={96}
+                      height={96}
+                      sizes="96px"
+                    />
+                    <span>Equisoft</span>
                   </div>
-                ))}
+                  {equisoftProducts.map((product) => (
+                    <div className="equisoft-product" key={product.label}>
+                      <span className="equisoft-product-icon" aria-hidden="true">
+                        <HugeiconsIcon icon={product.icon} size={19} strokeWidth={1.7} />
+                      </span>
+                      <strong>{product.label}</strong>
+                      <span>{product.description}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>

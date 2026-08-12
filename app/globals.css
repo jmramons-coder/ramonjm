@@ -386,8 +386,7 @@ main {
   }
 
   .equisoft-ecosystem {
-    grid-template-columns: 1fr;
-    gap: 24px;
+    display: block;
   }
 
   .cv-drawer-backdrop {
@@ -1034,18 +1033,15 @@ main {
 }
 
 .equisoft-ecosystem {
-  display: grid;
-  max-width: 980px;
+  max-width: 1120px;
   margin-top: 38px;
   padding-top: 18px;
-  grid-template-columns: minmax(180px, 0.42fr) minmax(0, 1fr);
-  gap: 28px;
   border-top: 1px solid var(--line);
 }
 
 .equisoft-ecosystem-intro {
   display: grid;
-  align-content: start;
+  max-width: 470px;
   gap: 12px;
 }
 
@@ -1083,30 +1079,70 @@ main {
 }
 
 .equisoft-product-grid {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 8px;
+  --ecosystem-gap: clamp(26px, 5vw, 72px);
+  display: flex;
+  width: max-content;
+  min-width: 100%;
+  padding: 4px max(0px, var(--page-pad)) 14px 0;
+  gap: var(--ecosystem-gap);
+}
+
+.equisoft-product-rail {
+  position: relative;
+  width: calc(100vw - max(0px, (100vw - var(--max-width)) / 2));
+  max-width: 100vw;
+  margin-top: 24px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+}
+
+.equisoft-product-rail::-webkit-scrollbar {
+  display: none;
+}
+
+.equisoft-product-rail::before,
+.equisoft-product-rail::after {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  width: 30px;
+  pointer-events: none;
+  content: "";
+}
+
+.equisoft-product-rail::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--page) 5%, transparent 100%);
+}
+
+.equisoft-product-rail::after {
+  right: 0;
+  background: linear-gradient(270deg, var(--page) 5%, transparent 100%);
 }
 
 .equisoft-brand-mark,
 .equisoft-product {
   position: relative;
   display: flex;
-  min-height: 142px;
+  width: clamp(124px, 18vw, 168px);
+  min-width: clamp(124px, 18vw, 168px);
+  min-height: 136px;
   overflow: hidden;
   padding: 14px;
   flex-direction: column;
-  justify-content: flex-end;
-  border: 1px solid rgb(14 14 14 / 9%);
-  border-radius: 14px;
-  background: #fff;
+  justify-content: center;
+  scroll-snap-align: start;
 }
 
 .equisoft-brand-mark {
   align-items: center;
   justify-content: center;
   gap: 3px;
-  background: linear-gradient(145deg, #fff 0%, #fff6f5 100%);
+  background: transparent;
   color: #b62c2b;
 }
 
@@ -1141,14 +1177,15 @@ main {
   display: inline-grid;
   width: 32px;
   height: 32px;
-  margin-bottom: auto;
+  margin: 0 auto 12px;
   place-items: center;
-  border-radius: 9px;
-  background: #f0f4f5;
+  border-radius: 10px;
+  background: #edf4f7;
   color: #315e72;
 }
 
 .equisoft-product strong {
+  text-align: center;
   font-size: 1.14rem;
   font-weight: 650;
   letter-spacing: -0.05em;
@@ -1160,11 +1197,11 @@ main {
   font-size: 0.67rem;
   letter-spacing: -0.015em;
   line-height: 1.2;
+  text-align: center;
 }
 
-.equisoft-product:hover,
-.equisoft-brand-mark:hover {
-  border-color: rgb(14 14 14 / 16%);
+.equisoft-product:hover {
+  transform: translateY(-2px);
 }
 
 .workflow-intro h2 > span:first-child {
