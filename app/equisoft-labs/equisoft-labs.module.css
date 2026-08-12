@@ -260,6 +260,63 @@
   padding-top: clamp(112px, 14vw, 210px);
 }
 
+.roleBand {
+  display: grid;
+  margin-top: clamp(48px, 6vw, 78px);
+  padding: 18px 0;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 22px;
+  align-items: center;
+  border-top: 1px solid var(--lab-line);
+  border-bottom: 1px solid var(--lab-line);
+}
+
+.roleHeading {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.roleHeading p {
+  color: var(--lab-blue);
+  font-size: 0.63rem;
+  font-weight: 680;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.roleHeading strong {
+  font-size: 0.86rem;
+  font-weight: 620;
+  letter-spacing: -0.025em;
+}
+
+.roleTags,
+.outputTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.roleTags span,
+.outputTags span {
+  padding: 7px 10px;
+  border: 1px solid #cfe1e9;
+  border-radius: 999px;
+  background: #fff;
+  color: rgb(7 47 68 / 63%);
+  font-size: 0.68rem;
+  letter-spacing: -0.015em;
+  line-height: 1;
+}
+
+.roleTags .roleTagActive {
+  border-color: #74b8d4;
+  background: #e8f5fb;
+  color: #006296;
+  font-weight: 650;
+}
+
 .inputList {
   display: grid;
   margin: clamp(58px, 7vw, 96px) 0 0;
@@ -362,6 +419,7 @@
   grid-template-columns: minmax(0, 0.78fr) minmax(280px, 1.22fr);
   gap: 34px;
   align-items: center;
+  position: relative;
   border-color: #f1c8c7;
   background: linear-gradient(145deg, #fff 0%, #fffafa 58%, #fff2f2 100%);
 }
@@ -393,6 +451,7 @@
 }
 
 .outputResult {
+  min-width: 0;
   display: grid;
   justify-items: end;
   text-align: right;
@@ -415,6 +474,7 @@
   font-weight: 800;
   letter-spacing: -0.08em;
   line-height: 0.92;
+  max-width: 100%;
   white-space: nowrap;
 }
 
@@ -430,8 +490,12 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: 0 4px 14px rgb(252 178 178 / 25%);
-  animation: outputAmountReveal 1200ms cubic-bezier(0.22, 1, 0.36, 1)
-    160ms both;
+}
+
+.outputTags {
+  grid-column: 1 / -1;
+  padding-top: 2px;
+  border-top: 1px solid rgb(181 34 41 / 17%);
 }
 
 @keyframes outputAmountReveal {
@@ -532,6 +596,11 @@
     font-size: 1rem;
   }
 
+  .roleBand {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
   .scene {
     grid-template-columns: 1fr;
     gap: 28px;
@@ -593,6 +662,10 @@
   .outputResult {
     justify-items: start;
     text-align: left;
+  }
+
+  .outputTags {
+    padding-top: 2px;
   }
 
   .outputAmountGhost,

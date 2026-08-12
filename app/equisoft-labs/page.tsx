@@ -3,6 +3,7 @@ import Image from "next/image";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowUpRight01Icon } from "@hugeicons/core-free-icons";
 import { SiteHeader } from "../site-header";
+import { AnimatedOutputAmount } from "./animated-output-amount";
 import styles from "./equisoft-labs.module.css";
 
 export const metadata: Metadata = {
@@ -45,6 +46,15 @@ const decisionInputs = [
     description: "The moments where a lack of context turns into visible cost.",
     level: "Four",
   },
+] as const;
+
+const roleTiers = [
+  "Senior executive",
+  "VP / director",
+  "Operations",
+  "Commissions / compliance",
+  "Underwriting",
+  "Sales agent",
 ] as const;
 
 function VisitProjectLink({ className }: { className: string }) {
@@ -200,6 +210,20 @@ export default function EquisoftLabsProjectPage() {
             </span>
           </div>
 
+          <div className={styles.roleBand}>
+            <div className={styles.roleHeading}>
+              <p>Role</p>
+              <strong>Senior executive</strong>
+            </div>
+            <div className={styles.roleTags} aria-label="Available role tiers">
+              {roleTiers.map((role, index) => (
+                <span className={index === 0 ? styles.roleTagActive : ""} key={role}>
+                  {role}
+                </span>
+              ))}
+            </div>
+          </div>
+
           <ol className={styles.inputList}>
             {decisionInputs.map((input) => (
               <li className={styles.inputCard} key={input.number}>
@@ -237,10 +261,21 @@ export default function EquisoftLabsProjectPage() {
                 <span className={styles.outputResultLabel}>
                   Estimated annual impact
                 </span>
-                <span className={styles.outputAmountGhost} aria-hidden="true">
-                  $105,000
-                </span>
-                <strong className={styles.outputAmount}>$105,000</strong>
+                <AnimatedOutputAmount
+                  className={styles.outputAmountGhost}
+                  value={105000}
+                />
+                <AnimatedOutputAmount
+                  className={styles.outputAmount}
+                  value={105000}
+                />
+              </div>
+              <div className={styles.outputTags} aria-label="Example model state">
+                <span>Senior executive</span>
+                <span>40 h</span>
+                <span>06 people</span>
+                <span>12 critical</span>
+                <span>04 delayed</span>
               </div>
             </li>
           </ol>
