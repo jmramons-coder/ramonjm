@@ -170,6 +170,76 @@ export default function EquisoftLabsProjectPage() {
             </article>
           </div>
 
+          <div className={styles.followupSequence} aria-label="The booth interaction sequence">
+            <div className={styles.followupIntro}>
+              <p>What happened next</p>
+              <span>A small action became a shared product question.</span>
+            </div>
+            <div className={styles.followupGrid}>
+              <article className={styles.followupCard}>
+                <div className={styles.followupImage}>
+                  <Image
+                    src="/equisoft-labs/elevate-dart-pov-consistent.png"
+                    alt="Visitor aiming a dart at the Elevate balloon board"
+                    width={1536}
+                    height={1024}
+                    sizes="(max-width: 780px) 280px, 25vw"
+                  />
+                </div>
+                <div className={styles.followupCopy}>
+                  <span>02</span>
+                  <strong>Throw</strong>
+                </div>
+              </article>
+              <article className={styles.followupCard}>
+                <div className={styles.followupImage}>
+                  <Image
+                    src="/equisoft-labs/elevate-dart-pop.png"
+                    alt="Dart reaching the balloon triangle as one balloon pops"
+                    width={1536}
+                    height={1024}
+                    sizes="(max-width: 780px) 280px, 25vw"
+                  />
+                </div>
+                <div className={styles.followupCopy}>
+                  <span>03</span>
+                  <strong>Pop</strong>
+                </div>
+              </article>
+              <article className={styles.followupCard}>
+                <div className={styles.followupImage}>
+                  <Image
+                    src="/equisoft-labs/elevate-dart-card.png"
+                    alt="Deflated balloon and dart pinned against a small white card"
+                    width={1536}
+                    height={1024}
+                    sizes="(max-width: 780px) 280px, 25vw"
+                  />
+                </div>
+                <div className={styles.followupCopy}>
+                  <span>04</span>
+                  <strong>Pin the prompt</strong>
+                </div>
+              </article>
+              <article className={styles.followupCard}>
+                <div className={styles.followupImage}>
+                  <Image
+                    src="/equisoft-labs/elevate-card-reading.png"
+                    alt="Visitor reading a small white question card beneath the balloon board"
+                    width={1536}
+                    height={1024}
+                    sizes="(max-width: 780px) 280px, 25vw"
+                  />
+                </div>
+                <div className={styles.followupCopy}>
+                  <span>05</span>
+                  <strong>Read the question</strong>
+                  <p>Could a centralized AMS surface the right context before a critical decision?</p>
+                </div>
+              </article>
+            </div>
+          </div>
+
           <div className={styles.storyQuestion}>
             <p>The question we carried forward</p>
             <blockquote>
@@ -280,13 +350,13 @@ export default function EquisoftLabsProjectPage() {
                   className={styles.outputAmount}
                   value={105000}
                 />
-              </div>
-              <div className={styles.outputTags} aria-label="Example model state">
-                <span>Senior executive</span>
-                <span>40 h</span>
-                <span>06 people</span>
-                <span>12 critical</span>
-                <span>04 delayed</span>
+                <div className={styles.outputTags} aria-label="Example model state">
+                  <span>Senior executive</span>
+                  <span>40 h</span>
+                  <span>06 people</span>
+                  <span>12 critical</span>
+                  <span>04 delayed</span>
+                </div>
               </div>
             </li>
           </ol>
