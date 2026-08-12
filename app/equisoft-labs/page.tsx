@@ -145,7 +145,7 @@ export default function EquisoftLabsProjectPage() {
             <article className={`${styles.scene} ${styles.sceneReverse}`}>
               <div className={styles.sceneImage}>
                 <Image
-                  src="/equisoft-labs/elevate-dart-pov-soft.png"
+                  src="/equisoft-labs/elevate-dart-pov-consistent.png"
                   alt="Over-the-shoulder view of a standing visitor aiming a dart at a pale blue balloon wall with a coral triangle"
                   width={1536}
                   height={1024}
