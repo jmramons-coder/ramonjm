@@ -206,7 +206,17 @@ export default function Home() {
             </p>
             <div className="equisoft-ecosystem">
               <div className="equisoft-ecosystem-intro">
-                <p className="equisoft-ecosystem-label">Equisoft ecosystem</p>
+                <p className="equisoft-ecosystem-label">
+                  <Image
+                    className="equisoft-ecosystem-mark"
+                    src="/equisoft-pyramid-glass.svg"
+                    alt=""
+                    width={24}
+                    height={24}
+                    sizes="24px"
+                  />
+                  <span>Equisoft ecosystem</span>
+                </p>
                 <p>
                   Six years designing across fintech, insurance, and AI
                   adoption—moving through the product ecosystem with an
@@ -225,16 +235,6 @@ export default function Home() {
               </div>
               <div className="equisoft-product-rail" aria-label="Equisoft product areas">
                 <div className="equisoft-product-grid">
-                  <div className="equisoft-brand-mark" aria-label="Equisoft">
-                    <Image
-                      src="/equisoft-pyramid-glass.svg"
-                      alt=""
-                      width={96}
-                      height={96}
-                      sizes="96px"
-                    />
-                    <span>Equisoft</span>
-                  </div>
                   {equisoftProducts.map((product) => (
                     <div className="equisoft-product" key={product.label} aria-label={product.label}>
                       <Image
@@ -243,7 +243,7 @@ export default function Home() {
                         alt={product.label}
                         width={1400}
                         height={1400}
-                        sizes="(min-width: 1100px) 160px, (min-width: 760px) 24vw, 36vw"
+                        sizes="(min-width: 1100px) 168px, (min-width: 760px) 24vw, 36vw"
                       />
                       <span className="equisoft-product-description">{product.description}</span>
                     </div>
