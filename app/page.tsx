@@ -12,6 +12,7 @@ import {
 } from "@hugeicons/core-free-icons";
 import { ClientMarquee } from "./client-marquee";
 import { AbeamVideo } from "./abeam/abeam-video";
+import { CvDrawer } from "./cv-drawer";
 
 const featuredApplications = [
   { name: "PushedWorld", slug: "world" },
@@ -80,6 +81,7 @@ export default function Home() {
           Ramon JM
         </a>
         <div className="header-actions">
+          <CvDrawer />
           <a
             className="header-action header-contact"
             href="mailto:jmanuelr.99@gmail.com"
