@@ -118,10 +118,10 @@ export default function EquisoftLabsProjectPage() {
             <article className={styles.scene}>
               <div className={styles.sceneImage}>
                 <Image
-                  src="/equisoft-labs/elevate-booth.png"
-                  alt="People gathered around a blank screen and tablet at a pale blue Elevate booth"
-                  width={1586}
-                  height={992}
+                  src="/equisoft-labs/elevate-booth-soft.png"
+                  alt="Standing visitors gathered around a blank screen and landscape tablet kiosk at a pale blue Elevate booth"
+                  width={1536}
+                  height={1024}
                   sizes="(max-width: 780px) 100vw, 58vw"
                 />
               </div>
