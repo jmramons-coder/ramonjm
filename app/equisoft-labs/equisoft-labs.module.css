@@ -273,9 +273,9 @@
 
 @media (min-width: 781px) {
   .prototypeTablet iframe {
-    width: 150%;
-    height: 150%;
-    transform: scale(0.6667);
+    width: 200%;
+    height: 200%;
+    transform: scale(0.5);
   }
 }
 
