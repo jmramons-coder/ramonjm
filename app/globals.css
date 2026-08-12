@@ -387,6 +387,8 @@ main {
 
   .professional-section {
     display: block;
+    margin-right: var(--page-pad);
+    margin-left: var(--page-pad);
   }
 
   .professional-domain-list {
@@ -394,12 +396,12 @@ main {
   }
 
   .professional-intro h2 {
-    max-width: 9ch;
-    font-size: clamp(2.25rem, 12vw, 3.5rem);
+    max-width: none;
+    font-size: clamp(2.1rem, 10.5vw, 3.5rem);
   }
 
   .professional-intro > p:not(.professional-section-label) {
-    max-width: 32ch;
+    max-width: 42ch;
   }
 
   .professional-domain {
@@ -415,6 +417,12 @@ main {
 
   .professional-domain-description {
     font-size: 0.78rem;
+  }
+
+  .back-to-top-fab {
+    right: 18px;
+    width: 48px;
+    height: 48px;
   }
 
   .cv-drawer-backdrop {
@@ -1078,19 +1086,19 @@ main {
 }
 
 .professional-section {
-  display: grid;
-  max-width: 1120px;
+  display: block;
+  max-width: none;
+  margin-right: var(--page-pad);
+  margin-left: var(--page-pad);
   margin-top: clamp(78px, 10vw, 144px);
   padding-top: 28px;
-  gap: clamp(34px, 6vw, 84px);
-  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
   border-top: 1px solid var(--line);
 }
 
 .professional-intro {
   display: grid;
   align-content: start;
-  max-width: 440px;
+  max-width: 100%;
   gap: 14px;
 }
 
@@ -1129,7 +1137,7 @@ main {
 }
 
 .professional-intro > p:not(.professional-section-label) {
-  max-width: 430px;
+  max-width: 760px;
   color: var(--body);
   font-size: 0.92rem;
   letter-spacing: -0.02em;
@@ -1138,6 +1146,8 @@ main {
 
 .professional-domain-list {
   display: grid;
+  max-width: 100%;
+  margin-top: 42px;
   align-content: start;
   border-top: 1px solid rgb(117 128 139 / 16%);
 }
@@ -1638,6 +1648,7 @@ main {
 }
 
 .site-footer {
+  position: relative;
   width: min(calc(100% - 16px), calc(var(--max-width) - 16px));
   margin: 0 auto 8px;
   padding: 24px 20px 20px;
@@ -1665,9 +1676,31 @@ main {
 }
 
 .back-to-top {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
+  display: none;
+}
+
+.back-to-top-fab {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: 28px;
+  display: inline-grid;
+  width: 52px;
+  height: 52px;
+  place-items: center;
+  border: 1px solid rgb(255 255 255 / 18%);
+  border-radius: 50%;
+  background: #fff;
+  color: var(--ink);
+  box-shadow: 0 12px 28px rgb(14 14 14 / 24%);
+  transform: translateY(-50%);
+  transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.back-to-top-fab:hover {
+  background: var(--acid);
+  color: var(--ink);
+  transform: translateY(calc(-50% - 3px));
 }
 
 .footer-main {

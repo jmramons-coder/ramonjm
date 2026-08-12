@@ -6,7 +6,6 @@ import {
   ArrowRight02Icon,
   ArrowUp01Icon,
   ArrowUpRight01Icon,
-  GithubIcon,
   Linkedin01Icon,
 } from "@hugeicons/core-free-icons";
 import { ClientMarquee } from "./client-marquee";
@@ -522,18 +521,19 @@ export default function Home() {
       </main>
 
       <footer className="site-footer">
+        <a
+          className="back-to-top-fab"
+          href="#main-content"
+          aria-label="Back to top"
+        >
+          <HugeiconsIcon
+            icon={ArrowUp01Icon}
+            size={18}
+            strokeWidth={1.8}
+          />
+        </a>
         <div className="footer-top">
           <p>Ramon JM · Product design, AI &amp; innovation</p>
-          <a className="back-to-top" href="#top">
-            <span>Back to top</span>
-            <span className="link-icon" aria-hidden="true">
-              <HugeiconsIcon
-                icon={ArrowUp01Icon}
-                size={15}
-                strokeWidth={1.8}
-              />
-            </span>
-          </a>
         </div>
         <div className="footer-main">
           <h2>Make the next useful thing.</h2>
@@ -550,15 +550,6 @@ export default function Home() {
                 />
               </span>
               <span>Connect on LinkedIn</span>
-            </ExternalLink>
-            <ExternalLink
-              className="footer-action"
-              href="https://github.com/jmramons-coder"
-            >
-              <span className="link-icon" aria-hidden="true">
-                <HugeiconsIcon icon={GithubIcon} size={18} strokeWidth={1.7} />
-              </span>
-              <span>View the builds on GitHub</span>
             </ExternalLink>
           </div>
         </div>
