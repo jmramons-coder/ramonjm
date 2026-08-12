@@ -3,13 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
-  AiBrain01Icon,
   ArrowRight02Icon,
   ArrowUp01Icon,
   ArrowUpRight01Icon,
-  CloudIcon,
-  CustomerService01Icon,
-  Database02Icon,
   GithubIcon,
   Linkedin01Icon,
 } from "@hugeicons/core-free-icons";
@@ -47,22 +43,22 @@ const equisoftProducts = [
   {
     label: "CRM",
     description: "Relationship workflows",
-    icon: CustomerService01Icon,
+    asset: "/equisoft/crm-glass.png",
   },
   {
     label: "PAS",
     description: "Product configuration",
-    icon: CloudIcon,
+    asset: "/equisoft/pas-glass.png",
   },
   {
     label: "AI",
     description: "Intelligence layers",
-    icon: AiBrain01Icon,
+    asset: "/equisoft/ai-glass.png",
   },
   {
     label: "DIT",
     description: "Data and integration tools",
-    icon: Database02Icon,
+    asset: "/equisoft/dit-glass.png",
   },
 ] as const;
 
@@ -230,7 +226,6 @@ export default function Home() {
               <div className="equisoft-product-rail" aria-label="Equisoft product areas">
                 <div className="equisoft-product-grid">
                   <div className="equisoft-brand-mark" aria-label="Equisoft">
-                    <span className="equisoft-brand-glow" aria-hidden="true" />
                     <Image
                       src="/equisoft-pyramid-glass.svg"
                       alt=""
@@ -241,12 +236,16 @@ export default function Home() {
                     <span>Equisoft</span>
                   </div>
                   {equisoftProducts.map((product) => (
-                    <div className="equisoft-product" key={product.label}>
-                      <span className="equisoft-product-icon" aria-hidden="true">
-                        <HugeiconsIcon icon={product.icon} size={19} strokeWidth={1.7} />
-                      </span>
-                      <strong>{product.label}</strong>
-                      <span>{product.description}</span>
+                    <div className="equisoft-product" key={product.label} aria-label={product.label}>
+                      <Image
+                        className="equisoft-acronym-image"
+                        src={product.asset}
+                        alt={product.label}
+                        width={1800}
+                        height={1100}
+                        sizes="(min-width: 1100px) 180px, (min-width: 760px) 28vw, 42vw"
+                      />
+                      <span className="equisoft-product-description">{product.description}</span>
                     </div>
                   ))}
                 </div>
