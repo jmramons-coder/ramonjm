@@ -46,19 +46,19 @@ const equisoftProducts = [
   },
   {
     label: "PAS",
-    description: "Policy admin system",
+    description: "Policy administration with audit layers",
   },
   {
     label: "AI",
-    description: "Intelligence layers",
+    description: "Intelligence layers and practical AI tools",
   },
   {
     label: "DIT",
-    description: "Digital insurance tool",
+    description: "Middle-office tools for agents and customers",
   },
   {
     label: "CM",
-    description: "Case management",
+    description: "Case management for complex claims and requests",
   },
 ] as const;
 
@@ -433,8 +433,12 @@ export default function Home() {
               <span>behind the builds.</span>
             </h2>
             <p>
-              Six years designing across fintech, insurance, and AI adoption—
-              building clarity across the systems teams rely on every day.
+              I design across fintech and insurance adoption: customer
+              relationships, complex event data and processes with audit layers
+              for policy administration, AI integrated at multiple levels and
+              as a practical tool, middle-office digital insurance tools for
+              agents and customers, and case management for complex claims and
+              requests.
             </p>
             <Link className="work-context-link" href="/equisoft">
               See the professional practice
@@ -447,7 +451,7 @@ export default function Home() {
               </span>
             </Link>
           </div>
-          <div className="professional-domain-grid" aria-label="Equisoft product domains">
+          <div className="professional-domain-list" aria-label="Equisoft product domains">
             {equisoftProducts.map((product) => (
               <div className="professional-domain" key={product.label}>
                 <span className="professional-domain-mark" aria-hidden="true">
