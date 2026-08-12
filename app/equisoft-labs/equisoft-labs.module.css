@@ -271,6 +271,14 @@
   transform-origin: top left;
 }
 
+@media (min-width: 781px) {
+  .prototypeTablet iframe {
+    width: 150%;
+    height: 150%;
+    transform: scale(0.6667);
+  }
+}
+
 .inputsSection {
   padding-top: clamp(112px, 14vw, 210px);
 }
