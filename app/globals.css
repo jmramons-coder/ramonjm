@@ -2094,8 +2094,9 @@ a:focus-visible {
   }
 
   .equisoft-labs-card-calculator {
-    right: 4%;
-    width: 117%;
+    right: 2%;
+    bottom: -8%;
+    width: 82%;
   }
 }
 
