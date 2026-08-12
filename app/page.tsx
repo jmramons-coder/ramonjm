@@ -72,7 +72,7 @@ export default function Home() {
   return (
     <>
       <a className="skip-link" href="#main-content">
-        Skip to side projects
+        Skip to independent builds
       </a>
 
       <SiteHeader home />
@@ -172,7 +172,7 @@ export default function Home() {
           aria-labelledby="applications-title"
         >
           <div className="work-intro">
-            <p className="section-pill">Side projects · 05</p>
+            <p className="section-pill">Independent builds · 05</p>
             <h2 id="applications-title">
               <span>Products built</span>
               <span>around clarity.</span>
@@ -191,6 +191,16 @@ export default function Home() {
                 site shares the product thinking and domain context without
                 exposing protected screens.
               </p>
+              <Link className="work-context-link" href="/equisoft">
+                See how I work across complex products
+                <span className="link-icon" aria-hidden="true">
+                  <HugeiconsIcon
+                    icon={ArrowRight02Icon}
+                    size={16}
+                    strokeWidth={1.8}
+                  />
+                </span>
+              </Link>
             </div>
           </div>
 
