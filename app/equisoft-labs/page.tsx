@@ -200,7 +200,7 @@ export default function EquisoftLabsProjectPage() {
               </article>
               <article className={styles.followupCard}>
                 <div
-                  className={`${styles.followupImage} ${styles.followupPanelC}`}
+                  className={`${styles.followupImage} ${styles.followupPanelC} ${styles.followupPanelCMobile}`}
                   role="img"
                   aria-label="Deflated balloon and dart pinned against a small white card"
                 />

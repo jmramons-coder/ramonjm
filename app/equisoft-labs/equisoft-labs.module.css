@@ -786,6 +786,19 @@
     scroll-snap-align: start;
   }
 
+  .followupPanelC {
+    aspect-ratio: 4 / 5;
+    background-size: 200% 200%;
+    background-position: left bottom;
+  }
+
+  .followupPanelCMobile {
+    aspect-ratio: 4 / 5;
+    background-image: url("/equisoft-labs/elevate-dart-card-mobile.png");
+    background-position: center;
+    background-size: cover;
+  }
+
   .storyQuestion {
     margin-top: 78px;
     padding: 28px 22px;
