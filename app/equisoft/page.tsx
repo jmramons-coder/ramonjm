@@ -52,14 +52,13 @@ export default function EquisoftPracticePage() {
           <div className={styles.heroCopy}>
             <p className={styles.eyebrow}>Confidential enterprise practice</p>
             <h1 id="equisoft-title">
-              <span>Designing clarity</span>
-              <span>inside complex systems.</span>
+              <span>Shared context.</span>
+              <span>Clear decisions.</span>
+              <span>Useful action.</span>
             </h1>
             <p className={styles.summary}>
-              For the last six years at Equisoft, I have worked at the
-              intersection of product strategy, UX, AI, and build—helping turn
-              complex insurance and financial software into clearer tools for
-              the people who depend on it.
+              I design the path from scattered information to a decision people
+              can trust—and an action they can take.
             </p>
             <div className={styles.heroLinks}>
               <a className={styles.primaryLink} href="mailto:jmanuelr.99@gmail.com">
@@ -73,24 +72,20 @@ export default function EquisoftPracticePage() {
             </div>
           </div>
 
-          <div className={styles.systemVisual} aria-label="Abstract map of an enterprise product system">
+          <div className={styles.systemVisual} aria-label="Shared context, decision, and action">
             <div className={styles.systemTopline}>
-              <span>Enterprise product system</span>
-              <span>Sanitized view</span>
+              <span>The throughline</span>
+              <span>0 → 1</span>
             </div>
             <div className={styles.systemMap} aria-hidden="true">
-              <span className={`${styles.node} ${styles.nodeSource}`}>Context</span>
+              <span className={`${styles.node} ${styles.nodeSource}`}>Shared context</span>
               <span className={`${styles.node} ${styles.nodeCore}`}>Decision</span>
               <span className={`${styles.node} ${styles.nodeAction}`}>Action</span>
               <span className={`${styles.line} ${styles.lineOne}`} />
               <span className={`${styles.line} ${styles.lineTwo}`} />
-              <span className={`${styles.line} ${styles.lineThree}`} />
-              <span className={`${styles.pulse} ${styles.pulseOne}`} />
-              <span className={`${styles.pulse} ${styles.pulseTwo}`} />
             </div>
             <p className={styles.systemCaption}>
-              The work is often about making the right context arrive at the
-              right moment.
+              Make the next step obvious.
             </p>
           </div>
         </section>

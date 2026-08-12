@@ -1,11 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { useSyncExternalStore } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
   ArrowLeft02Icon,
   Linkedin01Icon,
+  Mail01Icon,
   SentIcon,
 } from "@hugeicons/core-free-icons";
 import { CvDrawer } from "./cv-drawer";
@@ -34,6 +35,32 @@ export function SiteHeader({
     getScrollState,
     getServerScrollState,
   );
+  const [contactOpen, setContactOpen] = useState(false);
+  const contactRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!contactOpen) {
+      return;
+    }
+
+    const handlePointerDown = (event: PointerEvent) => {
+      if (!contactRef.current?.contains(event.target as Node)) {
+        setContactOpen(false);
+      }
+    };
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setContactOpen(false);
+      }
+    };
+
+    document.addEventListener("pointerdown", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [contactOpen]);
 
   return (
     <header
@@ -61,26 +88,57 @@ export function SiteHeader({
       </div>
       <div className="header-actions">
         <CvDrawer />
-        <a
-          className="header-action header-social"
-          href="https://www.linkedin.com/in/jmanuelr"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="View Ramon JM on LinkedIn (opens in a new tab)"
-          title="LinkedIn"
-        >
-          <HugeiconsIcon icon={Linkedin01Icon} size={17} strokeWidth={1.8} />
-        </a>
-        <a
-          className="header-action header-contact"
-          href="mailto:jmanuelr.99@gmail.com"
-          aria-label="Email Ramon JM at jmanuelr.99@gmail.com"
-        >
-          <span>Contact</span>
-          <span className="header-contact-plane" aria-hidden="true">
-            <HugeiconsIcon icon={SentIcon} size={16} strokeWidth={1.8} />
-          </span>
-        </a>
+        <div className="contact-menu" ref={contactRef}>
+          <button
+            className="header-action header-contact"
+            type="button"
+            aria-expanded={contactOpen}
+            aria-controls="contact-menu-list"
+            onClick={() => setContactOpen((open) => !open)}
+          >
+            <span>Contact</span>
+            <span className="header-contact-plane" aria-hidden="true">
+              <HugeiconsIcon icon={SentIcon} size={16} strokeWidth={1.8} />
+            </span>
+          </button>
+          <div
+            className={`contact-menu-list${contactOpen ? " is-open" : ""}`}
+            id="contact-menu-list"
+            role="menu"
+            aria-hidden={!contactOpen}
+          >
+            <a
+              href="mailto:jmanuelr.99@gmail.com"
+              role="menuitem"
+              tabIndex={contactOpen ? 0 : -1}
+              onClick={() => setContactOpen(false)}
+            >
+              <span className="contact-menu-icon" aria-hidden="true">
+                <HugeiconsIcon icon={Mail01Icon} size={17} strokeWidth={1.8} />
+              </span>
+              <span>
+                <strong>Email</strong>
+                <small>jmanuelr.99@gmail.com</small>
+              </span>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/jmanuelr"
+              target="_blank"
+              rel="noopener noreferrer"
+              role="menuitem"
+              tabIndex={contactOpen ? 0 : -1}
+              onClick={() => setContactOpen(false)}
+            >
+              <span className="contact-menu-icon" aria-hidden="true">
+                <HugeiconsIcon icon={Linkedin01Icon} size={17} strokeWidth={1.8} />
+              </span>
+              <span>
+                <strong>LinkedIn</strong>
+                <small>Connect professionally</small>
+              </span>
+            </a>
+          </div>
+        </div>
       </div>
     </header>
   );
