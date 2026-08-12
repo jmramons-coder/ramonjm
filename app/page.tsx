@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
-  ArrowDown01Icon,
   ArrowRight02Icon,
   ArrowUp01Icon,
   ArrowUpRight01Icon,
@@ -86,40 +85,16 @@ export default function Home() {
             </p>
             <h1 id="page-title">
               <span>I design and build</span>
-              <span>AI-native products.</span>
+              <span>products, services,</span>
+              <span>and experiences.</span>
             </h1>
             <p className="hero-description">
-              I turn ambiguous problems into clear product logic, functional
-              prototypes, and experiences teams can ship—using AI and code to
-              move from idea to signal quickly.
+              Senior Product Designer at Equisoft in Montreal, working across
+              product strategy, UX, and AI. I turn ambiguous problems into
+              clear product logic and working prototypes—using AI and code to
+              help teams move from a fuzzy question to something useful they
+              can ship.
             </p>
-            <a className="primary-action" href="#applications">
-              <span className="action-dot" aria-hidden="true" />
-              See selected work
-              <span className="link-icon" aria-hidden="true">
-                <HugeiconsIcon
-                  icon={ArrowDown01Icon}
-                  size={16}
-                  strokeWidth={1.8}
-                />
-              </span>
-            </a>
-            <div className="hero-profile" id="profile">
-              <div className="hero-profile-heading">
-                <span className="hero-profile-dot" aria-hidden="true" />
-                About me
-              </div>
-              <p>
-                Senior Product Designer at Equisoft, based in Montreal. I
-                design complex workflows and build useful AI products from the
-                first fuzzy question to a clear direction teams can ship.
-              </p>
-              <div className="hero-profile-meta" aria-label="Profile details">
-                <span>Product strategy</span>
-                <span>UX + interaction</span>
-                <span>AI-native prototyping</span>
-              </div>
-            </div>
           </div>
 
           <nav
