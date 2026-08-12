@@ -118,8 +118,8 @@ export default function EquisoftLabsProjectPage() {
             <article className={styles.scene}>
               <div className={styles.sceneImage}>
                 <Image
-                  src="/equisoft-labs/elevate-booth-soft.png"
-                  alt="Standing visitors gathered around a blank screen and landscape tablet kiosk at a pale blue Elevate booth"
+                  src="/equisoft-labs/elevate-booth-wide-soft.png"
+                  alt="Standing visitors gathered around a blank portrait display, landscape tablet kiosk, and balloon dart setup at a pale blue Elevate booth"
                   width={1536}
                   height={1024}
                   sizes="(max-width: 780px) 100vw, 58vw"
@@ -145,10 +145,10 @@ export default function EquisoftLabsProjectPage() {
             <article className={`${styles.scene} ${styles.sceneReverse}`}>
               <div className={styles.sceneImage}>
                 <Image
-                  src="/equisoft-labs/elevate-balloon-wall.png"
-                  alt="Over-the-shoulder view of a dart aimed at a compact pale blue balloon wall with a coral triangle"
-                  width={1568}
-                  height={1003}
+                  src="/equisoft-labs/elevate-dart-pov-soft.png"
+                  alt="Over-the-shoulder view of a standing visitor aiming a dart at a pale blue balloon wall with a coral triangle"
+                  width={1536}
+                  height={1024}
                   sizes="(max-width: 780px) 100vw, 58vw"
                 />
               </div>
@@ -193,10 +193,10 @@ export default function EquisoftLabsProjectPage() {
           <div className={styles.prototypeScene}>
             <Image
               className={styles.prototypeSceneImage}
-              src="/equisoft-labs/elevate-tablet-scene.png"
-              alt="Close point-of-view scene of a blank landscape iPad on a pale blue Elevate booth table"
-              width={1586}
-              height={992}
+              src="/equisoft-labs/elevate-tablet-scene-soft.png"
+              alt="Close point-of-view scene of a blank landscape iPad on a thin standing kiosk at the pale blue Elevate booth"
+              width={1536}
+              height={1024}
               sizes="(max-width: 780px) 100vw, 1180px"
             />
             <div className={styles.prototypeTablet}>
