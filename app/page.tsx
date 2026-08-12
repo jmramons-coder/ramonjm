@@ -50,7 +50,7 @@ const equisoftProducts = [
     icon: CustomerService01Icon,
   },
   {
-    label: "PaaS",
+    label: "PAS",
     description: "Product configuration",
     icon: CloudIcon,
   },
