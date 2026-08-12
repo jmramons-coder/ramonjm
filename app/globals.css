@@ -214,6 +214,35 @@ main {
   transform: translateX(0);
 }
 
+@media (max-width: 759px) {
+  .cv-drawer-backdrop {
+    background: var(--page);
+    backdrop-filter: none;
+  }
+
+  .cv-drawer {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100dvw;
+    height: 100dvh;
+    max-height: 100dvh;
+    border: 0;
+    border-radius: 0;
+    background: var(--page);
+    box-shadow: none;
+    backdrop-filter: none;
+  }
+
+  .cv-drawer-header {
+    padding-top: max(18px, env(safe-area-inset-top));
+  }
+
+  .cv-drawer-scroll {
+    padding-bottom: max(24px, env(safe-area-inset-bottom));
+  }
+}
+
 .cv-drawer-header {
   display: flex;
   padding: 22px 22px 17px;
@@ -429,6 +458,18 @@ main {
 .cv-contact-link:hover {
   background: var(--acid);
   transform: translateY(-2px);
+}
+
+/* On small screens, keep the CV surface edge-to-edge so browser chrome never
+   exposes a different strip of the page above or below the content. */
+@media (max-width: 759px) {
+  .cv-drawer-header {
+    padding: max(18px, env(safe-area-inset-top)) 22px 17px;
+  }
+
+  .cv-drawer-scroll {
+    padding-bottom: max(24px, env(safe-area-inset-bottom));
+  }
 }
 
 .header-action,
