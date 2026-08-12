@@ -447,6 +447,159 @@
   letter-spacing: -0.025em;
 }
 
+.elevateStory {
+  width: min(100%, 1440px);
+  margin: 0 auto;
+  padding: clamp(92px, 12vw, 176px) clamp(20px, 5vw, 72px);
+}
+
+.elevateIntro {
+  max-width: 980px;
+}
+
+.elevateIntro > p,
+.storyCopy > p,
+.storyQuestion > p {
+  color: rgb(0 98 150 / 59%);
+  font-size: 0.68rem;
+  font-weight: 660;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.elevateIntro h2 {
+  max-width: 900px;
+  margin-top: 18px;
+  font-size: clamp(3.7rem, 6.6vw, 7rem);
+  font-weight: 585;
+  letter-spacing: -0.078em;
+  line-height: 0.91;
+}
+
+.elevateIntro > span {
+  display: block;
+  max-width: 720px;
+  margin-top: 26px;
+  color: rgb(7 47 68 / 62%);
+  font-size: clamp(1rem, 1.4vw, 1.18rem);
+  letter-spacing: -0.025em;
+  line-height: 1.5;
+}
+
+.storyGrid {
+  display: grid;
+  margin-top: clamp(58px, 7vw, 96px);
+  grid-template-columns: minmax(0, 1.18fr) minmax(280px, 0.82fr);
+  gap: 12px;
+  align-items: stretch;
+}
+
+.storyVisual {
+  position: relative;
+  display: grid;
+  min-height: 460px;
+  margin: 0;
+  padding: clamp(20px, 3vw, 42px);
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid #d7e8f0;
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 50% 32%, rgb(255 255 255 / 96%), transparent 52%),
+    linear-gradient(145deg, #fff 0%, #f2f9fd 100%);
+}
+
+.storyVisual > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.storyVisual figcaption {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  left: 18px;
+  display: flex;
+  min-height: 64px;
+  padding: 14px 16px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  border: 1px solid rgb(255 255 255 / 88%);
+  border-radius: 14px;
+  background: rgb(255 255 255 / 79%);
+  box-shadow: 0 12px 30px rgb(0 74 113 / 7%);
+  backdrop-filter: blur(14px);
+}
+
+.storyVisual figcaption span {
+  flex: 0 0 auto;
+  color: var(--lab-action);
+  font-size: 0.61rem;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.storyVisual figcaption strong {
+  max-width: 360px;
+  text-align: right;
+  font-size: 0.84rem;
+  font-weight: 570;
+  letter-spacing: -0.025em;
+}
+
+.storyCopy {
+  display: flex;
+  min-height: 360px;
+  padding: clamp(28px, 4vw, 54px);
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid #dfebf1;
+  border-radius: 24px;
+  background: #fff;
+}
+
+.storyCopy h3 {
+  max-width: 480px;
+  margin-top: 16px;
+  font-size: clamp(2rem, 3.5vw, 3.6rem);
+  font-weight: 585;
+  letter-spacing: -0.07em;
+  line-height: 0.95;
+}
+
+.storyCopy > span {
+  display: block;
+  max-width: 450px;
+  margin-top: 22px;
+  color: rgb(7 47 68 / 62%);
+  font-size: 0.95rem;
+  letter-spacing: -0.022em;
+  line-height: 1.55;
+}
+
+.storyQuestion {
+  margin-top: 12px;
+  padding: clamp(30px, 4vw, 58px);
+  border: 1px solid #cfe4ef;
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 88% 12%, rgb(255 255 255 / 88%), transparent 28%),
+    linear-gradient(145deg, #f4fbfe 0%, #e7f4fa 100%);
+}
+
+.storyQuestion blockquote {
+  max-width: 1080px;
+  margin: 18px 0 0;
+  font-size: clamp(2.25rem, 4.4vw, 5rem);
+  font-weight: 585;
+  letter-spacing: -0.075em;
+  line-height: 0.95;
+}
+
 .vision {
   width: min(calc(100% - 32px), 1500px);
   margin: 0 auto;
@@ -613,6 +766,19 @@
     grid-template-columns: 1fr;
   }
 
+  .storyGrid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .storyVisual {
+    min-height: 380px;
+  }
+
+  .storyCopy {
+    min-height: auto;
+  }
+
   .inputsLayout {
     gap: 10px;
   }
@@ -726,6 +892,52 @@
 
   .inputsLayout {
     margin-top: 48px;
+  }
+
+  .elevateStory {
+    padding: 96px 18px;
+  }
+
+  .elevateIntro h2 {
+    font-size: clamp(3.1rem, 14vw, 4.65rem);
+  }
+
+  .storyVisual {
+    min-height: 320px;
+    padding: 18px;
+    border-radius: 19px;
+  }
+
+  .storyVisual figcaption {
+    right: 12px;
+    bottom: 12px;
+    left: 12px;
+    padding: 12px;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .storyVisual figcaption strong {
+    text-align: left;
+  }
+
+  .storyCopy {
+    padding: 24px;
+    border-radius: 19px;
+  }
+
+  .storyCopy h3 {
+    font-size: clamp(2.2rem, 10vw, 3.5rem);
+  }
+
+  .storyQuestion {
+    padding: 26px 22px;
+    border-radius: 19px;
+  }
+
+  .storyQuestion blockquote {
+    font-size: clamp(2rem, 10vw, 3.5rem);
   }
 
   .inputList li {
