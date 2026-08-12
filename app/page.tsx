@@ -42,11 +42,11 @@ const workflowSteps = [
 const equisoftProducts = [
   {
     label: "CRM",
-    description: "Relationship workflows",
+    description: "Customer relationship management",
   },
   {
     label: "PAS",
-    description: "Product configuration",
+    description: "Policy admin system",
   },
   {
     label: "AI",
@@ -54,7 +54,11 @@ const equisoftProducts = [
   },
   {
     label: "DIT",
-    description: "Data and integration tools",
+    description: "Digital insurance tool",
+  },
+  {
+    label: "CM",
+    description: "Case management",
   },
 ] as const;
 
