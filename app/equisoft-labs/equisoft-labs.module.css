@@ -181,139 +181,22 @@
 }
 
 .followupGrid {
-  display: grid;
-  margin-top: 18px;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
+  display: none;
 }
 
-.followupCard {
-  min-width: 0;
-  overflow: hidden;
+.followupSingleCard {
+  width: min(100%, 900px);
+  margin-top: 18px;
   border: 1px solid var(--lab-line);
   border-radius: 18px;
   background: #fff;
-}
-
-.followupImage {
-  position: relative;
   overflow: hidden;
-  aspect-ratio: 3 / 2;
-  background-color: var(--lab-pale);
-  background-image: url("/equisoft-labs/elevate-sequence-master-roi-style.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
 }
 
-.followupPanel {
-  isolation: isolate;
-}
-
-.sequenceCharacter {
-  position: absolute;
-  z-index: 2;
-  bottom: -10%;
-  left: 4%;
-  width: 35%;
+.followupSingleImage {
+  display: block;
+  width: 100%;
   height: auto;
-  opacity: 0.96;
-  filter: saturate(0.86) hue-rotate(162deg) brightness(1.14);
-}
-
-.sequenceDart {
-  position: absolute;
-  z-index: 3;
-  top: 44%;
-  left: 44%;
-  width: 17%;
-  height: 2px;
-  background: #2e8dbf;
-  transform: rotate(-8deg);
-  transform-origin: right center;
-}
-
-.sequenceDart::before {
-  position: absolute;
-  top: -4px;
-  left: 0;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #2e8dbf;
-  content: "";
-}
-
-.sequenceDart::after {
-  position: absolute;
-  top: -3px;
-  right: -3px;
-  border-top: 4px solid transparent;
-  border-bottom: 4px solid transparent;
-  border-left: 7px solid #2e8dbf;
-  content: "";
-}
-
-.sequenceTargetMask {
-  position: absolute;
-  z-index: 3;
-  top: 42.2%;
-  left: 64.6%;
-  width: 3.9%;
-  height: 7.8%;
-  border-radius: 50%;
-  background: #eaf5fb;
-}
-
-.sequenceBurst {
-  position: absolute;
-  z-index: 4;
-  top: 45.2%;
-  left: 65.3%;
-  width: 2.5%;
-  aspect-ratio: 1;
-  border: 1px solid #8ab6cd;
-  border-radius: 50%;
-  background: #f5fbfe;
-  box-shadow: 0 0 0 3px #f5fbfe;
-}
-
-.sequenceNote {
-  position: absolute;
-  z-index: 5;
-  top: 53.2%;
-  left: 64.5%;
-  width: 4.2%;
-  height: 6.1%;
-  border: 1px solid #8ab6cd;
-  border-radius: 2px;
-  background: #fff;
-  box-shadow: 0 2px 0 rgb(7 47 68 / 8%);
-}
-
-.sequenceNote::before {
-  position: absolute;
-  top: -4px;
-  left: 50%;
-  width: 4px;
-  height: 4px;
-  border: 1px solid #2e8dbf;
-  border-radius: 50%;
-  background: #fff;
-  content: "";
-  transform: translateX(-50%);
-}
-
-.sequenceCharacterReadOne {
-  left: 2%;
-  width: 29%;
-}
-
-.sequenceCharacterReadTwo {
-  left: 19%;
-  width: 27%;
-  opacity: 0.84;
-  transform: scaleX(-1);
 }
 
 .followupCopy {
@@ -861,16 +744,6 @@
   .followupIntro span {
     display: block;
     margin-top: 8px;
-  }
-
-  .followupGrid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 14px;
-  }
-
-  .followupCard {
-    width: 100%;
   }
 
   .storyQuestion {
