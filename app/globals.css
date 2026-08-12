@@ -786,17 +786,17 @@ main {
   padding: 0;
 }
 
-.app-icon--equisoft-labs .app-icon-image--equisoft-persona {
-  width: 108%;
-  height: 108%;
+.app-icon--equisoft-labs .app-icon-image--roi-calculator {
+  width: 118%;
+  height: 118%;
   max-width: none;
   object-fit: contain;
   object-position: center;
   filter: drop-shadow(0 3px 4px rgb(0 72 111 / 12%));
-  animation: roi-persona-in 650ms cubic-bezier(0.22, 1, 0.36, 1) 180ms both;
+  animation: roi-calculator-in 650ms cubic-bezier(0.22, 1, 0.36, 1) 180ms both;
 }
 
-@keyframes roi-persona-in {
+@keyframes roi-calculator-in {
   from {
     opacity: 0;
     transform: translateY(6px) scale(0.92);
@@ -809,7 +809,7 @@ main {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .app-icon--equisoft-labs .app-icon-image--equisoft-persona {
+  .app-icon--equisoft-labs .app-icon-image--roi-calculator {
     animation: none;
     transform: translateY(1px);
   }

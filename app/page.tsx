@@ -144,11 +144,11 @@ export default function Home() {
                           />
                         ) : (
                           <Image
-                            className="app-icon-image app-icon-image--equisoft-persona"
-                            src="/equisoft-labs/persona.png"
+                            className="app-icon-image app-icon-image--roi-calculator"
+                            src="/equisoft-labs/roi-calculator.png"
                             alt=""
-                            width={700}
-                            height={700}
+                            width={1254}
+                            height={1254}
                             sizes="(min-width: 760px) 62px, 46px"
                           />
                         )}
