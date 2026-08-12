@@ -1,0 +1,24 @@
+<svg width="160" height="160" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="equisoft-glass-red" x1="4" y1="3" x2="28" y2="30" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF8278"/>
+      <stop offset="0.42" stop-color="#FF4338"/>
+      <stop offset="1" stop-color="#C92725"/>
+    </linearGradient>
+    <linearGradient id="equisoft-glass-shine" x1="6" y1="4" x2="24" y2="29" gradientUnits="userSpaceOnUse">
+      <stop stop-color="white" stop-opacity="0.72"/>
+      <stop offset="0.44" stop-color="white" stop-opacity="0.08"/>
+      <stop offset="1" stop-color="#7D141B" stop-opacity="0.2"/>
+    </linearGradient>
+    <filter id="equisoft-glass-shadow" x="-20%" y="-20%" width="140%" height="150%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="1.8" stdDeviation="1.5" flood-color="#A81E26" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+  <g filter="url(#equisoft-glass-shadow)">
+    <path fill="url(#equisoft-glass-red)" d="M15.359 4.848v8.029h-4.547l-1.66 2.822h12.345L15.359 4.848Z"/>
+    <path fill="url(#equisoft-glass-red)" d="M15.359 25.306v2.831H1.666L0 30.968h30.31l-3.208-5.662H15.359Z"/>
+    <path fill="url(#equisoft-glass-red)" d="M22.592 17.663h-7.233v2.84H6.335l-1.67 2.82h21.153l-3.226-5.66Z"/>
+    <path fill="url(#equisoft-glass-shine)" opacity="0.58" d="M15.36 4.848v8.029h-4.548l-1.66 2.822h12.345L15.36 4.848Z"/>
+    <path fill="url(#equisoft-glass-shine)" opacity="0.42" d="M15.359 17.663h7.233l3.226 5.66H4.665l1.67-2.82h9.024v-2.84Z"/>
+  </g>
+</svg>

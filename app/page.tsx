@@ -3,9 +3,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
+  AiBrain01Icon,
   ArrowRight02Icon,
   ArrowUp01Icon,
   ArrowUpRight01Icon,
+  CloudIcon,
+  CustomerService01Icon,
+  Database02Icon,
   GithubIcon,
   Linkedin01Icon,
 } from "@hugeicons/core-free-icons";
@@ -36,6 +40,29 @@ const workflowSteps = [
     title: "Shape what ships",
     description:
       "Work with product and engineering to test the signal, refine the experience, and turn a promising prototype into a clear direction for delivery.",
+  },
+] as const;
+
+const equisoftProducts = [
+  {
+    label: "CRM",
+    description: "Relationship workflows",
+    icon: CustomerService01Icon,
+  },
+  {
+    label: "PaaS",
+    description: "Product configuration",
+    icon: CloudIcon,
+  },
+  {
+    label: "AI",
+    description: "Intelligence layers",
+    icon: AiBrain01Icon,
+  },
+  {
+    label: "DIT",
+    description: "Data and integration tools",
+    icon: Database02Icon,
   },
 ] as const;
 
@@ -181,26 +208,47 @@ export default function Home() {
               Independent products across AI, security, insurance, crypto, and
               fitness—built to make the thinking tangible.
             </p>
-            <div className="work-context">
-              <p className="work-context-label">Confidential enterprise practice</p>
-              <p>
-                For the last six years at Equisoft, I have worked on complex
-                insurance and financial software: policy administration,
-                agent-tech integrations, data tools, CRMs, workbenches, and
-                internal products. Much of that work is confidential, so this
-                site shares the product thinking and domain context without
-                exposing protected screens.
-              </p>
-              <Link className="work-context-link" href="/equisoft">
-                See how I work across complex products
-                <span className="link-icon" aria-hidden="true">
-                  <HugeiconsIcon
-                    icon={ArrowRight02Icon}
-                    size={16}
-                    strokeWidth={1.8}
+            <div className="equisoft-ecosystem">
+              <div className="equisoft-ecosystem-intro">
+                <p className="equisoft-ecosystem-label">Equisoft ecosystem</p>
+                <p>
+                  Six years designing across fintech, insurance, and AI
+                  adoption—moving through the product ecosystem with an
+                  AI-enhanced practice.
+                </p>
+                <Link className="work-context-link" href="/equisoft">
+                  See the product ecosystem
+                  <span className="link-icon" aria-hidden="true">
+                    <HugeiconsIcon
+                      icon={ArrowRight02Icon}
+                      size={16}
+                      strokeWidth={1.8}
+                    />
+                  </span>
+                </Link>
+              </div>
+              <div className="equisoft-product-grid">
+                <div className="equisoft-brand-mark" aria-label="Equisoft">
+                  <span className="equisoft-brand-glow" aria-hidden="true" />
+                  <Image
+                    src="/equisoft-pyramid-glass.svg"
+                    alt=""
+                    width={96}
+                    height={96}
+                    sizes="96px"
                   />
-                </span>
-              </Link>
+                  <span>Equisoft</span>
+                </div>
+                {equisoftProducts.map((product) => (
+                  <div className="equisoft-product" key={product.label}>
+                    <span className="equisoft-product-icon" aria-hidden="true">
+                      <HugeiconsIcon icon={product.icon} size={19} strokeWidth={1.7} />
+                    </span>
+                    <strong>{product.label}</strong>
+                    <span>{product.description}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
