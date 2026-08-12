@@ -144,7 +144,7 @@ export default function Home() {
                         ) : (
                           <Image
                             className="app-icon-image app-icon-image--roi-calculator"
-                            src="/equisoft-labs/roi-calculator.png"
+                            src="/equisoft-labs/roi-calculator-hq.png"
                             alt=""
                             width={1254}
                             height={1254}
@@ -363,11 +363,11 @@ export default function Home() {
                     <span>Decision intelligence for insurance.</span>
                   </div>
                   <Image
-                    className="equisoft-labs-card-persona"
-                    src="/equisoft-labs/persona.png"
+                    className="equisoft-labs-card-calculator"
+                    src="/equisoft-labs/roi-calculator-hq.png"
                     alt=""
-                    width={700}
-                    height={700}
+                    width={1254}
+                    height={1254}
                     sizes="(max-width: 759px) 66vw, (max-width: 1099px) 40vw, (max-width: 1199px) 19vw, 15vw"
                   />
                 </div>

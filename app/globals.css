@@ -2001,7 +2001,7 @@ a:focus-visible {
   line-height: 1.35;
 }
 
-.equisoft-labs-card-persona {
+.equisoft-labs-card-calculator {
   position: absolute;
   z-index: 2;
   right: -7%;
@@ -2093,7 +2093,7 @@ a:focus-visible {
     font-size: clamp(2.05rem, 3.4vw, 3.45rem);
   }
 
-  .equisoft-labs-card-persona {
+  .equisoft-labs-card-calculator {
     width: 78%;
   }
 }
