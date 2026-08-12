@@ -400,7 +400,7 @@ main {
     font-size: clamp(2.1rem, 10.5vw, 3.5rem);
   }
 
-  .professional-intro > p:not(.professional-section-label) {
+  .professional-intro > p {
     max-width: 42ch;
   }
 
@@ -1068,29 +1068,13 @@ main {
   line-height: 1.45;
 }
 
-.work-context-link {
-  display: inline-flex;
-  width: fit-content;
-  margin-top: 2px;
-  align-items: center;
-  gap: 8px;
-  color: var(--ink);
-  font-size: 0.78rem;
-  font-weight: 620;
-  letter-spacing: -0.02em;
-}
-
-.work-context-link:hover {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
 .professional-section {
   display: block;
   max-width: none;
   margin-right: var(--page-pad);
   margin-left: var(--page-pad);
   margin-top: clamp(78px, 10vw, 144px);
+  margin-bottom: clamp(96px, 12vw, 156px);
   padding-top: 28px;
   border-top: 1px solid var(--line);
 }
@@ -1100,25 +1084,6 @@ main {
   align-content: start;
   max-width: 100%;
   gap: 14px;
-}
-
-.professional-section-label {
-  display: inline-flex;
-  width: fit-content;
-  align-items: center;
-  gap: 7px;
-  color: var(--muted);
-  font-size: 0.72rem;
-  font-weight: 650;
-  letter-spacing: 0.01em;
-  line-height: 1.2;
-}
-
-.professional-section-mark {
-  display: block;
-  width: 18px;
-  height: 18px;
-  filter: grayscale(1) saturate(0.2) opacity(0.72);
 }
 
 .professional-intro h2 {
@@ -1136,7 +1101,7 @@ main {
   color: var(--muted);
 }
 
-.professional-intro > p:not(.professional-section-label) {
+.professional-intro > p {
   max-width: none;
   color: var(--body);
   font-size: 0.92rem;
@@ -2930,21 +2895,12 @@ a:focus-visible {
 @media (max-width: 759px) {
   .professional-section {
     width: auto;
-    margin: 68px var(--page-pad) 0;
+    margin: 68px var(--page-pad) 96px;
     padding-top: 22px;
   }
 
   .professional-intro {
     gap: 11px;
-  }
-
-  .professional-section-label {
-    font-size: 0.66rem;
-  }
-
-  .professional-section-mark {
-    width: 16px;
-    height: 16px;
   }
 
   .professional-intro h2 {
@@ -2954,7 +2910,7 @@ a:focus-visible {
     line-height: 0.95;
   }
 
-  .professional-intro > p:not(.professional-section-label) {
+  .professional-intro > p {
     max-width: none;
     font-size: 0.88rem;
     line-height: 1.48;

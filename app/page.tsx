@@ -41,19 +41,19 @@ const workflowSteps = [
 const equisoftProducts = [
   {
     label: "CRM",
-    description: "Customer relationship management",
+    description: "Customer relationship and distribution workbenches",
   },
   {
     label: "PAS",
-    description: "Policy administration with audit layers",
+    description: "Policy administration, product configuration, and audit layers",
   },
   {
     label: "AI",
-    description: "Intelligence layers and practical AI tools",
+    description: "Embedded intelligence and agentic workflows",
   },
   {
     label: "DIT",
-    description: "Middle-office tools for agents and customers",
+    description: "Digital insurance tools for agents and customers",
   },
   {
     label: "CM",
@@ -416,39 +416,18 @@ export default function Home() {
 
         <section className="professional-section" aria-labelledby="professional-title">
           <div className="professional-intro">
-            <p className="professional-section-label">
-              <Image
-                className="professional-section-mark"
-                src="/equisoft-pyramid-glass.svg"
-                alt=""
-                width={24}
-                height={24}
-                sizes="18px"
-              />
-              <span>Equisoft · professional practice</span>
-            </p>
             <h2 id="professional-title">
-              <span>Product domains</span>
-              <span>behind the builds.</span>
+              <span>Equisoft</span>
+              <span>Fintech &amp; insurance.</span>
             </h2>
             <p>
-              I design across fintech and insurance adoption: customer
-              relationships, complex event data and processes with audit layers
-              for policy administration, AI integrated at multiple levels and
-              as a practical tool, middle-office digital insurance tools for
-              agents and customers, and case management for complex claims and
-              requests.
+              I work across fintech and insurance products from discovery
+              through delivery, shaping complex, data-heavy systems with deep
+              UI: configuration interfaces, management workbenches, complex
+              forms, and multi-stage processes. I have led an AI committee and
+              partnered with multiple teams to integrate AI and agentic
+              capabilities into insurance software and finance operations.
             </p>
-            <Link className="work-context-link" href="/equisoft">
-              See the professional practice
-              <span className="link-icon" aria-hidden="true">
-                <HugeiconsIcon
-                  icon={ArrowRight02Icon}
-                  size={16}
-                  strokeWidth={1.8}
-                />
-              </span>
-            </Link>
           </div>
           <div className="professional-domain-list" aria-label="Equisoft product domains">
             {equisoftProducts.map((product) => (
