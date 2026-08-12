@@ -241,9 +241,9 @@ export default function Home() {
                         className="equisoft-acronym-image"
                         src={product.asset}
                         alt={product.label}
-                        width={1800}
-                        height={1100}
-                        sizes="(min-width: 1100px) 180px, (min-width: 760px) 28vw, 42vw"
+                        width={1400}
+                        height={1400}
+                        sizes="(min-width: 1100px) 160px, (min-width: 760px) 24vw, 36vw"
                       />
                       <span className="equisoft-product-description">{product.description}</span>
                     </div>

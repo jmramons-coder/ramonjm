@@ -1088,7 +1088,7 @@ main {
   min-width: 0;
   padding: 6px 0 18px;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: clamp(12px, 2.8vw, 28px);
+  gap: clamp(14px, 3vw, 30px);
 }
 
 .equisoft-product-rail {
@@ -1103,7 +1103,7 @@ main {
   display: flex;
   width: 100%;
   min-width: 0;
-  min-height: 148px;
+  min-height: 156px;
   overflow: visible;
   padding: 6px;
   flex-direction: column;
@@ -1113,7 +1113,7 @@ main {
 .equisoft-brand-mark {
   align-items: center;
   justify-content: center;
-  gap: 3px;
+  gap: 6px;
   background: transparent;
   color: #b62c2b;
 }
@@ -1121,9 +1121,16 @@ main {
 .equisoft-brand-mark img {
   position: relative;
   z-index: 1;
-  width: clamp(86px, 8vw, 112px);
-  height: clamp(86px, 8vw, 112px);
-  filter: drop-shadow(0 12px 15px rgb(158 27 30 / 18%));
+  width: clamp(108px, 9vw, 132px);
+  height: clamp(108px, 9vw, 132px);
+  padding: 16px;
+  border: 1px solid rgb(255 255 255 / 82%);
+  border-radius: 24px;
+  background: linear-gradient(145deg, rgb(255 236 234 / 92%), rgb(228 88 83 / 86%));
+  box-shadow:
+    0 10px 16px rgb(158 27 30 / 13%),
+    inset 0 1px 0 rgb(255 255 255 / 76%),
+    inset 0 -8px 14px rgb(150 27 30 / 10%);
 }
 
 .equisoft-brand-mark > span:last-child {
@@ -1136,12 +1143,12 @@ main {
 
 .equisoft-acronym-image {
   display: block;
-  width: min(100%, 188px);
+  width: min(100%, 164px);
   height: auto;
   margin: 0 auto;
   object-fit: contain;
-  filter: drop-shadow(0 14px 16px rgb(116 24 28 / 15%));
-  transform: translateY(-2px);
+  filter: drop-shadow(0 10px 14px rgb(116 24 28 / 13%));
+  transform: translateY(-1px);
   transition: transform 220ms ease, filter 220ms ease;
 }
 
@@ -1155,8 +1162,8 @@ main {
 }
 
 .equisoft-product:hover .equisoft-acronym-image {
-  filter: drop-shadow(0 18px 22px rgb(116 24 28 / 22%));
-  transform: translateY(-5px) scale(1.025);
+  filter: drop-shadow(0 13px 17px rgb(116 24 28 / 18%));
+  transform: translateY(-3px) scale(1.02);
 }
 
 @media (min-width: 760px) and (max-width: 1099px) {
