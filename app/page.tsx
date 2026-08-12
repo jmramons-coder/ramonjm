@@ -80,9 +80,6 @@ export default function Home() {
           Ramon JM
         </a>
         <div className="header-actions">
-          <a className="header-cv" href="#profile" aria-label="Read profile">
-            Profile
-          </a>
           <a
             className="header-action header-contact"
             href="mailto:jmanuelr.99@gmail.com"
