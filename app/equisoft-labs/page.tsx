@@ -178,47 +178,68 @@ export default function EquisoftLabsProjectPage() {
             <div className={styles.followupGrid}>
               <article className={styles.followupCard}>
                 <div
-                  className={`${styles.followupImage} ${styles.followupPanelA}`}
+                  className={`${styles.followupImage} ${styles.followupPanel} ${styles.followupPanelThrow}`}
                   role="img"
-                  aria-label="Visitor aiming a dart at the Elevate balloon board"
-                />
+                  aria-label="Throw: a dart is aimed at the center balloon"
+                >
+                  <Image
+                    className={styles.sequenceCharacter}
+                    src="/equisoft-labs/persona.png"
+                    alt=""
+                    aria-hidden="true"
+                    width={700}
+                    height={700}
+                  />
+                  <span className={styles.sequenceDart} aria-hidden="true" />
+                </div>
                 <div className={styles.followupCopy}>
-                  <span>02</span>
+                  <span>01</span>
                   <strong>Throw</strong>
                 </div>
               </article>
               <article className={styles.followupCard}>
                 <div
-                  className={`${styles.followupImage} ${styles.followupPanelB}`}
+                  className={`${styles.followupImage} ${styles.followupPanel} ${styles.followupPanelPop}`}
                   role="img"
-                  aria-label="Dart reaching the balloon triangle as one balloon pops"
-                />
+                  aria-label="Pop: the center balloon is gone"
+                >
+                  <span className={styles.sequenceTargetMask} aria-hidden="true" />
+                  <span className={styles.sequenceBurst} aria-hidden="true" />
+                </div>
                 <div className={styles.followupCopy}>
-                  <span>03</span>
+                  <span>02</span>
                   <strong>Pop</strong>
                 </div>
               </article>
               <article className={styles.followupCard}>
                 <div
-                  className={`${styles.followupImage} ${styles.followupPanelC}`}
+                  className={`${styles.followupImage} ${styles.followupPanel} ${styles.followupPanelRead}`}
                   role="img"
-                  aria-label="Deflated balloon and dart pinned against a small white card"
-                />
-                <div className={styles.followupCopy}>
-                  <span>04</span>
-                  <strong>Pin the prompt</strong>
+                  aria-label="Read: a small note sits directly below the popped center position"
+                >
+                  <span className={styles.sequenceTargetMask} aria-hidden="true" />
+                  <span className={styles.sequenceBurst} aria-hidden="true" />
+                  <span className={styles.sequenceNote} aria-hidden="true" />
+                  <Image
+                    className={`${styles.sequenceCharacter} ${styles.sequenceCharacterReadOne}`}
+                    src="/equisoft-labs/persona.png"
+                    alt=""
+                    aria-hidden="true"
+                    width={700}
+                    height={700}
+                  />
+                  <Image
+                    className={`${styles.sequenceCharacter} ${styles.sequenceCharacterReadTwo}`}
+                    src="/equisoft-labs/persona.png"
+                    alt=""
+                    aria-hidden="true"
+                    width={700}
+                    height={700}
+                  />
                 </div>
-              </article>
-              <article className={styles.followupCard}>
-                <div
-                  className={`${styles.followupImage} ${styles.followupPanelD}`}
-                  role="img"
-                  aria-label="Visitor reading a small white question card beneath the balloon board"
-                />
                 <div className={styles.followupCopy}>
-                  <span>05</span>
-                  <strong>Read the question</strong>
-                  <p>Could a centralized AMS surface the right context before a critical decision?</p>
+                  <span>03</span>
+                  <strong>Read</strong>
                 </div>
               </article>
             </div>
