@@ -4,6 +4,7 @@
   --lab-ice: #e9f4fb;
   --lab-line: #c2dbe8;
   --lab-ink: #072f44;
+  position: relative;
   max-width: none;
   min-height: 100svh;
   overflow: hidden;

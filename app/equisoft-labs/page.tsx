@@ -7,6 +7,7 @@ import {
   ArrowUpRight01Icon,
 } from "@hugeicons/core-free-icons";
 import { InteractivePreview } from "../interactive-preview";
+import { SiteHeader } from "../site-header";
 import styles from "./equisoft-labs.module.css";
 
 export const metadata: Metadata = {
@@ -87,8 +88,10 @@ function VisitProjectLink({ className }: { className: string }) {
 
 export default function EquisoftLabsProjectPage() {
   return (
-    <main className={styles.page}>
-      <header className={styles.header}>
+    <>
+      <SiteHeader />
+      <main className={styles.page}>
+        <div className="project-page-top">
         <Link className={styles.backLink} href="/#applications">
           <HugeiconsIcon
             icon={ArrowLeft02Icon}
@@ -98,8 +101,7 @@ export default function EquisoftLabsProjectPage() {
           />
           <span>Selected work</span>
         </Link>
-        <VisitProjectLink className={styles.headerLink} />
-      </header>
+        </div>
 
       <section className={styles.hero} aria-labelledby="equisoft-labs-title">
         <span className={styles.heroGlow} aria-hidden="true" />
@@ -255,6 +257,7 @@ export default function EquisoftLabsProjectPage() {
           <VisitProjectLink className={styles.closingLink} />
         </div>
       </section>
-    </main>
+      </main>
+    </>
   );
 }

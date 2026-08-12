@@ -8,11 +8,10 @@ import {
   ArrowUp01Icon,
   ArrowUpRight01Icon,
   GithubIcon,
-  SentIcon,
 } from "@hugeicons/core-free-icons";
 import { ClientMarquee } from "./client-marquee";
 import { AbeamVideo } from "./abeam/abeam-video";
-import { CvDrawer } from "./cv-drawer";
+import { SiteHeader } from "./site-header";
 
 const featuredApplications = [
   { name: "PushedWorld", slug: "world" },
@@ -76,24 +75,7 @@ export default function Home() {
         Skip to selected work
       </a>
 
-      <header className="site-header" id="top">
-        <a className="wordmark" href="#top" aria-label="Ramon JM, home">
-          Ramon JM
-        </a>
-        <div className="header-actions">
-          <CvDrawer />
-          <a
-            className="header-action header-contact"
-            href="mailto:jmanuelr.99@gmail.com"
-            aria-label="Email Ramon JM at jmanuelr.99@gmail.com"
-          >
-            <span>Contact</span>
-            <span className="header-contact-plane" aria-hidden="true">
-              <HugeiconsIcon icon={SentIcon} size={16} strokeWidth={1.8} />
-            </span>
-          </a>
-        </div>
-      </header>
+      <SiteHeader home />
 
       <main id="main-content" tabIndex={-1}>
         <section className="hero" aria-labelledby="page-title">

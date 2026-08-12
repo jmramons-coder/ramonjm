@@ -95,11 +95,21 @@ main {
 }
 
 .site-header {
+  position: sticky;
+  z-index: 70;
+  top: 0;
   display: flex;
   min-height: 76px;
   padding: 16px var(--page-pad);
   align-items: flex-start;
   justify-content: space-between;
+  background: rgb(247 247 247 / 78%);
+  backdrop-filter: blur(14px) saturate(120%);
+}
+
+.site-header--dark {
+  background: rgb(7 16 25 / 78%);
+  color: #fff;
 }
 
 .wordmark {
@@ -454,6 +464,22 @@ main {
 .header-contact:hover .header-contact-plane {
   background: var(--orange);
   transform: translate(2px, -2px) rotate(-4deg);
+}
+
+.project-page-top {
+  position: absolute;
+  z-index: 25;
+  top: 16px;
+  left: 50%;
+  display: flex;
+  width: min(100%, var(--max-width));
+  padding: 0 var(--page-pad);
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+.project-page-top > * {
+  pointer-events: auto;
 }
 
 #main-content:focus {

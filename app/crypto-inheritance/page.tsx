@@ -7,6 +7,7 @@ import {
   ArrowUpRight01Icon,
 } from "@hugeicons/core-free-icons";
 import { InteractivePreview } from "../interactive-preview";
+import { SiteHeader } from "../site-header";
 import styles from "./crypto-inheritance.module.css";
 
 export const metadata: Metadata = {
@@ -18,8 +19,10 @@ export const metadata: Metadata = {
 
 export default function CryptoInheritanceProjectPage() {
   return (
-    <main className={styles.page}>
-      <header className={styles.header}>
+    <>
+      <SiteHeader />
+      <main className={styles.page}>
+        <div className="project-page-top">
         <Link className={styles.backLink} href="/#applications">
           <HugeiconsIcon
             icon={ArrowLeft02Icon}
@@ -28,7 +31,7 @@ export default function CryptoInheritanceProjectPage() {
           />
           <span>Selected work</span>
         </Link>
-      </header>
+        </div>
 
       <section
         className={styles.hero}
@@ -109,6 +112,7 @@ export default function CryptoInheritanceProjectPage() {
           hostname="crypto-inheritance.xyz"
         />
       </section>
-    </main>
+      </main>
+    </>
   );
 }

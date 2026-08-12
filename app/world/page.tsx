@@ -7,6 +7,7 @@ import {
   ArrowRight02Icon,
   ArrowUpRight01Icon,
 } from "@hugeicons/core-free-icons";
+import { SiteHeader } from "../site-header";
 import { WorldVideo } from "./world-video";
 import styles from "./world.module.css";
 
@@ -97,23 +98,21 @@ export default function WorldProjectPage() {
         Skip to project
       </a>
 
-      <header className="project-header">
-        <Link className="wordmark" href="/" aria-label="Ramon JM, portfolio">
-          Ramon JM
-        </Link>
-        <Link className="project-back-link" href="/#world">
-          <span className="link-icon" aria-hidden="true">
-            <HugeiconsIcon
-              icon={ArrowLeft02Icon}
-              size={17}
-              strokeWidth={1.8}
-            />
-          </span>
-          Back to work
-        </Link>
-      </header>
+      <SiteHeader />
 
       <main className={styles.page} id="project-content" tabIndex={-1}>
+        <div className="project-page-top">
+          <Link className="project-back-link" href="/#world">
+            <span className="link-icon" aria-hidden="true">
+              <HugeiconsIcon
+                icon={ArrowLeft02Icon}
+                size={17}
+                strokeWidth={1.8}
+              />
+            </span>
+            Back to work
+          </Link>
+        </div>
         <section className={styles.hero} aria-labelledby="project-title">
           <div className={styles.heroCopy}>
             <p className="section-pill">PushedWorld · iPhone app</p>

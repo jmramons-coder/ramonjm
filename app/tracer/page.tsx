@@ -6,6 +6,7 @@ import {
   ArrowLeft02Icon,
   ArrowUpRight01Icon,
 } from "@hugeicons/core-free-icons";
+import { SiteHeader } from "../site-header";
 import styles from "./tracer.module.css";
 
 export const metadata: Metadata = {
@@ -54,8 +55,10 @@ function VisitTracerLink({ className }: { className: string }) {
 
 export default function TracerProjectPage() {
   return (
-    <main className={styles.page}>
-      <header className={styles.header}>
+    <>
+      <SiteHeader tone="dark" />
+      <main className={styles.page}>
+        <div className="project-page-top">
         <Link className={styles.backLink} href="/#applications">
           <HugeiconsIcon
             icon={ArrowLeft02Icon}
@@ -64,8 +67,7 @@ export default function TracerProjectPage() {
           />
           <span>Selected work</span>
         </Link>
-        <VisitTracerLink className={styles.headerLink} />
-      </header>
+        </div>
 
       <section className={styles.hero} aria-labelledby="tracer-title">
         <Image
@@ -200,6 +202,7 @@ export default function TracerProjectPage() {
           <VisitTracerLink className={styles.closingLink} />
         </div>
       </section>
-    </main>
+      </main>
+    </>
   );
 }
