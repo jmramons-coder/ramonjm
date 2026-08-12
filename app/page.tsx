@@ -15,7 +15,6 @@ import { AbeamVideo } from "./abeam/abeam-video";
 
 const featuredApplications = [
   { name: "PushedWorld", slug: "world" },
-  { name: "PatternViewer", slug: "patternviewer" },
   { name: "Tracer", slug: "tracer" },
   { name: "aBeam", slug: "abeam" },
   { name: "CryptoCroc", slug: "crypto-inheritance" },
@@ -81,7 +80,7 @@ export default function Home() {
           Ramon JM
         </a>
         <div className="header-actions">
-          <a className="header-cv" href="#about" aria-label="Read profile">
+          <a className="header-cv" href="#profile" aria-label="Read profile">
             Profile
           </a>
           <a
@@ -124,6 +123,22 @@ export default function Home() {
                 />
               </span>
             </a>
+            <div className="hero-profile" id="profile">
+              <div className="hero-profile-heading">
+                <span className="hero-profile-dot" aria-hidden="true" />
+                About me
+              </div>
+              <p>
+                Senior Product Designer at Equisoft, based in Montreal. I
+                design complex workflows and build useful AI products from the
+                first fuzzy question to a clear direction teams can ship.
+              </p>
+              <div className="hero-profile-meta" aria-label="Profile details">
+                <span>Product strategy</span>
+                <span>UX + interaction</span>
+                <span>AI-native prototyping</span>
+              </div>
+            </div>
           </div>
 
           <nav
@@ -146,15 +161,6 @@ export default function Home() {
                             alt=""
                             width={256}
                             height={256}
-                            sizes="(min-width: 760px) 62px, 46px"
-                          />
-                        ) : application.slug === "patternviewer" ? (
-                          <Image
-                            className="app-icon-image app-icon-image--patternviewer"
-                            src="/patternviewer/icon.jpg"
-                            alt=""
-                            width={192}
-                            height={192}
                             sizes="(min-width: 760px) 62px, 46px"
                           />
                         ) : application.slug === "tracer" ? (
@@ -206,7 +212,7 @@ export default function Home() {
           aria-labelledby="applications-title"
         >
           <div className="work-intro">
-            <p className="section-pill">Selected work · 06</p>
+            <p className="section-pill">Selected work · 05</p>
             <h2 id="applications-title">
               <span>Products built</span>
               <span>around clarity.</span>
@@ -271,40 +277,6 @@ export default function Home() {
             </article>
 
             <article
-              className="application-card application-card--project application-card--patternviewer"
-              id="patternviewer"
-              aria-labelledby="patternviewer-title"
-            >
-              <Link className="application-card-link" href="/patternviewer">
-                <div className="app-canvas app-canvas--patternviewer">
-                  <Image
-                    className="patternviewer-card-icon"
-                    src="/patternviewer/icon.jpg"
-                    alt=""
-                    width={192}
-                    height={192}
-                    sizes="72px"
-                  />
-                  <div className="patternviewer-card-copy">
-                    <p>02 / Data intelligence</p>
-                    <h3 id="patternviewer-title">PatternViewer</h3>
-                    <span>Make a long story legible.</span>
-                  </div>
-                </div>
-                <span
-                  className="application-project-arrow patternviewer-card-arrow"
-                  aria-hidden="true"
-                >
-                  <HugeiconsIcon
-                    icon={ArrowRight02Icon}
-                    size={24}
-                    strokeWidth={1.8}
-                  />
-                </span>
-              </Link>
-            </article>
-
-            <article
               className="application-card application-card--project application-card--tracer"
               id="tracer"
               aria-labelledby="tracer-title"
@@ -328,7 +300,7 @@ export default function Home() {
                       height={318}
                       sizes="64px"
                     />
-                    <p>03 / Security intelligence</p>
+                    <p>02 / Security intelligence</p>
                     <h3 id="tracer-title">Tracer</h3>
                     <span>Screen research partners in minutes.</span>
                   </div>
@@ -390,7 +362,7 @@ export default function Home() {
               >
                 <div className="app-canvas app-canvas--crypto">
                   <div className="crypto-card-copy">
-                    <p>05 / Crypto legacy planner</p>
+                    <p>04 / Crypto legacy planner</p>
                     <h3 id="crypto-inheritance-title">CryptoCroc</h3>
                     <span>Plan the handoff.</span>
                   </div>
@@ -431,7 +403,7 @@ export default function Home() {
                     aria-hidden="true"
                   />
                   <div className="equisoft-labs-card-copy">
-                    <p>06 / Insurance R&amp;D</p>
+                    <p>05 / Insurance R&amp;D</p>
                     <h3 id="equisoft-labs-title">Equisoft Labs</h3>
                     <span>Decision intelligence for insurance.</span>
                   </div>
@@ -516,50 +488,6 @@ export default function Home() {
           <ClientMarquee />
         </section>
 
-        <section
-          className="about-section"
-          id="about"
-          aria-labelledby="about-title"
-        >
-          <p className="section-pill">About</p>
-          <div className="about-content">
-            <h2 id="about-title">
-              <span>Product thinking.</span>
-              A builder&apos;s bias.
-            </h2>
-            <p>
-              I&apos;m a Senior Product Designer at Equisoft, working across
-              product strategy, UX, interaction design, and AI. I&apos;m strongest
-              where the problem is still unclear: framing the opportunity,
-              prototyping the right behavior, and helping teams decide what
-              deserves to ship.
-            </p>
-            <p>
-              Alongside enterprise work, I build independent products like
-              PushedWorld, PatternViewer, aBeam, Tracer, CryptoCroc, and
-              Decision ROI to test ideas in the real world and keep my practice
-              close to the making.
-            </p>
-            <dl className="about-facts">
-              <div>
-                <dt>Current</dt>
-                <dd>Senior Product Designer · Equisoft</dd>
-              </div>
-              <div>
-                <dt>Focus</dt>
-                <dd>AI workflows · enterprise UX · interaction design</dd>
-              </div>
-              <div>
-                <dt>Background</dt>
-                <dd>Interaction design · industrial design · architecture</dd>
-              </div>
-              <div>
-                <dt>Languages</dt>
-                <dd>French · English · Spanish</dd>
-              </div>
-            </dl>
-          </div>
-        </section>
       </main>
 
       <footer className="site-footer">
