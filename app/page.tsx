@@ -43,22 +43,18 @@ const equisoftProducts = [
   {
     label: "CRM",
     description: "Relationship workflows",
-    asset: "/equisoft/crm-glass.png",
   },
   {
     label: "PAS",
     description: "Product configuration",
-    asset: "/equisoft/pas-glass.png",
   },
   {
     label: "AI",
     description: "Intelligence layers",
-    asset: "/equisoft/ai-glass.png",
   },
   {
     label: "DIT",
     description: "Data and integration tools",
-    asset: "/equisoft/dit-glass.png",
   },
 ] as const;
 
@@ -204,53 +200,6 @@ export default function Home() {
               Independent products across AI, security, insurance, crypto, and
               fitness—built to make the thinking tangible.
             </p>
-            <div className="equisoft-ecosystem">
-              <div className="equisoft-ecosystem-intro">
-                <p className="equisoft-ecosystem-label">
-                  <Image
-                    className="equisoft-ecosystem-mark"
-                    src="/equisoft-pyramid-glass.svg"
-                    alt=""
-                    width={24}
-                    height={24}
-                    sizes="24px"
-                  />
-                  <span>Equisoft ecosystem</span>
-                </p>
-                <p>
-                  Six years designing across fintech, insurance, and AI
-                  adoption—moving through the product ecosystem with an
-                  AI-enhanced practice.
-                </p>
-                <Link className="work-context-link" href="/equisoft">
-                  See the product ecosystem
-                  <span className="link-icon" aria-hidden="true">
-                    <HugeiconsIcon
-                      icon={ArrowRight02Icon}
-                      size={16}
-                      strokeWidth={1.8}
-                    />
-                  </span>
-                </Link>
-              </div>
-              <div className="equisoft-product-rail" aria-label="Equisoft product areas">
-                <div className="equisoft-product-grid">
-                  {equisoftProducts.map((product) => (
-                    <div className="equisoft-product" key={product.label} aria-label={product.label}>
-                      <Image
-                        className="equisoft-acronym-image"
-                        src={product.asset}
-                        alt={product.label}
-                        width={1400}
-                        height={1400}
-                        sizes="(min-width: 1100px) 168px, (min-width: 760px) 24vw, 36vw"
-                      />
-                      <span className="equisoft-product-description">{product.description}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
           </div>
 
           <div className="gallery-grid">
@@ -459,6 +408,50 @@ export default function Home() {
               </Link>
             </article>
 
+          </div>
+        </section>
+
+        <section className="professional-section" aria-labelledby="professional-title">
+          <div className="professional-intro">
+            <p className="professional-section-label">
+              <Image
+                className="professional-section-mark"
+                src="/equisoft-pyramid-glass.svg"
+                alt=""
+                width={24}
+                height={24}
+                sizes="18px"
+              />
+              <span>Equisoft · professional practice</span>
+            </p>
+            <h2 id="professional-title">
+              <span>Product domains</span>
+              <span>behind the builds.</span>
+            </h2>
+            <p>
+              Six years designing across fintech, insurance, and AI adoption—
+              building clarity across the systems teams rely on every day.
+            </p>
+            <Link className="work-context-link" href="/equisoft">
+              See the professional practice
+              <span className="link-icon" aria-hidden="true">
+                <HugeiconsIcon
+                  icon={ArrowRight02Icon}
+                  size={16}
+                  strokeWidth={1.8}
+                />
+              </span>
+            </Link>
+          </div>
+          <div className="professional-domain-grid" aria-label="Equisoft product domains">
+            {equisoftProducts.map((product) => (
+              <div className="professional-domain" key={product.label}>
+                <span className="professional-domain-mark" aria-hidden="true">
+                  {product.label}
+                </span>
+                <span className="professional-domain-description">{product.description}</span>
+              </div>
+            ))}
           </div>
         </section>
 
