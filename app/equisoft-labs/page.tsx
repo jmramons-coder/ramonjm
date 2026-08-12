@@ -118,8 +118,8 @@ export default function EquisoftLabsProjectPage() {
             <article className={styles.scene}>
               <div className={styles.sceneImage}>
                 <Image
-                  src="/equisoft-labs/elevate-booth-wide-soft.png"
-                  alt="Standing visitors gathered around a blank portrait display, landscape tablet kiosk, and balloon dart setup at a pale blue Elevate booth"
+                  src="/equisoft-labs/elevate-booth-roi-style.png"
+                  alt="A pale-blue illustrated Elevate booth with simplified Decision ROI characters, a blank standing kiosk, and a coral balloon triangle"
                   width={1536}
                   height={1024}
                   sizes="(max-width: 780px) 100vw, 58vw"
@@ -145,8 +145,8 @@ export default function EquisoftLabsProjectPage() {
             <article className={`${styles.scene} ${styles.sceneReverse}`}>
               <div className={styles.sceneImage}>
                 <Image
-                  src="/equisoft-labs/elevate-dart-pov-consistent.png"
-                  alt="Over-the-shoulder view of a standing visitor aiming a dart at a pale blue balloon wall with a coral triangle"
+                  src="/equisoft-labs/elevate-dart-roi-style.png"
+                  alt="A pale-blue illustrated over-the-shoulder view of a Decision ROI character aiming a dart at a coral balloon triangle"
                   width={1536}
                   height={1024}
                   sizes="(max-width: 780px) 100vw, 58vw"
