@@ -2004,10 +2004,10 @@ a:focus-visible {
 .equisoft-labs-card-calculator {
   position: absolute;
   z-index: 2;
-  right: -7%;
-  bottom: -4%;
+  right: 7%;
+  bottom: -9%;
   display: block;
-  width: 70%;
+  width: 105%;
   height: auto;
   filter: drop-shadow(0 24px 30px rgb(0 72 111 / 15%));
 }
@@ -2094,7 +2094,8 @@ a:focus-visible {
   }
 
   .equisoft-labs-card-calculator {
-    width: 78%;
+    right: 4%;
+    width: 117%;
   }
 }
 
