@@ -86,7 +86,6 @@ ul {
   transform: translateY(0);
 }
 
-.site-header,
 main {
   width: 100%;
   max-width: var(--max-width);
@@ -99,17 +98,41 @@ main {
   z-index: 70;
   top: 0;
   display: flex;
+  width: 100%;
+  max-width: none;
   min-height: 76px;
-  padding: 16px var(--page-pad);
+  padding: 16px max(
+    var(--page-pad),
+    calc((100vw - var(--max-width)) / 2 + var(--page-pad))
+  );
   align-items: flex-start;
   justify-content: space-between;
-  background: rgb(247 247 247 / 78%);
-  backdrop-filter: blur(14px) saturate(120%);
+  background: transparent;
+  backdrop-filter: none;
+  transition:
+    min-height 220ms ease,
+    padding 220ms ease,
+    background 220ms ease,
+    backdrop-filter 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.site-header.is-scrolled {
+  min-height: 64px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background: rgb(247 247 247 / 88%);
+  backdrop-filter: blur(7px) saturate(108%);
+  box-shadow: 0 1px 0 rgb(14 14 14 / 5%);
 }
 
 .site-header--dark {
-  background: rgb(7 16 25 / 78%);
+  background: transparent;
   color: #fff;
+}
+
+.site-header--dark.is-scrolled {
+  background: rgb(7 16 25 / 88%);
 }
 
 .wordmark {
@@ -1288,6 +1311,12 @@ a:focus-visible {
   .site-header {
     min-height: 88px;
     padding-top: 24px;
+  }
+
+  .site-header.is-scrolled {
+    min-height: 68px;
+    padding-top: 14px;
+    padding-bottom: 14px;
   }
 
   .hero {
