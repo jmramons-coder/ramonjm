@@ -172,6 +172,7 @@ export default function EquisoftLabsProjectPage() {
                 loading="lazy"
                 referrerPolicy="strict-origin-when-cross-origin"
                 allow="fullscreen"
+                scrolling="no"
               />
             </div>
           </div>
