@@ -1,11 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { HugeiconsIcon } from "@hugeicons/react";
-import {
-  ArrowLeft02Icon,
-  ArrowUpRight01Icon,
-} from "@hugeicons/core-free-icons";
+import { ArrowUpRight01Icon } from "@hugeicons/core-free-icons";
 import { SiteHeader } from "../site-header";
 import styles from "./tracer.module.css";
 
@@ -56,19 +52,8 @@ function VisitTracerLink({ className }: { className: string }) {
 export default function TracerProjectPage() {
   return (
     <>
-      <SiteHeader tone="dark" />
+      <SiteHeader tone="dark" backHref="/#applications" />
       <main className={styles.page}>
-        <div className="project-page-top">
-        <Link className={styles.backLink} href="/#applications">
-          <HugeiconsIcon
-            icon={ArrowLeft02Icon}
-            size={17}
-            strokeWidth={1.8}
-          />
-          <span>Selected work</span>
-        </Link>
-        </div>
-
       <section className={styles.hero} aria-labelledby="tracer-title">
         <Image
           className={styles.heroImage}

@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
-  ArrowLeft02Icon,
   ArrowRight02Icon,
   ArrowUpRight01Icon,
 } from "@hugeicons/core-free-icons";
@@ -98,21 +97,9 @@ export default function WorldProjectPage() {
         Skip to project
       </a>
 
-      <SiteHeader />
+      <SiteHeader backHref="/#applications" />
 
       <main className={styles.page} id="project-content" tabIndex={-1}>
-        <div className="project-page-top">
-          <Link className="project-back-link" href="/#world">
-            <span className="link-icon" aria-hidden="true">
-              <HugeiconsIcon
-                icon={ArrowLeft02Icon}
-                size={17}
-                strokeWidth={1.8}
-              />
-            </span>
-            Back to work
-          </Link>
-        </div>
         <section className={styles.hero} aria-labelledby="project-title">
           <div className={styles.heroCopy}>
             <p className="section-pill">PushedWorld · iPhone app</p>

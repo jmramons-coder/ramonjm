@@ -1,7 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { HugeiconsIcon } from "@hugeicons/react";
-import { ArrowLeft02Icon } from "@hugeicons/core-free-icons";
 import { SiteHeader } from "../site-header";
 import { AbeamVideo } from "./abeam-video";
 import styles from "./abeam.module.css";
@@ -16,19 +13,8 @@ export const metadata: Metadata = {
 export default function AbeamProjectPage() {
   return (
     <>
-      <SiteHeader />
+      <SiteHeader backHref="/#applications" />
       <main className={styles.page}>
-        <div className="project-page-top">
-          <Link className={styles.backLink} href="/#applications">
-            <HugeiconsIcon
-              icon={ArrowLeft02Icon}
-              size={17}
-              strokeWidth={1.8}
-            />
-            <span>Selected work</span>
-          </Link>
-        </div>
-
         <section className={styles.hero} aria-labelledby="abeam-title">
         <div className={styles.visual}>
           <AbeamVideo

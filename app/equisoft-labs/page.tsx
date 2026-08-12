@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
-  ArrowLeft02Icon,
   ArrowUpRight01Icon,
 } from "@hugeicons/core-free-icons";
 import { InteractivePreview } from "../interactive-preview";
@@ -89,20 +87,8 @@ function VisitProjectLink({ className }: { className: string }) {
 export default function EquisoftLabsProjectPage() {
   return (
     <>
-      <SiteHeader />
+      <SiteHeader backHref="/#applications" />
       <main className={styles.page}>
-        <div className="project-page-top">
-        <Link className={styles.backLink} href="/#applications">
-          <HugeiconsIcon
-            icon={ArrowLeft02Icon}
-            size={17}
-            strokeWidth={1.8}
-            aria-hidden="true"
-          />
-          <span>Selected work</span>
-        </Link>
-        </div>
-
       <section className={styles.hero} aria-labelledby="equisoft-labs-title">
         <span className={styles.heroGlow} aria-hidden="true" />
         <div className={styles.heroInner}>

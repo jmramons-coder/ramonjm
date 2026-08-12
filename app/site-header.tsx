@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useSyncExternalStore } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { SentIcon } from "@hugeicons/core-free-icons";
+import { ArrowLeft02Icon, SentIcon } from "@hugeicons/core-free-icons";
 import { CvDrawer } from "./cv-drawer";
 
 const subscribeToScroll = (onStoreChange: () => void) => {
@@ -17,9 +17,13 @@ const getServerScrollState = () => false;
 export function SiteHeader({
   home = false,
   tone = "light",
+  backHref,
+  backLabel = "Back to selected work",
 }: {
   home?: boolean;
   tone?: "light" | "dark";
+  backHref?: string;
+  backLabel?: string;
 }) {
   const isScrolled = useSyncExternalStore(
     subscribeToScroll,
@@ -32,13 +36,25 @@ export function SiteHeader({
       className={`site-header site-header--${tone}${isScrolled ? " is-scrolled" : ""}`}
       id={home ? "top" : undefined}
     >
-      <Link
-        className="wordmark"
-        href={home ? "#top" : "/"}
-        aria-label="Ramon JM, home"
-      >
-        Ramon JM
-      </Link>
+      <div className="header-leading">
+        {backHref ? (
+          <Link className="header-back-link" href={backHref} aria-label={backLabel}>
+            <HugeiconsIcon
+              icon={ArrowLeft02Icon}
+              size={19}
+              strokeWidth={1.8}
+              aria-hidden="true"
+            />
+          </Link>
+        ) : null}
+        <Link
+          className="wordmark"
+          href={home ? "#top" : "/"}
+          aria-label="Ramon JM, home"
+        >
+          Ramon JM
+        </Link>
+      </div>
       <div className="header-actions">
         <CvDrawer />
         <a
