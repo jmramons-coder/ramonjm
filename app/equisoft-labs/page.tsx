@@ -175,49 +175,38 @@ export default function EquisoftLabsProjectPage() {
               <p>What happened next</p>
               <span>A small action became a shared product question.</span>
             </div>
-            <div className={styles.followupGrid}>
+            <div className={`${styles.followupGrid} ${styles.followupGridSimple}`}>
               <article className={styles.followupCard}>
                 <div
-                  className={`${styles.followupImage} ${styles.followupPanelA}`}
+                  className={`${styles.followupImage} ${styles.followupPanelThrow}`}
                   role="img"
                   aria-label="Visitor aiming a dart at the Elevate balloon board"
                 />
                 <div className={styles.followupCopy}>
-                  <span>02</span>
+                  <span>01</span>
                   <strong>Throw</strong>
                 </div>
               </article>
               <article className={styles.followupCard}>
                 <div
-                  className={`${styles.followupImage} ${styles.followupPanelB}`}
+                  className={`${styles.followupImage} ${styles.followupPanelPop}`}
                   role="img"
                   aria-label="Dart reaching the balloon triangle as one balloon pops"
                 />
                 <div className={styles.followupCopy}>
-                  <span>03</span>
+                  <span>02</span>
                   <strong>Pop</strong>
                 </div>
               </article>
               <article className={styles.followupCard}>
                 <div
-                  className={`${styles.followupImage} ${styles.followupPanelC}`}
-                  role="img"
-                  aria-label="Deflated balloon and dart pinned against a small white card"
-                />
-                <div className={styles.followupCopy}>
-                  <span>04</span>
-                  <strong>Pin the prompt</strong>
-                </div>
-              </article>
-              <article className={styles.followupCard}>
-                <div
-                  className={`${styles.followupImage} ${styles.followupPanelD}`}
+                  className={`${styles.followupImage} ${styles.followupPanelRead}`}
                   role="img"
                   aria-label="Visitor reading a small white question card beneath the balloon board"
                 />
                 <div className={styles.followupCopy}>
-                  <span>05</span>
-                  <strong>Read the question</strong>
+                  <span>03</span>
+                  <strong>Read</strong>
                   <p>Could a centralized AMS surface the right context before a critical decision?</p>
                 </div>
               </article>
