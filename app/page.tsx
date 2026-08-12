@@ -7,6 +7,7 @@ import {
   ArrowUp01Icon,
   ArrowUpRight01Icon,
   GithubIcon,
+  Linkedin01Icon,
 } from "@hugeicons/core-free-icons";
 import { ClientMarquee } from "./client-marquee";
 import { AbeamVideo } from "./abeam/abeam-video";
@@ -89,10 +90,14 @@ export default function Home() {
               <span>and experiences.</span>
             </h1>
             <p className="hero-description">
-              Senior Product Designer at Equisoft in Quebec City, working
-              across product strategy, UX, and AI. I lead 0-to-1 product
-              development—from a fuzzy question to clear product logic,
-              working prototypes, and something useful a team can ship.
+              Senior Product Designer at Equisoft in Quebec City. I turn
+              complex business problems into clear products, services, and
+              experiences—using strategy, UX, AI, and code to move from a
+              fuzzy question to something useful a team can ship.
+            </p>
+            <p className="hero-fit">
+              Open to product design, AI innovation, and 0-to-1 roles where
+              strategy, design, and build meet.
             </p>
           </div>
 
@@ -173,9 +178,20 @@ export default function Home() {
               <span>around clarity.</span>
             </h2>
             <p className="work-summary">
-              A mix of enterprise product work and independent builds across
-              AI, security, insurance, crypto, and fitness experiences.
+              Independent products across AI, security, insurance, crypto, and
+              fitness—built to make the thinking tangible.
             </p>
+            <div className="work-context">
+              <p className="work-context-label">Confidential enterprise practice</p>
+              <p>
+                For the last six years at Equisoft, I have worked on complex
+                insurance and financial software: policy administration,
+                agent-tech integrations, data tools, CRMs, workbenches, and
+                internal products. Much of that work is confidential, so this
+                site shares the product thinking and domain context without
+                exposing protected screens.
+              </p>
+            </div>
           </div>
 
           <div className="gallery-grid">
@@ -461,15 +477,30 @@ export default function Home() {
         </div>
         <div className="footer-main">
           <h2>Make the next useful thing.</h2>
-          <ExternalLink
-            className="footer-action"
-            href="https://github.com/jmramons-coder"
-          >
-            <span className="link-icon" aria-hidden="true">
-              <HugeiconsIcon icon={GithubIcon} size={18} strokeWidth={1.7} />
-            </span>
-            <span>View the builds on GitHub</span>
-          </ExternalLink>
+          <div className="footer-links">
+            <ExternalLink
+              className="footer-action"
+              href="https://www.linkedin.com/in/jmanuelr"
+            >
+              <span className="link-icon" aria-hidden="true">
+                <HugeiconsIcon
+                  icon={Linkedin01Icon}
+                  size={18}
+                  strokeWidth={1.7}
+                />
+              </span>
+              <span>Connect on LinkedIn</span>
+            </ExternalLink>
+            <ExternalLink
+              className="footer-action"
+              href="https://github.com/jmramons-coder"
+            >
+              <span className="link-icon" aria-hidden="true">
+                <HugeiconsIcon icon={GithubIcon} size={18} strokeWidth={1.7} />
+              </span>
+              <span>View the builds on GitHub</span>
+            </ExternalLink>
+          </div>
         </div>
         <p className="copyright">© {new Date().getFullYear()} Ramon JM</p>
       </footer>

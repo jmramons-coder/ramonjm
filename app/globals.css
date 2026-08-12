@@ -261,6 +261,15 @@ main {
 }
 
 @media (max-width: 759px) {
+  .work-context {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .work-context > p:last-child {
+    font-size: 0.92rem;
+  }
+
   .cv-drawer-backdrop {
     background: var(--page);
     backdrop-filter: none;
@@ -563,6 +572,12 @@ main {
   color: #fff;
 }
 
+.header-social {
+  width: 40px;
+  padding: 0;
+  justify-content: center;
+}
+
 .header-contact {
   position: relative;
   padding-right: 48px;
@@ -665,6 +680,15 @@ main {
   font-weight: 420;
   letter-spacing: -0.03em;
   line-height: 1.38;
+}
+
+.hero-fit {
+  max-width: 420px;
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  letter-spacing: -0.02em;
+  line-height: 1.4;
 }
 
 .app-strip {
@@ -886,6 +910,32 @@ main {
   color: var(--body);
   font-size: 1.05rem;
   letter-spacing: -0.025em;
+  line-height: 1.45;
+}
+
+.work-context {
+  display: grid;
+  max-width: 760px;
+  margin-top: 38px;
+  padding-top: 18px;
+  grid-template-columns: minmax(150px, 0.4fr) minmax(0, 1fr);
+  gap: 20px;
+  border-top: 1px solid var(--line);
+}
+
+.work-context-label {
+  color: var(--ink);
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+}
+
+.work-context > p:last-child {
+  max-width: 620px;
+  color: var(--body);
+  font-size: 0.9rem;
+  letter-spacing: -0.02em;
   line-height: 1.45;
 }
 
@@ -1394,6 +1444,12 @@ main {
   align-items: flex-start;
   flex-direction: column;
   gap: 34px;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .footer-main h2 {

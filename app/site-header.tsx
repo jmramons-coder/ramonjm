@@ -3,7 +3,11 @@
 import Link from "next/link";
 import { useSyncExternalStore } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { ArrowLeft02Icon, SentIcon } from "@hugeicons/core-free-icons";
+import {
+  ArrowLeft02Icon,
+  Linkedin01Icon,
+  SentIcon,
+} from "@hugeicons/core-free-icons";
 import { CvDrawer } from "./cv-drawer";
 
 const subscribeToScroll = (onStoreChange: () => void) => {
@@ -57,6 +61,16 @@ export function SiteHeader({
       </div>
       <div className="header-actions">
         <CvDrawer />
+        <a
+          className="header-action header-social"
+          href="https://www.linkedin.com/in/jmanuelr"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="View Ramon JM on LinkedIn (opens in a new tab)"
+          title="LinkedIn"
+        >
+          <HugeiconsIcon icon={Linkedin01Icon} size={17} strokeWidth={1.8} />
+        </a>
         <a
           className="header-action header-contact"
           href="mailto:jmanuelr.99@gmail.com"
