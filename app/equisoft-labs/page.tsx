@@ -193,7 +193,7 @@ export default function EquisoftLabsProjectPage() {
           <div className={styles.prototypeScene}>
             <Image
               className={styles.prototypeSceneImage}
-              src="/equisoft-labs/elevate-tablet-scene-soft.png"
+              src="/equisoft-labs/elevate-tablet-scene-front.png"
               alt="Close point-of-view scene of a blank landscape iPad on a thin standing kiosk at the pale blue Elevate booth"
               width={1536}
               height={1024}

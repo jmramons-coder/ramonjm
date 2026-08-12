@@ -253,15 +253,13 @@
 
 .prototypeTablet {
   position: absolute;
-  top: 21%;
-  left: 20%;
-  width: 61%;
-  height: 45%;
+  top: 21.4%;
+  left: 24.7%;
+  width: 54.6%;
+  height: 50%;
   overflow: hidden;
-  clip-path: polygon(0 0, 100% 10%, 98% 100%, 0 90%);
-  border-radius: 14px;
+  border-radius: 12px;
   background: #f8fbfd;
-  box-shadow: 0 4px 16px rgb(0 0 0 / 10%);
 }
 
 .prototypeTablet iframe {
@@ -655,11 +653,11 @@
   }
 
   .prototypeTablet {
-    top: 21%;
-    left: 20%;
-    width: 61%;
-    height: 45%;
-    border-radius: 8px;
+    top: 21.4%;
+    left: 24.7%;
+    width: 54.6%;
+    height: 50%;
+    border-radius: 7px;
   }
 
   .inputList {
