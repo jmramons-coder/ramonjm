@@ -118,8 +118,8 @@ export default function EquisoftLabsProjectPage() {
             <article className={styles.scene}>
               <div className={styles.sceneImage}>
                 <Image
-                  src="/equisoft-labs/elevate-booth-roi-style.png"
-                  alt="A pale-blue illustrated Elevate booth with simplified Decision ROI characters, a blank standing kiosk, and a coral balloon triangle"
+                  src="/equisoft-labs/elevate-booth-roi-clean.png"
+                  alt="A pale-blue Decision ROI booth illustration with a blank landscape iPad stand and a clean grid of identical balloons"
                   width={1536}
                   height={1024}
                   sizes="(max-width: 780px) 100vw, 58vw"
@@ -142,54 +142,6 @@ export default function EquisoftLabsProjectPage() {
               </div>
             </article>
 
-            <article className={`${styles.scene} ${styles.sceneReverse}`}>
-              <div className={styles.sceneImage}>
-                <Image
-                  src="/equisoft-labs/elevate-dart-roi-style.png"
-                  alt="A pale-blue illustrated over-the-shoulder view of a Decision ROI character aiming a dart at a coral balloon triangle"
-                  width={1536}
-                  height={1024}
-                  sizes="(max-width: 780px) 100vw, 58vw"
-                />
-              </div>
-              <div className={styles.sceneCopy}>
-                <p>02 / Gather better questions</p>
-                <h3>Turn a reaction into product direction.</h3>
-                <span>
-                  A small field of balloons gave people a simple action to
-                  take. The dart became a prompt for talking about what should
-                  be centralised, connected, and visible sooner.
-                </span>
-                <dl className={styles.sceneDetail}>
-                  <div>
-                    <dt>Goal</dt>
-                    <dd>Hear where data gets stuck.</dd>
-                  </div>
-                </dl>
-              </div>
-            </article>
-          </div>
-
-          <div className={styles.followupSequence} aria-label="The booth interaction sequence">
-            <div className={styles.followupIntro}>
-              <p>The prompt</p>
-              <span>One small note kept the product question visible.</span>
-            </div>
-            <article className={styles.followupSingleCard}>
-              <Image
-                className={styles.followupSingleImage}
-                src="/equisoft-labs/elevate-card-reading.png"
-                alt="A visitor reading a small question card pinned beneath the balloon board"
-                width={1536}
-                height={1024}
-                sizes="(max-width: 780px) 100vw, 900px"
-              />
-              <div className={styles.followupCopy}>
-                <span>01</span>
-                <strong>Read the question</strong>
-                <p>Could a centralized AMS surface the right context before a critical decision?</p>
-              </div>
-            </article>
           </div>
 
           <div className={styles.storyQuestion}>
@@ -213,23 +165,6 @@ export default function EquisoftLabsProjectPage() {
           </div>
 
           <div className={styles.prototypeScene}>
-            <Image
-              className={`${styles.prototypeSceneImage} ${styles.prototypeSceneImageDesktop}`}
-              src="/equisoft-labs/elevate-tablet-scene-front.png"
-              alt="Close point-of-view scene of a blank landscape iPad on a thin standing kiosk at the pale blue Elevate booth"
-              width={1536}
-              height={1024}
-              sizes="(min-width: 781px) min(100vw, 1200px)"
-            />
-            <Image
-              className={`${styles.prototypeSceneImage} ${styles.prototypeSceneImageMobile}`}
-              src="/equisoft-labs/elevate-tablet-scene-mobile.png"
-              alt=""
-              aria-hidden="true"
-              width={1122}
-              height={1402}
-              sizes="100vw"
-            />
             <div className={styles.prototypeTablet}>
               <iframe
                 src="https://www.equisoftlabs.com/"
