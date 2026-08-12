@@ -247,15 +247,25 @@ export function ClientMarquee() {
               <ul className="client-logo-group" key={copy}>
                 {clients.map((client) => (
                   <li className="client-logo-item" key={client.slug}>
-                    <Image
-                      className={`client-logo client-logo--${client.slug}`}
-                      src={client.logo}
-                      alt=""
-                      width={client.width}
-                      height={client.height}
-                      unoptimized
-                      draggable={false}
-                    />
+                    {client.slug === "peak-media" ? (
+                      <span
+                        className="client-wordmark client-wordmark--peak-media"
+                        aria-hidden="true"
+                      >
+                        <strong>Peak</strong>
+                        <span>Media</span>
+                      </span>
+                    ) : (
+                      <Image
+                        className={`client-logo client-logo--${client.slug}`}
+                        src={client.logo}
+                        alt=""
+                        width={client.width}
+                        height={client.height}
+                        unoptimized
+                        draggable={false}
+                      />
+                    )}
                   </li>
                 ))}
               </ul>
