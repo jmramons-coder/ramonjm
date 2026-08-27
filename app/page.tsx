@@ -38,28 +38,123 @@ const workflowSteps = [
   },
 ] as const;
 
-const equisoftProducts = [
+const equisoftProductTypes = [
   {
-    label: "CRM",
-    description: "Customer relationship and distribution workbenches",
+    id: "workbench",
+    caption:
+      "Principal design on customer relationship and distribution workbenches, from discovery through delivery.",
   },
   {
-    label: "PAS",
-    description: "Policy administration, product configuration, and audit layers",
+    id: "pas",
+    caption:
+      "Systems design for data-heavy policy admin—configuration interfaces, complex forms, and audit layers.",
   },
   {
-    label: "AI",
-    description: "Embedded intelligence and agentic workflows",
+    id: "ai",
+    caption:
+      "Led an AI committee and partnered across teams to integrate AI and agentic workflows.",
   },
   {
-    label: "DIT",
-    description: "Digital insurance tools for agents and customers",
+    id: "portals",
+    caption:
+      "Deep UI for digital insurance tools: agent and client portals across multi-stage processes.",
   },
   {
-    label: "CM",
-    description: "Case management for complex claims and requests",
+    id: "cases",
+    caption:
+      "Systems design for case management through complex, multi-stage claims and requests.",
   },
 ] as const;
+
+function ProfessionalThumb({
+  type,
+}: {
+  type: (typeof equisoftProductTypes)[number]["id"];
+}) {
+  return (
+    <div
+      className={`professional-thumb professional-thumb--${type}`}
+      aria-hidden="true"
+    >
+      {type === "workbench" ? (
+        <>
+          <span className="pt-rail">
+            <span />
+            <span />
+            <span />
+            <span />
+            <span />
+          </span>
+          <span className="pt-stage">
+            <span className="pt-toolbar" />
+            <span className="pt-card" />
+            <span className="pt-card" />
+            <span className="pt-card" />
+          </span>
+        </>
+      ) : type === "pas" ? (
+        <>
+          <span className="pt-config">
+            <span />
+            <span />
+            <span />
+            <span />
+          </span>
+          <span className="pt-form">
+            <span className="pt-label" />
+            <span className="pt-field" />
+            <span className="pt-label" />
+            <span className="pt-field" />
+            <span className="pt-audit">
+              <span />
+              <span />
+              <span />
+            </span>
+          </span>
+        </>
+      ) : type === "ai" ? (
+        <span className="pt-flow">
+          <span className="pt-node" />
+          <span className="pt-link" />
+          <span className="pt-node" />
+          <span className="pt-link" />
+          <span className="pt-node" />
+        </span>
+      ) : type === "portals" ? (
+        <>
+          <span className="pt-portal">
+            <span />
+            <span />
+            <span />
+          </span>
+          <span className="pt-portal">
+            <span />
+            <span />
+            <span />
+          </span>
+        </>
+      ) : (
+        <>
+          <span className="pt-col">
+            <span />
+            <span className="pt-ticket" />
+            <span className="pt-ticket" />
+          </span>
+          <span className="pt-col">
+            <span />
+            <span className="pt-ticket" />
+            <span className="pt-ticket" />
+            <span className="pt-ticket" />
+          </span>
+          <span className="pt-col">
+            <span />
+            <span className="pt-ticket" />
+          </span>
+        </>
+      )}
+    </div>
+  );
+}
 
 function ExternalLink({
   href,
@@ -416,9 +511,10 @@ export default function Home() {
 
         <section className="professional-section" aria-labelledby="professional-title">
           <div className="professional-intro">
+            <p className="equisoft-tag">Equisoft</p>
             <h2 id="professional-title">
-              <span>Equisoft</span>
-              <span>Fintech &amp; insurance.</span>
+              <span>FinTech &amp;</span>
+              <span>Insurance.</span>
             </h2>
             <p>
               I work across fintech and insurance products from discovery
@@ -429,16 +525,14 @@ export default function Home() {
               capabilities into insurance software and finance operations.
             </p>
           </div>
-          <div className="professional-domain-list" aria-label="Equisoft product domains">
-            {equisoftProducts.map((product) => (
-              <div className="professional-domain" key={product.label}>
-                <span className="professional-domain-mark" aria-hidden="true">
-                  {product.label}
-                </span>
-                <span className="professional-domain-description">{product.description}</span>
-              </div>
+          <ul className="professional-type-grid" aria-label="Product types">
+            {equisoftProductTypes.map((productType) => (
+              <li className="professional-type" key={productType.id}>
+                <ProfessionalThumb type={productType.id} />
+                <p className="professional-type-copy">{productType.caption}</p>
+              </li>
             ))}
-          </div>
+          </ul>
         </section>
 
         <section
