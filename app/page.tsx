@@ -511,7 +511,7 @@ export default function Home() {
 
         <section className="professional-section" aria-labelledby="professional-title">
           <div className="professional-intro">
-            <p className="equisoft-tag">Equisoft</p>
+            <p className="section-pill">Equisoft</p>
             <h2 id="professional-title">
               <span>FinTech &amp;</span>
               <span>Insurance.</span>
