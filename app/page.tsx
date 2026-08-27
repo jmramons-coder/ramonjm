@@ -61,6 +61,21 @@ const equisoftProducts = [
   },
 ] as const;
 
+const thoughts = [
+  {
+    id: "cuteness",
+    date: "27 Aug 2026",
+    datetime: "2026-08-27",
+    text: "We're designing for cuteness. Cute names and cartoon avatars for AIs, because people have a hard time grasping the form, and they're more scared of a super-intelligence with a human personality than of the thing itself — even though that's not actually what we want.",
+  },
+  {
+    id: "levels",
+    date: "27 Aug 2026",
+    datetime: "2026-08-27",
+    text: "AI is there at multiple levels: a swarm behind the scenes doing massive high-speed decision making and execution, humans still giving the crucial points, and smart suggestions embedded in the product. Then at the human level, a colleague we tag and review like another person's work, because that type of work needs a container we can see.",
+  },
+] as const;
+
 function ExternalLink({
   href,
   children,
@@ -495,6 +510,31 @@ export default function Home() {
           </div>
 
           <ClientMarquee />
+        </section>
+
+        <section
+          className="thoughts-section"
+          id="thoughts"
+          aria-labelledby="thoughts-title"
+        >
+          <div className="thoughts-intro">
+            <p className="section-pill">Thoughts · 02</p>
+            <h2 id="thoughts-title">
+              <span>Short</span>
+              <span>notes.</span>
+            </h2>
+          </div>
+
+          <ol className="thoughts-list">
+            {thoughts.map((thought) => (
+              <li className="thought-row" key={thought.id}>
+                <time className="thought-date" dateTime={thought.datetime}>
+                  {thought.date}
+                </time>
+                <p className="thought-copy">{thought.text}</p>
+              </li>
+            ))}
+          </ol>
         </section>
 
       </main>
