@@ -1092,7 +1092,8 @@ main {
 
 .professional-thumb {
   display: grid;
-  aspect-ratio: 16 / 9;
+  width: min(100%, 168px);
+  height: 80px;
   overflow: hidden;
   background: transparent;
 }
@@ -1107,9 +1108,9 @@ main {
 }
 
 .professional-thumb--workbench {
-  grid-template-columns: 12px minmax(0, 1fr);
-  gap: 18px;
-  padding: 6px 0;
+  grid-template-columns: 10px minmax(0, 1fr);
+  gap: 12px;
+  padding: 4px 0;
 }
 
 .pt-rail {
@@ -1140,7 +1141,7 @@ main {
   display: flex;
   min-width: 0;
   flex-direction: column;
-  gap: 10px;
+  gap: 7px;
 }
 
 .pt-toolbar {
@@ -1156,9 +1157,9 @@ main {
 }
 
 .professional-thumb--pas {
-  grid-template-columns: 10px minmax(0, 1fr);
-  gap: 16px;
-  padding: 6px 0;
+  grid-template-columns: 8px minmax(0, 1fr);
+  gap: 12px;
+  padding: 4px 0;
 }
 
 .pt-config {
@@ -1181,7 +1182,7 @@ main {
   display: flex;
   min-width: 0;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .pt-label {
@@ -1191,7 +1192,7 @@ main {
 }
 
 .pt-field {
-  height: 16px;
+  height: 12px;
   border: 1px solid var(--thumb-line);
   background: transparent;
 }
@@ -1224,8 +1225,9 @@ main {
 }
 
 .pt-node {
-  width: 16%;
-  aspect-ratio: 1;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
   border: 1px solid var(--thumb-line);
   background: transparent;
 }
@@ -1239,8 +1241,8 @@ main {
 
 .professional-thumb--portals {
   grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  padding: 6px 0;
+  gap: 10px;
+  padding: 4px 0;
 }
 
 .pt-portal {
@@ -1267,8 +1269,8 @@ main {
 
 .professional-thumb--cases {
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 12px;
-  padding: 6px 0;
+  gap: 8px;
+  padding: 4px 0;
 }
 
 .pt-col {
