@@ -10,6 +10,7 @@ import {
 } from "@hugeicons/core-free-icons";
 import { ClientMarquee } from "./client-marquee";
 import { AbeamVideo } from "./abeam/abeam-video";
+import { ProfessionalTypeRow } from "./professional-type-row";
 import { SiteHeader } from "./site-header";
 
 const featuredApplications = [
@@ -37,124 +38,6 @@ const workflowSteps = [
       "Work with product and engineering to test the signal, refine the experience, and turn a promising prototype into a clear direction for delivery.",
   },
 ] as const;
-
-const equisoftProductTypes = [
-  {
-    id: "workbench",
-    caption:
-      "Principal design on customer relationship and distribution workbenches, from discovery through delivery.",
-  },
-  {
-    id: "pas",
-    caption:
-      "Systems design for data-heavy policy admin—configuration interfaces, complex forms, and audit layers.",
-  },
-  {
-    id: "ai",
-    caption:
-      "Led an AI committee and partnered across teams to integrate AI and agentic workflows.",
-  },
-  {
-    id: "portals",
-    caption:
-      "Deep UI for digital insurance tools: agent and client portals across multi-stage processes.",
-  },
-  {
-    id: "cases",
-    caption:
-      "Systems design for case management through complex, multi-stage claims and requests.",
-  },
-] as const;
-
-function ProfessionalThumb({
-  type,
-}: {
-  type: (typeof equisoftProductTypes)[number]["id"];
-}) {
-  return (
-    <div
-      className={`professional-thumb professional-thumb--${type}`}
-      aria-hidden="true"
-    >
-      {type === "workbench" ? (
-        <>
-          <span className="pt-rail">
-            <span />
-            <span />
-            <span />
-            <span />
-            <span />
-          </span>
-          <span className="pt-stage">
-            <span className="pt-toolbar" />
-            <span className="pt-card" />
-            <span className="pt-card" />
-            <span className="pt-card" />
-          </span>
-        </>
-      ) : type === "pas" ? (
-        <>
-          <span className="pt-config">
-            <span />
-            <span />
-            <span />
-            <span />
-          </span>
-          <span className="pt-form">
-            <span className="pt-label" />
-            <span className="pt-field" />
-            <span className="pt-label" />
-            <span className="pt-field" />
-            <span className="pt-audit">
-              <span />
-              <span />
-              <span />
-            </span>
-          </span>
-        </>
-      ) : type === "ai" ? (
-        <span className="pt-flow">
-          <span className="pt-node" />
-          <span className="pt-link" />
-          <span className="pt-node" />
-          <span className="pt-link" />
-          <span className="pt-node" />
-        </span>
-      ) : type === "portals" ? (
-        <>
-          <span className="pt-portal">
-            <span />
-            <span />
-            <span />
-          </span>
-          <span className="pt-portal">
-            <span />
-            <span />
-            <span />
-          </span>
-        </>
-      ) : (
-        <>
-          <span className="pt-col">
-            <span />
-            <span className="pt-ticket" />
-            <span className="pt-ticket" />
-          </span>
-          <span className="pt-col">
-            <span />
-            <span className="pt-ticket" />
-            <span className="pt-ticket" />
-            <span className="pt-ticket" />
-          </span>
-          <span className="pt-col">
-            <span />
-            <span className="pt-ticket" />
-          </span>
-        </>
-      )}
-    </div>
-  );
-}
 
 function ExternalLink({
   href,
@@ -525,14 +408,7 @@ export default function Home() {
               capabilities into insurance software and finance operations.
             </p>
           </div>
-          <ul className="professional-type-grid" aria-label="Product types">
-            {equisoftProductTypes.map((productType) => (
-              <li className="professional-type" key={productType.id}>
-                <ProfessionalThumb type={productType.id} />
-                <p className="professional-type-copy">{productType.caption}</p>
-              </li>
-            ))}
-          </ul>
+          <ProfessionalTypeRow />
         </section>
 
         <section
