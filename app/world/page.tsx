@@ -59,13 +59,13 @@ const setupClips = [
   },
   {
     number: "02",
-    kicker: "Frame",
-    title: "Fit your whole body.",
+    kicker: "Count",
+    title: "Move. We count.",
     description:
-      "Move back until hands, hips, knees, and feet stay inside the camera view.",
-    video: "/world/guides/fit-frame.mp4",
-    poster: "/world/guides/frame-poster.jpg",
-    label: "An athlete moving into a full-body plank in front of an iPhone",
+      "Once your full body is in frame, start moving. PushedWorld follows each supported rep hands-free and confirms it live.",
+    video: "/world/guides/count-rep.mp4",
+    poster: "/world/guides/count-poster.jpg",
+    label: "An athlete performing push-ups with an iPhone tracking the movement",
   },
 ] as const;
 
@@ -182,93 +182,97 @@ export default function WorldProjectPage() {
               </h2>
             </div>
             <p>
-              Set the phone down, wait for tracking, and move naturally. The
-              live counter follows the set without manual taps.
+              Front-camera tracking follows supported push-up movement
+              hands-free. The live view keeps count, movement cues, and Today
+              and Path targets in sight.
             </p>
           </div>
 
           <div className={styles.sessionDemo}>
-            <Image
-              className={styles.videoFallback}
-              src="/world/guides/count-poster.jpg"
-              alt=""
-              fill
-              sizes="(max-width: 759px) 100vw, 58vw"
-            />
-            <WorldVideo
-              className={styles.sessionVideo}
-              src="/world/guides/count-rep.mp4"
-              poster="/world/guides/count-poster.jpg"
-              label="In-app guidance video of an athlete performing push-ups in front of an iPhone"
-            />
-            <div className={styles.sessionTop} aria-hidden="true">
-              <span>
-                <i /> Live
-              </span>
-              <strong>02:06</strong>
+            <div className={styles.sessionIntro}>
+              <span>Current live session</span>
+              <strong>Camera to count.</strong>
+              <p>Front-camera movement tracking. No watch. No taps.</p>
             </div>
-            <div className={styles.sessionCounter} aria-hidden="true">
-              <strong>31</strong>
-              <span>Session reps</span>
+
+            <div className={styles.sessionPhone}>
+              <Image
+                className={styles.videoFallback}
+                src="/world/session-poster.jpg"
+                alt=""
+                fill
+                sizes="(max-width: 759px) 88vw, 31vw"
+              />
+              <WorldVideo
+                className={styles.sessionVideo}
+                src="/world/session-live.mp4"
+                poster="/world/session-poster.jpg"
+                label="Current PushedWorld live session counting push-ups and updating Today and Path targets"
+              />
             </div>
-            <div className={styles.sessionFeedback} aria-hidden="true">
-              <strong>Incredible. 31!</strong>
-              <span>33 left today</span>
-            </div>
+
+            <dl className={styles.sessionSignals}>
+              <div>
+                <dt>Movement</dt>
+                <dd>Live cues</dd>
+              </div>
+              <div>
+                <dt>Goals</dt>
+                <dd>Today + Path</dd>
+              </div>
+              <div>
+                <dt>Milestone</dt>
+                <dd>Target crushed</dd>
+              </div>
+            </dl>
           </div>
         </section>
 
         <section className={styles.pathSection} aria-labelledby="path-title">
-          <div className={styles.pathCopy}>
-            <p className="section-pill">Progress with a destination</p>
-            <h2 id="path-title">
-              See what every rep <span>unlocks.</span>
-            </h2>
-            <p>
-              Every saved push-up advances one of 100 levels across ten
-              evolving worlds. The current level, next target, and distance to
-              go always stay clear.
-            </p>
-
-            <div className={styles.progressCard}>
-              <div>
-                <Image
-                  src="/world/app-icon.png"
-                  alt=""
-                  width={34}
-                  height={34}
-                />
-                <span>Level 26 / 100 · Black Iron</span>
-              </div>
-              <strong>30</strong>
-              <p>reps to Level 27</p>
-              <i>
-                <b />
-              </i>
+          <div className={styles.sectionHeading}>
+            <div>
+              <p className="section-pill">Progress with a destination</p>
+              <h2 id="path-title">
+                See what every rep <span>unlocks.</span>
+              </h2>
             </div>
+            <p>
+              Every saved push-up moves a 100-level route through ten worlds.
+              Checkpoints turn progress into frame rewards, so the next goal
+              and what it earns stay visible.
+            </p>
           </div>
 
-          <div className={styles.pathVisual}>
-            <Image
-              className={styles.pathBackground}
-              src="/world/path-stone-gate.jpg"
-              alt="Floating stone Path climbing through clouds"
-              fill
-              sizes="(max-width: 759px) 100vw, 48vw"
-            />
-            <span className={`${styles.pathNode} ${styles.pathNodeNext}`}>27</span>
-            <span className={`${styles.pathNode} ${styles.pathNodeActive}`}>
-              26 <small>You</small>
-            </span>
-            <span className={`${styles.pathNode} ${styles.pathNodeDone}`}>25</span>
-            <Image
-              className={styles.pathScreen}
-              src="/world/path.png"
-              alt="PushedWorld Path screen"
-              width={240}
-              height={522}
-              sizes="(max-width: 759px) 45vw, 20vw"
-            />
+          <div className={styles.pathShowcase}>
+            <div className={`${styles.pathCallout} ${styles.pathCalloutStart}`}>
+              <span>01 / Progress</span>
+              <strong>Your position stays visible.</strong>
+            </div>
+
+            <figure className={`${styles.pathDevice} ${styles.pathDeviceMap}`}>
+              <Image
+                src="/world/path-current.jpg"
+                alt="Current PushedWorld Path showing Level 26 on the Black Iron route"
+                fill
+                sizes="(max-width: 759px) 62vw, 27vw"
+              />
+            </figure>
+
+            <figure className={`${styles.pathDevice} ${styles.pathDeviceUnlock}`}>
+              <Image
+                src="/world/frame-unlock.jpg"
+                alt="Current session recap showing the Stone Crown profile frame unlocked"
+                fill
+                sizes="(max-width: 759px) 58vw, 27vw"
+              />
+            </figure>
+
+            <div className={`${styles.pathCallout} ${styles.pathCalloutEnd}`}>
+              <span>02 / Reward</span>
+              <strong>Milestones become earned frames.</strong>
+            </div>
+
+            <p className={styles.pathMeta}>100 levels · 10 worlds · Frame rewards</p>
           </div>
         </section>
 

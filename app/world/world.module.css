@@ -35,7 +35,7 @@
 }
 
 .identity span {
-  color: #7c7c7c;
+  color: #636363;
   font-size: 0.68rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -140,7 +140,7 @@
 }
 
 .floatingCard small {
-  color: #777;
+  color: #666;
   font-size: 0.56rem;
   font-weight: 640;
   letter-spacing: 0.055em;
@@ -200,8 +200,7 @@
   font-weight: 610;
 }
 
-.repCard > i,
-.progressCard > i {
+.repCard > i {
   height: 4px;
   margin-top: 9px;
   overflow: hidden;
@@ -209,8 +208,7 @@
   background: #e5e5e5;
 }
 
-.repCard > i b,
-.progressCard > i b {
+.repCard > i b {
   display: block;
   width: 58%;
   height: 100%;
@@ -252,7 +250,7 @@
 }
 
 .facts dt {
-  color: #828282;
+  color: #656565;
   font-size: 0.68rem;
   letter-spacing: 0.035em;
   text-transform: uppercase;
@@ -277,7 +275,6 @@
 }
 
 .sectionHeading h2,
-.pathCopy h2,
 .privacyCopy h2,
 .leagueCopy h2 {
   margin-top: 19px;
@@ -288,14 +285,12 @@
 }
 
 .sectionHeading h2 span,
-.pathCopy h2 span,
 .privacyCopy h2 span,
 .leagueCopy h2 span {
   color: var(--muted);
 }
 
 .sectionHeading > p,
-.pathCopy > p,
 .privacyCopy > p,
 .leagueCopy > p {
   max-width: 660px;
@@ -308,11 +303,32 @@
 .sessionDemo {
   position: relative;
   isolation: isolate;
-  aspect-ratio: 4 / 5;
+  display: grid;
   margin-top: 40px;
+  padding: 16px;
+  gap: 28px;
   overflow: hidden;
   border-radius: var(--card-radius);
-  background: #070e1e;
+  background:
+    radial-gradient(circle at 50% 38%, rgb(50 94 255 / 28%), transparent 34%),
+    linear-gradient(145deg, #0b1020 0%, #080b14 58%, #121a31 100%);
+  color: #fff;
+}
+
+.sessionDemo::before {
+  position: absolute;
+  width: 64%;
+  aspect-ratio: 1;
+  top: 18%;
+  left: 50%;
+  border: 1px solid rgb(129 156 255 / 14%);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 64px rgb(90 118 255 / 4%),
+    0 0 0 128px rgb(90 118 255 / 3%);
+  pointer-events: none;
+  transform: translateX(-50%);
+  content: "";
 }
 
 .videoFallback,
@@ -334,239 +350,176 @@
   z-index: 0;
 }
 
-.sessionDemo::after {
-  position: absolute;
+.sessionIntro,
+.sessionSignals,
+.sessionPhone {
+  position: relative;
   z-index: 1;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgb(2 7 15 / 22%) 0%,
-    transparent 45%,
-    rgb(2 7 15 / 52%) 100%
-  );
-  pointer-events: none;
-  content: "";
 }
 
-.sessionTop,
-.sessionCounter,
-.sessionFeedback {
-  position: absolute;
-  z-index: 2;
-  color: #fff;
-}
-
-.sessionTop {
-  top: 16px;
-  right: 16px;
-  left: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 0.7rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.sessionTop > span {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.sessionTop i {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #0bcae4;
-}
-
-.sessionCounter {
-  top: 19%;
-  left: 50%;
+.sessionIntro {
   display: grid;
-  min-width: 154px;
-  padding: 14px 22px;
-  justify-items: center;
-  border: 1px solid rgb(11 202 228 / 78%);
-  border-radius: 16px;
-  background: rgb(3 10 25 / 84%);
-  transform: translateX(-50%);
-  backdrop-filter: blur(12px);
+  align-content: end;
 }
 
-.sessionCounter strong {
-  font-size: 2.8rem;
-  letter-spacing: -0.07em;
-  line-height: 1;
-}
-
-.sessionCounter span {
-  margin-top: 4px;
-  color: #08cae4;
-  font-size: 0.56rem;
-  font-weight: 700;
-  letter-spacing: 0.07em;
+.sessionIntro > span,
+.sessionSignals dt {
+  color: #879cff;
+  font-size: 0.62rem;
+  font-weight: 680;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
-.sessionFeedback {
-  right: 14px;
-  bottom: 14px;
-  left: 14px;
+.sessionIntro strong {
+  max-width: 8em;
+  margin-top: 10px;
+  font-size: 2rem;
+  font-weight: 620;
+  letter-spacing: -0.055em;
+  line-height: 1.02;
+}
+
+.sessionIntro p {
+  max-width: 20em;
+  margin-top: 12px;
+  color: #9da7bb;
+  font-size: 0.88rem;
+  letter-spacing: -0.018em;
+  line-height: 1.45;
+}
+
+.sessionPhone {
+  isolation: isolate;
+  width: min(100%, 410px);
+  aspect-ratio: 9 / 16;
+  margin: 0 auto;
+  overflow: hidden;
+  border: 1px solid rgb(255 255 255 / 18%);
+  border-radius: clamp(26px, 7vw, 42px);
+  background: #192032;
+  box-shadow:
+    0 34px 70px rgb(0 0 0 / 42%),
+    0 0 0 8px rgb(255 255 255 / 4%);
+}
+
+.sessionPhone .videoFallback,
+.sessionPhone .sessionVideo {
+  object-fit: cover;
+}
+
+.sessionSignals {
+  display: grid;
+  margin: 0;
+  align-content: end;
+  border-top: 1px solid rgb(255 255 255 / 13%);
+}
+
+.sessionSignals div {
   display: flex;
-  padding: 15px;
-  align-items: center;
+  min-width: 0;
+  padding: 13px 0;
+  align-items: baseline;
   justify-content: space-between;
   gap: 16px;
-  border: 1px solid rgb(255 79 50 / 84%);
-  border-radius: 15px;
-  background: rgb(4 10 24 / 88%);
-  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgb(255 255 255 / 13%);
 }
 
-.sessionFeedback strong {
-  font-size: 0.82rem;
+.sessionSignals dd {
+  margin: 0;
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 570;
   letter-spacing: -0.02em;
-}
-
-.sessionFeedback span {
-  color: #ff5a35;
-  font-size: 0.7rem;
-  font-weight: 700;
-  text-transform: uppercase;
+  text-align: right;
 }
 
 .pathSection {
-  display: grid;
   padding: 0 var(--page-pad) 120px;
-  gap: 40px;
 }
 
-.pathCopy > p,
-.leagueCopy > p {
-  margin-top: 26px;
-}
-
-.progressCard {
-  margin-top: 30px;
-  padding: 18px;
-  border: 1px solid #e5e5e5;
-  border-radius: 16px;
-  background: #fff;
-}
-
-.progressCard > div {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.progressCard img {
-  border-radius: 8px;
-}
-
-.progressCard > div span {
-  color: #6d6d6d;
-  font-size: 0.67rem;
-  font-weight: 650;
-  letter-spacing: 0.035em;
-  text-transform: uppercase;
-}
-
-.progressCard > strong {
-  display: block;
-  margin-top: 22px;
-  font-size: 3.8rem;
-  letter-spacing: -0.08em;
-  line-height: 0.9;
-}
-
-.progressCard > p {
-  margin-top: 7px;
-  color: #676767;
-  font-size: 0.92rem;
-  font-weight: 570;
-}
-
-.pathVisual {
+.pathShowcase {
   position: relative;
   isolation: isolate;
   aspect-ratio: 4 / 5;
+  margin-top: 40px;
   overflow: hidden;
   border-radius: var(--card-radius);
-  background: #dcefff;
+  background:
+    radial-gradient(circle at 50% 18%, rgb(100 122 255 / 55%), transparent 36%),
+    radial-gradient(circle at 50% 88%, rgb(29 209 255 / 20%), transparent 34%),
+    linear-gradient(145deg, #101638 0%, #1a1647 48%, #071629 100%);
 }
 
-.pathBackground {
-  z-index: -1;
-  object-fit: cover;
-  object-position: center 58%;
-}
-
-.pathVisual::after {
+.pathShowcase::before {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 52%, rgb(84 133 166 / 26%));
+  width: 72%;
+  aspect-ratio: 1;
+  top: 12%;
+  left: 50%;
+  border: 1px solid rgb(255 255 255 / 9%);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 64px rgb(255 255 255 / 2%),
+    0 0 0 128px rgb(255 255 255 / 1.5%);
   pointer-events: none;
+  transform: translateX(-50%);
   content: "";
 }
 
-.pathNode {
+.pathDevice {
   position: absolute;
   z-index: 1;
-  display: grid;
-  width: 50px;
-  aspect-ratio: 1;
-  place-items: center;
-  border: 4px solid #fff;
-  border-radius: 50%;
-  background: #eee;
-  box-shadow: 0 10px 24px rgb(36 76 105 / 20%);
-  font-size: 0.8rem;
-  font-weight: 720;
+  width: 64%;
+  aspect-ratio: 1320 / 2868;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgb(255 255 255 / 32%);
+  border-radius: clamp(24px, 6vw, 38px);
+  background: #dbeaff;
+  box-shadow:
+    0 38px 70px rgb(0 0 0 / 44%),
+    0 0 0 7px rgb(255 255 255 / 6%);
 }
 
-.pathNode small {
-  position: absolute;
-  top: calc(100% + 5px);
-  padding: 4px 7px;
-  border-radius: 999px;
-  background: #fff;
-  font-size: 0.48rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+.pathDevice img {
+  object-fit: cover;
 }
 
-.pathNodeNext {
-  top: 12%;
-  left: 51%;
+.pathDeviceMap {
+  top: 7%;
+  left: -4%;
+  transform: rotate(-3.5deg);
 }
 
-.pathNodeActive {
-  top: 36%;
-  left: 35%;
-  background: #763bff;
-  color: #fff;
-}
-
-.pathNodeDone {
-  top: 60%;
-  left: 52%;
-  background: #00bfe7;
-  color: #fff;
-}
-
-.pathScreen {
-  position: absolute;
+.pathDeviceUnlock {
   z-index: 2;
-  right: 5%;
-  bottom: -7%;
-  width: 43%;
-  height: auto;
-  border-radius: clamp(16px, 4vw, 28px);
-  box-shadow: 0 24px 48px rgb(34 40 88 / 25%);
-  transform: rotate(3deg);
+  top: 20%;
+  right: -7%;
+  transform: rotate(3.5deg);
+}
+
+.pathCallout {
+  display: none;
+}
+
+.pathMeta {
+  position: absolute;
+  z-index: 4;
+  right: 14px;
+  bottom: 14px;
+  left: 14px;
+  padding: 9px 12px;
+  border: 1px solid rgb(255 255 255 / 17%);
+  border-radius: 999px;
+  background: rgb(6 10 28 / 76%);
+  color: #d9deef;
+  font-size: 0.57rem;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-align: center;
+  text-transform: uppercase;
+  backdrop-filter: blur(12px);
 }
 
 .guideGrid {
@@ -628,7 +581,7 @@
   margin-top: 30px;
   padding-top: 16px;
   border-top: 1px solid var(--line);
-  color: #7c7c7c;
+  color: #666;
   font-size: 0.78rem;
   line-height: 1.45;
 }
@@ -701,7 +654,7 @@
 }
 
 .privacyFacts span {
-  color: #777;
+  color: #6b6b6b;
   font-size: 0.82rem;
 }
 
@@ -709,6 +662,10 @@
   display: grid;
   padding: 0 var(--page-pad) 120px;
   gap: 40px;
+}
+
+.leagueCopy > p {
+  margin-top: 26px;
 }
 
 .leagueVisual {
@@ -853,55 +810,113 @@
   }
 
   .sectionHeading h2,
-  .pathCopy h2,
   .privacyCopy h2,
   .leagueCopy h2 {
     font-size: clamp(4.2rem, 6.3vw, 6rem);
   }
 
   .sectionHeading > p,
-  .pathCopy > p,
   .privacyCopy > p,
   .leagueCopy > p {
     font-size: 1.16rem;
   }
 
   .sessionDemo {
+    margin-top: 58px;
+    padding: clamp(32px, 4.2vw, 60px);
+    align-items: center;
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 390px) minmax(0, 1fr);
+    gap: clamp(24px, 4vw, 64px);
+  }
+
+  .sessionIntro {
+    align-content: center;
+  }
+
+  .sessionIntro strong {
+    font-size: clamp(2rem, 3vw, 3.25rem);
+  }
+
+  .sessionPhone {
+    width: 100%;
+  }
+
+  .sessionSignals {
+    width: 100%;
+    max-width: 260px;
+  }
+
+  .pathSection {
+    padding-bottom: 160px;
+  }
+
+  .pathShowcase {
     aspect-ratio: 16 / 9;
     margin-top: 58px;
   }
 
-  .sessionVideo,
-  .sessionDemo > .videoFallback {
-    object-position: center 52%;
+  .pathDevice {
+    width: 26%;
+    border-radius: clamp(22px, 2.3vw, 38px);
   }
 
-  .sessionCounter {
-    top: 11%;
-    min-width: 210px;
-    padding: 17px 26px;
+  .pathDeviceMap {
+    top: 7%;
+    left: 22%;
+    transform: rotate(-2deg);
   }
 
-  .sessionCounter strong {
-    font-size: 4rem;
+  .pathDeviceUnlock {
+    top: 7%;
+    right: 22%;
+    transform: rotate(2deg);
   }
 
-  .sessionFeedback {
-    right: 24px;
-    bottom: 24px;
-    left: 24px;
-    padding: 20px 22px;
+  .pathCallout {
+    position: absolute;
+    z-index: 4;
+    display: grid;
+    width: 15%;
+    gap: 8px;
+    color: #fff;
   }
 
-  .sessionFeedback strong {
-    font-size: 1.05rem;
+  .pathCallout span {
+    color: #8fa2ff;
+    font-size: 0.6rem;
+    font-weight: 680;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
   }
 
-  .sessionFeedback span {
-    font-size: 0.86rem;
+  .pathCallout strong {
+    font-size: clamp(0.78rem, 1.25vw, 1.15rem);
+    font-weight: 570;
+    letter-spacing: -0.035em;
+    line-height: 1.18;
   }
 
-  .pathSection,
+  .pathCalloutStart {
+    top: 13%;
+    left: 4%;
+  }
+
+  .pathCalloutEnd {
+    right: 4%;
+    bottom: 13%;
+    text-align: right;
+  }
+
+  .pathMeta {
+    right: auto;
+    bottom: 22px;
+    left: 50%;
+    padding-right: 18px;
+    padding-left: 18px;
+    white-space: nowrap;
+    transform: translateX(-50%);
+  }
+
   .leagueSection {
     padding-bottom: 160px;
     align-items: center;
@@ -909,12 +924,6 @@
     gap: clamp(54px, 7vw, 110px);
   }
 
-  .progressCard {
-    max-width: 520px;
-    padding: 22px;
-  }
-
-  .pathVisual,
   .leagueVisual {
     aspect-ratio: 4 / 5;
   }
