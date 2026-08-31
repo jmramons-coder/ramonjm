@@ -7,13 +7,14 @@ import {
   ArrowUpRight01Icon,
 } from "@hugeicons/core-free-icons";
 import { SiteHeader } from "../site-header";
+import { FormGuide } from "./form-guide";
 import { WorldVideo } from "./world-video";
 import styles from "./world.module.css";
 
 export const metadata: Metadata = {
   title: "PushedWorld — Ramon JM",
   description:
-    "A native iPhone fitness game that counts push-ups on-device and turns every saved rep into visible progress.",
+    "A native iPhone fitness game that counts push-ups on-device, never records camera video, and turns saved reps into Path progress, frames, and optional League standings.",
   alternates: { canonical: "/world" },
   openGraph: {
     title: "PushedWorld — Ramon JM",
@@ -46,26 +47,34 @@ const projectFacts = [
   ["Privacy", "On-device camera analysis"],
 ] as const;
 
-const setupClips = [
+const pathWorlds = [
+  "Base Camp",
+  "Frostline",
+  "Ember Core",
+  "Riftwalk",
+  "Skybound",
+  "Onyx Orbit",
+  "Astral Wilds",
+  "Celest Forge",
+  "Universe Engine",
+  "Ultra",
+] as const;
+
+const widgetSurfaces = [
   {
-    number: "01",
-    kicker: "Place",
-    title: "Place it low.",
-    description:
-      "Stand the iPhone upright at floor level with the front camera facing the workout space.",
-    video: "/world/guides/place-phone.mp4",
-    poster: "/world/guides/place-poster.jpg",
-    label: "A person placing an iPhone upright at floor level",
+    surface: "Home Screen",
+    title: "Today stays on the grid.",
+    detail: "Reps to do, progress, and completion without opening the app.",
   },
   {
-    number: "02",
-    kicker: "Frame",
-    title: "Fit your whole body.",
-    description:
-      "Move back until hands, hips, knees, and feet stay inside the camera view.",
-    video: "/world/guides/fit-frame.mp4",
-    poster: "/world/guides/frame-poster.jpg",
-    label: "An athlete moving into a full-body plank in front of an iPhone",
+    surface: "Lock Screen",
+    title: "Glanceable at wake.",
+    detail: "Today’s count and streak sit with the rest of the lock screen.",
+  },
+  {
+    surface: "Dynamic Island",
+    title: "Live, then gone.",
+    detail: "A compact Live Activity for the session. Animation is optional.",
   },
 ] as const;
 
@@ -128,7 +137,10 @@ export default function WorldProjectPage() {
               your body is in frame, turning every saved rep into progress you
               can see.
             </p>
-            <ProductSiteLink className={styles.primaryLink} />
+            <div className={styles.heroActions}>
+              <ProductSiteLink className={styles.primaryLink} />
+              <span className={styles.comingSoon}>Coming soon on iPhone</span>
+            </div>
           </div>
 
           <figure className={styles.heroStage}>
@@ -182,8 +194,9 @@ export default function WorldProjectPage() {
               </h2>
             </div>
             <p>
-              Set the phone down, wait for tracking, and move naturally. The
-              live counter follows the set without manual taps.
+              Front-camera tracking estimates supported push-up movement
+              hands-free. Pose analysis runs on the iPhone only while a session
+              is open. The camera video is never recorded.
             </p>
           </div>
 
@@ -227,25 +240,48 @@ export default function WorldProjectPage() {
             <p>
               Every saved push-up advances one of 100 levels across ten
               evolving worlds. The current level, next target, and distance to
-              go always stay clear.
+              go always stay clear—named places such as Stone Crown and Black
+              Iron, not a blank counter.
             </p>
 
-            <div className={styles.progressCard}>
-              <div>
-                <Image
-                  src="/world/app-icon.png"
-                  alt=""
-                  width={34}
-                  height={34}
-                />
-                <span>Level 26 / 100 · Black Iron</span>
+            <div className={styles.levelPair}>
+              <div className={styles.progressCard}>
+                <div>
+                  <Image
+                    src="/world/app-icon.png"
+                    alt=""
+                    width={34}
+                    height={34}
+                  />
+                  <span>Level 05 / 100 · Stone Crown</span>
+                </div>
+                <strong>14</strong>
+                <p>reps to Momentum</p>
+                <i>
+                  <b style={{ width: "44%" }} />
+                </i>
               </div>
-              <strong>30</strong>
-              <p>reps to Level 27</p>
-              <i>
-                <b />
-              </i>
+              <div className={styles.progressCard}>
+                <div>
+                  <Image
+                    src="/world/app-icon.png"
+                    alt=""
+                    width={34}
+                    height={34}
+                  />
+                  <span>Level 26 / 100 · Black Iron</span>
+                </div>
+                <strong>30</strong>
+                <p>reps to Level 27</p>
+                <i>
+                  <b />
+                </i>
+              </div>
             </div>
+            <p className={styles.exampleNote}>
+              Example Path states from the live product UI—not a personal
+              record.
+            </p>
           </div>
 
           <div className={styles.pathVisual}>
@@ -264,7 +300,7 @@ export default function WorldProjectPage() {
             <Image
               className={styles.pathScreen}
               src="/world/path.png"
-              alt="PushedWorld Path screen"
+              alt="PushedWorld Path screen showing Black Iron as the active level"
               width={240}
               height={522}
               sizes="(max-width: 759px) 45vw, 20vw"
@@ -272,51 +308,177 @@ export default function WorldProjectPage() {
           </div>
         </section>
 
-        <section className={styles.guideSection} aria-labelledby="guide-title">
+        <section className={styles.worldsSection} aria-labelledby="worlds-title">
           <div className={styles.sectionHeading}>
             <div>
-              <p className="section-pill">In-app guidance</p>
-              <h2 id="guide-title">
-                From phone placement <span>to a counted rep.</span>
+              <p className="section-pill">Ten worlds</p>
+              <h2 id="worlds-title">
+                One Path. <span>Ten places to climb.</span>
               </h2>
             </div>
             <p>
-              The same short motion guides used inside PushedWorld make the
-              camera setup easy to understand before a session begins.
+              Worlds shift as the count grows—from Base Camp stone to Ultra.
+              The case study names them; the product keeps you on the current
+              step.
+            </p>
+          </div>
+          <ol className={styles.worldList}>
+            {pathWorlds.map((world, index) => (
+              <li key={world}>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                {world}
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        <section className={styles.rewardSection} aria-labelledby="reward-title">
+          <div className={styles.rewardCopy}>
+            <p className="section-pill">Rewards earned by reps</p>
+            <h2 id="reward-title">
+              Frames you wear <span>because you showed up.</span>
+            </h2>
+            <p>
+              Saved reps unlock frames you can equip on Buster. A named level
+              such as Black Iron becomes a visible reward—progress you earned,
+              not a catalog of things to buy.
+            </p>
+          </div>
+          <div className={styles.rewardVisual} aria-hidden="true">
+            <div className={styles.rewardFrame}>
+              <Image
+                src="/world/app-icon.png"
+                alt=""
+                width={256}
+                height={256}
+                sizes="160px"
+              />
+            </div>
+            <div className={styles.rewardMeta}>
+              <small>Reward earned</small>
+              <strong>Black Iron unlocked</strong>
+              <span>Level 26 · equipped</span>
+            </div>
+          </div>
+        </section>
+
+        <section className={styles.busterSection} aria-labelledby="buster-title">
+          <div className={styles.sectionHeading}>
+            <div>
+              <p className="section-pill">Mentor · Buster</p>
+              <h2 id="buster-title">
+                A coach for form. <span>A nudge to finish.</span>
+              </h2>
+            </div>
+            <p>
+              Buster is the in-app mentor: a form guide for four grips, and
+              optional check-ins that stay on the device. The copy below is a
+              product example—not a customer quote.
             </p>
           </div>
 
-          <div className={styles.guideGrid}>
-            {setupClips.map((clip) => (
-              <figure className={styles.guideCard} key={clip.number}>
-                <div className={styles.guideMedia}>
-                  <Image
-                    className={styles.videoFallback}
-                    src={clip.poster}
-                    alt=""
-                    fill
-                    sizes="(max-width: 759px) 86vw, 41vw"
-                  />
-                  <WorldVideo
-                    src={clip.video}
-                    poster={clip.poster}
-                    label={clip.label}
-                  />
-                  <span aria-hidden="true">
-                    {clip.number} / {clip.kicker}
-                  </span>
+          <div className={styles.busterGrid}>
+            <figure className={styles.busterPhone}>
+              <Image
+                src="/world/workout.png"
+                alt="PushedWorld session screen with Buster holding a plank while the live rep count reads 31"
+                width={240}
+                height={522}
+                sizes="(max-width: 759px) 68vw, 28vw"
+              />
+            </figure>
+            <div className={styles.nudgeCard}>
+              <div className={styles.nudgeHeader}>
+                <Image
+                  src="/world/app-icon.png"
+                  alt=""
+                  width={36}
+                  height={36}
+                />
+                <div>
+                  <strong>Buster</strong>
+                  <span>Example check-in</span>
                 </div>
-                <figcaption>
-                  <h3>{clip.title}</h3>
-                  <p>{clip.description}</p>
-                </figcaption>
-              </figure>
-            ))}
+              </div>
+              <p>You showed up. Finish the set and keep that streak alive.</p>
+              <div className={styles.nudgeMeta}>
+                <span>Optional local notification</span>
+                <span>On device</span>
+              </div>
+            </div>
           </div>
-          <p className={styles.guideNote}>
-            Camera guidance is instructional. Move with control and stop if you
-            feel sharp pain.
-          </p>
+        </section>
+
+        <section className={styles.guideSection} aria-labelledby="guide-title">
+          <div className={styles.sectionHeading}>
+            <div>
+              <p className="section-pill">Form guide</p>
+              <h2 id="guide-title">
+                Build better reps. <span>Not just bigger numbers.</span>
+              </h2>
+            </div>
+            <p>
+              Watch the positions Buster teaches: top, middle, and bottom for
+              standard, wide, close-grip, and diamond push-ups. Hands move;
+              the trunk stays one line.
+            </p>
+          </div>
+          <FormGuide />
+        </section>
+
+        <section className={styles.widgetSection} aria-labelledby="widget-title">
+          <div className={styles.sectionHeading}>
+            <div>
+              <p className="section-pill">Home, Lock, Island</p>
+              <h2 id="widget-title">
+                Today stays <span>in sight.</span>
+              </h2>
+            </div>
+            <p>
+              See reps to do, progress, completion, and your streak on the Home
+              Screen, Lock Screen, and Dynamic Island. Animation and reminders
+              are optional.
+            </p>
+          </div>
+
+          <ul className={styles.widgetGrid}>
+            {widgetSurfaces.map((widget) => (
+              <li className={styles.widgetCard} key={widget.surface}>
+                <div
+                  className={`${styles.widgetPreview} ${
+                    widget.surface === "Home Screen"
+                      ? styles.widgetHome
+                      : widget.surface === "Lock Screen"
+                        ? styles.widgetLock
+                        : styles.widgetIsland
+                  }`}
+                  aria-hidden="true"
+                >
+                  {widget.surface === "Home Screen" ? (
+                    <div className={styles.homeWidget}>
+                      <small>Today</small>
+                      <strong>14</strong>
+                      <span>Stone Crown</span>
+                    </div>
+                  ) : widget.surface === "Lock Screen" ? (
+                    <div className={styles.lockWidget}>
+                      <i />
+                      <span>31 reps · Day 7</span>
+                    </div>
+                  ) : (
+                    <div className={styles.islandWidget}>
+                      <i />
+                      <span>Live · 31</span>
+                    </div>
+                  )}
+                </div>
+                <h3>{widget.surface}</h3>
+                <p>
+                  <strong>{widget.title}</strong> {widget.detail}
+                </p>
+              </li>
+            ))}
+          </ul>
         </section>
 
         <section className={styles.privacySection} aria-labelledby="privacy-title">
@@ -330,8 +492,25 @@ export default function WorldProjectPage() {
             </h2>
             <p>
               Frames are analyzed live on the iPhone only while a session is
-              open. They are never saved or uploaded.
+              open. They are never saved or uploaded. Pose points and reminders
+              stay optional, and under your control.
             </p>
+            <a
+              className={styles.privacyLink}
+              href="https://www.pushedworld.com/privacy"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Read the privacy policy
+              <span className="link-icon" aria-hidden="true">
+                <HugeiconsIcon
+                  icon={ArrowUpRight01Icon}
+                  size={16}
+                  strokeWidth={1.8}
+                />
+              </span>
+              <span className="sr-only"> (opens in a new tab)</span>
+            </a>
           </div>
           <ul className={styles.privacyFacts}>
             <li>
@@ -357,13 +536,17 @@ export default function WorldProjectPage() {
             </h2>
             <p>
               Optional Game Center standings turn consistency into momentum
-              without making competition a requirement.
+              without making competition a requirement. Opening League does not
+              sync a score; connecting is a choice.
+            </p>
+            <p className={styles.exampleNote}>
+              Illustrative Game Center preview—not customer testimonials.
             </p>
           </div>
           <div className={styles.leagueVisual}>
             <Image
               src="/world/league.png"
-              alt="PushedWorld League showing all-time athlete standings"
+              alt="Illustrative PushedWorld League preview showing all-time standings in Game Center"
               width={240}
               height={522}
               sizes="(max-width: 759px) 68vw, 24vw"
@@ -372,7 +555,7 @@ export default function WorldProjectPage() {
         </section>
 
         <section className={styles.closing} aria-labelledby="closing-title">
-          <p>Full product story</p>
+          <p>Coming soon on iPhone</p>
           <h2 id="closing-title">See the complete PushedWorld experience.</h2>
           <div>
             <ProductSiteLink className={styles.closingLink} />

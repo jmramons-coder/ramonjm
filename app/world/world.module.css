@@ -74,8 +74,17 @@
   line-height: 1.42;
 }
 
+.heroActions {
+  display: flex;
+  margin-top: 30px;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px 16px;
+}
+
 .primaryLink,
-.closingLink {
+.closingLink,
+.privacyLink {
   display: inline-flex;
   min-height: 42px;
   padding: 0 16px;
@@ -92,9 +101,15 @@
 }
 
 .primaryLink {
-  margin-top: 30px;
   background: var(--ink);
   color: #fff;
+}
+
+.comingSoon {
+  color: #7a7a7a;
+  font-size: 0.78rem;
+  font-weight: 530;
+  letter-spacing: -0.02em;
 }
 
 .primaryLink:hover {
@@ -267,7 +282,9 @@
 }
 
 .sessionSection,
-.guideSection {
+.guideSection,
+.worldsSection,
+.widgetSection {
   padding: 0 var(--page-pad) 120px;
 }
 
@@ -279,7 +296,8 @@
 .sectionHeading h2,
 .pathCopy h2,
 .privacyCopy h2,
-.leagueCopy h2 {
+.leagueCopy h2,
+.rewardCopy h2 {
   margin-top: 19px;
   font-size: clamp(2.65rem, 10.8vw, 4.6rem);
   font-weight: 630;
@@ -290,14 +308,16 @@
 .sectionHeading h2 span,
 .pathCopy h2 span,
 .privacyCopy h2 span,
-.leagueCopy h2 span {
+.leagueCopy h2 span,
+.rewardCopy h2 span {
   color: var(--muted);
 }
 
 .sectionHeading > p,
 .pathCopy > p,
 .privacyCopy > p,
-.leagueCopy > p {
+.leagueCopy > p,
+.rewardCopy > p {
   max-width: 660px;
   color: var(--body);
   font-size: 1.07rem;
@@ -316,8 +336,7 @@
 }
 
 .videoFallback,
-.sessionVideo,
-.guideMedia video {
+.sessionVideo {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -329,8 +348,7 @@
   z-index: -1;
 }
 
-.sessionVideo,
-.guideMedia video {
+.sessionVideo {
   z-index: 0;
 }
 
@@ -444,12 +462,18 @@
 }
 
 .pathCopy > p,
-.leagueCopy > p {
+.leagueCopy > p,
+.rewardCopy > p {
   margin-top: 26px;
 }
 
-.progressCard {
+.levelPair {
+  display: grid;
   margin-top: 30px;
+  gap: 12px;
+}
+
+.progressCard {
   padding: 18px;
   border: 1px solid #e5e5e5;
   border-radius: 16px;
@@ -569,68 +593,558 @@
   transform: rotate(3deg);
 }
 
-.guideGrid {
+.exampleNote {
+  margin-top: 16px;
+  color: #7c7c7c;
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.worldList {
   display: grid;
-  margin-top: 40px;
-  gap: 32px;
+  margin: 36px 0 0;
+  padding: 0;
+  gap: 8px;
+  list-style: none;
+  grid-template-columns: repeat(auto-fit, minmax(168px, 1fr));
 }
 
-.guideCard {
+.worldList li {
+  display: flex;
+  min-height: 54px;
+  padding: 0 16px;
+  align-items: center;
+  gap: 14px;
+  border: 1px solid #e6e6e6;
+  border-radius: 14px;
+  background: #fff;
+  font-size: 0.98rem;
+  font-weight: 560;
+  letter-spacing: -0.03em;
+}
+
+.worldList span {
+  color: #8a8a8a;
+  font-size: 0.68rem;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+}
+
+.rewardSection,
+.busterSection {
+  display: grid;
+  padding: 0 var(--page-pad) 120px;
+  gap: 36px;
+}
+
+.rewardVisual {
+  display: grid;
+  min-height: 320px;
+  padding: 28px 22px;
+  place-items: center;
+  gap: 22px;
+  border-radius: var(--card-radius);
+  background:
+    radial-gradient(circle at 50% 18%, rgb(255 255 255 / 70%), transparent 36%),
+    linear-gradient(160deg, #ece4ff 0%, #d7f4ff 100%);
+}
+
+.rewardFrame {
+  display: grid;
+  width: min(58%, 180px);
+  aspect-ratio: 1;
+  place-items: center;
+  border: 10px solid #c9a46a;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow:
+    0 0 0 6px #763bff,
+    0 22px 40px rgb(48 28 110 / 18%);
+}
+
+.rewardFrame img {
+  width: 78%;
+  height: auto;
+  border-radius: 22%;
+}
+
+.rewardMeta {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  text-align: center;
+}
+
+.rewardMeta small {
+  color: #6d5aa8;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.rewardMeta strong {
+  font-size: 1.2rem;
+  letter-spacing: -0.04em;
+}
+
+.rewardMeta span {
+  color: #666;
+  font-size: 0.78rem;
+}
+
+.busterGrid {
+  display: grid;
+  gap: 16px;
+}
+
+.busterPhone {
+  display: grid;
+  aspect-ratio: 4 / 5;
   margin: 0;
+  overflow: hidden;
+  place-items: end center;
+  border-radius: var(--card-radius);
+  background: linear-gradient(160deg, #101a31 0%, #02070e 100%);
 }
 
-.guideMedia {
+.busterPhone img {
+  width: auto;
+  max-width: 68%;
+  height: 92%;
+  object-fit: contain;
+  object-position: bottom;
+  border-radius: clamp(16px, 4vw, 28px) clamp(16px, 4vw, 28px) 0 0;
+  filter: drop-shadow(0 24px 34px rgb(8 12 28 / 35%));
+  transform: translateY(5%);
+}
+
+.nudgeCard {
+  display: grid;
+  padding: 22px 20px;
+  align-content: start;
+  gap: 18px;
+  border: 1px solid #e5e5e5;
+  border-radius: var(--card-radius);
+  background: #fff;
+}
+
+.nudgeHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nudgeHeader img {
+  border-radius: 10px;
+}
+
+.nudgeHeader strong {
+  display: block;
+  font-size: 0.95rem;
+  letter-spacing: -0.03em;
+}
+
+.nudgeHeader span {
+  color: #7a7a7a;
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.nudgeCard > p {
+  max-width: 22em;
+  font-size: 1.35rem;
+  font-weight: 530;
+  letter-spacing: -0.045em;
+  line-height: 1.25;
+}
+
+.nudgeMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.nudgeMeta span {
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #f1f1f1;
+  color: #666;
+  font-size: 0.68rem;
+  font-weight: 600;
+}
+
+.formGuide {
+  margin-top: 40px;
+  padding: 18px;
+  border-radius: 18px;
+  background: #fff;
+}
+
+.formTabs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.formTabs button {
+  min-height: 42px;
+  padding: 0 12px;
+  border: 1px solid #e4e4e4;
+  border-radius: 999px;
+  background: #f7f7f7;
+  color: #555;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 560;
+  letter-spacing: -0.02em;
+  cursor: pointer;
+}
+
+.formTabs button:hover,
+.formPoses button:hover {
+  border-color: #cfcfcf;
+}
+
+.formTabActive {
+  background: var(--ink) !important;
+  color: #fff !important;
+  border-color: var(--ink) !important;
+}
+
+.formPanel {
+  display: grid;
+  margin-top: 16px;
+  gap: 22px;
+}
+
+.formStage {
   position: relative;
   isolation: isolate;
-  aspect-ratio: 3 / 4;
+  min-height: 280px;
   overflow: hidden;
-  border-radius: var(--card-radius);
-  background: #e9e9e9;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #d7ecff 0%, #eef6ff 58%, #f7f3ea 100%);
+  --hand-inset: 28%;
+  --body-y: 36%;
 }
 
-.guideMedia > span {
+.formStage[data-grip="wide"] {
+  --hand-inset: 12%;
+}
+
+.formStage[data-grip="close-grip"] {
+  --hand-inset: 36%;
+}
+
+.formStage[data-grip="diamond"] {
+  --hand-inset: 44%;
+}
+
+.formStage[data-pose="middle"] {
+  --body-y: 48%;
+}
+
+.formStage[data-pose="bottom"] {
+  --body-y: 60%;
+}
+
+.formSky,
+.formFloor,
+.formHead,
+.formBody,
+.formHand {
   position: absolute;
-  z-index: 2;
+}
+
+.formSky {
+  inset: 0 0 42% 0;
+  background:
+    radial-gradient(circle at 18% 30%, rgb(255 255 255 / 80%), transparent 22%),
+    radial-gradient(circle at 78% 18%, rgb(255 255 255 / 70%), transparent 18%);
+}
+
+.formFloor {
+  right: 8%;
+  bottom: 14%;
+  left: 8%;
+  height: 14px;
+  border-radius: 999px;
+  background: #cbb896;
+  box-shadow: 0 10px 18px rgb(90 70 30 / 12%);
+}
+
+.formBody {
+  top: var(--body-y);
+  right: 22%;
+  left: 22%;
+  height: 10px;
+  border-radius: 999px;
+  background: #1d2433;
+  transition:
+    top 420ms ease,
+    right 420ms ease,
+    left 420ms ease;
+}
+
+.formHead {
+  top: calc(var(--body-y) - 22px);
+  left: 50%;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #f3efe6;
+  box-shadow: inset 0 0 0 3px #1d2433;
+  transform: translateX(-50%);
+  transition: top 420ms ease;
+}
+
+.formHand {
+  bottom: 22%;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #763bff;
+  box-shadow: 0 0 0 5px rgb(118 59 255 / 16%);
+  transition: left 420ms ease, right 420ms ease;
+}
+
+.formHandLeft {
+  left: var(--hand-inset);
+}
+
+.formHandRight {
+  right: var(--hand-inset);
+}
+
+.formStage[data-grip="diamond"] .formHand {
+  background: #00bfe7;
+  box-shadow: 0 0 0 5px rgb(0 191 231 / 18%);
+}
+
+.formPoseChip {
+  position: absolute;
   top: 14px;
   left: 14px;
-  padding: 8px 10px;
-  border: 1px solid rgb(255 255 255 / 75%);
+  padding: 7px 10px;
   border-radius: 999px;
-  background: rgb(255 255 255 / 84%);
-  font-size: 0.6rem;
-  font-weight: 650;
-  letter-spacing: 0.045em;
+  background: rgb(255 255 255 / 86%);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   backdrop-filter: blur(10px);
 }
 
-.guideCard figcaption {
-  margin-top: 17px;
+.formCopy span {
+  color: #7a7a7a;
+  font-size: 0.68rem;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
-.guideCard h3 {
-  font-size: 1.55rem;
+.formCopy h3 {
+  margin-top: 8px;
+  font-size: 1.7rem;
   font-weight: 630;
   letter-spacing: -0.05em;
-  line-height: 1.05;
 }
 
-.guideCard figcaption p {
-  max-width: 38em;
-  margin-top: 9px;
+.formCopy p {
+  margin-top: 10px;
   color: var(--body);
-  font-size: 0.98rem;
+  font-size: 1rem;
   letter-spacing: -0.025em;
-  line-height: 1.45;
+  line-height: 1.5;
 }
 
-.guideNote {
-  margin-top: 30px;
-  padding-top: 16px;
+.formCopy ul {
+  display: grid;
+  margin-top: 16px;
+  padding: 0;
+  gap: 8px;
+  list-style: none;
+}
+
+.formCopy li {
+  padding-left: 16px;
+  background: linear-gradient(currentColor, currentColor) 0 0.7em / 7px 2px no-repeat;
+  color: #444;
+  font-size: 0.92rem;
+  letter-spacing: -0.02em;
+}
+
+.formPoses {
+  display: grid;
+  margin-top: 20px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.formPoses button {
+  display: grid;
+  min-height: 64px;
+  padding: 10px 8px;
+  justify-items: start;
+  gap: 2px;
+  border: 1px solid #e4e4e4;
+  border-radius: 14px;
+  background: #f7f7f7;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.formPoses button[aria-pressed="true"] {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: #fff;
+}
+
+.formPoses strong {
+  font-size: 0.82rem;
+  letter-spacing: -0.03em;
+}
+
+.formPoses small {
+  color: inherit;
+  opacity: 0.62;
+  font-size: 0.62rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.formNote {
+  margin-top: 18px;
+  padding-top: 14px;
   border-top: 1px solid var(--line);
   color: #7c7c7c;
   font-size: 0.78rem;
   line-height: 1.45;
+}
+
+.widgetGrid {
+  display: grid;
+  margin: 40px 0 0;
+  padding: 0;
+  gap: 12px;
+  list-style: none;
+}
+
+.widgetCard {
+  padding: 16px;
+  border-radius: 16px;
+  background: #fff;
+}
+
+.widgetPreview {
+  display: grid;
+  min-height: 168px;
+  margin-bottom: 16px;
+  place-items: center;
+  border-radius: 14px;
+}
+
+.widgetHome {
+  background: #e8e4f6;
+}
+
+.widgetLock {
+  background: #11151c;
+}
+
+.widgetIsland {
+  background: #0b0b0b;
+}
+
+.homeWidget,
+.lockWidget,
+.islandWidget {
+  display: grid;
+}
+
+.homeWidget {
+  width: 118px;
+  min-height: 118px;
+  padding: 14px;
+  border-radius: 26px;
+  background: #fff;
+  box-shadow: 0 16px 30px rgb(48 28 110 / 12%);
+}
+
+.homeWidget small {
+  color: #7a7a7a;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.homeWidget strong {
+  margin-top: 8px;
+  font-size: 2.2rem;
+  letter-spacing: -0.08em;
+  line-height: 1;
+}
+
+.homeWidget span {
+  margin-top: auto;
+  color: #666;
+  font-size: 0.68rem;
+}
+
+.lockWidget,
+.islandWidget {
+  grid-auto-flow: column;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+}
+
+.lockWidget {
+  padding: 11px 14px;
+  border-radius: 18px;
+  background: rgb(255 255 255 / 10%);
+  font-size: 0.78rem;
+}
+
+.islandWidget {
+  min-width: 148px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: #000;
+  box-shadow: 0 0 0 3px #1d1d1d;
+  font-size: 0.76rem;
+  font-weight: 560;
+}
+
+.lockWidget i,
+.islandWidget i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #13db6a;
+}
+
+.widgetCard h3 {
+  font-size: 1.15rem;
+  font-weight: 630;
+  letter-spacing: -0.04em;
+}
+
+.widgetCard p {
+  margin-top: 8px;
+  color: var(--body);
+  font-size: 0.92rem;
+  letter-spacing: -0.02em;
+  line-height: 1.45;
+}
+
+.widgetCard p strong {
+  color: var(--ink);
+  font-weight: 600;
 }
 
 .privacySection {
@@ -679,6 +1193,17 @@
 
 .privacyCopy > p {
   margin-top: 22px;
+}
+
+.privacyLink {
+  margin-top: 22px;
+  padding-left: 0;
+  color: var(--ink);
+}
+
+.privacyLink:hover {
+  color: #713cf4;
+  transform: translateY(-1px);
 }
 
 .privacyFacts {
@@ -842,7 +1367,11 @@
   }
 
   .sessionSection,
-  .guideSection {
+  .guideSection,
+  .worldsSection,
+  .widgetSection,
+  .rewardSection,
+  .busterSection {
     padding-bottom: 160px;
   }
 
@@ -855,14 +1384,16 @@
   .sectionHeading h2,
   .pathCopy h2,
   .privacyCopy h2,
-  .leagueCopy h2 {
+  .leagueCopy h2,
+  .rewardCopy h2 {
     font-size: clamp(4.2rem, 6.3vw, 6rem);
   }
 
   .sectionHeading > p,
   .pathCopy > p,
   .privacyCopy > p,
-  .leagueCopy > p {
+  .leagueCopy > p,
+  .rewardCopy > p {
     font-size: 1.16rem;
   }
 
@@ -909,28 +1440,60 @@
     gap: clamp(54px, 7vw, 110px);
   }
 
+  .levelPair {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
   .progressCard {
-    max-width: 520px;
     padding: 22px;
   }
 
   .pathVisual,
-  .leagueVisual {
+  .leagueVisual,
+  .busterPhone {
     aspect-ratio: 4 / 5;
   }
 
-  .guideGrid {
-    margin-top: 58px;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .worldList {
+    margin-top: 48px;
     gap: 10px;
   }
 
-  .guideCard figcaption {
-    padding-right: 22px;
+  .rewardSection {
+    align-items: center;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 0.82fr);
+    gap: clamp(54px, 7vw, 110px);
   }
 
-  .guideCard h3 {
-    font-size: 1.8rem;
+  .busterGrid {
+    grid-template-columns: minmax(240px, 0.72fr) minmax(0, 1fr);
+    gap: 18px;
+  }
+
+  .formGuide {
+    margin-top: 58px;
+    padding: 24px;
+  }
+
+  .formTabs {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .formPanel {
+    align-items: center;
+    grid-template-columns: minmax(280px, 0.92fr) minmax(0, 1fr);
+    gap: 36px;
+  }
+
+  .formStage {
+    min-height: 360px;
+  }
+
+  .widgetGrid {
+    margin-top: 58px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
   }
 
   .privacySection {
@@ -967,13 +1530,19 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .sessionVideo,
-  .guideMedia video {
+  .sessionVideo {
     display: none;
   }
 
+  .formBody,
+  .formHead,
+  .formHand {
+    transition: none;
+  }
+
   .primaryLink:hover,
-  .closingLink:hover {
+  .closingLink:hover,
+  .privacyLink:hover {
     transform: none;
   }
 }

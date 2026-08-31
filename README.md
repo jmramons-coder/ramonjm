@@ -26,9 +26,9 @@ The site uses one continuous responsive flow: a concise introduction, a
 horizontally scrollable application index, and five project cards for
 PushedWorld, Tracer, aBeam, CryptoCroc, and Equisoft Labs.
 PushedWorld uses its real app icon and original website hero artwork. Its case
-study at `/world` covers live counting, the 100-level Path, in-app setup
-videos, on-device privacy, and the optional League, with a link to the full
-product site. aBeam uses its real animated mark and opens an immersive project
+study at `/world` covers hands-free front-camera counting, the 100-level Path
+across ten worlds, rewards, Buster’s form guide and check-ins, widgets, on-device
+privacy, and optional League, with a link to the live product site. aBeam uses its real animated mark and opens an immersive project
 page at `/abeam`. CryptoCroc and Equisoft Labs include live, framed previews of
 their public prototypes. A three-step workflow and a slow,
 seamlessly looping logo marquee for Equisoft, FolksHR, PetalMD, and Peak Media
