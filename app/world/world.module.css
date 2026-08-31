@@ -1,5 +1,6 @@
 .page {
   position: relative;
+  --world-sticky-clearance: 88px;
 }
 
 .page:focus {
@@ -285,7 +286,7 @@
 .guideSection,
 .worldsSection,
 .widgetSection {
-  padding: 0 var(--page-pad) 120px;
+  padding: var(--world-sticky-clearance) var(--page-pad) 80px;
 }
 
 .sectionHeading {
@@ -303,6 +304,7 @@
   font-weight: 630;
   letter-spacing: -0.065em;
   line-height: 1.01;
+  scroll-margin-top: var(--world-sticky-clearance);
 }
 
 .sectionHeading h2 span,
@@ -457,7 +459,7 @@
 
 .pathSection {
   display: grid;
-  padding: 0 var(--page-pad) 120px;
+  padding: var(--world-sticky-clearance) var(--page-pad) 80px;
   gap: 40px;
 }
 
@@ -513,13 +515,20 @@
   font-weight: 570;
 }
 
+.pathCopy {
+  position: relative;
+  z-index: 2;
+}
+
 .pathVisual {
   position: relative;
+  z-index: 0;
   isolation: isolate;
   aspect-ratio: 4 / 5;
   overflow: hidden;
   border-radius: var(--card-radius);
   background: #dcefff;
+  contain: paint;
 }
 
 .pathBackground {
@@ -549,6 +558,7 @@
   box-shadow: 0 10px 24px rgb(36 76 105 / 20%);
   font-size: 0.8rem;
   font-weight: 720;
+  pointer-events: none;
 }
 
 .pathNode small {
@@ -594,7 +604,9 @@
 }
 
 .exampleNote {
-  margin-top: 16px;
+  position: relative;
+  z-index: 2;
+  margin: 0;
   color: #7c7c7c;
   font-size: 0.78rem;
   line-height: 1.45;
@@ -633,7 +645,7 @@
 .rewardSection,
 .busterSection {
   display: grid;
-  padding: 0 var(--page-pad) 120px;
+  padding: var(--world-sticky-clearance) var(--page-pad) 80px;
   gap: 36px;
 }
 
@@ -695,6 +707,7 @@
 
 .busterGrid {
   display: grid;
+  align-items: start;
   gap: 16px;
 }
 
@@ -721,6 +734,7 @@
 
 .nudgeCard {
   display: grid;
+  height: fit-content;
   padding: 22px 20px;
   align-content: start;
   gap: 18px;
@@ -1149,11 +1163,12 @@
 
 .privacySection {
   display: grid;
-  margin: 0 var(--page-pad) 120px;
+  margin: 0 var(--page-pad) 80px;
   padding: 24px;
   gap: 32px;
   border-radius: 18px;
   background: #fff;
+  scroll-margin-top: var(--world-sticky-clearance);
 }
 
 .privacyMark {
@@ -1232,7 +1247,7 @@
 
 .leagueSection {
   display: grid;
-  padding: 0 var(--page-pad) 120px;
+  padding: var(--world-sticky-clearance) var(--page-pad) 80px;
   gap: 40px;
 }
 
@@ -1299,6 +1314,10 @@
 }
 
 @media (min-width: 760px) {
+  .page {
+    --world-sticky-clearance: 96px;
+  }
+
   .hero {
     padding-top: 136px;
     padding-bottom: 160px;
@@ -1371,8 +1390,10 @@
   .worldsSection,
   .widgetSection,
   .rewardSection,
-  .busterSection {
-    padding-bottom: 160px;
+  .busterSection,
+  .pathSection,
+  .leagueSection {
+    padding-bottom: 100px;
   }
 
   .sectionHeading {
@@ -1434,10 +1455,14 @@
 
   .pathSection,
   .leagueSection {
-    padding-bottom: 160px;
-    align-items: center;
+    align-items: start;
     grid-template-columns: minmax(0, 1fr) minmax(360px, 0.88fr);
     gap: clamp(54px, 7vw, 110px);
+  }
+
+  .pathSection .exampleNote,
+  .leagueSection .exampleNote {
+    grid-column: 1 / -1;
   }
 
   .levelPair {
@@ -1497,7 +1522,7 @@
   }
 
   .privacySection {
-    margin-bottom: 160px;
+    margin-bottom: 100px;
     padding: 34px;
     align-items: start;
     grid-template-columns: 80px minmax(0, 1.65fr) minmax(260px, 0.85fr);

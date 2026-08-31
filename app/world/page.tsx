@@ -278,10 +278,6 @@ export default function WorldProjectPage() {
                 </i>
               </div>
             </div>
-            <p className={styles.exampleNote}>
-              Example Path states from the live product UI—not a personal
-              record.
-            </p>
           </div>
 
           <div className={styles.pathVisual}>
@@ -306,6 +302,10 @@ export default function WorldProjectPage() {
               sizes="(max-width: 759px) 45vw, 20vw"
             />
           </div>
+          <p className={styles.exampleNote}>
+            Example Path states from the live product UI—not a personal
+            record.
+          </p>
         </section>
 
         <section className={styles.worldsSection} aria-labelledby="worlds-title">
