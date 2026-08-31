@@ -360,17 +360,17 @@ export default function WorldProjectPage() {
               Every rep <span>moves your rank.</span>
             </h2>
             <p>
-              Optional Game Center standings turn consistency into momentum
-              without making competition a requirement.
+              Game Center stays opt-in. Connect when you want lifetime reps to
+              enter the global League, reveal the podium, and show your real
+              rank.
             </p>
           </div>
           <div className={styles.leagueVisual}>
             <Image
-              src="/world/league.png"
-              alt="PushedWorld League showing all-time athlete standings"
-              width={240}
-              height={522}
-              sizes="(max-width: 759px) 68vw, 24vw"
+              src="/world/league-current.jpg"
+              alt="Current PushedWorld League screen prompting the athlete to connect Game Center and reveal global standings"
+              fill
+              sizes="(max-width: 759px) 100vw, 39vw"
             />
           </div>
         </section>
