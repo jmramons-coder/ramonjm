@@ -308,7 +308,6 @@
   padding: 16px;
   gap: 28px;
   overflow: hidden;
-  border: 1px solid #12151b;
   border-radius: var(--card-radius);
   background: #12151b;
   color: #fff;
@@ -347,7 +346,7 @@
 
 .sessionIntro > span,
 .sessionSignals dt {
-  color: #00bfe7;
+  color: #879cff;
   font-size: 0.62rem;
   font-weight: 680;
   letter-spacing: 0.08em;
@@ -366,7 +365,7 @@
 .sessionIntro p {
   max-width: 20em;
   margin-top: 12px;
-  color: #bdc5d0;
+  color: #9da7bb;
   font-size: 0.88rem;
   letter-spacing: -0.018em;
   line-height: 1.45;
@@ -378,12 +377,12 @@
   aspect-ratio: 9 / 16;
   margin: 0 auto;
   overflow: hidden;
-  border: 1px solid #fff;
+  border: 1px solid rgb(255 255 255 / 18%);
   border-radius: clamp(26px, 7vw, 42px);
-  background: #12151b;
+  background: #192032;
   box-shadow:
-    0 28px 60px rgb(18 21 27 / 20%),
-    0 0 0 7px rgb(255 255 255 / 72%);
+    0 34px 70px rgb(0 0 0 / 42%),
+    0 0 0 8px rgb(255 255 255 / 4%);
 }
 
 .sessionPhone .videoFallback,
@@ -395,7 +394,7 @@
   display: grid;
   margin: 0;
   align-content: end;
-  border-top: 1px solid rgb(255 255 255 / 16%);
+  border-top: 1px solid rgb(255 255 255 / 13%);
 }
 
 .sessionSignals div {
@@ -405,7 +404,7 @@
   align-items: baseline;
   justify-content: space-between;
   gap: 16px;
-  border-bottom: 1px solid rgb(255 255 255 / 16%);
+  border-bottom: 1px solid rgb(255 255 255 / 13%);
 }
 
 .sessionSignals dd {
@@ -427,7 +426,6 @@
   aspect-ratio: 4 / 5;
   margin-top: 40px;
   overflow: hidden;
-  border: 1px solid #d8cff0;
   border-radius: var(--card-radius);
   background: #ece5ff;
 }
@@ -439,12 +437,12 @@
   aspect-ratio: 1320 / 2868;
   margin: 0;
   overflow: hidden;
-  border: 1px solid #fff;
+  border: 1px solid rgb(255 255 255 / 32%);
   border-radius: clamp(24px, 6vw, 38px);
   background: #dbeaff;
   box-shadow:
-    0 28px 58px rgb(18 21 27 / 20%),
-    0 0 0 7px rgb(255 255 255 / 70%);
+    0 38px 70px rgb(0 0 0 / 44%),
+    0 0 0 7px rgb(255 255 255 / 6%);
 }
 
 .pathDevice img {
@@ -454,12 +452,14 @@
 .pathDeviceMap {
   top: 7%;
   left: -4%;
+  transform: rotate(-3.5deg);
 }
 
 .pathDeviceUnlock {
   z-index: 2;
   top: 20%;
   right: -7%;
+  transform: rotate(3.5deg);
 }
 
 .pathCallout {
@@ -473,15 +473,16 @@
   bottom: 14px;
   left: 14px;
   padding: 9px 12px;
-  border: 1px solid #d3d8e0;
+  border: 1px solid rgb(255 255 255 / 17%);
   border-radius: 999px;
-  background: rgb(255 255 255 / 88%);
-  color: #5720d6;
+  background: rgb(6 10 28 / 76%);
+  color: #d9deef;
   font-size: 0.57rem;
   font-weight: 650;
   letter-spacing: 0.06em;
   text-align: center;
   text-transform: uppercase;
+  backdrop-filter: blur(12px);
 }
 
 .guideGrid {
@@ -825,11 +826,13 @@
   .pathDeviceMap {
     top: 7%;
     left: 22%;
+    transform: rotate(-2deg);
   }
 
   .pathDeviceUnlock {
     top: 7%;
     right: 22%;
+    transform: rotate(2deg);
   }
 
   .pathCallout {
@@ -838,11 +841,11 @@
     display: grid;
     width: 15%;
     gap: 8px;
-    color: #12151b;
+    color: #fff;
   }
 
   .pathCallout span {
-    color: #5720d6;
+    color: #8fa2ff;
     font-size: 0.6rem;
     font-weight: 680;
     letter-spacing: 0.07em;
