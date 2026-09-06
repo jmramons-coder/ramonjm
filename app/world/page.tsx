@@ -1,11 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { HugeiconsIcon } from "@hugeicons/react";
-import {
-  ArrowRight02Icon,
-  ArrowUpRight01Icon,
-} from "@hugeicons/core-free-icons";
 import { SiteHeader } from "../site-header";
 import { WorldVideo } from "./world-video";
 import styles from "./world.module.css";
@@ -39,52 +34,19 @@ export const metadata: Metadata = {
   },
 };
 
-const projectFacts = [
-  ["Role", "Product design & development"],
-  ["Platform", "Native iPhone app"],
-  ["Core", "SwiftUI · Vision"],
-  ["Privacy", "On-device camera analysis"],
-] as const;
-
-const setupClips = [
-  {
-    number: "01",
-    kicker: "Place",
-    title: "Place it low.",
-    description:
-      "Stand the iPhone upright at floor level with the front camera facing the workout space.",
-    video: "/world/guides/place-phone.mp4",
-    poster: "/world/guides/place-poster.jpg",
-    label: "A person placing an iPhone upright at floor level",
-  },
-  {
-    number: "02",
-    kicker: "Count",
-    title: "Move. We count.",
-    description:
-      "Once your full body is in frame, start moving. PushedWorld follows each supported rep hands-free and confirms it live.",
-    video: "/world/guides/count-rep.mp4",
-    poster: "/world/guides/count-poster.jpg",
-    label: "An athlete performing push-ups with an iPhone tracking the movement",
-  },
-] as const;
-
-function ProductSiteLink({ className }: { className: string }) {
+function ProductLink({
+  children = "Explore PushedWorld",
+}: {
+  children?: React.ReactNode;
+}) {
   return (
     <a
-      className={className}
+      className={styles.link}
       href="https://www.pushedworld.com/"
       target="_blank"
       rel="noopener noreferrer"
     >
-      Visit product site
-      <span className="link-icon" aria-hidden="true">
-        <HugeiconsIcon
-          icon={ArrowUpRight01Icon}
-          size={17}
-          strokeWidth={1.8}
-        />
-      </span>
+      {children}
       <span className="sr-only"> (opens in a new tab)</span>
     </a>
   );
@@ -96,302 +58,322 @@ export default function WorldProjectPage() {
       <a className="skip-link" href="#project-content">
         Skip to project
       </a>
-
-      <SiteHeader backHref="/#applications" />
-
+      <SiteHeader backHref="/#applications" textOnly />
       <main className={styles.page} id="project-content" tabIndex={-1}>
         <section className={styles.hero} aria-labelledby="project-title">
           <div className={styles.heroCopy}>
-            <p className="section-pill">PushedWorld · iPhone app</p>
             <div className={styles.identity}>
               <Image
-                className={styles.appIcon}
                 src="/world/app-icon.png"
-                alt="PushedWorld app icon"
-                width={256}
-                height={256}
-                sizes="(max-width: 759px) 72px, 92px"
+                width={72}
+                height={72}
+                alt=""
                 priority
               />
-              <div>
-                <span>Native fitness game</span>
-                <strong>PushedWorld</strong>
-              </div>
+              <span>
+                PushedWorld<small>Independent product · iPhone</small>
+              </span>
             </div>
-            <h1 id="project-title">
-              <span>Push up.</span>
-              <span>Count up.</span>
-              <span>Get stronger.</span>
-            </h1>
-            <p className={styles.heroIntro}>
-              PushedWorld counts supported push-up movement hands-free when
-              your body is in frame, turning every saved rep into progress you
-              can see.
+            <p className={styles.eyebrow}>
+              Product strategy / Identity / Design / Development
             </p>
-            <ProductSiteLink className={styles.primaryLink} />
+            <h1 id="project-title">
+              Every rep.
+              <br />
+              <em>A little further.</em>
+            </h1>
+            <p className={styles.intro}>
+              Turning a simple push-up into a reason to come back. A native
+              fitness game that pairs hands-free counting with a world of
+              progress.
+            </p>
+            <ProductLink />
           </div>
-
-          <figure className={styles.heroStage}>
+          <div className={styles.heroStage}>
+            <span className={styles.orbit} aria-hidden="true" />
+            <span className={styles.stageLabel}>Movement becomes momentum</span>
+            <div className={styles.heroPhone}>
+              <WorldVideo
+                src="/world/session-live.mp4"
+                poster="/world/session-poster.jpg"
+                label="PushedWorld live rep counting demo"
+              />
+            </div>
             <Image
-              className={styles.heroImage}
-              src="/world/hero-human.jpg"
-              alt="Athlete doing a push-up outdoors with an iPhone positioned to track the session"
-              fill
-              sizes="(max-width: 759px) 100vw, 94vw"
+              className={styles.heroBuster}
+              src="/world/buster-top.webp"
+              width={600}
+              height={396}
+              alt="Buster demonstrating a push-up"
               priority
             />
-            <span className={styles.heroShade} aria-hidden="true" />
-            <div className={`${styles.floatingCard} ${styles.liveCard}`} aria-hidden="true">
-              <i />
-              <span>Live</span>
-              <small>Tracking</small>
-            </div>
-            <div className={`${styles.floatingCard} ${styles.repCard}`} aria-hidden="true">
-              <small>Session reps</small>
-              <div>
-                <strong>31</strong>
-                <span>reps</span>
-              </div>
-              <i>
-                <b />
-              </i>
-            </div>
-            <div className={`${styles.floatingCard} ${styles.levelCard}`} aria-hidden="true">
-              <small>Level 26 / 100</small>
-              <strong>Black Iron</strong>
-              <span>30 reps to Level 27</span>
-            </div>
-          </figure>
+            <span className={styles.stageFoot}>
+              Real app. Real-time feedback.
+            </span>
+          </div>
+        </section>
 
+        <section className={styles.brief} aria-labelledby="brief-title">
+          <p className={styles.eyebrow}>The design challenge</p>
+          <h2 id="brief-title">
+            Make the next set
+            <br />
+            feel worth starting.
+          </h2>
+          <div className={styles.briefBody}>
+            <p>
+              Counting reps is only the beginning. PushedWorld connects the
+              effort of a single set to something larger: a destination, an
+              earned reward, and the feeling of moving forward.
+            </p>
+            <p>
+              I brought the native app, character system, and product website
+              together around that idea. The experience moves from clear camera
+              feedback to a playful journey, without losing sight of the workout
+              itself.
+            </p>
+          </div>
           <dl className={styles.facts}>
-            {projectFacts.map(([term, detail]) => (
-              <div key={term}>
-                <dt>{term}</dt>
-                <dd>{detail}</dd>
+            {[
+              ["My role", "Product design & development"],
+              ["Built for", "iPhone · SwiftUI · Vision"],
+              ["Product loop", "Move · Save · Progress"],
+              ["Principle", "Private, on-device tracking"],
+            ].map(([title, value]) => (
+              <div key={title}>
+                <dt>{title}</dt>
+                <dd>{value}</dd>
               </div>
             ))}
           </dl>
         </section>
 
-        <section className={styles.sessionSection} aria-labelledby="session-title">
+        <section className={styles.progress} aria-labelledby="progress-title">
           <div className={styles.sectionHeading}>
             <div>
-              <p className="section-pill">See it work</p>
-              <h2 id="session-title">
-                You move. <span>It counts.</span>
+              <p className={styles.eyebrow}>01 / A reason to return</p>
+              <h2 id="progress-title">
+                Effort you can
+                <br />
+                <em>see accumulating.</em>
               </h2>
             </div>
             <p>
-              Front-camera tracking follows supported push-up movement
-              hands-free. The live view keeps count, movement cues, and Today
-              and Path targets in sight.
+              The Path gives every saved rep a place to go. A visible next
+              target makes progress concrete; earned profile frames give each
+              milestone a lasting identity.
             </p>
           </div>
-
-          <div className={styles.sessionDemo}>
-            <div className={styles.sessionIntro}>
-              <span>Current live session</span>
-              <strong>Camera to count.</strong>
-              <p>Front-camera movement tracking. No watch. No taps.</p>
-            </div>
-
-            <div className={styles.sessionPhone}>
+          <div className={styles.progressStage}>
+            <div className={styles.worldArt}>
               <Image
-                className={styles.videoFallback}
-                src="/world/session-poster.jpg"
-                alt=""
-                fill
-                sizes="(max-width: 759px) 88vw, 31vw"
+                src="/world/path-world.webp"
+                width={665}
+                height={1330}
+                alt="A winding stone path rising through clouds"
               />
-              <WorldVideo
-                className={styles.sessionVideo}
-                src="/world/session-live.mp4"
-                poster="/world/session-poster.jpg"
-                label="Current PushedWorld live session counting push-ups and updating Today and Path targets"
-              />
+              <span>
+                100 levels.
+                <br />
+                Ten evolving worlds.
+              </span>
             </div>
-
-            <dl className={styles.sessionSignals}>
-              <div>
-                <dt>Movement</dt>
-                <dd>Live cues</dd>
+            <figure className={styles.deviceFigure}>
+              <div className={styles.phone}>
+                <Image
+                  src="/world/path-current.jpg"
+                  width={1320}
+                  height={2868}
+                  alt="PushedWorld Path with the current level and next target"
+                  sizes="(max-width: 700px) 68vw, 260px"
+                />
               </div>
-              <div>
-                <dt>Goals</dt>
-                <dd>Today + Path</dd>
+              <figcaption>
+                Know where you are.
+                <br />
+                <strong>See what comes next.</strong>
+              </figcaption>
+            </figure>
+            <figure className={styles.deviceFigure}>
+              <div className={styles.phone}>
+                <Image
+                  src="/world/frame-unlock.jpg"
+                  width={1320}
+                  height={2868}
+                  alt="Session recap with an earned Stone Crown profile frame"
+                  sizes="(max-width: 700px) 68vw, 260px"
+                />
               </div>
-              <div>
-                <dt>Milestone</dt>
-                <dd>Target crushed</dd>
-              </div>
-            </dl>
+              <figcaption>
+                Finish the set.
+                <br />
+                <strong>Keep the reward.</strong>
+              </figcaption>
+            </figure>
           </div>
         </section>
 
-        <section className={styles.pathSection} aria-labelledby="path-title">
-          <div className={styles.sectionHeading}>
+        <section className={styles.brand} aria-labelledby="brand-title">
+          <div className={styles.brandIntro}>
             <div>
-              <p className="section-pill">Progress with a destination</p>
-              <h2 id="path-title">
-                See what every rep <span>unlocks.</span>
+              <p className={styles.eyebrow}>02 / Character with a purpose</p>
+              <h2 id="brand-title">
+                A coach with
+                <br />
+                <em>some character.</em>
               </h2>
+              <p>
+                Buster carries the personality of PushedWorld into the
+                experience. Expressive artwork makes the product approachable,
+                while the form guide uses the same character to demonstrate
+                movement clearly.
+              </p>
             </div>
-            <p>
-              Every saved push-up moves a 100-level route through ten worlds.
-              Checkpoints turn progress into frame rewards, so the next goal
-              and what it earns stay visible.
-            </p>
+            <Image
+              src="/world/buster-mentor.webp"
+              width={512}
+              height={768}
+              alt="Buster extending a hand in encouragement"
+              sizes="(max-width: 700px) 220px, 280px"
+            />
           </div>
-
-          <div className={styles.pathShowcase}>
-            <div className={`${styles.pathCallout} ${styles.pathCalloutStart}`}>
-              <span>01 / Progress</span>
-              <strong>Your position stays visible.</strong>
-            </div>
-
-            <figure className={`${styles.pathDevice} ${styles.pathDeviceMap}`}>
-              <Image
-                src="/world/path-current.jpg"
-                alt="Current PushedWorld Path showing Level 26 on the Black Iron route"
-                fill
-                sizes="(max-width: 759px) 62vw, 27vw"
-              />
-            </figure>
-
-            <figure className={`${styles.pathDevice} ${styles.pathDeviceUnlock}`}>
-              <Image
-                src="/world/frame-unlock.jpg"
-                alt="Current session recap showing the Stone Crown profile frame unlocked"
-                fill
-                sizes="(max-width: 759px) 58vw, 27vw"
-              />
-            </figure>
-
-            <div className={`${styles.pathCallout} ${styles.pathCalloutEnd}`}>
-              <span>02 / Reward</span>
-              <strong>Milestones become earned frames.</strong>
-            </div>
-
-            <p className={styles.pathMeta}>100 levels · 10 worlds · Frame rewards</p>
+          <div className={styles.poseGrid}>
+            {[
+              ["top", "01 / Set your position"],
+              ["middle", "02 / Lower with control"],
+              ["bottom", "03 / Complete the movement"],
+            ].map(([pose, label]) => (
+              <figure key={pose}>
+                <Image
+                  src={`/world/buster-${pose}.webp`}
+                  width={600}
+                  height={396}
+                  alt={`Buster at the ${pose} position of a push-up`}
+                  sizes="(max-width: 700px) 80vw, 28vw"
+                />
+                <figcaption>{label}</figcaption>
+              </figure>
+            ))}
           </div>
+          <p className={styles.caption}>
+            One character language, from encouragement to instruction.
+          </p>
         </section>
 
-        <section className={styles.guideSection} aria-labelledby="guide-title">
+        <section className={styles.setup} aria-labelledby="setup-title">
           <div className={styles.sectionHeading}>
             <div>
-              <p className="section-pill">In-app guidance</p>
-              <h2 id="guide-title">
-                From phone placement <span>to a counted rep.</span>
+              <p className={styles.eyebrow}>03 / Remove the friction</p>
+              <h2 id="setup-title">
+                Less setup.
+                <br />
+                <em>More movement.</em>
               </h2>
             </div>
             <p>
-              The same short motion guides used inside PushedWorld make the
-              camera setup easy to understand before a session begins.
+              The first rep starts with understanding where the phone goes.
+              Short in-app motion guides explain placement and framing, then
+              live camera feedback takes over the count.
             </p>
           </div>
-
           <div className={styles.guideGrid}>
-            {setupClips.map((clip) => (
-              <figure className={styles.guideCard} key={clip.number}>
+            {[
+              {
+                name: "place",
+                title: "Place it low.",
+                body: "Position the iPhone upright at floor level, with the front camera facing your workout space.",
+                src: "place-phone",
+              },
+              {
+                name: "count",
+                title: "Move. It counts.",
+                body: "Keep your full body in frame. Supported push-up movement is counted hands-free, with live cues throughout the set.",
+                src: "count-rep",
+              },
+            ].map((clip) => (
+              <figure key={clip.name}>
                 <div className={styles.guideMedia}>
-                  <Image
-                    className={styles.videoFallback}
-                    src={clip.poster}
-                    alt=""
-                    fill
-                    sizes="(max-width: 759px) 86vw, 41vw"
-                  />
                   <WorldVideo
-                    src={clip.video}
-                    poster={clip.poster}
-                    label={clip.label}
+                    src={`/world/guides/${clip.src}.mp4`}
+                    poster={`/world/guides/${clip.name}-poster.jpg`}
+                    label={clip.title}
                   />
-                  <span aria-hidden="true">
-                    {clip.number} / {clip.kicker}
-                  </span>
                 </div>
                 <figcaption>
                   <h3>{clip.title}</h3>
-                  <p>{clip.description}</p>
+                  <p>{clip.body}</p>
                 </figcaption>
               </figure>
             ))}
           </div>
-          <p className={styles.guideNote}>
-            Camera guidance is instructional. Move with control and stop if you
-            feel sharp pain.
-          </p>
         </section>
 
-        <section className={styles.privacySection} aria-labelledby="privacy-title">
-          <div className={styles.privacyMark} aria-hidden="true">
-            <span />
-          </div>
-          <div className={styles.privacyCopy}>
-            <p className="section-pill">Private by design</p>
-            <h2 id="privacy-title">
-              Your camera video is <span>never recorded.</span>
-            </h2>
-            <p>
-              Frames are analyzed live on the iPhone only while a session is
-              open. They are never saved or uploaded.
-            </p>
-          </div>
-          <ul className={styles.privacyFacts}>
-            <li>
-              <strong>On device</strong>
-              <span>Pose analysis stays local</span>
-            </li>
-            <li>
-              <strong>On demand</strong>
-              <span>Camera opens for sessions only</span>
-            </li>
-            <li>
-              <strong>In your control</strong>
-              <span>Pose points and reminders are optional</span>
-            </li>
-          </ul>
-        </section>
-
-        <section className={styles.leagueSection} aria-labelledby="league-title">
-          <div className={styles.leagueCopy}>
-            <p className="section-pill">Friendly competition</p>
-            <h2 id="league-title">
-              Every rep <span>moves your rank.</span>
-            </h2>
-            <p>
-              Game Center stays opt-in. Connect when you want lifetime reps to
-              enter the global League, reveal the podium, and show your real
-              rank.
-            </p>
-          </div>
-          <div className={styles.leagueVisual}>
-            <Image
-              src="/world/league-current.jpg"
-              alt="Current PushedWorld League screen prompting the athlete to connect Game Center and reveal global standings"
-              fill
-              sizes="(max-width: 759px) 100vw, 39vw"
-            />
-          </div>
-        </section>
-
-        <section className={styles.closing} aria-labelledby="closing-title">
-          <p>Full product story</p>
-          <h2 id="closing-title">See the complete PushedWorld experience.</h2>
+        <section className={styles.trust} aria-labelledby="trust-title">
           <div>
-            <ProductSiteLink className={styles.closingLink} />
-            <Link className={styles.closingLink} href="/#world">
-              Back to portfolio
-              <span className="link-icon" aria-hidden="true">
-                <HugeiconsIcon
-                  icon={ArrowRight02Icon}
-                  size={18}
-                  strokeWidth={1.8}
-                />
-              </span>
-            </Link>
+            <p className={styles.eyebrow}>04 / Motivation, on your terms</p>
+            <h2 id="trust-title">
+              Personal progress.
+              <br />
+              <em>Optional competition.</em>
+            </h2>
+            <p>
+              Your own Path is the foundation. Game Center adds a global League
+              when you want another reason to show up.
+            </p>
+            <div className={styles.privacy}>
+              <span>Private by design</span>
+              <h3>
+                The camera counts.
+                <br />
+                It doesn’t keep the footage.
+              </h3>
+              <p>
+                Frames are analyzed live on your iPhone during a session. They
+                are never saved or uploaded.
+              </p>
+            </div>
+          </div>
+          <figure className={styles.leagueFigure}>
+            <div className={styles.phone}>
+              <Image
+                src="/world/league-current.jpg"
+                width={1320}
+                height={2868}
+                alt="PushedWorld League screen inviting the user to connect Game Center"
+                sizes="(max-width: 700px) 68vw, 280px"
+              />
+            </div>
+            <figcaption>Connect when competition feels right.</figcaption>
+          </figure>
+        </section>
+
+        <section className={styles.website} aria-labelledby="website-title">
+          <Image
+            src="/world/community.webp"
+            width={1600}
+            height={971}
+            alt="Buster and the PushedWorld cast gathered after a workout"
+            sizes="(max-width: 700px) 100vw, 60vw"
+          />
+          <div>
+            <p className={styles.eyebrow}>The product, beyond the app</p>
+            <h2 id="website-title">
+              A whole world
+              <br />
+              behind one rep.
+            </h2>
+            <p>
+              The website extends the same character, movement, and progression
+              into the first encounter with PushedWorld. A cohesive introduction
+              to what the app does—and why you might keep coming back.
+            </p>
+            <ProductLink>Visit the product website</ProductLink>
           </div>
         </section>
+        <footer className={styles.closing}>
+          <span>PushedWorld · Product, identity & development</span>
+          <Link href="/#applications">Back to all projects</Link>
+        </footer>
       </main>
     </>
   );

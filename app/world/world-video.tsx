@@ -1,6 +1,8 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+
+import styles from "./world.module.css";
 
 type WorldVideoProps = {
   className?: string;
@@ -9,13 +11,11 @@ type WorldVideoProps = {
   src: string;
 };
 
-export function WorldVideo({
-  className,
-  label,
-  poster,
-  src,
-}: WorldVideoProps) {
+export function WorldVideo({ className, label, poster, src }: WorldVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  const [playing, setPlaying] = useState(false);
+  const [manual, setManual] = useState<boolean | null>(null);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -27,7 +27,11 @@ export function WorldVideo({
     let isVisible = false;
 
     const syncPlayback = () => {
-      if (isVisible && !motionPreference.matches && !document.hidden) {
+      if (
+        isVisible &&
+        (manual ?? !motionPreference.matches) &&
+        !document.hidden
+      ) {
         void video.play().catch(() => undefined);
       } else {
         video.pause();
@@ -52,19 +56,31 @@ export function WorldVideo({
       document.removeEventListener("visibilitychange", syncPlayback);
       video.pause();
     };
-  }, []);
+  }, [manual]);
 
   return (
-    <video
-      className={className}
-      ref={videoRef}
-      src={src}
-      poster={poster}
-      aria-label={label}
-      loop
-      muted
-      playsInline
-      preload="metadata"
-    />
+    <>
+      <video
+        onPlay={() => setPlaying(true)}
+        onPause={() => setPlaying(false)}
+        className={className}
+        ref={videoRef}
+        src={src}
+        poster={poster}
+        aria-label={label}
+        loop
+        muted
+        playsInline
+        preload="metadata"
+      />
+      <button
+        className={styles.videoControl}
+        type="button"
+        onClick={() => setManual(!playing)}
+        aria-label={`${playing ? "Pause" : "Play"}: ${label}`}
+      >
+        {playing ? "Pause" : "Play"}
+      </button>
+    </>
   );
 }
