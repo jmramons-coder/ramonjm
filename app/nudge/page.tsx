@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { NudgeDemo } from "./nudge-demo";
 import { SiteHeader } from "../site-header";
 import styles from "./nudge.module.css";
 
@@ -74,15 +75,7 @@ export default function NudgePage() {
           </div>
           <div className={styles.heroStage}>
             <span className={styles.orbit} aria-hidden="true" />
-            <div className={styles.firstPhone}>
-              <Phone
-                screen="home"
-                alt="Nudge to-do list showing school, dishwasher, and completed trash tasks assigned to household members"
-                width={496}
-                height={1078}
-                priority
-              />
-            </div>
+            <NudgeDemo />
             <div className={styles.secondPhone}>
               <Phone
                 screen="household"
@@ -175,27 +168,6 @@ export default function NudgePage() {
               voice-capture sequence and a fictional household.
             </p>
           </div>
-          <figure className={styles.demo}>
-            <div className={styles.phone}>
-              <video
-                controls
-                playsInline
-                preload="none"
-                poster="/nudge/home.webp"
-                width={496}
-                height={1080}
-                aria-label="Nudge demo: capture Take out the trash, assign it to Alex, create it, and mark it complete"
-              >
-                <source src="/nudge/demo.mp4" type="video/mp4" />
-                <a href="/nudge/demo.mp4">Watch the Nudge demo</a>
-              </video>
-            </div>
-            <figcaption>
-              Capture. Assign. Complete.
-              <br />
-              Play the app walkthrough.
-            </figcaption>
-          </figure>
         </section>
         <section className={styles.household}>
           <div className={styles.householdCopy}>
@@ -280,6 +252,80 @@ export default function NudgePage() {
               sizes="(max-width: 700px) 35vw, 220px"
             />
           </div>
+        </section>
+        <section className={styles.storeCampaign} aria-labelledby="store-title">
+          <div className={styles.storeHeading}>
+            <div>
+              <p className={styles.eyebrow}>The App Store story</p>
+              <h2 id="store-title">
+                Every frame.
+                <br />
+                One less thing to carry.
+              </h2>
+            </div>
+            <p>
+              The launch artwork connects real household moments to the product:
+              catch a thought, share a task, keep a routine, and make room for a
+              small win.
+            </p>
+          </div>
+          <div
+            className={styles.storeGallery}
+            tabIndex={0}
+            role="region"
+            aria-label="Seven original Nudge App Store panels. Scroll horizontally to explore."
+          >
+            {[
+              [
+                "01-voice",
+                "Out of your head. Into a task. Voice capture campaign.",
+              ],
+              [
+                "02-completion",
+                "Done feels good. One less thing. Task completion campaign.",
+              ],
+              [
+                "03-ownership",
+                "One subscription. For your family. Household assignment campaign.",
+              ],
+              [
+                "04-routine",
+                "Set it once. Keep it going. Repeating tasks campaign.",
+              ],
+              [
+                "05-focus",
+                "Phone down. Get it done. Focus timer and widget campaign.",
+              ],
+              [
+                "06-upcoming",
+                "Less searching. More doing. Upcoming tasks campaign.",
+              ],
+              [
+                "07-collection",
+                "Small wins. A little joy. Sticker collection campaign.",
+              ],
+            ].map(([file, alt]) => (
+              <a
+                key={file}
+                href={`/nudge/store-${file}.webp`}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${alt} Open full-size artwork in a new tab`}
+              >
+                <Image
+                  src={`/nudge/store-${file}.webp`}
+                  alt={alt}
+                  width={990}
+                  height={2151}
+                  sizes="(max-width: 700px) 75vw, 300px"
+                />
+              </a>
+            ))}
+          </div>
+          <p className={styles.galleryHint}>
+            Original App Store launch artwork · Swipe or scroll to explore all
+            seven panels.
+          </p>
         </section>
         <section className={styles.focus}>
           <figure>

@@ -578,4 +578,182 @@
   }
 }
 
-.household > *, .capture > *, .focus > * { min-width: 0; }
+.household > *,
+.capture > *,
+.focus > * {
+  min-width: 0;
+}
+
+/* Lead with the native app in motion. */
+.heroStage {
+  gap: 18px;
+  min-height: 600px;
+}
+.heroDemo {
+  position: relative;
+  z-index: 2;
+  width: 51%;
+  max-width: 270px;
+  flex-shrink: 0;
+}
+.heroDemo figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: center;
+  margin-top: 20px;
+  font-size: 10px;
+  color: #735f81;
+}
+.heroDemo button {
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #b8a7c3;
+  padding: 5px 0;
+  cursor: pointer;
+}
+.heroDemo button:focus-visible {
+  outline: 2px solid #7440d9;
+  outline-offset: 5px;
+}
+.secondPhone {
+  width: 38%;
+  max-width: 200px;
+  opacity: 0.9;
+  transform: translateY(40px) rotate(6deg);
+}
+.heroSticker {
+  left: auto;
+  right: -2%;
+  bottom: 0;
+  z-index: 3;
+  width: 115px;
+}
+.capture {
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 9vw;
+}
+.captureArt {
+  max-width: 380px;
+}
+.captureCopy {
+  max-width: 550px;
+}
+.storeCampaign {
+  padding: 90px 0 70px;
+  background: #ece5f3;
+}
+.storeHeading {
+  padding: 0 var(--pad);
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 8vw;
+  align-items: end;
+  margin-bottom: 45px;
+}
+.storeHeading h2 {
+  margin-top: 25px;
+}
+.storeHeading > p {
+  font-size: 16px;
+  line-height: 1.75;
+  color: #736979;
+  max-width: 430px;
+}
+.storeGallery {
+  display: flex;
+  gap: 22px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--pad);
+  padding: 12px var(--pad) 28px;
+  scrollbar-width: thin;
+  scrollbar-color: #b5a1c6 transparent;
+}
+.storeGallery > a {
+  display: block;
+  flex: 0 0 290px;
+  scroll-snap-align: start;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 12px 25px -18px #38254365;
+}
+.storeGallery img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.storeGallery:focus-visible {
+  outline: 2px solid #7440d9;
+  outline-offset: -3px;
+}
+.galleryHint {
+  padding: 22px var(--pad) 0;
+  color: #796b84;
+  font-size: 11px;
+  line-height: 1.7;
+}
+@media (max-width: 1000px) {
+  .heroStage {
+    min-height: 500px;
+  }
+  .captureArt {
+    display: block;
+  }
+}
+@media (max-width: 700px) {
+  .heroStage {
+    min-height: 0;
+    gap: 12px;
+    padding-bottom: 15px;
+  }
+  .heroDemo {
+    width: 58%;
+    max-width: 245px;
+  }
+  .heroDemo figcaption {
+    font-size: 9px;
+    gap: 8px;
+  }
+  .secondPhone {
+    width: 34%;
+    transform: translateY(25px) rotate(5deg);
+  }
+  .heroSticker {
+    width: 80px;
+    right: -3%;
+    bottom: 3%;
+  }
+  .capture {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+  .captureArt {
+    width: 70%;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+  .captureCopy {
+    grid-row: 1;
+  }
+  .storeCampaign {
+    padding: 65px 0 50px;
+  }
+  .storeHeading {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    margin-bottom: 25px;
+  }
+  .storeHeading > p {
+    font-size: 15px;
+  }
+  .storeGallery {
+    gap: 16px;
+  }
+  .storeGallery > a {
+    flex-basis: min(75vw, 290px);
+    border-radius: 14px;
+  }
+}

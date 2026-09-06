@@ -2997,3 +2997,74 @@ a:focus-visible {
 .app-icon--nudge {
   background: #efe5fa;
 }
+
+/* Give Nudge the same physical presence as the other app icons. */
+.app-icon--nudge {
+  border-radius: 23%;
+  overflow: hidden;
+  background: #fff;
+  box-shadow:
+    0 5px 9px #38254325,
+    0 1px 2px #38254320;
+}
+.app-icon--nudge .app-icon-glyph {
+  width: 100%;
+  height: 100%;
+}
+.app-icon--nudge .app-icon-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 23%;
+}
+.app-canvas--nudge {
+  background: linear-gradient(145deg, #f4edfc, #e7d6fa 70%);
+}
+.app-canvas--nudge::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  aspect-ratio: 1;
+  right: -20%;
+  bottom: -10%;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #d2ff97, #c1e997);
+}
+.nudge-card-copy {
+  top: 25px;
+  left: 25px;
+}
+.nudge-card-copy > img {
+  box-shadow: 0 5px 12px #38254320;
+}
+.nudge-card-phone {
+  top: 44%;
+  width: 47%;
+  right: 8%;
+  transform: rotate(7deg);
+  transition: transform 350ms ease;
+}
+.nudge-card-medal {
+  width: 27%;
+  left: 9%;
+  bottom: 10%;
+  transition: transform 350ms ease;
+}
+.application-card-link:hover .nudge-card-phone {
+  transform: translateY(-8px) rotate(3deg);
+}
+.application-card-link:hover .nudge-card-medal {
+  transform: translateY(-5px) rotate(-5deg);
+}
+@media (prefers-reduced-motion: reduce) {
+  .nudge-card-phone,
+  .nudge-card-medal {
+    transition: none;
+  }
+  .application-card-link:hover .nudge-card-phone {
+    transform: rotate(7deg);
+  }
+  .application-card-link:hover .nudge-card-medal {
+    transform: rotate(-15deg);
+  }
+}
