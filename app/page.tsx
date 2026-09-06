@@ -1,141 +1,90 @@
+import type { ReactNode } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { HugeiconsIcon } from "@hugeicons/react";
+import {
+  ArrowRight02Icon,
+  ArrowUp01Icon,
+  ArrowUpRight01Icon,
+  Linkedin01Icon,
+} from "@hugeicons/core-free-icons";
+import { ClientMarquee } from "./client-marquee";
+import { AbeamVideo } from "./abeam/abeam-video";
 import { SiteHeader } from "./site-header";
-import { ProjectCollection } from "./project-collection";
-import styles from "./home.module.css";
 
-const studies = [
-  {
-    id: "workbench",
-    label: "01 / Operational workbenches",
-    title: "Make the next action obvious.",
-    text: "Dense information needs a hierarchy. Status, ownership, and the next decision should be visible before someone opens a record.",
-  },
-  {
-    id: "configuration",
-    label: "02 / Configuration & systems",
-    title: "Show the consequence of a change.",
-    text: "A valid input can still create an invalid combination. Dependencies and review belong in the workflow, before a change is committed.",
-  },
-  {
-    id: "intelligence",
-    label: "03 / AI-assisted workflows",
-    title: "Keep judgment with the person.",
-    text: "An answer is only useful if someone can assess it. Evidence, uncertainty, and a clear review step help people stay in control.",
-  },
-];
+const featuredApplications = [
+  { name: "Nudge", slug: "nudge" },
+  { name: "PushedWorld", slug: "world" },
+  { name: "Tracer", slug: "tracer" },
+  { name: "aBeam", slug: "abeam" },
+  { name: "CryptoCroc", slug: "crypto-inheritance" },
+  { name: "Decision ROI", slug: "equisoft-labs" },
+] as const;
 
-function InterfaceStudy({ kind }: { kind: string }) {
+const workflowSteps = [
+  {
+    title: "Frame the problem",
+    description:
+      "Turn ambiguity into clear product logic: the user, the tension, the opportunity, and the decision the team needs to make.",
+  },
+  {
+    title: "Prototype at speed",
+    description:
+      "Use AI, interaction design, and code to make the important behavior tangible early—before a team overbuilds the wrong thing.",
+  },
+  {
+    title: "Shape what ships",
+    description:
+      "Work with product and engineering to test the signal, refine the experience, and turn a promising prototype into a clear direction for delivery.",
+  },
+] as const;
+
+const equisoftProducts = [
+  {
+    label: "CRM",
+    description: "Customer relationship and distribution workbenches",
+  },
+  {
+    label: "PAS",
+    description:
+      "Policy administration, product configuration, and audit layers",
+  },
+  {
+    label: "AI",
+    description: "Embedded intelligence and agentic workflows",
+  },
+  {
+    label: "DIT",
+    description: "Digital insurance tools for agents and customers",
+  },
+  {
+    label: "CM",
+    description: "Case management for complex claims and requests",
+  },
+] as const;
+
+function ExternalLink({
+  href,
+  children,
+  className,
+}: {
+  href: string;
+  children: ReactNode;
+  className?: string;
+}) {
   return (
-    <div className={styles.interface} aria-hidden="true">
-      <div className={styles.uiBar}>
-        <span className={styles.uiBrand} />{" "}
-        <span>
-          {kind === "workbench"
-            ? "Operations"
-            : kind === "configuration"
-              ? "Product configuration"
-              : "Review workspace"}
-        </span>
-        <span className={styles.uiAvatar}>JM</span>
-      </div>
-      {kind === "workbench" ? (
-        <div className={styles.uiBody}>
-          <div className={styles.uiTitle}>
-            Your work, in view.<span>Today · 6 items</span>
-          </div>
-          <div className={styles.uiMetrics}>
-            <div>
-              <b>06</b>
-              <span>Assigned</span>
-            </div>
-            <div>
-              <b>02</b>
-              <span>Needs review</span>
-            </div>
-            <div>
-              <b>04</b>
-              <span>Ready</span>
-            </div>
-          </div>
-          <div className={styles.uiTable}>
-            <div>
-              <b>Case</b>
-              <b>Owner</b>
-              <b>Status</b>
-            </div>
-            <div>
-              <span>Coverage review</span>
-              <span>Alex</span>
-              <em>Review</em>
-            </div>
-            <div>
-              <span>New application</span>
-              <span>Sam</span>
-              <em>Ready</em>
-            </div>
-            <div>
-              <span>Policy update</span>
-              <span>Jo</span>
-              <em>Ready</em>
-            </div>
-          </div>
-          <div className={styles.uiFoot}>
-            Next action <strong>Review supporting documents</strong>
-          </div>
-        </div>
-      ) : kind === "configuration" ? (
-        <div className={styles.uiBody}>
-          <div className={styles.uiTitle}>
-            A change, with context.<span>Draft configuration</span>
-          </div>
-          <div className={styles.uiSteps}>
-            <b>1 Details</b>
-            <b>2 Rules</b>
-            <span>3 Review</span>
-          </div>
-          <div className={styles.uiField}>
-            <span>Eligibility rule</span>
-            <strong>
-              Standard coverage <i>Enabled</i>
-            </strong>
-          </div>
-          <div className={styles.uiDependency}>
-            <span className={styles.uiDot} />
-            <div>
-              <b>One dependency to review</b>
-              <span>This rule affects 2 related options.</span>
-            </div>
-          </div>
-          <div className={styles.uiFoot}>
-            Before publishing <strong>Compare proposed changes</strong>
-          </div>
-        </div>
-      ) : (
-        <div className={styles.uiBody}>
-          <div className={styles.uiTitle}>
-            Evidence before action.<span>Assisted review · Draft</span>
-          </div>
-          <div className={styles.uiAnswer}>
-            <span>Suggested summary</span>
-            <p>
-              Two documents support this update. One detail needs your
-              confirmation.
-            </p>
-            <div>
-              <b>Source 01</b>
-              <b>Source 02</b>
-            </div>
-          </div>
-          <div className={styles.uiReview}>
-            <span className={styles.uiDot} />
-            <strong>Confirm the effective date</strong>
-            <span>Needs review</span>
-          </div>
-          <div className={styles.uiFoot}>
-            Human decision <strong>Review, edit, then approve</strong>
-          </div>
-        </div>
-      )}
-    </div>
+    <a
+      className={className}
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {children}
+      <span className="link-icon" aria-hidden="true">
+        <HugeiconsIcon icon={ArrowUpRight01Icon} size={16} strokeWidth={1.8} />
+      </span>
+      <span className="sr-only"> (opens in a new tab)</span>
+    </a>
   );
 }
 
@@ -143,175 +92,479 @@ export default function Home() {
   return (
     <>
       <a className="skip-link" href="#main-content">
-        Skip to content
+        Skip to independent builds
       </a>
-      <SiteHeader home textOnly />
-      <main className={styles.page} id="main-content" tabIndex={-1}>
-        <section className={styles.hero} aria-labelledby="page-title">
-          <div className={styles.heroMeta}>
-            <span>José Manuel Ramon / Product designer</span>
-            <span>Based in Québec City · Open to new opportunities</span>
+
+      <SiteHeader home />
+
+      <main id="main-content" tabIndex={-1}>
+        <section className="hero" aria-labelledby="page-title">
+          <div className="hero-copy">
+            <p className="status-pill">
+              <span aria-hidden="true" />
+              Senior product designer · AI-native builder
+            </p>
+            <h1 id="page-title">
+              <span>I design and build</span>
+              <span>products, services,</span>
+              <span>and experiences.</span>
+            </h1>
+            <p className="hero-description">
+              Senior Product Designer at Equisoft in Quebec City. I turn complex
+              business problems into clear products, services, and
+              experiences—using strategy, UX, AI, and code to move from a fuzzy
+              question to something useful a team can ship.
+            </p>
+            <p className="hero-fit">
+              Open to product design, AI innovation, and 0-to-1 roles where
+              strategy, design, and build meet.
+            </p>
           </div>
-          <div className={styles.heroGrid}>
-            <div>
-              <h1 id="page-title">
-                Complex systems.
-                <br />
-                Human experiences.
-                <br />
-                <em>Ideas made real.</em>
-              </h1>
-              <p className={styles.intro}>
-                Seven years designing across enterprise software and independent
-                products. I connect product thinking, interaction design, and
-                code to turn an idea into something people can use.
-              </p>
-              <a className={styles.primaryLink} href="#applications">
-                Explore my projects <span>06</span>
-              </a>
-            </div>
-            <aside className={styles.heroNote}>
-              <span className={styles.noteLabel}>
-                A little about my practice
-              </span>
-              <div className={styles.years}>
-                7
-                <span>
-                  years of
-                  <br />
-                  product design
+
+          <nav
+            className="app-strip"
+            aria-label="Featured product design projects"
+          >
+            <ul>
+              {featuredApplications.map((application) => (
+                <li key={application.slug}>
+                  <a href={`#${application.slug}`}>
+                    <span
+                      className={`app-icon app-icon--${application.slug}`}
+                      aria-hidden="true"
+                    >
+                      <span className="app-icon-glyph">
+                        {application.slug === "nudge" ? (
+                          <Image
+                            className="app-icon-image"
+                            src="/nudge/app-icon.webp"
+                            alt=""
+                            width={512}
+                            height={512}
+                            sizes="62px"
+                          />
+                        ) : application.slug === "world" ? (
+                          <Image
+                            className="app-icon-image"
+                            src="/world/app-icon.png"
+                            alt=""
+                            width={256}
+                            height={256}
+                            sizes="(min-width: 760px) 62px, 46px"
+                          />
+                        ) : application.slug === "tracer" ? (
+                          <Image
+                            className="app-icon-image app-icon-image--tracer-glass"
+                            src="/tracer/logo-glass.png"
+                            alt=""
+                            width={523}
+                            height={478}
+                            sizes="(min-width: 760px) 62px, 46px"
+                          />
+                        ) : application.slug === "abeam" ? (
+                          <AbeamVideo
+                            className="app-icon-video--abeam"
+                            sizes="70px"
+                          />
+                        ) : application.slug === "crypto-inheritance" ? (
+                          <Image
+                            className="app-icon-image app-icon-image--crypto-skull"
+                            src="/crypto-inheritance/skull.png"
+                            alt=""
+                            width={760}
+                            height={760}
+                            sizes="(min-width: 760px) 62px, 46px"
+                          />
+                        ) : (
+                          <Image
+                            className="app-icon-image app-icon-image--roi-calculator"
+                            src="/equisoft-labs/roi-calculator-rail.png"
+                            alt=""
+                            width={1254}
+                            height={1254}
+                            sizes="(min-width: 760px) 62px, 46px"
+                          />
+                        )}
+                      </span>
+                    </span>
+                    <span className="sr-only">Go to {application.name}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </section>
+
+        <section
+          className="work-section"
+          id="applications"
+          aria-labelledby="applications-title"
+        >
+          <div className="work-intro">
+            <p className="section-pill">Independent builds · 06</p>
+            <h2 id="applications-title">
+              <span>Products built</span>
+              <span>around clarity.</span>
+            </h2>
+            <p className="work-summary">
+              Independent products for everyday life, fitness, AI, security,
+              insurance, and crypto—built to make the thinking tangible.
+            </p>
+          </div>
+
+          <div className="gallery-grid">
+            <article
+              className="application-card application-card--project"
+              id="nudge"
+              aria-labelledby="nudge-title"
+            >
+              <Link className="application-card-link" href="/nudge">
+                <div className="app-canvas app-canvas--nudge">
+                  <div className="nudge-card-copy">
+                    <Image
+                      src="/nudge/app-icon.webp"
+                      alt=""
+                      width={512}
+                      height={512}
+                      sizes="48px"
+                    />
+                    <p>Household to-do app</p>
+                    <h3 id="nudge-title">Nudge</h3>
+                    <span>A lighter home. Together.</span>
+                  </div>
+                  <Image
+                    className="nudge-card-phone"
+                    src="/nudge/home.webp"
+                    alt="Nudge household task list"
+                    width={496}
+                    height={1078}
+                    sizes="200px"
+                  />
+                  <Image
+                    className="nudge-card-medal"
+                    src="/nudge/medal.webp"
+                    alt=""
+                    width={420}
+                    height={420}
+                    sizes="110px"
+                  />
+                </div>
+              </Link>
+            </article>
+            <article
+              className="application-card application-card--project"
+              id="world"
+              aria-labelledby="world-title"
+            >
+              <Link className="application-card-link" href="/world">
+                <div className="app-canvas app-canvas--world">
+                  <video
+                    aria-hidden="true"
+                    autoPlay
+                    className="world-card-video"
+                    disablePictureInPicture
+                    disableRemotePlayback
+                    muted
+                    playsInline
+                    preload="metadata"
+                    tabIndex={-1}
+                  >
+                    <source
+                      src="/world/pushedworld-card.mp4"
+                      type="video/mp4"
+                    />
+                  </video>
+                  <span className="world-card-shade" aria-hidden="true" />
+                  <div className="world-card-brand">
+                    <Image
+                      className="world-card-icon"
+                      src="/world/app-icon.png"
+                      alt=""
+                      width={256}
+                      height={256}
+                      sizes="44px"
+                    />
+                    <div>
+                      <p>01 / Product design + build</p>
+                      <h3 id="world-title">PushedWorld</h3>
+                    </div>
+                  </div>
+                </div>
+                <span
+                  className="application-project-arrow world-card-arrow"
+                  aria-hidden="true"
+                >
+                  <HugeiconsIcon
+                    icon={ArrowRight02Icon}
+                    size={24}
+                    strokeWidth={1.8}
+                  />
                 </span>
-              </div>
-              <p>
-                Complex fintech by day.
-                <br />
-                Independent ideas brought to life.
-              </p>
-              <div className={styles.noteBottom}>
-                <span className={styles.statusDot} />
-                <span>Strategy, craft, and a builder’s curiosity.</span>
-              </div>
-            </aside>
+              </Link>
+            </article>
+
+            <article
+              className="application-card application-card--project application-card--tracer"
+              id="tracer"
+              aria-labelledby="tracer-title"
+            >
+              <Link className="application-card-link" href="/tracer">
+                <div className="app-canvas app-canvas--tracer">
+                  <Image
+                    className="tracer-card-image"
+                    src="/tracer/landscape.webp"
+                    alt=""
+                    fill
+                    sizes="(max-width: 759px) 100vw, (max-width: 1099px) 50vw, (max-width: 1199px) 33vw, 33vw"
+                  />
+                  <span className="tracer-card-shade" aria-hidden="true" />
+                  <div className="tracer-card-copy">
+                    <Image
+                      className="tracer-card-logo"
+                      src="/tracer/logo-light.png"
+                      alt=""
+                      width={363}
+                      height={318}
+                      sizes="64px"
+                    />
+                    <p>02 / Brand & digital experience</p>
+                    <h3 id="tracer-title">Tracer</h3>
+                    <span>Clear the path to great science.</span>
+                  </div>
+                </div>
+              </Link>
+            </article>
+
+            <article
+              className="application-card application-card--project application-card--abeam"
+              id="abeam"
+              aria-label="aBeam"
+            >
+              <Link
+                className="application-card-link"
+                href="/abeam"
+                aria-label="View aBeam project"
+              >
+                <div
+                  className="app-canvas app-canvas--abeam-project"
+                  aria-hidden="true"
+                >
+                  <AbeamVideo
+                    alwaysPlay
+                    className="abeam-card-motion"
+                    sizes="(max-width: 759px) 92vw, (max-width: 1099px) 46vw, (max-width: 1199px) 24vw, 19vw"
+                  />
+                </div>
+                <span
+                  className="application-project-arrow abeam-card-arrow"
+                  aria-hidden="true"
+                >
+                  <HugeiconsIcon
+                    icon={ArrowRight02Icon}
+                    size={24}
+                    strokeWidth={1.8}
+                  />
+                </span>
+              </Link>
+            </article>
+
+            <article
+              className="application-card application-card--project application-card--crypto"
+              id="crypto-inheritance"
+              aria-labelledby="crypto-inheritance-title"
+            >
+              <Link
+                className="application-card-link"
+                href="/crypto-inheritance"
+              >
+                <div className="app-canvas app-canvas--crypto">
+                  <div className="crypto-card-copy">
+                    <p>04 / Crypto legacy planner</p>
+                    <h3 id="crypto-inheritance-title">CryptoCroc</h3>
+                    <span>Plan the handoff.</span>
+                  </div>
+                  <Image
+                    className="crypto-card-skull"
+                    src="/crypto-inheritance/skull.png"
+                    alt=""
+                    width={760}
+                    height={760}
+                    sizes="(max-width: 759px) 92vw, (max-width: 1099px) 46vw, (max-width: 1199px) 24vw, 19vw"
+                  />
+                </div>
+                <span
+                  className="application-project-arrow crypto-card-arrow"
+                  aria-hidden="true"
+                >
+                  <HugeiconsIcon
+                    icon={ArrowRight02Icon}
+                    size={24}
+                    strokeWidth={1.8}
+                  />
+                </span>
+              </Link>
+            </article>
+
+            <article
+              className="application-card application-card--project application-card--equisoft-labs"
+              id="equisoft-labs"
+              aria-labelledby="equisoft-labs-title"
+            >
+              <Link className="application-card-link" href="/equisoft-labs">
+                <div className="app-canvas app-canvas--equisoft-labs">
+                  <span
+                    className="equisoft-labs-card-glow"
+                    aria-hidden="true"
+                  />
+                  <div className="equisoft-labs-card-copy">
+                    <p>05 / Insurance R&amp;D</p>
+                    <h3 id="equisoft-labs-title">Equisoft Labs</h3>
+                    <span>Decision intelligence for insurance.</span>
+                  </div>
+                  <Image
+                    className="equisoft-labs-card-calculator"
+                    src="/equisoft-labs/roi-calculator-hq.png"
+                    alt=""
+                    width={1254}
+                    height={1254}
+                    sizes="(max-width: 759px) 66vw, (max-width: 1099px) 40vw, (max-width: 1199px) 19vw, 15vw"
+                  />
+                </div>
+                <span
+                  className="application-project-arrow equisoft-labs-card-arrow"
+                  aria-hidden="true"
+                >
+                  <HugeiconsIcon
+                    icon={ArrowRight02Icon}
+                    size={24}
+                    strokeWidth={1.8}
+                  />
+                </span>
+              </Link>
+            </article>
           </div>
         </section>
 
         <section
-          className={styles.enterprise}
-          aria-labelledby="enterprise-title"
+          className="professional-section"
+          aria-labelledby="professional-title"
         >
-          <div className={styles.sectionTop}>
-            <p className={styles.eyebrow}>
-              Professional practice / Confidential work
-            </p>
-            <span className={styles.sectionIndex}>01 — Experience</span>
-          </div>
-          <div className={styles.enterpriseHeading}>
-            <h2 id="enterprise-title">
-              The complexity
-              <br />
-              <em>behind the clarity.</em>
+          <div className="professional-intro">
+            <h2 id="professional-title">
+              <span>Equisoft</span>
+              <span>Fintech &amp; insurance.</span>
             </h2>
             <p>
-              Much of my professional work lives inside fintech and insurance
-              systems I can’t show publicly. These are the kinds of problems I
-              work through: information-heavy workbenches, connected rules, and
-              decisions that need context.
+              I work across fintech and insurance products from discovery
+              through delivery, shaping complex, data-heavy systems with deep
+              UI: configuration interfaces, management workbenches, complex
+              forms, and multi-stage processes. I have led an AI committee and
+              partnered with multiple teams to integrate AI and agentic
+              capabilities into insurance software and finance operations.
             </p>
           </div>
-          <p className={styles.disclosure}>
-            Illustrative interface studies with fictional data. Not employer
-            product screens.
-          </p>
-          <div className={styles.studyGrid}>
-            {studies.map((study) => (
-              <article key={study.id}>
-                <InterfaceStudy kind={study.id} />
-                <div className={styles.studyCopy}>
-                  <p>{study.label}</p>
-                  <h3>{study.title}</h3>
-                  <span>{study.text}</span>
-                </div>
-              </article>
+          <div
+            className="professional-domain-list"
+            aria-label="Equisoft product domains"
+          >
+            {equisoftProducts.map((product) => (
+              <div className="professional-domain" key={product.label}>
+                <span className="professional-domain-mark" aria-hidden="true">
+                  {product.label}
+                </span>
+                <span className="professional-domain-description">
+                  {product.description}
+                </span>
+              </div>
             ))}
           </div>
-          <details className={styles.teamDetails}>
-            <summary>
-              How I work inside teams <span aria-hidden="true">+</span>
-            </summary>
-            <div>
-              <p>
-                I partner with product and engineering from the initial question
-                through interaction design and prototyping. Working across
-                enterprise domains means connecting individual screens to the
-                rules, roles, and processes around them.
-              </p>
-              <p>
-                I’ve also led an AI committee and collaborated across teams on
-                AI and agentic capabilities. I can discuss my role and approach
-                in an interview, within the boundaries of confidentiality.
-              </p>
-            </div>
-          </details>
         </section>
 
-        <ProjectCollection />
-
-        <section className={styles.about} aria-labelledby="about-title">
-          <div>
-            <p className={styles.eyebrow}>The way I work</p>
-            <h2 id="about-title">
-              A thoughtful partner.
-              <br />
-              <em>A hands-on builder.</em>
+        <section className="workflow-section" aria-labelledby="workflow-title">
+          <div className="workflow-intro">
+            <p className="section-pill">Design approach</p>
+            <h2 id="workflow-title">
+              <span>From ambiguity to</span>
+              <span className="workflow-result">
+                <span className="workflow-arrow" aria-hidden="true">
+                  <HugeiconsIcon
+                    icon={ArrowRight02Icon}
+                    size="1em"
+                    strokeWidth={1.5}
+                  />
+                </span>
+                signal that ships.
+              </span>
             </h2>
           </div>
-          <div className={styles.aboutCopy}>
-            <p>
-              I like being close to the whole problem: understanding what
-              matters, shaping the experience, and making the behavior tangible
-              enough to discuss, test, and improve.
-            </p>
-            <p>
-              Enterprise work has taught me to work with complexity and across
-              teams. Independent projects give me room to take ownership across
-              product, identity, and implementation.
-            </p>
-            <div className={styles.practiceTags}>
-              <span>Product framing</span>
-              <span>Interaction design</span>
-              <span>Working prototypes</span>
-              <span>Design & development</span>
-            </div>
-          </div>
+
+          <ol className="workflow-list">
+            {workflowSteps.map((step, index) => (
+              <li className="workflow-step" key={step.title}>
+                <div className="workflow-number-card">
+                  <p>{String(index + 1).padStart(2, "0")}</p>
+                  <div className="workflow-progress" aria-hidden="true">
+                    {[0, 1, 2].map((dot) => (
+                      <span
+                        className={dot <= index ? "is-active" : undefined}
+                        key={dot}
+                      />
+                    ))}
+                  </div>
+                </div>
+                <div className="workflow-copy-card">
+                  <h3>{step.title}</h3>
+                  <p>{step.description}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
         </section>
-        <footer className={styles.footer}>
-          <div className={styles.sectionTop}>
-            <p className={styles.eyebrow}>Have a problem worth exploring?</p>
-            <span>Let’s talk.</span>
+
+        <section className="clients-section" aria-labelledby="clients-title">
+          <div className="clients-intro">
+            <p className="section-pill">Selected clients · 04</p>
+            <h2 id="clients-title">
+              <span>Clients I&apos;ve</span>
+              <span>worked with.</span>
+            </h2>
           </div>
-          <h2>
-            Make the next
-            <br />
-            <em>useful thing.</em>
-          </h2>
-          <div className={styles.footerLinks}>
-            <a href="mailto:jmanuelr.99@gmail.com">Get in touch</a>
-            <a
-              href="https://www.linkedin.com/in/jmanuelr"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              LinkedIn<span className="sr-only"> (opens in a new tab)</span>
-            </a>
-            <a href="#top">Back to top</a>
-          </div>
-          <div className={styles.footerMeta}>
-            <span>José Manuel Ramon</span>
-            <span>Product design · Québec City</span>
-            <span>© {new Date().getFullYear()}</span>
-          </div>
-        </footer>
+
+          <ClientMarquee />
+        </section>
       </main>
+
+      <footer className="site-footer">
+        <a
+          className="back-to-top-fab"
+          href="#main-content"
+          aria-label="Back to top"
+        >
+          <HugeiconsIcon icon={ArrowUp01Icon} size={18} strokeWidth={1.8} />
+        </a>
+        <div className="footer-top">
+          <p>Ramon JM · Product design, AI &amp; innovation</p>
+        </div>
+        <div className="footer-main">
+          <h2>Make the next useful thing.</h2>
+          <div className="footer-links">
+            <ExternalLink
+              className="footer-action"
+              href="https://www.linkedin.com/in/jmanuelr"
+            >
+              <span className="link-icon" aria-hidden="true">
+                <HugeiconsIcon
+                  icon={Linkedin01Icon}
+                  size={18}
+                  strokeWidth={1.7}
+                />
+              </span>
+              <span>Connect on LinkedIn</span>
+            </ExternalLink>
+          </div>
+        </div>
+        <p className="copyright">© {new Date().getFullYear()} Ramon JM</p>
+      </footer>
     </>
   );
 }
