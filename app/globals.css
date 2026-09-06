@@ -101,10 +101,8 @@ main {
   width: 100%;
   max-width: none;
   min-height: 76px;
-  padding: 16px max(
-    var(--page-pad),
-    calc((100vw - var(--max-width)) / 2 + var(--page-pad))
-  );
+  padding: 16px
+    max(var(--page-pad), calc((100vw - var(--max-width)) / 2 + var(--page-pad)));
   align-items: flex-start;
   justify-content: space-between;
   background: transparent;
@@ -216,7 +214,9 @@ main {
   pointer-events: none;
   transform: translateY(-5px) scale(0.98);
   transform-origin: top right;
-  transition: opacity 160ms ease, transform 180ms ease;
+  transition:
+    opacity 160ms ease,
+    transform 180ms ease;
 }
 
 .contact-menu-list.is-open {
@@ -1659,7 +1659,10 @@ main {
   color: var(--ink);
   box-shadow: 0 12px 28px rgb(14 14 14 / 24%);
   transform: translateY(-50%);
-  transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+  transition:
+    background 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
 }
 
 .back-to-top-fab:hover {
@@ -1865,7 +1868,6 @@ a:focus-visible {
   .work-section {
     padding-top: 52px;
   }
-
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2387,7 +2389,7 @@ a:focus-visible {
 
 @media (min-width: 1200px) {
   .gallery-grid {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     column-gap: clamp(14px, 1.35vw, 20px);
   }
 
@@ -2427,7 +2429,6 @@ a:focus-visible {
   .equisoft-labs-card-copy h3 {
     font-size: clamp(1.8rem, 2.6vw, 2.85rem);
   }
-
 }
 
 /* PushedWorld project page */
@@ -2938,4 +2939,61 @@ a:focus-visible {
     font-size: 0.76rem;
     line-height: 1.35;
   }
+}
+
+/* Nudge project entry */
+.app-canvas--nudge {
+  background: linear-gradient(140deg, #efe5fa, #e1d7ee);
+  overflow: hidden;
+  isolation: isolate;
+}
+.nudge-card-copy {
+  position: absolute;
+  z-index: 2;
+  top: 26px;
+  left: 24px;
+  color: #382543;
+}
+.nudge-card-copy > img {
+  width: 46px;
+  height: 46px;
+  border-radius: 13px;
+  margin-bottom: 18px;
+}
+.nudge-card-copy p {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.nudge-card-copy h3 {
+  font-size: clamp(32px, 3vw, 48px);
+  line-height: 1.1;
+  letter-spacing: -0.05em;
+  margin: 8px 0;
+}
+.nudge-card-copy > span {
+  font-size: 12px;
+}
+.nudge-card-phone {
+  position: absolute;
+  width: 44%;
+  max-width: 205px;
+  height: auto;
+  right: 7%;
+  top: 42%;
+  border: 5px solid #2f2835;
+  border-radius: 24px;
+  transform: rotate(9deg);
+  box-shadow: 0 20px 30px #38254330;
+}
+.nudge-card-medal {
+  position: absolute;
+  width: 28%;
+  height: auto;
+  left: 12%;
+  bottom: 7%;
+  transform: rotate(-15deg);
+}
+.app-icon--nudge {
+  background: #efe5fa;
 }

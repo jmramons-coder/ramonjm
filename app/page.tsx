@@ -13,6 +13,7 @@ import { AbeamVideo } from "./abeam/abeam-video";
 import { SiteHeader } from "./site-header";
 
 const featuredApplications = [
+  { name: "Nudge", slug: "nudge" },
   { name: "PushedWorld", slug: "world" },
   { name: "Tracer", slug: "tracer" },
   { name: "aBeam", slug: "abeam" },
@@ -133,7 +134,16 @@ export default function Home() {
                       aria-hidden="true"
                     >
                       <span className="app-icon-glyph">
-                        {application.slug === "world" ? (
+                        {application.slug === "nudge" ? (
+                          <Image
+                            className="app-icon-image"
+                            src="/nudge/app-icon.webp"
+                            alt=""
+                            width={512}
+                            height={512}
+                            sizes="62px"
+                          />
+                        ) : application.slug === "world" ? (
                           <Image
                             className="app-icon-image"
                             src="/world/app-icon.png"
@@ -191,18 +201,56 @@ export default function Home() {
           aria-labelledby="applications-title"
         >
           <div className="work-intro">
-            <p className="section-pill">Independent builds · 05</p>
+            <p className="section-pill">Independent builds · 06</p>
             <h2 id="applications-title">
               <span>Products built</span>
               <span>around clarity.</span>
             </h2>
             <p className="work-summary">
-              Independent products across AI, security, insurance, crypto, and
-              fitness—built to make the thinking tangible.
+              Independent products for everyday life, fitness, AI, security,
+              insurance, and crypto—built to make the thinking tangible.
             </p>
           </div>
 
           <div className="gallery-grid">
+            <article
+              className="application-card application-card--project"
+              id="nudge"
+              aria-labelledby="nudge-title"
+            >
+              <Link className="application-card-link" href="/nudge">
+                <div className="app-canvas app-canvas--nudge">
+                  <div className="nudge-card-copy">
+                    <Image
+                      src="/nudge/app-icon.webp"
+                      alt=""
+                      width={512}
+                      height={512}
+                      sizes="48px"
+                    />
+                    <p>Household to-do app</p>
+                    <h3 id="nudge-title">Nudge</h3>
+                    <span>A lighter home. Together.</span>
+                  </div>
+                  <Image
+                    className="nudge-card-phone"
+                    src="/nudge/home.webp"
+                    alt="Nudge household task list"
+                    width={496}
+                    height={1078}
+                    sizes="200px"
+                  />
+                  <Image
+                    className="nudge-card-medal"
+                    src="/nudge/medal.webp"
+                    alt=""
+                    width={420}
+                    height={420}
+                    sizes="110px"
+                  />
+                </div>
+              </Link>
+            </article>
             <article
               className="application-card application-card--project"
               id="world"
@@ -267,7 +315,7 @@ export default function Home() {
                     src="/tracer/landscape.webp"
                     alt=""
                     fill
-                    sizes="(max-width: 759px) 100vw, (max-width: 1099px) 50vw, (max-width: 1199px) 25vw, 20vw"
+                    sizes="(max-width: 759px) 100vw, (max-width: 1099px) 50vw, (max-width: 1199px) 33vw, 33vw"
                   />
                   <span className="tracer-card-shade" aria-hidden="true" />
                   <div className="tracer-card-copy">

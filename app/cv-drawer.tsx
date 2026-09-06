@@ -107,9 +107,8 @@ export function CvDrawer() {
                       Senior Product Designer · AI-native 0-to-1 builder
                     </p>
                     <p>
-                      I turn ambiguous problems into clear product logic,
-                      useful experiences, and working prototypes that teams can
-                      ship.
+                      I turn ambiguous problems into clear product logic, useful
+                      experiences, and working prototypes that teams can ship.
                     </p>
                   </div>
 
@@ -123,11 +122,10 @@ export function CvDrawer() {
                     <div className="cv-section-main">
                       <p className="cv-domain-copy">
                         I have worked across HR software and immersive
-                        experiences, and lately focus on fintech and
-                        insurance: policy administration, back office and
-                        data software, agent-tech integrations, CRMs,
-                        workbenches, product configuration, and internal and
-                        external tools.
+                        experiences, and lately focus on fintech and insurance:
+                        policy administration, back office and data software,
+                        agent-tech integrations, CRMs, workbenches, product
+                        configuration, and internal and external tools.
                       </p>
                       <p className="cv-domain-copy">
                         At Equisoft, I contribute to a major modernization
@@ -181,6 +179,10 @@ export function CvDrawer() {
                     </p>
                     <ul className="cv-work-list">
                       <li>
+                        <span>Nudge</span>
+                        <span>Household tasks · iPhone & iPad</span>
+                      </li>
+                      <li>
                         <span>PushedWorld</span>
                         <span>Fitness · iPhone</span>
                       </li>
@@ -204,7 +206,9 @@ export function CvDrawer() {
                   </section>
 
                   <div className="cv-drawer-footer">
-                    <p>For the full context, explore the side projects below.</p>
+                    <p>
+                      For the full context, explore the side projects below.
+                    </p>
                     <a
                       className="cv-contact-link"
                       href="mailto:jmanuelr.99@gmail.com"

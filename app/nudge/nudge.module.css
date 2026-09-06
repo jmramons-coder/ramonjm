@@ -1,0 +1,581 @@
+.page {
+  --plum: #382543;
+  --purple: #7440d9;
+  --lime: #beff40;
+  --pad: clamp(24px, 6vw, 96px);
+  max-width: none;
+  color: var(--plum);
+  background: #f8f7f2;
+  overflow: clip;
+}
+.page h1,
+.page h2,
+.page h3,
+.page p,
+.page figure {
+  margin: 0;
+}
+.page section[id] {
+  scroll-margin-top: 90px;
+}
+.page h2 {
+  font-size: clamp(36px, 4.8vw, 72px);
+  line-height: 1.08;
+  letter-spacing: -0.055em;
+  font-weight: 550;
+}
+.eyebrow {
+  font-size: 11px;
+  line-height: 1.6;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+.hero {
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  min-height: 780px;
+  gap: 3vw;
+  padding: 65px var(--pad) 80px;
+  background: linear-gradient(120deg, #f4f0fb, #f8f7f2 70%);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 27px;
+  font-weight: 650;
+  letter-spacing: -0.05em;
+  margin-bottom: 42px;
+}
+.brand img {
+  width: 56px;
+  height: 56px;
+  border-radius: 15px;
+}
+.heroCopy > .eyebrow {
+  color: #786485;
+  margin-bottom: 22px;
+}
+.hero h1 {
+  font-size: clamp(54px, 6.5vw, 100px);
+  line-height: 1.02;
+  letter-spacing: -0.065em;
+  font-weight: 550;
+}
+.hero h1 em {
+  font-style: normal;
+  color: var(--purple);
+}
+.lead {
+  font-size: 18px;
+  line-height: 1.7;
+  max-width: 480px;
+  margin-top: 30px !important;
+  color: #6b6070;
+}
+.heroLinks {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 22px;
+  margin-top: 32px;
+  font-size: 12px;
+}
+.heroLinks a {
+  border-bottom: 1px solid #a290ad;
+  padding-bottom: 8px;
+}
+.heroLinks span {
+  color: #786b7e;
+  font-size: 11px;
+}
+.heroStage {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  isolation: isolate;
+  min-width: 0;
+  padding: 30px 0;
+}
+.orbit {
+  position: absolute;
+  z-index: -1;
+  width: 110%;
+  aspect-ratio: 1;
+  background: #e8dcf4;
+  border-radius: 50%;
+  top: 12%;
+  left: -5%;
+}
+.phone {
+  background: #252128;
+  border-radius: clamp(22px, 3vw, 36px);
+  padding: 6px;
+  overflow: hidden;
+  box-shadow: 0 24px 45px -24px #37234365;
+  border: 1px solid #514a55;
+}
+.phone img,
+.phone video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: clamp(17px, 2.5vw, 30px);
+}
+.firstPhone {
+  width: 44%;
+  max-width: 235px;
+  transform: rotate(-5deg);
+}
+.secondPhone {
+  width: 44%;
+  max-width: 235px;
+  transform: translateY(65px) rotate(5deg);
+}
+.heroSticker {
+  position: absolute;
+  width: 125px;
+  height: auto;
+  bottom: -25px;
+  left: 7%;
+  transform: rotate(-15deg);
+}
+.chapters {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+  padding: 24px var(--pad);
+  border-top: 1px solid #dfd9e0;
+  border-bottom: 1px solid #dfd9e0;
+  font-size: 12px;
+}
+.chapters span {
+  margin-right: auto;
+  letter-spacing: 0.13em;
+  font-weight: 650;
+}
+.chapters a:hover,
+.footer a:hover {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+.idea {
+  padding: 110px var(--pad);
+}
+.idea > .eyebrow {
+  margin-bottom: 28px;
+  color: var(--purple);
+}
+.ideaBody {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6vw;
+  max-width: 960px;
+  margin: 40px 0 0 auto;
+}
+.ideaBody p,
+.captureCopy > p:not(.eyebrow),
+.householdCopy > p:not(.eyebrow),
+.personalityIntro > p:not(.eyebrow),
+.focus > div > p:not(.eyebrow) {
+  font-size: 17px;
+  line-height: 1.75;
+  color: #736979;
+}
+.principles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 35px;
+  margin-top: 60px;
+}
+.principles > div {
+  border-top: 1px solid #cec5d1;
+  padding-top: 24px;
+}
+.principles span {
+  font-size: 11px;
+  color: #8c6fa4;
+}
+.principles h3 {
+  font-size: 22px;
+  font-weight: 550;
+  letter-spacing: -0.035em;
+  margin: 18px 0 12px;
+}
+.principles p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #736979;
+}
+.capture {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr 0.7fr;
+  align-items: center;
+  gap: 4vw;
+  padding: 85px var(--pad);
+  background: #eee6f5;
+}
+.captureArt {
+  position: relative;
+  align-self: end;
+}
+.captureArt > img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.speech {
+  position: absolute;
+  top: 12%;
+  left: 0;
+  padding: 15px 18px;
+  border-radius: 16px 16px 16px 0;
+  background: white;
+  box-shadow: 0 10px 25px #392a4410;
+  font-size: 14px;
+}
+.captureCopy h2 {
+  margin: 25px 0;
+}
+.captureCopy .note {
+  font-size: 11px !important;
+  margin-top: 24px;
+  line-height: 1.6 !important;
+}
+.demo {
+  max-width: 245px;
+  margin: auto !important;
+}
+.demo figcaption {
+  font-size: 11px;
+  line-height: 1.7;
+  text-align: center;
+  margin-top: 22px;
+  color: #786685;
+}
+.household {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8vw;
+  padding: 110px var(--pad);
+  align-items: center;
+}
+.householdCopy h2 {
+  margin: 25px 0;
+}
+.detail {
+  border-top: 1px solid #d8d0dc;
+  margin-top: 28px;
+  padding-top: 24px;
+  max-width: 440px;
+}
+.detail h3 {
+  font-size: 19px;
+  letter-spacing: -0.025em;
+  font-weight: 550;
+  margin-bottom: 10px;
+}
+.detail p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #736979;
+}
+.householdStage {
+  position: relative;
+  background: #eff3e4;
+  border-radius: 50% 50% 30px 30px;
+  padding: 45px;
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+}
+.householdStage .phone {
+  width: 260px;
+  max-width: 85%;
+}
+.householdStage > img {
+  position: absolute;
+  width: 155px;
+  height: auto;
+  right: 0;
+  bottom: 10px;
+  transform: rotate(12deg);
+}
+.personality {
+  padding: 90px var(--pad);
+  background: #382543;
+  color: #f8f3fc;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 7vw;
+}
+.personalityIntro h2 {
+  margin: 26px 0;
+}
+.personalityIntro > p:not(.eyebrow) {
+  color: #c6b6d0;
+}
+.personalityIntro .eyebrow {
+  color: #c8ed88;
+}
+.brandAssets {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+}
+.brandAssets img {
+  width: 100%;
+  height: auto;
+  max-width: 200px;
+}
+.brandAssets img:first-child {
+  grid-column: 1/-1;
+  max-width: 240px;
+}
+.focus {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 8vw;
+  align-items: start;
+  padding: 100px var(--pad);
+}
+.focus > figure > img {
+  width: 100%;
+  height: auto;
+  border-radius: 24px;
+  display: block;
+}
+.focus figcaption {
+  font-size: 11px;
+  line-height: 1.6;
+  color: #736979;
+  padding-top: 16px;
+}
+.focus h2 {
+  margin: 25px 0;
+}
+.timer {
+  max-width: 210px;
+  margin: 35px auto 0;
+}
+.explore {
+  background: #e7dcf0;
+  text-align: center;
+  padding: 90px var(--pad);
+}
+.explore > img {
+  width: 80px;
+  height: 80px;
+  border-radius: 22px;
+  margin: 0 auto 30px;
+}
+.explore .eyebrow {
+  color: #7b608d;
+  margin-bottom: 25px;
+}
+.explore > p:not(.eyebrow) {
+  max-width: 580px;
+  margin: 30px auto 0;
+  font-size: 16px;
+  line-height: 1.75;
+  color: #6e5c77;
+}
+.button {
+  display: inline-block;
+  margin-top: 30px;
+  background: var(--plum);
+  color: white;
+  padding: 16px 26px;
+  border-radius: 100px;
+  font-size: 14px;
+}
+.button:hover {
+  background: #563663;
+}
+.footer {
+  padding: 30px var(--pad);
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  font-size: 12px;
+}
+.page a:focus-visible,
+.page video:focus-visible {
+  outline: 3px solid #7440d9;
+  outline-offset: 6px;
+}
+.personality a:focus-visible {
+  outline-color: #beff40;
+}
+@media (min-width: 1700px) {
+  .page {
+    --pad: max(96px, calc((100vw - 1450px) / 2));
+  }
+}
+@media (max-width: 1000px) {
+  .hero {
+    min-height: 700px;
+  }
+  .hero h1 {
+    font-size: clamp(48px, 7vw, 72px);
+  }
+  .heroStage {
+    gap: 16px;
+  }
+  .heroSticker {
+    width: 100px;
+  }
+  .capture {
+    grid-template-columns: 1fr 1fr;
+  }
+  .captureArt {
+    display: none;
+  }
+  .demo {
+    max-width: 240px;
+  }
+  .household {
+    gap: 5vw;
+  }
+  .householdStage {
+    padding: 30px;
+  }
+  .focus {
+    gap: 5vw;
+  }
+  .chapters {
+    gap: 25px;
+  }
+}
+@media (max-width: 700px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 40px var(--pad) 100px;
+  }
+  .brand {
+    margin-bottom: 30px;
+  }
+  .hero h1 {
+    font-size: clamp(52px, 11vw, 75px);
+  }
+  .lead {
+    font-size: 16px;
+  }
+  .heroStage {
+    max-width: 480px;
+    width: 100%;
+    margin: auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .secondPhone {
+    transform: translateY(30px) rotate(5deg);
+  }
+  .heroSticker {
+    width: 95px;
+    bottom: -28px;
+    left: 0;
+  }
+  .chapters {
+    gap: 20px;
+    justify-content: space-between;
+    font-size: 11px;
+    padding: 22px var(--pad);
+  }
+  .chapters span {
+    display: none;
+  }
+  .idea,
+  .household,
+  .focus {
+    padding: 70px var(--pad);
+  }
+  .ideaBody,
+  .principles,
+  .household,
+  .personality,
+  .focus {
+    grid-template-columns: 1fr;
+  }
+  .ideaBody {
+    gap: 22px;
+    margin-top: 30px;
+  }
+  .ideaBody p,
+  .captureCopy > p:not(.eyebrow),
+  .householdCopy > p:not(.eyebrow),
+  .personalityIntro > p:not(.eyebrow),
+  .focus > div > p:not(.eyebrow) {
+    font-size: 15px;
+  }
+  .principles {
+    gap: 26px;
+    margin-top: 35px;
+  }
+  .principles h3 {
+    font-size: 21px;
+  }
+  .capture {
+    grid-template-columns: 1fr;
+    padding: 65px var(--pad);
+    gap: 35px;
+  }
+  .demo {
+    max-width: 245px;
+  }
+  .household {
+    gap: 40px;
+  }
+  .householdStage {
+    max-width: 450px;
+    width: 100%;
+    margin: auto;
+  }
+  .householdStage .phone {
+    max-width: 80%;
+    width: 260px;
+  }
+  .householdStage > img {
+    width: 125px;
+  }
+  .personality {
+    padding: 65px var(--pad);
+    gap: 30px;
+  }
+  .brandAssets {
+    max-width: 400px;
+    margin: auto;
+  }
+  .brandAssets img {
+    max-width: 160px;
+  }
+  .brandAssets img:first-child {
+    max-width: 200px;
+  }
+  .focus {
+    gap: 40px;
+  }
+  .focus > figure {
+    order: 2;
+  }
+  .timer {
+    max-width: 210px;
+  }
+  .explore {
+    padding: 70px var(--pad);
+  }
+  .footer {
+    flex-direction: column;
+    gap: 18px;
+  }
+}
+
+.household > *, .capture > *, .focus > * { min-width: 0; }
