@@ -347,6 +347,61 @@ export default function WorldProjectPage() {
           </figure>
         </section>
 
+        <section className={styles.storeCampaign} aria-labelledby="store-title">
+          <div className={styles.sectionHeading}>
+            <div>
+              <p className={styles.eyebrow}>05 / The first impression</p>
+              <h2 id="store-title">
+                A small screen.
+                <br />
+                <em>A complete story.</em>
+              </h2>
+            </div>
+            <p>
+              The App Store sequence brings the experience into focus:
+              hands-free counting, Buster’s encouragement, and progress worth
+              returning for. Real app views and expressive artwork carry one
+              consistent visual language across all seven panels.
+            </p>
+          </div>
+          <div
+            className={styles.storeGallery}
+            role="region"
+            aria-label="PushedWorld App Store screenshots"
+            tabIndex={0}
+          >
+            {[
+              ["01-count", "Push, we count: hands-free camera tracking"],
+              ["02-mentor", "Stay motivated with Buster, your personal coach"],
+              ["03-anywhere", "Train anywhere with PushedWorld"],
+              ["04-path", "Climb your 100-level path"],
+              ["05-completion", "One rep at a time: celebrate a completed set"],
+              ["06-league", "Join the Hall of Fame"],
+              ["07-rewards", "Unlock profile frames as you rise"],
+            ].map(([file, label], index) => (
+              <a
+                key={file}
+                href={`/world/store-${file}.webp`}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Open screenshot ${index + 1}: ${label} (opens in a new tab)`}
+              >
+                <Image
+                  src={`/world/store-${file}.webp`}
+                  width={990}
+                  height={2151}
+                  alt={label}
+                  sizes="(max-width: 700px) 75vw, 290px"
+                />
+              </a>
+            ))}
+          </div>
+          <p className={styles.galleryHint}>
+            Scroll through all seven panels. Select a screenshot to view it
+            larger.
+          </p>
+        </section>
+
         <section className={styles.website} aria-labelledby="website-title">
           <Image
             src="/world/community.webp"
