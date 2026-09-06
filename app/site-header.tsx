@@ -24,7 +24,9 @@ export function SiteHeader({
   tone = "light",
   backHref,
   backLabel = "Back to side projects",
+  textOnly = false,
 }: {
+  textOnly?: boolean;
   home?: boolean;
   tone?: "light" | "dark";
   backHref?: string;
@@ -69,13 +71,21 @@ export function SiteHeader({
     >
       <div className="header-leading">
         {backHref ? (
-          <Link className="header-back-link" href={backHref} aria-label={backLabel}>
-            <HugeiconsIcon
-              icon={ArrowLeft02Icon}
-              size={19}
-              strokeWidth={1.8}
-              aria-hidden="true"
-            />
+          <Link
+            className={textOnly ? "header-action" : "header-back-link"}
+            href={backHref}
+            aria-label={backLabel}
+          >
+            {textOnly ? (
+              backLabel
+            ) : (
+              <HugeiconsIcon
+                icon={ArrowLeft02Icon}
+                size={19}
+                strokeWidth={1.8}
+                aria-hidden="true"
+              />
+            )}
           </Link>
         ) : null}
         <Link
@@ -97,9 +107,11 @@ export function SiteHeader({
             onClick={() => setContactOpen((open) => !open)}
           >
             <span>Contact</span>
-            <span className="header-contact-plane" aria-hidden="true">
-              <HugeiconsIcon icon={SentIcon} size={16} strokeWidth={1.8} />
-            </span>
+            {!textOnly && (
+              <span className="header-contact-plane" aria-hidden="true">
+                <HugeiconsIcon icon={SentIcon} size={16} strokeWidth={1.8} />
+              </span>
+            )}
           </button>
           <div
             className={`contact-menu-list${contactOpen ? " is-open" : ""}`}
@@ -130,7 +142,11 @@ export function SiteHeader({
               onClick={() => setContactOpen(false)}
             >
               <span className="contact-menu-icon" aria-hidden="true">
-                <HugeiconsIcon icon={Linkedin01Icon} size={17} strokeWidth={1.8} />
+                <HugeiconsIcon
+                  icon={Linkedin01Icon}
+                  size={17}
+                  strokeWidth={1.8}
+                />
               </span>
               <span>
                 <strong>LinkedIn</strong>

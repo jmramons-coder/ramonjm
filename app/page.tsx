@@ -45,7 +45,8 @@ const equisoftProducts = [
   },
   {
     label: "PAS",
-    description: "Policy administration, product configuration, and audit layers",
+    description:
+      "Policy administration, product configuration, and audit layers",
   },
   {
     label: "AI",
@@ -79,11 +80,7 @@ function ExternalLink({
     >
       {children}
       <span className="link-icon" aria-hidden="true">
-        <HugeiconsIcon
-          icon={ArrowUpRight01Icon}
-          size={16}
-          strokeWidth={1.8}
-        />
+        <HugeiconsIcon icon={ArrowUpRight01Icon} size={16} strokeWidth={1.8} />
       </span>
       <span className="sr-only"> (opens in a new tab)</span>
     </a>
@@ -112,10 +109,10 @@ export default function Home() {
               <span>and experiences.</span>
             </h1>
             <p className="hero-description">
-              Senior Product Designer at Equisoft in Quebec City. I turn
-              complex business problems into clear products, services, and
-              experiences—using strategy, UX, AI, and code to move from a
-              fuzzy question to something useful a team can ship.
+              Senior Product Designer at Equisoft in Quebec City. I turn complex
+              business problems into clear products, services, and
+              experiences—using strategy, UX, AI, and code to move from a fuzzy
+              question to something useful a team can ship.
             </p>
             <p className="hero-fit">
               Open to product design, AI innovation, and 0-to-1 roles where
@@ -267,7 +264,7 @@ export default function Home() {
                 <div className="app-canvas app-canvas--tracer">
                   <Image
                     className="tracer-card-image"
-                    src="/tracer/screen-organizations.jpg"
+                    src="/tracer/landscape.webp"
                     alt=""
                     fill
                     sizes="(max-width: 759px) 100vw, (max-width: 1099px) 50vw, (max-width: 1199px) 25vw, 20vw"
@@ -282,21 +279,11 @@ export default function Home() {
                       height={318}
                       sizes="64px"
                     />
-                    <p>02 / Security intelligence</p>
+                    <p>02 / Brand & digital experience</p>
                     <h3 id="tracer-title">Tracer</h3>
-                    <span>Screen research partners in minutes.</span>
+                    <span>Clear the path to great science.</span>
                   </div>
                 </div>
-                <span
-                  className="application-project-arrow tracer-card-arrow"
-                  aria-hidden="true"
-                >
-                  <HugeiconsIcon
-                    icon={ArrowRight02Icon}
-                    size={24}
-                    strokeWidth={1.8}
-                  />
-                </span>
               </Link>
             </article>
 
@@ -375,10 +362,7 @@ export default function Home() {
               id="equisoft-labs"
               aria-labelledby="equisoft-labs-title"
             >
-              <Link
-                className="application-card-link"
-                href="/equisoft-labs"
-              >
+              <Link className="application-card-link" href="/equisoft-labs">
                 <div className="app-canvas app-canvas--equisoft-labs">
                   <span
                     className="equisoft-labs-card-glow"
@@ -410,11 +394,13 @@ export default function Home() {
                 </span>
               </Link>
             </article>
-
           </div>
         </section>
 
-        <section className="professional-section" aria-labelledby="professional-title">
+        <section
+          className="professional-section"
+          aria-labelledby="professional-title"
+        >
           <div className="professional-intro">
             <h2 id="professional-title">
               <span>Equisoft</span>
@@ -429,22 +415,24 @@ export default function Home() {
               capabilities into insurance software and finance operations.
             </p>
           </div>
-          <div className="professional-domain-list" aria-label="Equisoft product domains">
+          <div
+            className="professional-domain-list"
+            aria-label="Equisoft product domains"
+          >
             {equisoftProducts.map((product) => (
               <div className="professional-domain" key={product.label}>
                 <span className="professional-domain-mark" aria-hidden="true">
                   {product.label}
                 </span>
-                <span className="professional-domain-description">{product.description}</span>
+                <span className="professional-domain-description">
+                  {product.description}
+                </span>
               </div>
             ))}
           </div>
         </section>
 
-        <section
-          className="workflow-section"
-          aria-labelledby="workflow-title"
-        >
+        <section className="workflow-section" aria-labelledby="workflow-title">
           <div className="workflow-intro">
             <p className="section-pill">Design approach</p>
             <h2 id="workflow-title">
@@ -496,7 +484,6 @@ export default function Home() {
 
           <ClientMarquee />
         </section>
-
       </main>
 
       <footer className="site-footer">
@@ -505,11 +492,7 @@ export default function Home() {
           href="#main-content"
           aria-label="Back to top"
         >
-          <HugeiconsIcon
-            icon={ArrowUp01Icon}
-            size={18}
-            strokeWidth={1.8}
-          />
+          <HugeiconsIcon icon={ArrowUp01Icon} size={18} strokeWidth={1.8} />
         </a>
         <div className="footer-top">
           <p>Ramon JM · Product design, AI &amp; innovation</p>
