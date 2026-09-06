@@ -312,32 +312,37 @@ export default function TracerProjectPage() {
               </h2>
             </div>
             <p>
-              The brand promise becomes practical in the app: organize a case,
-              examine the evidence, and bring the findings into a shareable
-              report.
+              The same emphasis on clarity carries into the workspace. Analysts
+              can keep a case in context, navigate its evidence, and prepare a
+              report for the next conversation.
             </p>
           </div>
           <figure className={styles.workspace}>
-            <div className={styles.windowBar}>
-              <span>Tracer / Research workspace</span>
-              <span>Application</span>
+            <div className={styles.monitor}>
+              <div className={styles.monitorScreen}>
+                <a
+                  href="/tracer/app-workspace.webp"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="View full-size Tracer app screenshot in a new tab"
+                >
+                  <Image
+                    src="/tracer/app-workspace.webp"
+                    alt="Actual Tracer app screenshot from Figma, with a case sidebar, report workspace, evidence categories, and HTML and PDF export controls"
+                    width={1921}
+                    height={858}
+                    sizes="(max-width: 1080px) 85vw, 960px"
+                    unoptimized
+                  />
+                </a>
+              </div>
+              <div className={styles.monitorChin} aria-hidden="true">
+                <span>TRACER</span>
+              </div>
             </div>
-            <a
-              href="/tracer/app-workspace.webp"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="View full-size Tracer app screenshot in a new tab"
-            >
-              <Image
-                src="/tracer/app-workspace.webp"
-                alt="Actual Tracer app screenshot from Figma, with a case sidebar, report workspace, evidence categories, and HTML and PDF export controls"
-                width={1921}
-                height={858}
-                sizes="100vw"
-              />
-            </a>
+            <div className={styles.monitorStand} aria-hidden="true" />
             <figcaption>
-              Application workspace / Original product capture.{" "}
+              The Tracer workspace. From case review to a shareable report.{" "}
               <a
                 href="/tracer/app-workspace.webp"
                 target="_blank"
@@ -388,21 +393,15 @@ export default function TracerProjectPage() {
             </div>
             <div>
               <p>
-                The website brings the promise and the product together. A clear
-                introduction leads into individual and organizational screening,
-                sample briefs, and the evidence behind a review.
+                Before someone enters the workspace, the website makes its
+                purpose clear: who can be screened, what a brief contains, and
+                how the evidence is presented. The brand sets the tone; product
+                examples make the offer concrete.
               </p>
               <WebsiteLink />
             </div>
           </div>
           <div className={styles.websiteFrame}>
-            <div className={styles.windowBar}>
-              <span>tracersecurity.ca</span>
-              <a href={website} target="_blank" rel="noopener noreferrer">
-                Open live website
-                <span className="sr-only"> (opens in a new tab)</span>
-              </a>
-            </div>
             {embedEnabled ? (
               <iframe
                 src={website}
@@ -417,14 +416,15 @@ export default function TracerProjectPage() {
                   alt="Captured Tracer website homepage with glass architecture, the headline Screen research partners in minutes, and a sample research brief. Opens the live website."
                   width={1280}
                   height={720}
-                  sizes="100vw"
+                  sizes="(max-width: 700px) 88vw, 640px"
+                  unoptimized
                 />
               </a>
             )}
           </div>
           {!embedEnabled && (
             <p className={styles.websiteCaption}>
-              Live-site capture. Select the preview to explore Tracer.
+              tracersecurity.ca / Select the preview to visit the website.
             </p>
           )}
         </section>
@@ -440,8 +440,9 @@ export default function TracerProjectPage() {
             From the first impression to the everyday experience.
           </p>
           <h2>
-            A brand people recognize.
-            <br />A product they can understand.
+            One clear idea.
+            <br />
+            From identity to experience.
           </h2>
           <a href="mailto:jmanuelr.99@gmail.com">
             Let’s build something with purpose.

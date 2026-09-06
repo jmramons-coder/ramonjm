@@ -398,37 +398,71 @@
   background: #e9eef6;
 }
 .workspace {
-  margin-left: calc(var(--pad) * -0.45) !important;
-  margin-right: calc(var(--pad) * -0.45) !important;
+  max-width: 1000px;
+  margin: 0 auto !important;
+  padding: 24px 12px 0;
 }
-.windowBar {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  font-size: 11px;
-  padding: 18px 24px;
+.monitor {
+  position: relative;
+  padding: clamp(7px, 1.2vw, 14px) clamp(7px, 1.2vw, 14px) 0;
+  border-radius: clamp(12px, 1.6vw, 22px);
+  background: linear-gradient(145deg, #30353c, #101317 60%);
+  box-shadow:
+    0 24px 50px -24px #172a4c80,
+    inset 0 0 0 1px #ffffff25;
+  overflow: hidden;
+}
+.monitorScreen {
+  border-radius: 5px;
+  overflow: hidden;
   background: #fff;
-  border-radius: 12px 12px 0 0;
-  color: #596372;
-  border: 1px solid #d9dfe8;
-  border-bottom: 0;
 }
-.windowBar a {
-  text-decoration: underline;
+.monitorScreen a {
+  display: block;
 }
 .workspace img {
   display: block;
   width: 100%;
   height: auto;
-  border: 1px solid #d9dfe8;
-  box-shadow: 0 35px 65px -35px #1d33565c;
+}
+.monitorChin {
+  height: clamp(16px, 2.5vw, 28px);
+  display: grid;
+  place-items: center;
+  color: #9ca5b0;
+  font-size: 6px;
+  letter-spacing: 0.24em;
+}
+.monitorStand {
+  position: relative;
+  height: clamp(42px, 7vw, 80px);
+  width: 27%;
+  margin: 0 auto 22px;
+}
+.monitorStand::before {
+  content: "";
+  position: absolute;
+  inset: 0 31% 9%;
+  background: linear-gradient(90deg, #9299a3, #d4d8de 48%, #858d98);
+  clip-path: polygon(14% 0, 86% 0, 100% 100%, 0 100%);
+}
+.monitorStand::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 12%;
+  border-radius: 50% 50% 4px 4px;
+  background: linear-gradient(#d4d9df, #9199a4);
+  box-shadow: 0 9px 14px #172a4c26;
 }
 .workspace figcaption {
-  padding: 18px 0;
   display: flex;
   justify-content: space-between;
   gap: 20px;
   font-size: 11px;
+  line-height: 1.6;
   color: #606d80;
 }
 .workspace figcaption a {
@@ -483,7 +517,14 @@
   display: block;
 }
 .websiteFrame {
-  box-shadow: 0 25px 65px -40px #172d49;
+  max-width: 640px;
+  margin: 0 auto;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 20px 45px -25px #172d4960;
+}
+.websiteFrame a {
+  display: block;
 }
 .websiteFrame iframe {
   width: 100%;
@@ -493,6 +534,8 @@
   background: #fff;
 }
 .websiteCaption {
+  text-align: center;
+  line-height: 1.6;
   font-size: 11px;
   color: #697582;
   margin-top: 18px !important;
@@ -725,12 +768,10 @@
     line-height: 1.6;
   }
   .workspace {
-    margin-left: -12px !important;
-    margin-right: -12px !important;
+    padding: 12px 0 0;
   }
-  .windowBar {
-    padding: 14px;
-    font-size: 10px;
+  .monitorChin span {
+    visibility: hidden;
   }
   .productBenefits {
     grid-template-columns: 1fr;
