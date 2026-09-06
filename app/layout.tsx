@@ -26,7 +26,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const baseUrl = new URL(`${protocol}://${host}`);
   const title = "Ramon JM — Senior Product Designer & AI Builder";
   const description =
-    "Senior product designer and AI-native builder turning ambiguous problems into clear product logic, functional prototypes, and experiences teams can ship.";
+    "Seven years of product design across enterprise software and independent products. Explore José Manuel Ramon’s work in interaction design, visual identity, and product development.";
 
   return {
     metadataBase: baseUrl,

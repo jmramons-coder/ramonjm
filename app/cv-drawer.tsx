@@ -104,11 +104,12 @@ export function CvDrawer() {
                   <div className="cv-drawer-intro">
                     <h2 id="cv-drawer-title">José Manuel Ramon</h2>
                     <p className="cv-drawer-role">
-                      Senior Product Designer · AI-native 0-to-1 builder
+                      Senior Product Designer · Design & development
                     </p>
                     <p>
-                      I turn ambiguous problems into clear product logic, useful
-                      experiences, and working prototypes that teams can ship.
+                      Seven years of product design across enterprise software
+                      and independent products. I connect product framing,
+                      interaction design, and working prototypes.
                     </p>
                   </div>
 
@@ -128,10 +129,11 @@ export function CvDrawer() {
                         configuration, and internal and external tools.
                       </p>
                       <p className="cv-domain-copy">
-                        At Equisoft, I contribute to a major modernization
-                        initiative backed by more than $30M in yearly
-                        investment, bringing a cohesive intelligence layer to
-                        help the business lead its market.
+                        I have led an AI committee and partnered with product
+                        and engineering teams on AI-assisted and agentic
+                        workflows. Much of this enterprise work is confidential;
+                        I can discuss my role and approach within those
+                        boundaries.
                       </p>
                     </div>
                   </section>
@@ -207,7 +209,8 @@ export function CvDrawer() {
 
                   <div className="cv-drawer-footer">
                     <p>
-                      For the full context, explore the side projects below.
+                      Explore the independent products and selected experiments
+                      for a closer look at my approach.
                     </p>
                     <a
                       className="cv-contact-link"
