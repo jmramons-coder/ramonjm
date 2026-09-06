@@ -34,3 +34,7 @@ Prepared source change: https://github.com/jmramon-coder/tracer-website/pull/1 (
 - `website.webp`: actual browser capture of https://tracersecurity.ca/ on 2026-09-06, 1280 × 720, with optional cookies declined. This is explicitly presented as a capture linking to the live site; framing remains disabled.
 - Inter is loaded for the case study, matching the Figma typography exploration. #1D54B5 and #2557A5 are source palette labels; supporting light and dark page colors are portfolio presentation choices.
 - No new generated imagery was added. Original source files remain local in `artifacts/tracer-originals/`.
+
+## Minimal presentation refinement
+
+The app capture now appears in a light tablet-style frame with its original proportions intact. The website screenshot is no longer rendered. Its replacement uses the existing `hero.jpg` architectural image, `logo-light.png`, and native HTML copy in a clearly linked invitation to visit the live website; it does not depict a reconstructed website interface.

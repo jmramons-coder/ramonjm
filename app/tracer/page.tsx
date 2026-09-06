@@ -34,18 +34,6 @@ const principles = [
     text: "An enclosing outline lends the mark a protective character while keeping its form open and fluid.",
   },
 ];
-function WebsiteLink() {
-  return (
-    <a
-      className={styles.button}
-      href={website}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Visit Tracer<span className="sr-only"> (opens in a new tab)</span>
-    </a>
-  );
-}
 export default function TracerProjectPage() {
   return (
     <>
@@ -318,8 +306,8 @@ export default function TracerProjectPage() {
             </p>
           </div>
           <figure className={styles.workspace}>
-            <div className={styles.monitor}>
-              <div className={styles.monitorScreen}>
+            <div className={styles.tablet}>
+              <div className={styles.tabletScreen}>
                 <a
                   href="/tracer/app-workspace.webp"
                   target="_blank"
@@ -331,16 +319,12 @@ export default function TracerProjectPage() {
                     alt="Actual Tracer app screenshot from Figma, with a case sidebar, report workspace, evidence categories, and HTML and PDF export controls"
                     width={1921}
                     height={858}
-                    sizes="(max-width: 1080px) 85vw, 960px"
+                    sizes="(max-width: 900px) 85vw, 800px"
                     unoptimized
                   />
                 </a>
               </div>
-              <div className={styles.monitorChin} aria-hidden="true">
-                <span>TRACER</span>
-              </div>
             </div>
-            <div className={styles.monitorStand} aria-hidden="true" />
             <figcaption>
               The Tracer workspace. From case review to a shareable report.{" "}
               <a
@@ -398,34 +382,57 @@ export default function TracerProjectPage() {
                 how the evidence is presented. The brand sets the tone; product
                 examples make the offer concrete.
               </p>
-              <WebsiteLink />
             </div>
           </div>
-          <div className={styles.websiteFrame}>
-            {embedEnabled ? (
+          {embedEnabled ? (
+            <div className={styles.websiteFrame}>
               <iframe
                 src={website}
                 title="Tracer live research-security website"
                 loading="lazy"
                 referrerPolicy="strict-origin-when-cross-origin"
               />
-            ) : (
-              <a href={website} target="_blank" rel="noopener noreferrer">
+            </div>
+          ) : (
+            <a
+              className={styles.websiteInvitation}
+              href={website}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div className={styles.websiteArtwork}>
                 <Image
-                  src="/tracer/website.webp"
-                  alt="Captured Tracer website homepage with glass architecture, the headline Screen research partners in minutes, and a sample research brief. Opens the live website."
-                  width={1280}
-                  height={720}
-                  sizes="(max-width: 700px) 88vw, 640px"
-                  unoptimized
+                  src="/tracer/hero.jpg"
+                  alt="Glass architecture from Tracer's visual identity"
+                  fill
+                  sizes="(max-width: 650px) 85vw, 440px"
                 />
-              </a>
-            )}
-          </div>
-          {!embedEnabled && (
-            <p className={styles.websiteCaption}>
-              tracersecurity.ca / Select the preview to visit the website.
-            </p>
+                <Image
+                  className={styles.websiteMark}
+                  src="/tracer/logo-light.png"
+                  alt=""
+                  width={363}
+                  height={318}
+                  sizes="70px"
+                />
+              </div>
+              <div className={styles.websiteCopy}>
+                <span className={styles.eyebrow}>Explore the live website</span>
+                <h3>
+                  Research intelligence.
+                  <br />
+                  Made clear.
+                </h3>
+                <p>
+                  Individual and organizational screening. Structured briefs.
+                  Evidence that can be explored.
+                </p>
+                <span className={styles.websiteCta}>
+                  Visit tracersecurity.ca
+                </span>
+                <span className="sr-only"> (opens in a new tab)</span>
+              </div>
+            </a>
           )}
         </section>
         <section className={styles.closing}>

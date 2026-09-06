@@ -398,64 +398,33 @@
   background: #e9eef6;
 }
 .workspace {
-  max-width: 1000px;
+  max-width: 840px;
   margin: 0 auto !important;
   padding: 24px 12px 0;
 }
-.monitor {
-  position: relative;
-  padding: clamp(7px, 1.2vw, 14px) clamp(7px, 1.2vw, 14px) 0;
-  border-radius: clamp(12px, 1.6vw, 22px);
-  background: linear-gradient(145deg, #30353c, #101317 60%);
+.tablet {
+  padding: clamp(5px, 0.7vw, 8px);
+  border-radius: clamp(15px, 2vw, 24px);
+  background: linear-gradient(150deg, #fafbfc, #dfe4e9);
+  border: 1px solid #cbd2d9;
   box-shadow:
-    0 24px 50px -24px #172a4c80,
-    inset 0 0 0 1px #ffffff25;
-  overflow: hidden;
+    0 16px 30px -22px #172a4c55,
+    0 2px 3px #172a4c12;
+  transform: rotate(-1deg);
+  margin-bottom: 34px;
 }
-.monitorScreen {
-  border-radius: 5px;
+.tabletScreen {
+  border-radius: clamp(10px, 1.5vw, 17px);
   overflow: hidden;
   background: #fff;
 }
-.monitorScreen a {
+.tabletScreen a {
   display: block;
 }
 .workspace img {
   display: block;
   width: 100%;
   height: auto;
-}
-.monitorChin {
-  height: clamp(16px, 2.5vw, 28px);
-  display: grid;
-  place-items: center;
-  color: #9ca5b0;
-  font-size: 6px;
-  letter-spacing: 0.24em;
-}
-.monitorStand {
-  position: relative;
-  height: clamp(42px, 7vw, 80px);
-  width: 27%;
-  margin: 0 auto 22px;
-}
-.monitorStand::before {
-  content: "";
-  position: absolute;
-  inset: 0 31% 9%;
-  background: linear-gradient(90deg, #9299a3, #d4d8de 48%, #858d98);
-  clip-path: polygon(14% 0, 86% 0, 100% 100%, 0 100%);
-}
-.monitorStand::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 12%;
-  border-radius: 50% 50% 4px 4px;
-  background: linear-gradient(#d4d9df, #9199a4);
-  box-shadow: 0 9px 14px #172a4c26;
 }
 .workspace figcaption {
   display: flex;
@@ -500,45 +469,97 @@
   padding: 120px var(--pad);
   background: #f4f5f2;
 }
-.button {
-  display: inline-block;
-  border: 1px solid #849bb9;
-  border-radius: 100px;
-  padding: 13px 25px;
-  font-size: 13px;
-  margin-top: 26px;
-}
-.button:hover {
-  background: #dce6f5;
-}
-.websiteFrame img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
 .websiteFrame {
-  max-width: 640px;
+  max-width: 1000px;
   margin: 0 auto;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 20px 45px -25px #172d4960;
-}
-.websiteFrame a {
-  display: block;
 }
 .websiteFrame iframe {
-  width: 100%;
-  height: 850px;
-  border: 0;
   display: block;
+  width: 100%;
+  height: 800px;
+  border: 0;
   background: #fff;
 }
-.websiteCaption {
-  text-align: center;
-  line-height: 1.6;
-  font-size: 11px;
-  color: #697582;
-  margin-top: 18px !important;
+.websiteInvitation {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.websiteArtwork {
+  position: relative;
+  min-height: 360px;
+  isolation: isolate;
+}
+.websiteArtwork > img:first-child {
+  object-fit: cover;
+}
+.websiteArtwork::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, #11263d70, transparent 70%);
+  z-index: 1;
+}
+.websiteArtwork .websiteMark {
+  position: absolute;
+  left: 28px;
+  bottom: 28px;
+  width: 65px;
+  height: auto;
+  z-index: 2;
+}
+.websiteCopy {
+  padding: clamp(28px, 4vw, 55px);
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+}
+.websiteCopy .eyebrow {
+  color: #60718a;
+  font-size: 10px;
+}
+.websiteCopy h3 {
+  font-size: clamp(27px, 3vw, 42px);
+  line-height: 1.12;
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  margin: 24px 0 20px;
+}
+.websiteCopy p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #667181;
+  max-width: 320px;
+}
+.websiteCta {
+  font-size: 12px;
+  border-bottom: 1px solid #a4b4ca;
+  padding-bottom: 7px;
+  margin-top: 30px;
+}
+.websiteInvitation:hover .websiteCta {
+  border-color: #1d54b5;
+  color: #1d54b5;
+}
+@media (max-width: 650px) {
+  .tablet {
+    transform: none;
+    margin-bottom: 24px;
+  }
+  .websiteInvitation {
+    grid-template-columns: 1fr;
+  }
+  .websiteArtwork {
+    min-height: 220px;
+  }
+  .websiteCopy {
+    padding: 30px;
+  }
 }
 .closing {
   background: #1d54b5;
@@ -769,9 +790,6 @@
   }
   .workspace {
     padding: 12px 0 0;
-  }
-  .monitorChin span {
-    visibility: hidden;
   }
   .productBenefits {
     grid-template-columns: 1fr;
