@@ -3099,3 +3099,16 @@ a:focus-visible {
   .header-back-short { display: inline; }
   .contact-menu-list { width: min(280px, calc(100vw - 28px)); }
 }
+
+/* The existing Equisoft AI character doubles as its animation control. */
+.professional-domain { grid-template-columns: 96px minmax(0, 1fr); }
+.professional-domain-mark { display: flex; align-items: center; gap: 8px; min-height: 44px; }
+.ai-avatar { display: inline-flex; flex: 0 0 48px; width: 48px; height: 48px; padding: 0; border: 0; background: transparent; border-radius: 8px; cursor: pointer; }
+.ai-avatar video { display: block; width: 48px; height: 48px; object-fit: contain; mix-blend-mode: multiply; }
+.ai-avatar:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+@media (max-width: 759px) {
+  .professional-domain { grid-template-columns: 80px minmax(0, 1fr); gap: 12px; align-items: center; }
+  .professional-domain-mark { gap: 4px; }
+  .ai-avatar, .ai-avatar video { width: 44px; height: 44px; }
+  .ai-avatar { flex-basis: 44px; }
+}

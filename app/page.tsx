@@ -10,6 +10,7 @@ import {
 import { ClientMarquee } from "./client-marquee";
 import { AbeamVideo } from "./abeam/abeam-video";
 import { SiteHeader } from "./site-header";
+import { AiAvatar } from "./ai-avatar";
 
 const featuredApplications = [
   { name: "Nudge", slug: "nudge" },
@@ -201,8 +202,9 @@ export default function Home() {
           >
             {equisoftProducts.map((product) => (
               <li className="professional-domain" key={product.label}>
-                <span className="professional-domain-mark" aria-hidden="true">
+                <span className="professional-domain-mark">
                   {product.label}
+                  {product.label === "AI" ? <AiAvatar /> : null}
                 </span>
                 <span className="professional-domain-description">
                   {product.description}
