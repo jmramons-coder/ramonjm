@@ -47,12 +47,9 @@ export function ProjectCarousel() {
           <li key={project.href} className={styles.slide}>
             <Link href={project.href} aria-label={`Explore ${project.name}: ${project.detail}`}>
               <div className={`${styles.art} ${styles[project.kind]}`}>
-                <span className={styles.artType}>{project.type}</span>
                 <Image className={project.phone ? styles.phone : styles.product} src={project.image} alt="" width={project.phone ? 760 : 1400} height={project.phone ? 1651 : 900} sizes="(max-width: 700px) 75vw, 65vw" />
-                {project.kind === "world" && <Image className={styles.character} src="/world/buster-top.webp" alt="" width={600} height={396} sizes="200px" />}
-                {project.kind === "nudge" && <Image className={styles.medal} src="/nudge/medal.webp" alt="" width={420} height={420} sizes="100px" />}
               </div>
-              <div className={styles.caption}><div><span className={styles.name}>{project.name}</span><p>{project.detail}</p></div><span className={styles.explore}>View project <small>{String(index + 1).padStart(2, "0")}</small></span></div>
+              <div className={styles.caption}><div><span className={styles.artType}>{project.type}</span><span className={styles.name}>{project.name}</span><p>{project.detail}</p></div><span className={styles.explore}>View project <small>{String(index + 1).padStart(2, "0")}</small></span></div>
             </Link>
           </li>
         ))}

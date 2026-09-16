@@ -47,3 +47,32 @@
   .name { font-size: 18px; }
   .caption p { font-size: 12px; line-height: 1.5; }
 }
+
+/* Full, upright screens with framing that follows the actual device. */
+.slide { flex-basis: 88%; }
+.track::after { flex-basis: 8vw; }
+.slide > a { border-radius: 0; }
+.art { height: clamp(380px, 43vw, 580px); border-radius: 12px; padding: 32px; background: #eeecef; }
+.nudge { background: #eee8f3; }
+.world { background: #eeeaf4; }
+.tracer { background: #e6ece9; }
+.abeam { background: #edf5f8; }
+.crypto { background: #f0eee5; }
+.roi { background: #e9eef2; }
+.artType { display: block; position: static; margin-bottom: 8px; font-size: 10px; color: #767676; }
+.phone { display: block; width: auto; max-width: 100%; height: 100%; object-fit: contain; transform: none; border: 4px solid #25242a; border-radius: 30px; box-shadow: 0 16px 28px #20162b20, 0 0 0 1px #777; }
+.product { display: block; width: auto; height: auto; max-width: 94%; max-height: 86%; object-fit: contain; }
+.tracer .product { border: 6px solid #282d2e; border-radius: 14px; box-shadow: 0 20px 28px #112a3820; filter: none; }
+.roi .product { border: 5px solid #fafafa; border-radius: 9px; box-shadow: 0 20px 28px #112a3820; filter: none; }
+.caption { padding: 20px 0 6px; }
+@media(max-width:700px) {
+  .slide { flex-basis: 100%; }
+  .track::after { display: none; }
+  .art { height: 370px; padding: 24px 18px; border-radius: 10px; }
+  .phone { height: 100%; border-radius: 24px; border-width: 3px; }
+  .tracer .product { max-width: 100%; border-width: 4px; border-radius: 8px; }
+  .roi .product { max-width: 100%; border-width: 3px; }
+  .caption { flex-direction: row; align-items: end; gap: 12px; }
+  .explore { font-size: 10px; }
+  .explore small { display: none; }
+}
