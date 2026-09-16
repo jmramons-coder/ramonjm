@@ -10,7 +10,6 @@ import {
 import { ClientMarquee } from "./client-marquee";
 import { AbeamVideo } from "./abeam/abeam-video";
 import { SiteHeader } from "./site-header";
-import { ProjectCarousel } from "./project-carousel";
 import { AiAvatar } from "./ai-avatar";
 
 const featuredApplications = [
@@ -106,7 +105,6 @@ export default function Home() {
 
         </section>
 
-        <ProjectCarousel />
 
         <section className="clients-section clients-section--above-apps" aria-labelledby="clients-title">
           <div className="clients-intro">
