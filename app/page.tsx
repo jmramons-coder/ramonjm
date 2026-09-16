@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
-  ArrowRight02Icon,
   ArrowUp01Icon,
   ArrowUpRight01Icon,
   Linkedin01Icon,
@@ -19,24 +18,6 @@ const featuredApplications = [
   { name: "aBeam", slug: "abeam" },
   { name: "CryptoCroc", slug: "crypto-inheritance" },
   { name: "Decision ROI", slug: "equisoft-labs" },
-] as const;
-
-const workflowSteps = [
-  {
-    title: "Frame the problem",
-    description:
-      "Turn ambiguity into clear product logic: the user, the tension, the opportunity, and the decision the team needs to make.",
-  },
-  {
-    title: "Prototype at speed",
-    description:
-      "Use AI, interaction design, and code to make the important behavior tangible early—before a team overbuilds the wrong thing.",
-  },
-  {
-    title: "Shape what ships",
-    description:
-      "Work with product and engineering to test the signal, refine the experience, and turn a promising prototype into a clear direction for delivery.",
-  },
 ] as const;
 
 const equisoftProducts = [
@@ -123,12 +104,13 @@ export default function Home() {
 
           <nav
             className="app-strip"
+            id="applications"
             aria-label="Featured product design projects"
           >
             <ul>
               {featuredApplications.map((application) => (
-                <li key={application.slug}>
-                  <a href={`#${application.slug}`}>
+                <li key={application.slug} id={application.slug}>
+                  <Link href={`/${application.slug}`} title={`View ${application.name}`}>
                     <span
                       className={`app-icon app-icon--${application.slug}`}
                       aria-hidden="true"
@@ -137,11 +119,11 @@ export default function Home() {
                         {application.slug === "nudge" ? (
                           <Image
                             className="app-icon-image"
-                            src="/nudge/app-icon.webp"
+                            src="/nudge/mark.webp"
                             alt=""
                             width={512}
                             height={512}
-                            sizes="62px"
+                            sizes="(min-width: 760px) 76px, 58px"
                           />
                         ) : application.slug === "world" ? (
                           <Image
@@ -188,261 +170,11 @@ export default function Home() {
                       </span>
                     </span>
                     <span className="sr-only">Go to {application.name}</span>
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
           </nav>
-        </section>
-
-        <section
-          className="work-section"
-          id="applications"
-          aria-labelledby="applications-title"
-        >
-          <div className="work-intro">
-            <p className="section-pill">Independent builds · 06</p>
-            <h2 id="applications-title">
-              <span>Products built</span>
-              <span>around clarity.</span>
-            </h2>
-            <p className="work-summary">
-              Independent products for everyday life, fitness, AI, security,
-              insurance, and crypto—built to make the thinking tangible.
-            </p>
-          </div>
-
-          <div className="gallery-grid">
-            <article
-              className="application-card application-card--project"
-              id="nudge"
-              aria-labelledby="nudge-title"
-            >
-              <Link className="application-card-link" href="/nudge">
-                <div className="app-canvas app-canvas--nudge">
-                  <div className="nudge-card-copy">
-                    <Image
-                      src="/nudge/app-icon.webp"
-                      alt=""
-                      width={512}
-                      height={512}
-                      sizes="48px"
-                    />
-                    <p>Household to-do app</p>
-                    <h3 id="nudge-title">Nudge</h3>
-                    <span>A lighter home. Together.</span>
-                  </div>
-                  <Image
-                    className="nudge-card-phone"
-                    src="/nudge/home.webp"
-                    alt="Nudge household task list"
-                    width={496}
-                    height={1078}
-                    sizes="200px"
-                  />
-                  <Image
-                    className="nudge-card-medal"
-                    src="/nudge/medal.webp"
-                    alt=""
-                    width={420}
-                    height={420}
-                    sizes="110px"
-                  />
-                </div>
-              </Link>
-            </article>
-            <article
-              className="application-card application-card--project"
-              id="world"
-              aria-labelledby="world-title"
-            >
-              <Link className="application-card-link" href="/world">
-                <div className="app-canvas app-canvas--world">
-                  <video
-                    aria-hidden="true"
-                    autoPlay
-                    className="world-card-video"
-                    disablePictureInPicture
-                    disableRemotePlayback
-                    muted
-                    playsInline
-                    preload="metadata"
-                    tabIndex={-1}
-                  >
-                    <source
-                      src="/world/pushedworld-card.mp4"
-                      type="video/mp4"
-                    />
-                  </video>
-                  <span className="world-card-shade" aria-hidden="true" />
-                  <div className="world-card-brand">
-                    <Image
-                      className="world-card-icon"
-                      src="/world/app-icon.png"
-                      alt=""
-                      width={256}
-                      height={256}
-                      sizes="44px"
-                    />
-                    <div>
-                      <p>01 / Product design + build</p>
-                      <h3 id="world-title">PushedWorld</h3>
-                    </div>
-                  </div>
-                </div>
-                <span
-                  className="application-project-arrow world-card-arrow"
-                  aria-hidden="true"
-                >
-                  <HugeiconsIcon
-                    icon={ArrowRight02Icon}
-                    size={24}
-                    strokeWidth={1.8}
-                  />
-                </span>
-              </Link>
-            </article>
-
-            <article
-              className="application-card application-card--project application-card--tracer"
-              id="tracer"
-              aria-labelledby="tracer-title"
-            >
-              <Link className="application-card-link" href="/tracer">
-                <div className="app-canvas app-canvas--tracer">
-                  <Image
-                    className="tracer-card-image"
-                    src="/tracer/landscape.webp"
-                    alt=""
-                    fill
-                    sizes="(max-width: 759px) 100vw, (max-width: 1099px) 50vw, (max-width: 1199px) 33vw, 33vw"
-                  />
-                  <span className="tracer-card-shade" aria-hidden="true" />
-                  <div className="tracer-card-copy">
-                    <Image
-                      className="tracer-card-logo"
-                      src="/tracer/logo-light.png"
-                      alt=""
-                      width={363}
-                      height={318}
-                      sizes="64px"
-                    />
-                    <p>02 / Brand & digital experience</p>
-                    <h3 id="tracer-title">Tracer</h3>
-                    <span>Clear the path to great science.</span>
-                  </div>
-                </div>
-              </Link>
-            </article>
-
-            <article
-              className="application-card application-card--project application-card--abeam"
-              id="abeam"
-              aria-label="aBeam"
-            >
-              <Link
-                className="application-card-link"
-                href="/abeam"
-                aria-label="View aBeam project"
-              >
-                <div
-                  className="app-canvas app-canvas--abeam-project"
-                  aria-hidden="true"
-                >
-                  <AbeamVideo
-                    alwaysPlay
-                    className="abeam-card-motion"
-                    sizes="(max-width: 759px) 92vw, (max-width: 1099px) 46vw, (max-width: 1199px) 24vw, 19vw"
-                  />
-                </div>
-                <span
-                  className="application-project-arrow abeam-card-arrow"
-                  aria-hidden="true"
-                >
-                  <HugeiconsIcon
-                    icon={ArrowRight02Icon}
-                    size={24}
-                    strokeWidth={1.8}
-                  />
-                </span>
-              </Link>
-            </article>
-
-            <article
-              className="application-card application-card--project application-card--crypto"
-              id="crypto-inheritance"
-              aria-labelledby="crypto-inheritance-title"
-            >
-              <Link
-                className="application-card-link"
-                href="/crypto-inheritance"
-              >
-                <div className="app-canvas app-canvas--crypto">
-                  <div className="crypto-card-copy">
-                    <p>04 / Crypto legacy planner</p>
-                    <h3 id="crypto-inheritance-title">CryptoCroc</h3>
-                    <span>Plan the handoff.</span>
-                  </div>
-                  <Image
-                    className="crypto-card-skull"
-                    src="/crypto-inheritance/skull.png"
-                    alt=""
-                    width={760}
-                    height={760}
-                    sizes="(max-width: 759px) 92vw, (max-width: 1099px) 46vw, (max-width: 1199px) 24vw, 19vw"
-                  />
-                </div>
-                <span
-                  className="application-project-arrow crypto-card-arrow"
-                  aria-hidden="true"
-                >
-                  <HugeiconsIcon
-                    icon={ArrowRight02Icon}
-                    size={24}
-                    strokeWidth={1.8}
-                  />
-                </span>
-              </Link>
-            </article>
-
-            <article
-              className="application-card application-card--project application-card--equisoft-labs"
-              id="equisoft-labs"
-              aria-labelledby="equisoft-labs-title"
-            >
-              <Link className="application-card-link" href="/equisoft-labs">
-                <div className="app-canvas app-canvas--equisoft-labs">
-                  <span
-                    className="equisoft-labs-card-glow"
-                    aria-hidden="true"
-                  />
-                  <div className="equisoft-labs-card-copy">
-                    <p>05 / Insurance R&amp;D</p>
-                    <h3 id="equisoft-labs-title">Equisoft Labs</h3>
-                    <span>Decision intelligence for insurance.</span>
-                  </div>
-                  <Image
-                    className="equisoft-labs-card-calculator"
-                    src="/equisoft-labs/roi-calculator-hq.png"
-                    alt=""
-                    width={1254}
-                    height={1254}
-                    sizes="(max-width: 759px) 66vw, (max-width: 1099px) 40vw, (max-width: 1199px) 19vw, 15vw"
-                  />
-                </div>
-                <span
-                  className="application-project-arrow equisoft-labs-card-arrow"
-                  aria-hidden="true"
-                >
-                  <HugeiconsIcon
-                    icon={ArrowRight02Icon}
-                    size={24}
-                    strokeWidth={1.8}
-                  />
-                </span>
-              </Link>
-            </article>
-          </div>
         </section>
 
         <section
@@ -478,47 +210,6 @@ export default function Home() {
               </div>
             ))}
           </div>
-        </section>
-
-        <section className="workflow-section" aria-labelledby="workflow-title">
-          <div className="workflow-intro">
-            <p className="section-pill">Design approach</p>
-            <h2 id="workflow-title">
-              <span>From ambiguity to</span>
-              <span className="workflow-result">
-                <span className="workflow-arrow" aria-hidden="true">
-                  <HugeiconsIcon
-                    icon={ArrowRight02Icon}
-                    size="1em"
-                    strokeWidth={1.5}
-                  />
-                </span>
-                signal that ships.
-              </span>
-            </h2>
-          </div>
-
-          <ol className="workflow-list">
-            {workflowSteps.map((step, index) => (
-              <li className="workflow-step" key={step.title}>
-                <div className="workflow-number-card">
-                  <p>{String(index + 1).padStart(2, "0")}</p>
-                  <div className="workflow-progress" aria-hidden="true">
-                    {[0, 1, 2].map((dot) => (
-                      <span
-                        className={dot <= index ? "is-active" : undefined}
-                        key={dot}
-                      />
-                    ))}
-                  </div>
-                </div>
-                <div className="workflow-copy-card">
-                  <h3>{step.title}</h3>
-                  <p>{step.description}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
         </section>
 
         <section className="clients-section" aria-labelledby="clients-title">
