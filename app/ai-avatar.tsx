@@ -37,7 +37,7 @@ export function AiAvatar() {
     <button ref={ref} className="ai-avatar" type="button"
       aria-label={playing ? "Pause AI avatar animation" : "Play AI avatar animation"}
       onClick={() => setRequested(!playing)}>
-      <Image src={playing ? "/equisoft-ai-avatar.webp" : "/equisoft-ai-avatar.png"} alt="" width={28} height={28} unoptimized />
+      <Image src={playing ? "/equisoft-ai-avatar.webp" : "/equisoft-ai-avatar.png"} alt="" width={20} height={20} unoptimized />
     </button>
   );
 }

@@ -3119,5 +3119,5 @@ a:focus-visible {
 
 .professional-domain-mark { gap: 1px; }
 .ai-avatar { flex-basis: 32px; width: 32px; height: 44px; align-items: center; justify-content: center; border: 0; box-shadow: none; background: transparent; }
-.ai-avatar img { display: block; width: 28px; height: 28px; object-fit: contain; }
+.ai-avatar img { display: block; width: 20px; height: 20px; object-fit: contain; }
 @media(max-width:759px) { .professional-domain-mark { gap: 1px; } .ai-avatar { width: 32px; height: 44px; flex-basis: 32px; } }
