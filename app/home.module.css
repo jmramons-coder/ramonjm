@@ -14,17 +14,16 @@
 .clientBody > p, .projectBody > p { font-size: 14px; line-height: 1.6; color: var(--body); margin-top: 3px; }
 .nameLine { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 12px; }
 .nameLine > span { color: var(--body); font-size: 12px; }
-.domains { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 20px; margin-top: 20px; }
-.domains li { display: flex; gap: 12px; align-items: center; font-size: 12px; line-height: 1.6; color: var(--body); }
-.domains li > span { display: inline-flex; align-items: center; color: var(--ink); flex: 0 0 50px; font-size: 11px; font-weight: 500; }
-.domains .aiRow { grid-column: 1 / -1; }
-.aiRow :global(.ai-avatar) { width: 26px; flex-basis: 26px; height: 28px; }
+.domains { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.domains li { display: inline-flex; gap: 4px; align-items: center; max-width: 100%; min-height: 30px; padding: 5px 11px; border: 1px solid var(--line); border-radius: 18px; font-size: 12px; line-height: 1.5; color: var(--body); }
+.domains .aiRow { padding-left: 5px; }
+.aiRow :global(.ai-avatar) { width: 24px; flex-basis: 24px; height: 24px; margin: -3px 0; }
 .project { align-items: center; transition: background 150ms ease; border-radius: 6px; }
 .project:hover { background: #eeeeee; }
 .project:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
 .rounded { border-radius: 11px; box-shadow: 0 2px 5px #00000012; }
 .discipline, .view { font-size: 12px; color: var(--body); white-space: nowrap; }
-.view { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
+.view { display: inline-flex; flex-shrink: 0; color: var(--ink); }
 .footer { padding: 4px 0 36px; display: flex; flex-wrap: wrap; gap: 8px 12px; font-size: 14px; }
 .footer p, .footer small { color: var(--body); }
 .footer a { text-decoration: underline; text-underline-offset: 4px; }
@@ -37,7 +36,7 @@
   .section { margin-bottom: 40px; }
   .client, .project { gap: 14px; padding: 18px 0; }
   .clientLogo, .projectIcon { width: 36px; height: 36px; }
-  .domains { grid-template-columns: 1fr; gap: 8px; margin-top: 16px; }
+  .domains { gap: 6px; }
   .discipline { display: none; }
   .view { font-size: 11px; }
   .main h3 { font-size: 15px; }

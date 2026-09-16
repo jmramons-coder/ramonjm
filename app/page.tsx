@@ -34,16 +34,17 @@ export default function Home() {
           <h2 id="clients-title">Clients I’ve worked with</h2>
           <ul className={styles.list}>
             <li className={styles.client}>
-              <Image className={styles.clientLogo} src="/equisoft-pyramid-glass.svg" alt="" width={44} height={44} />
+              <Image className={styles.clientLogo} src="/equisoft-symbol.svg" alt="" width={44} height={44} />
               <div className={styles.clientBody}>
                 <div className={styles.nameLine}><h3>Equisoft</h3><span>Senior product designer</span></div>
                 <p>Fintech & insurance. From discovery to delivery.</p>
                 <ul className={styles.domains} aria-label="Equisoft product experience">
-                  <li><span>CRM</span>Customer relationships</li>
-                  <li><span>PAS</span>Policy administration</li>
-                  <li><span>DIT</span>Digital insurance tools</li>
-                  <li><span>CM</span>Case management</li>
-                  <li className={styles.aiRow}><span>AI<AiAvatar /></span>Intelligent workflows & AI committee</li>
+                  <li>Customer relationship management</li>
+                  <li>Policy administration</li>
+                  <li>Digital insurance tools</li>
+                  <li>Case management</li>
+                  <li className={styles.aiRow}><AiAvatar />Intelligent workflows</li>
+                  <li>Artificial intelligence committee</li>
                 </ul>
               </div>
             </li>
@@ -65,7 +66,7 @@ export default function Home() {
                   <Image className={`${styles.projectIcon} ${project.slug === "world" ? styles.rounded : ""}`} src={project.image} alt="" width={44} height={44} sizes="44px" />
                   <div className={styles.projectBody}><h3>{project.name}</h3><p>{project.detail}</p></div>
                   <span className={styles.discipline}>{project.discipline}</span>
-                  <span className={styles.view}>View project</span>
+                  <span className={styles.view} aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 12h15m-6-6 6 6-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg></span>
                 </Link>
               </li>
             ))}
