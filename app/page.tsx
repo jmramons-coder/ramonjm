@@ -10,6 +10,7 @@ import {
 import { ClientMarquee } from "./client-marquee";
 import { AbeamVideo } from "./abeam/abeam-video";
 import { SiteHeader } from "./site-header";
+import { ProjectCarousel } from "./project-carousel";
 import { AiAvatar } from "./ai-avatar";
 
 const featuredApplications = [
@@ -103,6 +104,23 @@ export default function Home() {
             </p>
           </div>
 
+        </section>
+
+        <ProjectCarousel />
+
+        <section className="clients-section clients-section--above-apps" aria-labelledby="clients-title">
+          <div className="clients-intro">
+            <p className="section-pill">Selected clients · 04</p>
+            <h2 id="clients-title">
+              <span>Clients I&apos;ve</span>
+              <span>worked with.</span>
+            </h2>
+          </div>
+
+          <ClientMarquee />
+        </section>
+
+        <div className="home-app-navigation">
           <nav
             className="app-strip"
             id="applications"
@@ -176,7 +194,7 @@ export default function Home() {
               ))}
             </ul>
           </nav>
-        </section>
+        </div>
 
         <section
           className="professional-section"
@@ -214,17 +232,7 @@ export default function Home() {
           </ul>
         </section>
 
-        <section className="clients-section" aria-labelledby="clients-title">
-          <div className="clients-intro">
-            <p className="section-pill">Selected clients · 04</p>
-            <h2 id="clients-title">
-              <span>Clients I&apos;ve</span>
-              <span>worked with.</span>
-            </h2>
-          </div>
 
-          <ClientMarquee />
-        </section>
       </main>
 
       <footer className="site-footer">

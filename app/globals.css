@@ -3112,3 +3112,7 @@ a:focus-visible {
   .ai-avatar, .ai-avatar video { width: 44px; height: 44px; }
   .ai-avatar { flex-basis: 44px; }
 }
+
+.clients-section--above-apps { padding-bottom: 28px; }
+.home-app-navigation { padding: 0 var(--page-pad); }
+.home-app-navigation .app-strip { margin-top: 24px; }
