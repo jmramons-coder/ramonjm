@@ -1,0 +1,46 @@
+.main { max-width: 900px; padding: 0 32px; }
+.intro { padding: 76px 0 64px; }
+.eyebrow { color: var(--body); font-size: 14px; margin-bottom: 16px; }
+.intro h1 { font-size: clamp(32px, 5vw, 48px); line-height: 1.12; font-weight: 500; letter-spacing: -1.8px; margin-bottom: 16px; }
+.intro > p:last-child { color: var(--body); font-size: 16px; line-height: 1.6; max-width: 440px; }
+.section { margin-bottom: 52px; scroll-margin-top: 100px; }
+.section h2 { font-size: 15px; line-height: 1.5; font-weight: 500; color: var(--body); margin-bottom: 16px; }
+.list > li { border-top: 1px solid var(--line); }
+.list > li:last-child { border-bottom: 1px solid var(--line); }
+.client, .project { display: flex; align-items: flex-start; gap: 20px; padding: 22px 0; }
+.clientLogo, .projectIcon { width: 44px; height: 44px; object-fit: contain; flex-shrink: 0; }
+.clientBody, .projectBody { min-width: 0; flex: 1; }
+.main h3 { font-size: 16px; line-height: 1.5; font-weight: 500; letter-spacing: -.2px; }
+.clientBody > p, .projectBody > p { font-size: 14px; line-height: 1.6; color: var(--body); margin-top: 3px; }
+.nameLine { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 12px; }
+.nameLine > span { color: var(--body); font-size: 12px; }
+.domains { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 20px; margin-top: 20px; }
+.domains li { display: flex; gap: 12px; align-items: center; font-size: 12px; line-height: 1.6; color: var(--body); }
+.domains li > span { display: inline-flex; align-items: center; color: var(--ink); flex: 0 0 50px; font-size: 11px; font-weight: 500; }
+.domains .aiRow { grid-column: 1 / -1; }
+.aiRow :global(.ai-avatar) { width: 26px; flex-basis: 26px; height: 28px; }
+.project { align-items: center; transition: background 150ms ease; border-radius: 6px; }
+.project:hover { background: #eeeeee; }
+.project:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+.rounded { border-radius: 11px; box-shadow: 0 2px 5px #00000012; }
+.discipline, .view { font-size: 12px; color: var(--body); white-space: nowrap; }
+.view { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
+.footer { padding: 4px 0 36px; display: flex; flex-wrap: wrap; gap: 8px 12px; font-size: 14px; }
+.footer p, .footer small { color: var(--body); }
+.footer a { text-decoration: underline; text-underline-offset: 4px; }
+.footer small { width: 100%; margin-top: 24px; font-size: 11px; }
+@media (max-width: 600px) {
+  .main { padding: 0 20px; }
+  .intro { padding: 40px 0 44px; }
+  .intro h1 { letter-spacing: -1px; }
+  .intro > p:last-child { font-size: 14px; }
+  .section { margin-bottom: 40px; }
+  .client, .project { gap: 14px; padding: 18px 0; }
+  .clientLogo, .projectIcon { width: 36px; height: 36px; }
+  .domains { grid-template-columns: 1fr; gap: 8px; margin-top: 16px; }
+  .discipline { display: none; }
+  .view { font-size: 11px; }
+  .main h3 { font-size: 15px; }
+  .clientBody > p, .projectBody > p { font-size: 13px; }
+}
+@media (prefers-reduced-motion: reduce) { .project { transition: none; } }
