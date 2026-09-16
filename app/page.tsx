@@ -7,7 +7,7 @@ import styles from "./home.module.css";
 const clients = [
   { name: "FolksHR", logo: "/client-folks.svg", detail: "Product design for HR software." },
   { name: "PetalMD", logo: "/client-petalmd.svg", detail: "Digital experiences in healthcare." },
-  { name: "Peak Media", logo: "/client-peak-media.svg", detail: "Design for immersive experiences." },
+  { name: "Peak Media", logo: "/client-peak-wordmark.svg", detail: "Design for immersive experiences." },
 ];
 const projects = [
   { name: "Nudge", slug: "nudge", image: "/nudge/mark.webp", detail: "A lighter home, together.", discipline: "Product & brand" },
@@ -43,14 +43,14 @@ export default function Home() {
                   <li>Policy administration</li>
                   <li>Digital insurance tools</li>
                   <li>Case management</li>
-                  <li className={styles.aiRow}><AiAvatar />Intelligent workflows</li>
-                  <li>Artificial intelligence committee</li>
+                  <li className={styles.aiRow}><AiAvatar />Agentic solutions</li>
+                  <li>AI integrations</li>
                 </ul>
               </div>
             </li>
             {clients.map((client) => (
               <li className={styles.client} key={client.name}>
-                <Image className={styles.clientLogo} src={client.logo} alt="" width={44} height={44} unoptimized />
+                <Image className={`${styles.clientLogo} ${client.name === "PetalMD" ? styles.petalLogo : ""}`} src={client.logo} alt="" width={44} height={44} unoptimized />
                 <div className={styles.clientBody}><h3>{client.name}</h3><p>{client.detail}</p></div>
               </li>
             ))}
