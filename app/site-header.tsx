@@ -72,12 +72,15 @@ export function SiteHeader({
       <div className="header-leading">
         {backHref ? (
           <Link
-            className={textOnly ? "header-action" : "header-back-link"}
+            className={textOnly ? "header-action header-back-text" : "header-back-link"}
             href={backHref}
             aria-label={backLabel}
           >
             {textOnly ? (
-              backLabel
+              <>
+                <span className="header-back-full">{backLabel}</span>
+                <span className="header-back-short" aria-hidden="true">Back</span>
+              </>
             ) : (
               <HugeiconsIcon
                 icon={ArrowLeft02Icon}

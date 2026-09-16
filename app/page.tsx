@@ -182,34 +182,34 @@ export default function Home() {
           aria-labelledby="professional-title"
         >
           <div className="professional-intro">
-            <h2 id="professional-title">
+            <div className="professional-brand">
+              <Image className="professional-logo" src="/equisoft-pyramid-glass.svg" alt="" width={160} height={160} sizes="(max-width: 759px) 64px, 120px" />
+              <h2 id="professional-title">
               <span>Equisoft</span>
               <span>Fintech &amp; insurance.</span>
-            </h2>
+              </h2>
+            </div>
             <p>
-              I work across fintech and insurance products from discovery
-              through delivery, shaping complex, data-heavy systems with deep
-              UI: configuration interfaces, management workbenches, complex
-              forms, and multi-stage processes. I have led an AI committee and
-              partnered with multiple teams to integrate AI and agentic
-              capabilities into insurance software and finance operations.
+              Designing complex insurance products, from discovery to delivery.
+              I partner with product and engineering, and have led an AI committee
+              exploring AI-assisted workflows.
             </p>
           </div>
-          <div
+          <ul
             className="professional-domain-list"
             aria-label="Equisoft product domains"
           >
             {equisoftProducts.map((product) => (
-              <div className="professional-domain" key={product.label}>
+              <li className="professional-domain" key={product.label}>
                 <span className="professional-domain-mark" aria-hidden="true">
                   {product.label}
                 </span>
                 <span className="professional-domain-description">
                   {product.description}
                 </span>
-              </div>
+              </li>
             ))}
-          </div>
+          </ul>
         </section>
 
         <section className="clients-section" aria-labelledby="clients-title">

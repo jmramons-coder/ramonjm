@@ -3068,3 +3068,34 @@ a:focus-visible {
     transform: rotate(-15deg);
   }
 }
+
+/* Compact professional practice section. */
+.professional-brand { display: flex; align-items: center; gap: clamp(16px, 2.5vw, 36px); }
+.professional-brand h2 { margin: 0; font-size: clamp(28px, 4vw, 58px); line-height: 1.08; letter-spacing: -0.055em; }
+.professional-logo { flex: 0 0 auto; width: clamp(66px, 9vw, 128px); height: auto; }
+.professional-intro { gap: 24px; }
+.professional-intro > p { max-width: 660px; font-size: 15px; line-height: 1.65; }
+.professional-domain-list { list-style: none; padding: 0; margin-top: 28px; }
+.professional-domain { min-height: 0; padding: 14px 0; grid-template-columns: 72px minmax(0, 1fr); gap: 20px; }
+.professional-domain-mark { font-size: 14px; letter-spacing: 0; font-weight: 600; color: var(--ink); }
+.professional-domain-description { font-size: 14px; line-height: 1.5; }
+.header-back-short { display: none; }
+.site-header .header-contact:not(:has(.header-contact-plane)) { padding-right: 20px; }
+@media (max-width: 759px) {
+  .professional-brand { gap: 14px; }
+  .professional-brand h2 { font-size: clamp(21px, 5.5vw, 38px); line-height: 1.12; letter-spacing: -0.045em; }
+  .professional-logo { width: clamp(48px, 12vw, 84px); }
+  .professional-intro > p { font-size: 14px; }
+  .professional-domain { grid-template-columns: 44px minmax(0, 1fr); gap: 16px; padding: 13px 0; }
+  .professional-domain-description { font-size: 13px; }
+  .site-header, .site-header.is-scrolled { min-height: 68px; padding: 12px 14px; align-items: center; gap: 8px; }
+  .site-header .header-leading { gap: 8px; min-width: 0; }
+  .site-header .wordmark { padding-top: 0; flex-shrink: 0; }
+  .site-header .header-action { min-height: 44px; padding: 0 12px; font-size: 0.82rem; white-space: nowrap; justify-content: center; }
+  .site-header .header-back-link { width: 44px; height: 44px; flex-shrink: 0; }
+  .site-header .header-contact:not(:has(.header-contact-plane)) { padding-right: 12px; }
+  .site-header .header-contact-plane { display: none; }
+  .header-back-full { display: none; }
+  .header-back-short { display: inline; }
+  .contact-menu-list { width: min(280px, calc(100vw - 28px)); }
+}
