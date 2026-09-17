@@ -10,11 +10,11 @@ const clients = [
   { name: "Peak Media", logo: "/client-peak-wordmark.svg", detail: "Immersive experience design for museums." },
 ];
 const projects = [
-  { name: "Nudge", slug: "nudge", image: "/nudge/mark.webp", detail: "A lighter home, together.", discipline: "Product & brand" },
-  { name: "PushedWorld", slug: "world", image: "/world/app-icon.png", detail: "Making every push-up count.", discipline: "Design & development" },
+  { name: "Nudge", slug: "nudge", image: "/nudge/mark.webp", detail: "A shared to-do app for family, friends, and everyday life.", discipline: "Product & brand" },
+  { name: "PushedWorld", slug: "world", image: "/world/app-icon.png", detail: "Daily push-ups. Augmented reality. Tangible progress.", discipline: "Design & development" },
   { name: "Tracer", slug: "tracer", image: "/tracer/logo-glass.png", detail: "Due diligence software for research partners and company audits.", discipline: "Brand & website" },
   { name: "aBeam", slug: "abeam", image: "/abeam/mark.png", detail: "Organizing conversations for travel agencies.", discipline: "AI product concept" },
-  { name: "CryptoCroc", slug: "crypto-inheritance", image: "/crypto-inheritance/skull.png", detail: "A plan for your digital legacy.", discipline: "Product concept" },
+  { name: "CryptoCroc", slug: "crypto-inheritance", image: "/crypto-inheritance/skull.png", detail: "Don’t let your crypto die with you.", discipline: "Product concept" },
   { name: "Decision ROI", slug: "equisoft-labs", image: "/equisoft-labs/roi-calculator-rail.png", detail: "Making the cost of decisions visible.", discipline: "Interactive prototype" },
 ];
 
@@ -27,24 +27,23 @@ export default function Home() {
         <section className={styles.intro} aria-labelledby="page-title">
           <p className={styles.eyebrow}>Ramon JM · Senior product designer</p>
           <h1 id="page-title">I design useful things.</h1>
-          <p>Complex products at work. Independent ideas brought to life.</p>
+          <p>Complex products at work.<br />Independent ideas brought to life.</p>
         </section>
 
         <section className={styles.section} aria-labelledby="clients-title">
-          <h2 id="clients-title">Clients I’ve worked with</h2>
+          <h2 id="clients-title">Current & past collaborations</h2>
           <ul className={styles.list}>
             <li className={styles.client}>
               <Image className={styles.clientLogo} src="/equisoft-symbol.svg" alt="" width={44} height={44} />
               <div className={styles.clientBody}>
-                <h3>Equisoft</h3>
-                <p>Senior product designer · Fintech & insurance · 0-to-1</p>
+                <div className={styles.clientHeading}><h3>Equisoft</h3><span className={styles.current}><span aria-hidden="true" />Current</span></div>
+                <p>Senior product designer<br />Fintech & insurance · 0-to-1</p>
                 <ul className={styles.domains} aria-label="Equisoft product experience">
-                  <li>Customer relationship management</li>
-                  <li>Policy administration</li>
-                  <li>Digital insurance tools</li>
-                  <li>Case management</li>
-                  <li className={styles.aiRow}><AiAvatar />Agentic solutions</li>
-                  <li>AI integrations</li>
+                  <li><span className={styles.acronym}>CRM</span><span>Customer relationship management</span></li>
+                  <li><span className={styles.acronym}>PaaS</span><span>Policy administration</span></li>
+                  <li><span className={styles.acronym}>DIT</span><span>Digital insurance tools</span></li>
+                  <li><span className={styles.acronym}>CM</span><span>Case management</span></li>
+                  <li className={styles.aiRow}><AiAvatar /><span>Agentic solutions & AI integrations</span></li>
                 </ul>
               </div>
             </li>
