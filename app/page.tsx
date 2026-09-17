@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { SiteHeader } from "./site-header";
 import { AiAvatar } from "./ai-avatar";
+import { portfolio, projects } from "./portfolio-content";
 import styles from "./home.module.css";
 
 const clients = [
@@ -9,14 +10,7 @@ const clients = [
   { name: "PetalMD", logo: "/client-petalmd.svg", detail: "User research for Quebec’s healthcare system, Canada." },
   { name: "Peak Media", logo: "/client-peak-wordmark.svg", detail: "Immersive experience design for museums." },
 ];
-const projects = [
-  { name: "Nudge", slug: "nudge", image: "/nudge/mark.webp", detail: "A shared to-do app for family, friends, and everyday life.", discipline: "Product & brand" },
-  { name: "PushedWorld", slug: "world", image: "/world/app-icon.png", detail: "Daily push-ups. Augmented reality. Tangible progress.", discipline: "Design & development" },
-  { name: "Tracer", slug: "tracer", image: "/tracer/logo-glass.png", detail: "Due diligence software for research partners and company audits.", discipline: "Brand & website" },
-  { name: "aBeam", slug: "abeam", image: "/abeam/mark.png", detail: "Organizing conversations for travel agencies.", discipline: "AI product concept" },
-  { name: "CryptoCroc", slug: "crypto-inheritance", image: "/crypto-inheritance/skull.png", detail: "Don’t let your crypto die with you.", discipline: "Product concept" },
-  { name: "Decision ROI", slug: "equisoft-labs", image: "/equisoft-labs/roi-calculator-rail.png", detail: "Making the cost of decisions visible.", discipline: "Interactive prototype" },
-];
+
 
 export default function Home() {
   return (
@@ -25,9 +19,9 @@ export default function Home() {
       <SiteHeader home />
       <main id="main-content" tabIndex={-1} className={styles.main}>
         <section className={styles.intro} aria-labelledby="page-title">
-          <p className={styles.eyebrow}>Ramon JM · Senior product designer</p>
-          <h1 id="page-title">I design useful things.</h1>
-          <p>Complex products at work.<br />Independent ideas brought to life.</p>
+          <p className={styles.eyebrow}>{portfolio.name} · {portfolio.role}</p>
+          <h1 id="page-title">{portfolio.headline}</h1>
+          <p>{portfolio.intro[0]}<br />{portfolio.intro[1]}</p>
         </section>
 
         <section className={styles.section} aria-labelledby="clients-title">

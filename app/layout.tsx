@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { headers } from "next/headers";
 import { Geist } from "next/font/google";
 import "./globals.css";
+import { portfolio } from "./portfolio-content";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,9 +25,7 @@ export async function generateMetadata(): Promise<Metadata> {
     requestHeaders.get("x-forwarded-proto") ??
     (host.startsWith("localhost") ? "http" : "https");
   const baseUrl = new URL(`${protocol}://${host}`);
-  const title = "Ramon JM — Senior Product Designer & AI Builder";
-  const description =
-    "Senior product designer and AI-native builder turning ambiguous problems into clear product logic, functional prototypes, and experiences teams can ship.";
+  const { title, description } = portfolio;
 
   return {
     metadataBase: baseUrl,
@@ -39,20 +38,11 @@ export async function generateMetadata(): Promise<Metadata> {
       type: "website",
       url: "/",
       siteName: "Ramon JM",
-      images: [
-        {
-          url: "/og-product-design.png",
-          width: 1733,
-          height: 907,
-          alt: "Ramon JM — Senior product designer and AI builder portfolio",
-        },
-      ],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: ["/og-product-design.png"],
     },
     robots: {
       index: true,
