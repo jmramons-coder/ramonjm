@@ -58,6 +58,7 @@ export default function Home() {
 
         <section className={styles.section} id="applications" aria-labelledby="projects-title">
           <h2 id="projects-title">Side projects</h2>
+          <p className={styles.projectNote}>I designed and developed every project from zero to one. Tracer is a collaboration: I led all design and development, with collaborators contributing subject-matter expertise and field contacts.</p>
           <ul className={styles.list}>
             {projects.map((project) => (
               <li key={project.slug} id={project.slug}>

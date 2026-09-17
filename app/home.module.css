@@ -5,6 +5,7 @@
 .intro > p:last-child { color: var(--body); font-size: 16px; line-height: 1.6; max-width: 440px; }
 .section { margin-bottom: 52px; scroll-margin-top: 100px; }
 .section h2 { font-size: 15px; line-height: 1.5; font-weight: 500; color: var(--body); margin-bottom: 16px; }
+.projectNote { max-width: 620px; margin: -6px 0 20px; color: var(--body); font-size: 13px; line-height: 1.65; }
 .list > li { border-top: 1px solid var(--line); }
 .list > li:last-child { border-bottom: 1px solid var(--line); }
 .client, .project { display: flex; align-items: flex-start; gap: 20px; padding: 22px 0; }
