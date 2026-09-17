@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
@@ -113,7 +112,6 @@ export function SiteHeader({
           href={home ? "#top" : "/"}
           aria-label="Ramon JM, home"
         >
-          <Image className="portfolio-mark" src="/portfolio-r-glass.png" alt="" width={28} height={28} sizes="28px" />
           <span>Ramon JM</span>
         </Link>
       </div>
