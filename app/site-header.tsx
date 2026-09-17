@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
@@ -112,10 +113,7 @@ export function SiteHeader({
           href={home ? "#top" : "/"}
           aria-label="Ramon JM, home"
         >
-          <svg className="portfolio-mark" width="24" height="24" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-            <rect width="32" height="32" rx="9" fill="currentColor" />
-            <path d="M8 11h5v8a3 3 0 0 1-6 0m11 4V11l4 6 4-6v12" stroke="var(--page)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
+          <Image className="portfolio-mark" src="/portfolio-r-glass.png" alt="" width={28} height={28} sizes="28px" />
           <span>Ramon JM</span>
         </Link>
       </div>
