@@ -3121,3 +3121,14 @@ a:focus-visible {
 .ai-avatar { flex-basis: 32px; width: 32px; height: 44px; align-items: center; justify-content: center; border: 0; box-shadow: none; background: transparent; }
 .ai-avatar img { display: block; width: 20px; height: 20px; object-fit: contain; }
 @media(max-width:759px) { .professional-domain-mark { gap: 1px; } .ai-avatar { width: 32px; height: 44px; flex-basis: 32px; } }
+
+/* Shared portfolio identity and case-study reading progress. */
+.wordmark { display: inline-flex; align-items: center; gap: 7px; }
+.portfolio-mark { flex-shrink: 0; }
+.reading-progress { position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: rgb(128 128 128 / 12%); pointer-events: none; }
+.reading-progress-fill { width: 100%; height: 100%; background: currentColor; transform: scaleX(0); transform-origin: left; }
+@media (max-width: 400px) {
+  .header-leading { gap: 5px; }
+  .wordmark { gap: 5px; font-size: 13px; }
+  .portfolio-mark { width: 20px; height: 20px; }
+}

@@ -32,6 +32,34 @@ export function SiteHeader({
   backHref?: string;
   backLabel?: string;
 }) {
+  const progressRef = useRef<HTMLDivElement>(null);
+  const resolvedBackHref = backHref ?? (home ? undefined : "/#applications");
+
+  useEffect(() => {
+    if (home) return;
+    let frame = 0;
+    const update = () => {
+      const distance = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = distance > 0 ? Math.max(0, Math.min(1, window.scrollY / distance)) : 1;
+      if (progressRef.current) progressRef.current.style.transform = `scaleX(${progress})`;
+    };
+    const schedule = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(update);
+    };
+    const observer = new ResizeObserver(schedule);
+    observer.observe(document.body);
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    update();
+    return () => {
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+    };
+  }, [home]);
+
   const isScrolled = useSyncExternalStore(
     subscribeToScroll,
     getScrollState,
@@ -70,25 +98,13 @@ export function SiteHeader({
       id={home ? "top" : undefined}
     >
       <div className="header-leading">
-        {backHref ? (
+        {resolvedBackHref ? (
           <Link
-            className={textOnly ? "header-action header-back-text" : "header-back-link"}
-            href={backHref}
+            className="header-back-link"
+            href={resolvedBackHref}
             aria-label={backLabel}
           >
-            {textOnly ? (
-              <>
-                <span className="header-back-full">{backLabel}</span>
-                <span className="header-back-short" aria-hidden="true">Back</span>
-              </>
-            ) : (
-              <HugeiconsIcon
-                icon={ArrowLeft02Icon}
-                size={19}
-                strokeWidth={1.8}
-                aria-hidden="true"
-              />
-            )}
+            <HugeiconsIcon icon={ArrowLeft02Icon} size={19} strokeWidth={1.8} aria-hidden="true" />
           </Link>
         ) : null}
         <Link
@@ -96,7 +112,11 @@ export function SiteHeader({
           href={home ? "#top" : "/"}
           aria-label="Ramon JM, home"
         >
-          Ramon JM
+          <svg className="portfolio-mark" width="24" height="24" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <rect width="32" height="32" rx="9" fill="currentColor" />
+            <path d="M8 11h5v8a3 3 0 0 1-6 0m11 4V11l4 6 4-6v12" stroke="var(--page)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+          <span>Ramon JM</span>
         </Link>
       </div>
       <div className="header-actions">
@@ -159,6 +179,7 @@ export function SiteHeader({
           </div>
         </div>
       </div>
+      {!home && <div className="reading-progress" aria-hidden="true"><div ref={progressRef} className="reading-progress-fill" /></div>}
     </header>
   );
 }
