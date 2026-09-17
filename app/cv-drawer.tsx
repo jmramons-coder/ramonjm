@@ -162,15 +162,15 @@ export function CvDrawer() {
                   </section>
 
                   <section className="cv-section" aria-labelledby="cv-work-title">
-                    <p className="cv-section-label" id="cv-work-title">Independent work</p>
-                    <div className="cv-section-main">
-                      <p>End-to-end ownership across product design, brand, and development. Selected examples:</p>
-                      <ul className="cv-evidence-list">
-                        <li><Link href="/nudge" onClick={() => setIsOpen(false)}>Nudge</Link><p>Household coordination across iPhone and iPad, with a shared visual identity and launch experience. Private beta.</p></li>
-                        <li><Link href="/world" onClick={() => setIsOpen(false)}>PushedWorld</Link><p>Product design and development connecting daily push-ups, augmented reality, and visible progress.</p></li>
-                        <li><Link href="/tracer" onClick={() => setIsOpen(false)}>Tracer</Link><p>All design and development for research due diligence. Collaborators contributed subject-matter expertise and field contacts.</p></li>
-                      </ul>
-                    </div>
+                    <p className="cv-section-label" id="cv-work-title">Side projects</p>
+                    <ul className="cv-work-list">
+                      <li><Link href="/nudge" onClick={() => setIsOpen(false)}>Nudge</Link><span>Shared tasks · iPhone & iPad</span></li>
+                      <li><Link href="/world" onClick={() => setIsOpen(false)}>PushedWorld</Link><span>Daily push-ups · Augmented reality</span></li>
+                      <li><Link href="/tracer" onClick={() => setIsOpen(false)}>Tracer</Link><span>Research due diligence</span></li>
+                      <li><Link href="/abeam" onClick={() => setIsOpen(false)}>aBeam</Link><span>Travel agency conversations</span></li>
+                      <li><Link href="/crypto-inheritance" onClick={() => setIsOpen(false)}>CryptoCroc</Link><span>Crypto inheritance</span></li>
+                      <li><Link href="/equisoft-labs" onClick={() => setIsOpen(false)}>Decision ROI</Link><span>Decision-making prototype</span></li>
+                    </ul>
                   </section>
 
                   <div className="cv-drawer-footer">
