@@ -3132,3 +3132,8 @@ a:focus-visible {
   .wordmark { gap: 5px; font-size: 13px; }
   .portfolio-mark { width: 24px; height: 24px; }
 }
+
+.cv-evidence-list { display: grid; gap: 16px; margin-top: 18px; }
+.cv-evidence-list a { font-size: 14px; font-weight: 550; text-decoration: underline; text-underline-offset: 4px; }
+.cv-evidence-list p { margin-top: 5px; }
+.cv-evidence-list a:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }

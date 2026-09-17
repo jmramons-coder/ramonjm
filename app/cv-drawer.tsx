@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import Link from "next/link";
 import { createPortal } from "react-dom";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Cancel01Icon, SentIcon } from "@hugeicons/core-free-icons";
@@ -12,6 +13,7 @@ export function CvDrawer() {
     () => true,
     () => false,
   );
+  const dialogRef = useRef<HTMLElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const wasOpenRef = useRef(false);
@@ -28,6 +30,19 @@ export function CvDrawer() {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setIsOpen(false);
+      }
+      if (event.key === "Tab") {
+        const elements = dialogRef.current?.querySelectorAll<HTMLElement>('a[href], button:not([disabled])');
+        if (!elements?.length) return;
+        const first = elements[0];
+        const last = elements[elements.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
       }
     };
 
@@ -61,16 +76,17 @@ export function CvDrawer() {
 
       {isMounted
         ? createPortal(
-            <div className={`cv-drawer-root${isOpen ? " is-open" : ""}`}>
+            <div className={`cv-drawer-root${isOpen ? " is-open" : ""}`} inert={!isOpen}>
               <button
                 className="cv-drawer-backdrop"
                 type="button"
                 aria-label="Close CV"
-                tabIndex={isOpen ? 0 : -1}
+                tabIndex={-1}
                 onClick={() => setIsOpen(false)}
               />
 
               <aside
+                ref={dialogRef}
                 id="cv-drawer"
                 className="cv-drawer"
                 role="dialog"
@@ -104,37 +120,13 @@ export function CvDrawer() {
                   <div className="cv-drawer-intro">
                     <h2 id="cv-drawer-title">José Manuel Ramon</h2>
                     <p className="cv-drawer-role">
-                      Senior Product Designer · AI-native 0-to-1 builder
+                      Senior Product Designer · Design & development
                     </p>
                     <p>
-                      I turn ambiguous problems into clear product logic, useful
-                      experiences, and working prototypes that teams can ship.
+                      Seven years of experience connecting research, product strategy,
+                      interaction design, and development. Based in Quebec City.
                     </p>
                   </div>
-
-                  <section
-                    className="cv-section"
-                    aria-labelledby="cv-domain-title"
-                  >
-                    <p className="cv-section-label" id="cv-domain-title">
-                      Domain experience
-                    </p>
-                    <div className="cv-section-main">
-                      <p className="cv-domain-copy">
-                        I have worked across HR software and immersive
-                        experiences, and lately focus on fintech and insurance:
-                        policy administration, back office and data software,
-                        agent-tech integrations, CRMs, workbenches, product
-                        configuration, and internal and external tools.
-                      </p>
-                      <p className="cv-domain-copy">
-                        At Equisoft, I contribute to a major modernization
-                        initiative backed by more than $30M in yearly
-                        investment, bringing a cohesive intelligence layer to
-                        help the business lead its market.
-                      </p>
-                    </div>
-                  </section>
 
                   <section
                     className="cv-section"
@@ -147,67 +139,43 @@ export function CvDrawer() {
                       <h3>Equisoft</h3>
                       <p className="cv-section-meta">Senior Product Designer</p>
                       <p>
-                        Designing enterprise insurance products and AI-assisted
-                        workflows across strategy, UX, interaction, and
-                        prototyping—from the first question through a usable
-                        0-to-1 direction.
+                        Designing fintech and insurance products from discovery to
+                        delivery, in partnership with product and engineering.
+                        Work spans policy administration, customer relationships,
+                        digital insurance tools, and case management.
+                      </p>
+                      <p className="cv-domain-copy">
+                        Led an AI committee exploring agentic solutions and AI
+                        integrations. Confidential work can be discussed through
+                        its challenges, process, and my contribution.
                       </p>
                     </div>
                   </section>
 
-                  <section
-                    className="cv-section"
-                    aria-labelledby="cv-focus-title"
-                  >
-                    <p className="cv-section-label" id="cv-focus-title">
-                      Focus
-                    </p>
-                    <ul className="cv-focus-list">
-                      <li>Product strategy and framing</li>
-                      <li>UX and interaction design</li>
-                      <li>AI-native prototyping</li>
-                      <li>Designing with product and engineering</li>
+                  <section className="cv-section" aria-labelledby="cv-experience-title">
+                    <p className="cv-section-label" id="cv-experience-title">Earlier experience</p>
+                    <ul className="cv-work-list">
+                      <li><span>FolksHR</span><span>Product design for HR software</span></li>
+                      <li><span>PetalMD</span><span>User research in Quebec’s healthcare system</span></li>
+                      <li><span>Peak Media</span><span>Immersive experience design for museums</span></li>
                     </ul>
                   </section>
 
-                  <section
-                    className="cv-section"
-                    aria-labelledby="cv-work-title"
-                  >
-                    <p className="cv-section-label" id="cv-work-title">
-                      Side projects
-                    </p>
-                    <ul className="cv-work-list">
-                      <li>
-                        <span>Nudge</span>
-                        <span>Household tasks · iPhone & iPad</span>
-                      </li>
-                      <li>
-                        <span>PushedWorld</span>
-                        <span>Fitness · iPhone</span>
-                      </li>
-                      <li>
-                        <span>aBeam</span>
-                        <span>Travel advisor AI</span>
-                      </li>
-                      <li>
-                        <span>Tracer</span>
-                        <span>Security intelligence</span>
-                      </li>
-                      <li>
-                        <span>CryptoCroc</span>
-                        <span>Crypto inheritance</span>
-                      </li>
-                      <li>
-                        <span>Equisoft Labs</span>
-                        <span>Insurance R&amp;D</span>
-                      </li>
-                    </ul>
+                  <section className="cv-section" aria-labelledby="cv-work-title">
+                    <p className="cv-section-label" id="cv-work-title">Independent work</p>
+                    <div className="cv-section-main">
+                      <p>End-to-end ownership across product design, brand, and development. Selected examples:</p>
+                      <ul className="cv-evidence-list">
+                        <li><Link href="/nudge" onClick={() => setIsOpen(false)}>Nudge</Link><p>Household coordination across iPhone and iPad, with a shared visual identity and launch experience. Private beta.</p></li>
+                        <li><Link href="/world" onClick={() => setIsOpen(false)}>PushedWorld</Link><p>Product design and development connecting daily push-ups, augmented reality, and visible progress.</p></li>
+                        <li><Link href="/tracer" onClick={() => setIsOpen(false)}>Tracer</Link><p>All design and development for research due diligence. Collaborators contributed subject-matter expertise and field contacts.</p></li>
+                      </ul>
+                    </div>
                   </section>
 
                   <div className="cv-drawer-footer">
                     <p>
-                      For the full context, explore the side projects below.
+                      Let’s talk about the problems your team is working on.
                     </p>
                     <a
                       className="cv-contact-link"
