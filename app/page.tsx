@@ -68,6 +68,7 @@ export default function Home() {
                     <div className={styles.projectHeading}>
                       <h3>{project.name}</h3>
                       {project.slug === "tracer" && <span className={styles.collaboration} title="Design and development by Ramon, with collaborators contributing subject-matter expertise and field contacts.">Collaboration<span className="sr-only">: design and development by Ramon, with collaborators contributing subject-matter expertise and field contacts.</span></span>}
+                      {project.slug === "abeam" && <span className={styles.collaboration}>Collaboration</span>}
                     </div>
                     <p>{project.detail}</p>
                   </div>
