@@ -6,6 +6,7 @@
 .section { margin-bottom: 52px; scroll-margin-top: 100px; }
 .section h2 { font-size: 15px; line-height: 1.5; font-weight: 500; color: var(--body); margin-bottom: 16px; }
 .projectNote { max-width: 620px; margin: -6px 0 20px; color: var(--body); font-size: 13px; line-height: 1.65; }
+.buildTag { display: inline-flex; align-items: center; gap: 5px; vertical-align: middle; margin-left: 6px; padding: 3px 8px; border: 1px solid #dcdcdc; border-radius: 7px; background: #eeeeee; color: var(--ink); font-size: 10px; font-weight: 500; line-height: 1.4; white-space: nowrap; }
 .list > li { border-top: 1px solid var(--line); }
 .list > li:last-child { border-bottom: 1px solid var(--line); }
 .client, .project { display: flex; align-items: flex-start; gap: 20px; padding: 22px 0; }

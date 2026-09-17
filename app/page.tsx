@@ -58,7 +58,7 @@ export default function Home() {
 
         <section className={styles.section} id="applications" aria-labelledby="projects-title">
           <h2 id="projects-title">Side projects</h2>
-          <p className={styles.projectNote}>All projects: design & development, from zero to one.</p>
+          <p className={styles.projectNote}>All projects: design & development <span className={styles.buildTag} aria-label="From zero to one">0 <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-5-5 5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg> 1</span></p>
           <ul className={styles.list}>
             {projects.map((project) => (
               <li key={project.slug} id={project.slug}>
