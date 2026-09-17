@@ -58,13 +58,19 @@ export default function Home() {
 
         <section className={styles.section} id="applications" aria-labelledby="projects-title">
           <h2 id="projects-title">Side projects</h2>
-          <p className={styles.projectNote}>I designed and developed every project from zero to one. Tracer is a collaboration: I led all design and development, with collaborators contributing subject-matter expertise and field contacts.</p>
+          <p className={styles.projectNote}>All projects: design & development, from zero to one.</p>
           <ul className={styles.list}>
             {projects.map((project) => (
               <li key={project.slug} id={project.slug}>
                 <Link className={styles.project} href={`/${project.slug}`}>
                   <Image className={`${styles.projectIcon} ${project.slug === "world" ? styles.rounded : ""}`} src={project.image} alt="" width={44} height={44} sizes="44px" />
-                  <div className={styles.projectBody}><h3>{project.name}</h3><p>{project.detail}</p></div>
+                  <div className={styles.projectBody}>
+                    <div className={styles.projectHeading}>
+                      <h3>{project.name}</h3>
+                      {project.slug === "tracer" && <span className={styles.collaboration} title="Design and development by Ramon, with collaborators contributing subject-matter expertise and field contacts.">Collaboration<span className="sr-only">: design and development by Ramon, with collaborators contributing subject-matter expertise and field contacts.</span></span>}
+                    </div>
+                    <p>{project.detail}</p>
+                  </div>
                   <span className={styles.discipline}>{project.discipline}</span>
                   <span className={styles.view} aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 12h15m-6-6 6 6-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg></span>
                 </Link>
