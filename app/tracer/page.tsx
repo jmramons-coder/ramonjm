@@ -44,6 +44,11 @@ export default function TracerProjectPage() {
             <div className={styles.productBrand}><Image src="/tracer/logo-glass.png" alt="" width={523} height={478} sizes="48px" /><span>Tracer / Research due diligence</span></div>
             <h1 id="tracer-title">Know who you’re<br />building research with.</h1>
             <p>Tracer is due diligence software for reviewing research partners and companies—bringing cases, evidence, and reports into one workspace.</p>
+            <a className={styles.visitWebsite} href={website} target="_blank" rel="noopener noreferrer">
+              Visit Tracer website
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10" /></svg>
+              <span className="sr-only"> (opens in a new tab)</span>
+            </a>
           </div>
           <figure className={styles.workspace}>
             <div className={styles.tablet}>
