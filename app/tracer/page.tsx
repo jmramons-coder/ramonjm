@@ -40,7 +40,6 @@ export default function TracerProjectPage() {
       <SiteHeader tone="dark" textOnly />
       <main className={`${styles.page} ${inter.className}`}>
         <section className={styles.productHero} aria-labelledby="tracer-title">
-          <Image className={styles.productLandscape} src="/tracer/landscape.webp" alt="" fill sizes="100vw" />
           <div className={styles.productHeroCopy}>
             <div className={styles.productBrand}><Image src="/tracer/logo-glass.png" alt="" width={523} height={478} sizes="48px" /><span>Tracer / Research due diligence</span></div>
             <h1 id="tracer-title">Know who you’re<br />building research with.</h1>
@@ -81,28 +80,15 @@ export default function TracerProjectPage() {
           </figure>
           <div className={styles.heroContext}><span>Product design & development · Brand & website</span><span>Collaboration / Subject-matter expertise & field contacts</span></div>
         </section>
-        <nav className={styles.chapterNav} aria-label="Case study chapters">
-          <span>TRACER</span>
-          <a href="#product">Product</a>
-          <a href="#vision">Process</a>
-          <a href="#identity">Identity</a>
-          <a href="#website">Website</a>
-        </nav>
-
         <section id="product" className={styles.product}>
           <div className={styles.sectionHeading}>
             <div>
               <p className={styles.eyebrow}>01 / Inside the product</p>
               <h2>
-                Complex evidence.
-                <br />A clear place to work.
+                From evidence
+                <br />to a clear report.
               </h2>
             </div>
-            <p>
-              The workspace connects three parts of a review. Analysts
-              can keep a case in context, navigate its evidence, and prepare a
-              report for the next conversation.
-            </p>
           </div>
           <div className={styles.productBenefits}>
             <article>
@@ -132,54 +118,21 @@ export default function TracerProjectPage() {
           </div>
         </section>
 
-        <section id="vision" className={styles.vision}>
-          <p className={styles.eyebrow}>02 / Design decisions</p>
-          <h2>
-            Security that makes
-            <br />
-            <span>room for discovery.</span>
-          </h2>
-          <div className={styles.visionBottom}>
-            <p>
-              Research partnerships are built on possibility. Understanding
-              affiliations, funding, and institutional connections is part of
-              protecting that possibility. Tracer brings those threads into a
-              structured research-security workflow.
-            </p>
-            <p>
-              I handled all design and development across the product, identity,
-              and website. Collaborators contributed subject-matter expertise and
-              field contacts. The design challenge was to make a complex review
-              understandable while giving the platform a credible, distinctive voice.
-            </p>
-          </div>
-          <div className={styles.designDecisions}>
-            <article><span>Structure</span><h3>Keep context close.</h3><p>The case sidebar sits alongside the report. Evidence categories break a dense investigation into sections an analyst can navigate.</p></article>
-            <article><span>Hierarchy</span><h3>Make the next step legible.</h3><p>The report is the central working surface, with export controls close at hand. The layout connects reviewing evidence with preparing a shareable result.</p></article>
-            <article><span>Expression</span><h3>Give clarity a visual language.</h3><p>The identity studies translate perception, direction, and protection into one mark. Glass, restrained typography, and open landscapes carry that idea into the website.</p></article>
-          </div>
-          <div className={styles.scope}>
-            <span>Visual identity</span>
-            <span>Brand world</span>
-            <span>Product experience</span>
-            <span>Website</span>
-          </div>
-        </section>
-
         <section id="identity" className={styles.identity}>
           <div className={styles.sectionHeading}>
             <div>
-              <p className={styles.eyebrow}>03 / Building the mark</p>
+              <p className={styles.eyebrow}>02 / From product to identity</p>
               <h2>
-                One symbol.
+                Clarity in the product.
                 <br />
-                Several layers of meaning.
+                Character in the brand.
               </h2>
             </div>
             <p>
-              The early studies connect perception, movement, a path, and
-              protection. Those ideas converge in a compact monogram that can
-              move from an app icon to an architectural scale.
+              The product helps people see connections and make informed decisions.
+              I built the identity around that same idea: perception, direction,
+              and protection. These early studies show how those three ideas
+              became one Tracer mark.
             </p>
           </div>
           <div className={styles.principles}>
@@ -239,7 +192,7 @@ export default function TracerProjectPage() {
         <section className={styles.brandWorld}>
           <div className={styles.sectionHeading}>
             <div>
-              <p className={styles.eyebrow}>04 / A world around the mark</p>
+              <p className={styles.eyebrow}>03 / Bringing the identity to life</p>
               <h2>
                 Rigorous by nature.
                 <br />
@@ -344,7 +297,7 @@ export default function TracerProjectPage() {
         <section id="website" className={styles.website}>
           <div className={styles.sectionHeading}>
             <div>
-              <p className={styles.eyebrow}>05 / The digital front door</p>
+              <p className={styles.eyebrow}>04 / The digital front door</p>
               <h2>
                 Make the value
                 <br />
