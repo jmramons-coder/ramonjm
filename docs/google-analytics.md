@@ -1,8 +1,14 @@
 # Portfolio analytics
 
-Pending activation: set `NEXT_PUBLIC_GA_MEASUREMENT_ID` to the portfolio GA4 web
-stream ID (`G-…`) in Vercel Production, then redeploy from this workspace.
-Keep private-media included, per shakepay-private-study.md.
+Account: Ramon JM — Portfolio (`408921960`), independent of Arcera.
+Property: Ramon JM — Portfolio (`555216073`), Toronto timezone, CAD.
+Web stream: Ramon JM — Portfolio web (`15819220256`), https://www.ramonjm.com.
+Measurement ID: `G-JYQY36HHTG`, configured as `NEXT_PUBLIC_GA_MEASUREMENT_ID`
+in Vercel Production. Enhanced measurement is disabled with user approval.
+Dashboard: https://analytics.google.com/analytics/web/#/a408921960p555216073/reports/intelligenthome
+
+Redeploy from this workspace with private-media included, per
+shakepay-private-study.md, whenever changing tracking code or configuration.
 
 In Google Analytics Admin → Data streams → the portfolio web stream, turn OFF
 Enhanced measurement. The app sends page views itself, including client-side
@@ -36,3 +42,9 @@ code as an identity signal.
 References:
 https://developers.google.com/analytics/devguides/collection/ga4/views
 https://developers.google.com/tag-platform/security/concepts/consent-mode
+
+Activation verified 2026-09-21: production deployment
+`dpl_GsYkmqWaTQmvMVsktYF3iQcTawoA`. Live authenticated Shakepay navigation
+sent page_view and private_case_study_view (study_name=shakepay,
+access_state=authorized) to G-JYQY36HHTG; Google's collection endpoint returned
+HTTP 204. The new GA dashboard may take time to populate.
