@@ -90,18 +90,7 @@
   place-items: center;
   padding: 68px 24px 54px;
   min-width: 0;
-  border-radius: 180px 180px 32px 32px;
-  background: radial-gradient(ellipse at 50% 30%, #faf7ff, #dfd5f5);
   overflow: hidden;
-}
-.orbit {
-  position: absolute;
-  z-index: -1;
-  width: 125%;
-  aspect-ratio: 1;
-  border: 1px solid #fff9;
-  border-radius: 50%;
-  top: 18%;
 }
 .stageLabel,
 .stageFoot {
@@ -469,9 +458,6 @@
   }
   .heroPhone {
     width: 72%;
-  }
-  .heroStage {
-    border-radius: 100px 100px 24px 24px;
   }
   .brandIntro {
     gap: 30px;

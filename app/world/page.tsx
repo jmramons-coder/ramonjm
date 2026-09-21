@@ -90,7 +90,6 @@ export default function WorldProjectPage() {
             <ProductLink />
           </div>
           <div className={styles.heroStage}>
-            <span className={styles.orbit} aria-hidden="true" />
             <span className={styles.stageLabel}>Movement becomes momentum</span>
             <div className={styles.heroPhone}>
               <WorldVideo
