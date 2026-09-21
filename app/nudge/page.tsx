@@ -69,8 +69,9 @@ export default function NudgePage() {
               done.
             </p>
             <div className={styles.heroLinks}>
-              <a href="#experience">Explore the experience</a>
-              <span>iPhone & iPad / Private beta</span>
+              <a className={styles.storeButton} href="https://apps.apple.com/app/id6804271028" target="_blank" rel="noopener noreferrer">Download on the App Store<span className="sr-only"> (opens in a new tab)</span></a>
+              <a className={styles.websiteButton} href="https://getnudge-todo.com/" target="_blank" rel="noopener noreferrer">Visit Nudge website<span className="sr-only"> (opens in a new tab)</span></a>
+              <span className={styles.availability}>Available for iPhone & iPad</span>
             </div>
           </div>
           <div className={styles.heroStage}>
@@ -377,12 +378,12 @@ export default function NudgePage() {
           </h2>
           <p>
             The website carries the same promise through real app demonstrations
-            and everyday household scenes. Nudge is currently presented as a
-            private beta.
+            and everyday household scenes. Available now on the App Store for
+            iPhone and iPad.
           </p>
           <a
             className={styles.button}
-            href="https://nudge-launch.vercel.app/"
+            href="https://getnudge-todo.com/"
             target="_blank"
             rel="noopener noreferrer"
           >

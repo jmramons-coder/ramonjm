@@ -80,18 +80,27 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 22px;
+  gap: 12px;
   margin-top: 32px;
-  font-size: 12px;
 }
 .heroLinks a {
-  border-bottom: 1px solid #a290ad;
-  padding-bottom: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 13px 20px;
+  border: 1px solid var(--plum);
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
 }
-.heroLinks span {
-  color: #786b7e;
-  font-size: 11px;
-}
+.storeButton { background: var(--plum); color: white; }
+.storeButton:hover { background: #563663; }
+.websiteButton { color: var(--plum); background: transparent; }
+.websiteButton:hover { background: #ffffff80; }
+.heroLinks .availability { flex-basis: 100%; color: #786b7e; font-size: 11px; }
+.heroLinks a:focus-visible { outline: 2px solid var(--plum); outline-offset: 4px; }
 .heroStage {
   display: flex;
   gap: 24px;
