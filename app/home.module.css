@@ -7,8 +7,8 @@
 .section h2 { font-size: 15px; line-height: 1.5; font-weight: 500; color: var(--body); margin-bottom: 16px; }
 .projectNote { max-width: 620px; margin: -6px 0 20px; color: var(--body); font-size: 13px; line-height: 1.65; }
 .buildTag { display: inline-flex; align-items: center; gap: 5px; vertical-align: middle; margin-left: 6px; padding: 3px 8px; border: 1px solid #dcdcdc; border-radius: 7px; background: #eeeeee; color: var(--ink); font-size: 10px; font-weight: 500; line-height: 1.4; white-space: nowrap; }
-.list > li { border-top: 1px solid var(--line); }
-.list > li:last-child { border-bottom: 1px solid var(--line); }
+.list > li { border-top: 1px solid #0000000d; }
+.list > li:last-child { border-bottom: 1px solid #0000000d; }
 .client, .project { display: flex; align-items: flex-start; gap: 20px; padding: 22px 0; }
 .clientLogo, .projectIcon { width: 44px; height: 44px; object-fit: contain; flex-shrink: 0; }
 .petalLogo { transform: scale(1.35); }
@@ -19,8 +19,9 @@
 .domains li { display: inline-flex; gap: 6px; align-items: center; max-width: 100%; min-height: 23px; padding: 2px 6px 2px 2px; border: 1px solid var(--line); border-radius: 12px; font-size: 10px; line-height: 1.5; color: var(--body); }
 .domains .aiRow { padding-left: 5px; }
 .aiRow :global(.ai-avatar) { width: 24px; flex-basis: 24px; height: 24px; margin: -3px 0; }
-.project { align-items: center; transition: background 150ms ease; border-radius: 6px; }
-.project:hover { background: #eeeeee; }
+.project { position: relative; isolation: isolate; align-items: center; border-radius: 12px; }
+.project::before { content: ""; position: absolute; z-index: -1; inset: 5px -14px; border-radius: 12px; background: #eeeeee; opacity: 0; transition: opacity 150ms ease; pointer-events: none; }
+.project:hover::before, .project:focus-visible::before { opacity: 1; }
 .project:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
 .rounded { border-radius: 11px; box-shadow: 0 2px 5px #00000012; }
 .discipline, .view { font-size: 12px; color: var(--body); white-space: nowrap; }
@@ -52,3 +53,10 @@
 
 .projectHeading { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; }
 .collaboration { display: inline-flex; padding: 2px 7px; border: 1px solid var(--line); border-radius: 20px; color: var(--body); font-size: 10px; line-height: 1.4; font-weight: 400; }
+
+.studyIcon { width:44px; height:44px; display:grid; place-items:center; flex-shrink:0; border-radius:12px; background:#e5f5fd; color:#0075ad; font-size:24px; }
+
+.studyDisclosure{font-size:12px;color:var(--body)}
+
+@media(max-width:600px){.project::before{inset:4px -10px;border-radius:10px}}
+@media(prefers-reduced-motion:reduce){.project::before{transition:none}}

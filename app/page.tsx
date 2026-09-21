@@ -50,6 +50,21 @@ export default function Home() {
           </ul>
         </section>
 
+        <section className={styles.section} id="explorations" aria-labelledby="explorations-title">
+          <h2 id="explorations-title">Product explorations</h2>
+          <p className={styles.projectNote}>Self-initiated studies of opportunities in existing products.</p>
+          <ul className={styles.list}><li>
+            <Link className={styles.project} href="/shakepay">
+              <Image className={`${styles.projectIcon} ${styles.rounded}`} src="/shakepay-icon.png" alt="" width={44} height={44} />
+              <div className={styles.projectBody}>
+                <div className={styles.projectHeading}><h3>Shakepay · Rewards exploration</h3><span className={styles.collaboration}>Private study</span></div>
+                <p>Making everyday rewards easier to understand.<br /><span className={styles.studyDisclosure}>Unsolicited concept · Not affiliated with Shakepay</span></p>
+              </div>
+              <span className={styles.view} aria-label="Access code required"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="3" stroke="currentColor" strokeWidth="1.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" strokeWidth="1.5"/></svg></span>
+            </Link>
+          </li></ul>
+        </section>
+
         <section className={styles.section} id="applications" aria-labelledby="projects-title">
           <h2 id="projects-title">Side projects</h2>
           <p className={styles.projectNote}>All projects: design & development <span className={styles.buildTag} aria-label="From zero to one">0 <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-5-5 5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg> 1</span></p>
