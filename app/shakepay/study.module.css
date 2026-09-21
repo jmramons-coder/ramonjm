@@ -2,8 +2,8 @@
 
 .film video{aspect-ratio:9/16;object-fit:contain}
 
-/* Match the other case studies with a centered, bounded desktop canvas. */
-.page{--brand:#009fff;--navy:#002c3c;max-width:1600px;width:100%;margin:0 auto;background:white;color:var(--navy)}
+/* Full-width backgrounds with centered content inside each section. */
+.page{--brand:#009fff;--navy:#002c3c;max-width:none;width:100%;margin:0;background:white;color:var(--navy)}
 .page section[id]{scroll-margin-top:72px}.page h2{font-size:clamp(36px,4.8vw,72px)}
 .back{position:absolute;top:30px;left:clamp(24px,6vw,96px);font-size:13px;z-index:2;min-height:44px;display:inline-flex;align-items:center}
 .gate{position:relative;max-width:none;width:100%;min-height:100svh;padding:100px clamp(24px,8vw,120px);display:flex;align-items:center;background:#009fff;color:#002c3c}
@@ -73,3 +73,15 @@
 .collapsibleSection .section h2{font-size:clamp(30px,3.5vw,48px)}
 .collapsibleSection+.opportunityNote{padding-top:24px}
 @media(max-width:800px){.collapsibleSection{padding-inline:24px}.collapsibleSection summary{min-height:76px;font-size:22px}.collapsibleSection .sandboxSection{padding:24px;grid-template-columns:1fr}}
+
+/* Extend section color across the viewport while bounding the content columns. */
+@media(min-width:801px){
+  .page{--study-gutter:max(clamp(24px,8vw,120px),calc((100% - 1360px)/2))}
+  .hero,.film,.section,.split,.closing,.collapsibleSection{padding-inline:var(--study-gutter)}
+  .hero{gap:clamp(32px,4vw,64px)}
+  .film,.sandboxSection{gap:clamp(32px,6vw,96px)}
+  .galleryHeading,.galleryNote,.gallery{padding-inline:var(--study-gutter)}
+  .gallery{scroll-padding-inline:var(--study-gutter)}
+  .collapsibleSection .section{padding-inline:0}
+  .collapsibleSection .sandboxSection{padding-inline:32px}
+}
