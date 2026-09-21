@@ -1,9 +1,13 @@
 .page {
-  --purple: #4e2dac;
-  --deep: #201342;
-  --soft: #efeaf8;
+  --blue: #0088f8;
+  --accent-text: #0069bd;
+  --cyan: #00c8f8;
+  --deep: #102d49;
+  --soft: #eaf5fc;
+  --muted: #536879;
+  --border: #d4e3ed;
   color: var(--deep);
-  background: #faf9fc;
+  background: #f9fbfc;
 }
 .page:focus {
   outline: none;
@@ -30,14 +34,14 @@
   width: 58px;
   height: 58px;
   border-radius: 24%;
-  box-shadow: 0 10px 24px #26133e20;
+  box-shadow: 0 10px 24px #102d4920;
 }
 .identity small {
   display: block;
   margin-top: 3px;
   font-size: 0.7rem;
   font-weight: 450;
-  color: #746881;
+  color: var(--muted);
   letter-spacing: 0;
 }
 .eyebrow {
@@ -56,14 +60,14 @@
 }
 .page em {
   font-style: normal;
-  color: #80679f;
+  color: var(--accent-text);
 }
 .intro {
   max-width: 470px;
   font-size: 1.2rem;
   line-height: 1.5;
   letter-spacing: -0.025em;
-  color: #64566f;
+  color: var(--muted);
 }
 .link {
   display: inline-flex;
@@ -76,11 +80,11 @@
   transition: background 0.2s;
 }
 .link:hover {
-  background: var(--purple);
+  background: var(--accent-text);
 }
 .page a:focus-visible,
 .page button:focus-visible {
-  outline: 3px solid #008daa;
+  outline: 3px solid var(--blue);
   outline-offset: 5px;
 }
 .heroStage {
@@ -109,10 +113,10 @@
 }
 .heroPhone {
   width: min(64%, 270px);
-  border: 5px solid #251e30;
+  border: 5px solid #172b3b;
   border-radius: 32px;
-  background: #211b2b;
-  box-shadow: 0 24px 45px #30204035;
+  background: #152838;
+  box-shadow: 0 24px 45px #102d4935;
   overflow: hidden;
   transform: rotate(3deg);
 }
@@ -128,7 +132,7 @@
   height: auto;
   left: 1%;
   bottom: 30px;
-  filter: drop-shadow(0 10px 8px #3b21472b);
+  filter: drop-shadow(0 10px 8px #102d492b);
 }
 .brief,
 .progress,
@@ -143,7 +147,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 24px 7vw;
-  border-top: 1px solid #e4ddeb;
+  border-top: 1px solid var(--border);
 }
 .brief > .eyebrow {
   grid-column: 1/-1;
@@ -159,7 +163,7 @@
 .brandIntro p:not(.eyebrow),
 .trust p:not(.eyebrow),
 .website p:not(.eyebrow) {
-  color: #685c74;
+  color: var(--muted);
   font-size: 1.05rem;
   line-height: 1.65;
   max-width: 550px;
@@ -175,14 +179,14 @@
   gap: 24px;
 }
 .facts div {
-  border-top: 1px solid #ddd3e7;
+  border-top: 1px solid var(--border);
   padding-top: 20px;
 }
 .facts dt {
   font-size: 0.65rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: #776782;
+  color: var(--muted);
 }
 .facts dd {
   margin: 8px 0 0;
@@ -209,7 +213,7 @@
   gap: 36px;
   padding: 48px;
   border-radius: 28px;
-  background: #ece6f6;
+  background: var(--soft);
 }
 .worldArt {
   position: relative;
@@ -243,11 +247,11 @@
 .phone {
   width: min(100%, 260px);
   margin: auto;
-  border: 5px solid #282331;
+  border: 5px solid #172b3b;
   border-radius: 32px;
   overflow: hidden;
   background: #fff;
-  box-shadow: 0 18px 34px #30204020;
+  box-shadow: 0 18px 34px #102d4920;
 }
 .phone img {
   display: block;
@@ -257,7 +261,7 @@
 .deviceFigure figcaption,
 .leagueFigure figcaption {
   font-size: 0.8rem;
-  color: #695679;
+  color: var(--muted);
   margin-top: 24px;
   line-height: 1.5;
 }
@@ -267,7 +271,7 @@
 }
 .brand {
   background: var(--deep);
-  color: #faf7ff;
+  color: #f5fbff;
   max-width: none;
 }
 .brandIntro {
@@ -285,10 +289,10 @@
   object-fit: contain;
 }
 .brandIntro em {
-  color: #bba7ee;
+  color: var(--cyan);
 }
 .brandIntro p:not(.eyebrow) {
-  color: #c4b7d8;
+  color: #c1d8e8;
   margin-top: 24px;
 }
 .poseGrid {
@@ -302,7 +306,7 @@
   margin: 0;
   padding: 26px 16px 20px;
   border-radius: 20px;
-  background: #ece8f5;
+  background: var(--soft);
   color: var(--deep);
 }
 .poseGrid img {
@@ -316,7 +320,7 @@
 }
 .caption {
   text-align: center;
-  color: #bdacd4;
+  color: #b5cedf;
   font-size: 0.75rem;
   margin-top: 24px;
 }
@@ -334,7 +338,7 @@
   position: relative;
   border-radius: 22px;
   overflow: hidden;
-  background: #e6e4e7;
+  background: #e5ebef;
   aspect-ratio: 9/16;
 }
 .guideMedia video {
@@ -356,7 +360,7 @@
   margin-top: 10px;
   font-size: 0.95rem;
   line-height: 1.6;
-  color: #685c74;
+  color: var(--muted);
   max-width: 430px;
 }
 .videoControl {
@@ -364,7 +368,7 @@
   bottom: 12px;
   right: 12px;
   border: 1px solid #ffffff80;
-  background: #211a32dd;
+  background: #102d49dd;
   color: white;
   border-radius: 30px;
   font: inherit;
@@ -382,14 +386,14 @@
   grid-template-columns: 1.3fr 1fr;
   gap: 10vw;
   align-items: center;
-  border-top: 1px solid #e4ddeb;
+  border-top: 1px solid var(--border);
 }
 .trust p:not(.eyebrow) {
   margin-top: 24px;
 }
 .privacy {
   margin-top: 36px;
-  border-top: 1px solid #ddd3e7;
+  border-top: 1px solid var(--border);
   padding-top: 28px;
 }
 .privacy > span {
@@ -407,12 +411,12 @@
 .leagueFigure {
   padding: 40px;
   border-radius: 200px 200px 24px 24px;
-  background: #e9e8f4;
+  background: var(--soft);
 }
 .website {
   display: grid;
   grid-template-columns: 1.15fr 1fr;
-  background: #ece6f6;
+  background: var(--soft);
   margin: 0 var(--page-pad);
   border-radius: 28px;
   overflow: hidden;
@@ -438,7 +442,7 @@
   justify-content: space-between;
   gap: 24px;
   font-size: 0.75rem;
-  color: #6d5d7b;
+  color: var(--muted);
 }
 .closing a {
   color: var(--deep);
@@ -595,7 +599,7 @@
 
 .storeCampaign {
   padding: 70px var(--page-pad) 90px;
-  background: #e9e2f3;
+  background: #e3f1fb;
   margin-bottom: 90px;
 }
 .storeCampaign .sectionHeading {
@@ -610,7 +614,7 @@
   scroll-padding-inline: 4px;
   padding: 12px 4px 28px;
   scrollbar-width: thin;
-  scrollbar-color: #9984b5 transparent;
+  scrollbar-color: #6e9fc2 transparent;
 }
 .storeGallery > a {
   display: block;
@@ -618,7 +622,7 @@
   scroll-snap-align: start;
   border-radius: 18px;
   overflow: hidden;
-  box-shadow: 0 15px 28px -20px #20134265;
+  box-shadow: 0 15px 28px -20px #102d4965;
 }
 .storeGallery img {
   display: block;
@@ -626,14 +630,14 @@
   height: auto;
 }
 .storeGallery:focus-visible {
-  outline: 2px solid var(--purple);
+  outline: 2px solid var(--blue);
   outline-offset: 5px;
 }
 .galleryHint {
   margin-top: 16px;
   font-size: 0.75rem;
   line-height: 1.6;
-  color: #665273;
+  color: var(--muted);
 }
 @media (max-width: 700px) {
   .storeCampaign {
