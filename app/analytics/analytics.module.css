@@ -1,0 +1,9 @@
+.panel { position: fixed; bottom: 16px; left: 16px; z-index: 100; width: min(460px, calc(100vw - 32px)); padding: 20px; background: #fff; color: #202020; border: 1px solid #dedede; border-radius: 16px; box-shadow: 0 8px 32px #00000018; font: 13px/1.6 Arial, sans-serif; }
+.panel p { margin: 0; }
+.panel strong { display: block; margin-bottom: 5px; }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 16px; }
+.actions a { width: 100%; color: #555; text-decoration: underline; font-size: 11px; }
+.actions button { min-height: 44px; flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 10px 14px; background: #f7f7f7; color: #202020; cursor: pointer; }
+.actions button:last-child { background: #202020; color: #fff; border-color: #202020; }
+.settings { display: block; margin: 16px auto; border: 0; background: transparent; color: #686868; text-decoration: underline; padding: 12px; font: 11px Arial, sans-serif; cursor: pointer; }
+.panel :focus-visible, .settings:focus-visible { outline: 2px solid #1d54b5; outline-offset: 3px; }
