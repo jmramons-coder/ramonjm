@@ -8,7 +8,7 @@ import styles from "./tracer.module.css";
 export const metadata: Metadata = {
   title: "Tracer — Brand, product & digital experience — Ramon JM",
   description:
-    "From a symbol of protection and discovery to a research-security workspace. Explore Tracer's identity, art direction, app, and website.",
+    "Research due diligence software for reviewing partners and companies. Explore Tracer's product, design decisions, visual identity, and website.",
   alternates: { canonical: "/tracer" },
 };
 const inter = Inter({ subsets: ["latin"], display: "swap" });
@@ -39,56 +39,101 @@ export default function TracerProjectPage() {
     <>
       <SiteHeader tone="dark" textOnly />
       <main className={`${styles.page} ${inter.className}`}>
-        <section className={styles.hero} aria-labelledby="tracer-title">
-          <Image
-            className={styles.heroLandscape}
-            src="/tracer/landscape.webp"
-            alt=""
-            fill
-            priority
-            sizes="100vw"
-          />
-          <div className={styles.heroShade} />
-          <div className={styles.heroTop}>
-            <span>Tracer / Research security</span>
-            <span>Identity · Art direction · Digital experience</span>
+        <section className={styles.productHero} aria-labelledby="tracer-title">
+          <Image className={styles.productLandscape} src="/tracer/landscape.webp" alt="" fill sizes="100vw" />
+          <div className={styles.productHeroCopy}>
+            <div className={styles.productBrand}><Image src="/tracer/logo-glass.png" alt="" width={523} height={478} sizes="48px" /><span>Tracer / Research due diligence</span></div>
+            <h1 id="tracer-title">Know who you’re<br />building research with.</h1>
+            <p>Tracer is due diligence software for reviewing research partners and companies—bringing cases, evidence, and reports into one workspace.</p>
           </div>
-          <div className={styles.heroTitle}>
-            <p className={styles.eyebrow}>Protect the possibility.</p>
-            <h1 id="tracer-title">
-              Clear the path
-              <br />
-              to great science.
-            </h1>
-          </div>
-          <Image
-            className={styles.heroMark}
-            src="/tracer/logo-glass.png"
-            alt="Tracer's sculptural glass monogram"
-            width={523}
-            height={478}
-            priority
-            sizes="(max-width: 700px) 55vw, 36vw"
-          />
-          <div className={styles.heroBottom}>
-            <p>
-              A distinctive identity for a platform that helps research teams
-              understand who they’re working with—and move forward with greater
-              clarity.
-            </p>
-            <a href="#product">Discover the product</a>
-          </div>
+          <figure className={styles.workspace}>
+            <div className={styles.tablet}>
+              <div className={styles.tabletScreen}>
+                <a
+                  href="/tracer/app-workspace.webp"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="View full-size Tracer app screenshot in a new tab"
+                >
+                  <Image
+                    src="/tracer/app-workspace.webp"
+                    alt="Actual Tracer app screenshot from Figma, with a case sidebar, report workspace, evidence categories, and HTML and PDF export controls"
+                    width={1921}
+                    height={858}
+                    sizes="(max-width: 900px) 90vw, 1080px"
+                    priority
+                    unoptimized
+                  />
+                </a>
+              </div>
+            </div>
+            <figcaption>
+              The Tracer workspace. From case review to a shareable report.{" "}
+              <a
+                href="/tracer/app-workspace.webp"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Inspect full size
+                <span className="sr-only"> (opens in a new tab)</span>
+              </a>
+            </figcaption>
+          </figure>
+          <div className={styles.heroContext}><span>Product design & development · Brand & website</span><span>Collaboration / Subject-matter expertise & field contacts</span></div>
         </section>
         <nav className={styles.chapterNav} aria-label="Case study chapters">
           <span>TRACER</span>
-          <a href="#vision">Vision</a>
-          <a href="#identity">Identity</a>
           <a href="#product">Product</a>
+          <a href="#vision">Process</a>
+          <a href="#identity">Identity</a>
           <a href="#website">Website</a>
         </nav>
 
+        <section id="product" className={styles.product}>
+          <div className={styles.sectionHeading}>
+            <div>
+              <p className={styles.eyebrow}>01 / Inside the product</p>
+              <h2>
+                Complex evidence.
+                <br />A clear place to work.
+              </h2>
+            </div>
+            <p>
+              The workspace connects three parts of a review. Analysts
+              can keep a case in context, navigate its evidence, and prepare a
+              report for the next conversation.
+            </p>
+          </div>
+          <div className={styles.productBenefits}>
+            <article>
+              <span>01 / Organize</span>
+              <h3>Keep the case in view.</h3>
+              <p>
+                Cases and entities remain within reach alongside the active
+                report, keeping the review grounded in its context.
+              </p>
+            </article>
+            <article>
+              <span>02 / Understand</span>
+              <h3>Give evidence a structure.</h3>
+              <p>
+                Affiliations, co-authors, funding, and other evidence categories
+                give analysts a consistent way to navigate a complex file.
+              </p>
+            </article>
+            <article>
+              <span>03 / Communicate</span>
+              <h3>Carry the work forward.</h3>
+              <p>
+                Report controls put copying and HTML or PDF export in the
+                workspace, connecting investigation with communication.
+              </p>
+            </article>
+          </div>
+        </section>
+
         <section id="vision" className={styles.vision}>
-          <p className={styles.eyebrow}>01 / The opportunity</p>
+          <p className={styles.eyebrow}>02 / Design decisions</p>
           <h2>
             Security that makes
             <br />
@@ -102,10 +147,16 @@ export default function TracerProjectPage() {
               structured research-security workflow.
             </p>
             <p>
-              The creative challenge: give an evidence-driven platform a clear,
-              credible identity with enough openness and ambition to speak to
-              the world of science.
+              I handled all design and development across the product, identity,
+              and website. Collaborators contributed subject-matter expertise and
+              field contacts. The design challenge was to make a complex review
+              understandable while giving the platform a credible, distinctive voice.
             </p>
+          </div>
+          <div className={styles.designDecisions}>
+            <article><span>Structure</span><h3>Keep context close.</h3><p>The case sidebar sits alongside the report. Evidence categories break a dense investigation into sections an analyst can navigate.</p></article>
+            <article><span>Hierarchy</span><h3>Make the next step legible.</h3><p>The report is the central working surface, with export controls close at hand. The layout connects reviewing evidence with preparing a shareable result.</p></article>
+            <article><span>Expression</span><h3>Give clarity a visual language.</h3><p>The identity studies translate perception, direction, and protection into one mark. Glass, restrained typography, and open landscapes carry that idea into the website.</p></article>
           </div>
           <div className={styles.scope}>
             <span>Visual identity</span>
@@ -118,7 +169,7 @@ export default function TracerProjectPage() {
         <section id="identity" className={styles.identity}>
           <div className={styles.sectionHeading}>
             <div>
-              <p className={styles.eyebrow}>02 / Building the mark</p>
+              <p className={styles.eyebrow}>03 / Building the mark</p>
               <h2>
                 One symbol.
                 <br />
@@ -149,7 +200,7 @@ export default function TracerProjectPage() {
               </article>
             ))}
           </div>
-          <details className={styles.development}>
+          <details className={styles.development} open>
             <summary>Explore the original logo-development board</summary>
             <Image
               src="/tracer/logo-development.webp"
@@ -188,7 +239,7 @@ export default function TracerProjectPage() {
         <section className={styles.brandWorld}>
           <div className={styles.sectionHeading}>
             <div>
-              <p className={styles.eyebrow}>03 / A world around the mark</p>
+              <p className={styles.eyebrow}>04 / A world around the mark</p>
               <h2>
                 Rigorous by nature.
                 <br />
@@ -288,81 +339,6 @@ export default function TracerProjectPage() {
               Environmental application / Campaign concept
             </figcaption>
           </figure>
-        </section>
-
-        <section id="product" className={styles.product}>
-          <div className={styles.sectionHeading}>
-            <div>
-              <p className={styles.eyebrow}>04 / Inside the product</p>
-              <h2>
-                Complex evidence.
-                <br />A clear place to work.
-              </h2>
-            </div>
-            <p>
-              The same emphasis on clarity carries into the workspace. Analysts
-              can keep a case in context, navigate its evidence, and prepare a
-              report for the next conversation.
-            </p>
-          </div>
-          <figure className={styles.workspace}>
-            <div className={styles.tablet}>
-              <div className={styles.tabletScreen}>
-                <a
-                  href="/tracer/app-workspace.webp"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="View full-size Tracer app screenshot in a new tab"
-                >
-                  <Image
-                    src="/tracer/app-workspace.webp"
-                    alt="Actual Tracer app screenshot from Figma, with a case sidebar, report workspace, evidence categories, and HTML and PDF export controls"
-                    width={1921}
-                    height={858}
-                    sizes="(max-width: 900px) 85vw, 800px"
-                    unoptimized
-                  />
-                </a>
-              </div>
-            </div>
-            <figcaption>
-              The Tracer workspace. From case review to a shareable report.{" "}
-              <a
-                href="/tracer/app-workspace.webp"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Inspect full size
-                <span className="sr-only"> (opens in a new tab)</span>
-              </a>
-            </figcaption>
-          </figure>
-          <div className={styles.productBenefits}>
-            <article>
-              <span>01 / Organize</span>
-              <h3>Keep the case in view.</h3>
-              <p>
-                Cases and entities remain within reach alongside the active
-                report, keeping the review grounded in its context.
-              </p>
-            </article>
-            <article>
-              <span>02 / Understand</span>
-              <h3>Give evidence a structure.</h3>
-              <p>
-                Affiliations, co-authors, funding, and other evidence categories
-                give analysts a consistent way to navigate a complex file.
-              </p>
-            </article>
-            <article>
-              <span>03 / Communicate</span>
-              <h3>Carry the work forward.</h3>
-              <p>
-                Report controls put copying and HTML or PDF export in the
-                workspace, connecting investigation with communication.
-              </p>
-            </article>
-          </div>
         </section>
 
         <section id="website" className={styles.website}>
