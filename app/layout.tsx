@@ -1,5 +1,3 @@
-import { Suspense } from "react";
-import { Analytics } from "./analytics/analytics";
 import type { Metadata, Viewport } from "next";
 import { headers } from "next/headers";
 import { Geist } from "next/font/google";
@@ -60,7 +58,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={geistSans.variable}>{children}<Suspense fallback={null}><Analytics /></Suspense></body>
+      <body className={geistSans.variable}>{children}</body>
     </html>
   );
 }

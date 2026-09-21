@@ -1,3 +1,5 @@
+> Disabled on September 21, 2026 at the owner’s request. The portfolio no longer mounts analytics, the consent prompt, or private case study tracking. The setup below is retained for reference only.
+
 # Portfolio analytics
 
 Account: Ramon JM — Portfolio (`408921960`), independent of Arcera.
