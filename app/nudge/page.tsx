@@ -69,8 +69,8 @@ export default function NudgePage() {
               done.
             </p>
             <div className={styles.heroLinks}>
-              <a className={styles.storeButton} href="https://apps.apple.com/app/id6804271028" target="_blank" rel="noopener noreferrer">Download on the App Store<span className="sr-only"> (opens in a new tab)</span></a>
-              <a className={styles.websiteButton} href="https://getnudge-todo.com/" target="_blank" rel="noopener noreferrer">Visit Nudge website<span className="sr-only"> (opens in a new tab)</span></a>
+              <a className="header-action" href="https://apps.apple.com/app/id6804271028" target="_blank" rel="noopener noreferrer">Download on the App Store<span className="sr-only"> (opens in a new tab)</span></a>
+              <a className="header-action" href="https://getnudge-todo.com/" target="_blank" rel="noopener noreferrer">Visit Nudge website<span className="sr-only"> (opens in a new tab)</span></a>
               <span className={styles.availability}>Available for iPhone & iPad</span>
             </div>
           </div>
@@ -382,7 +382,7 @@ export default function NudgePage() {
             iPhone and iPad.
           </p>
           <a
-            className={styles.button}
+            className={`header-action ${styles.button}`}
             href="https://getnudge-todo.com/"
             target="_blank"
             rel="noopener noreferrer"

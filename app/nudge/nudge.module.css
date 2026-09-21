@@ -83,24 +83,9 @@
   gap: 12px;
   margin-top: 32px;
 }
-.heroLinks a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 48px;
-  padding: 13px 20px;
-  border: 1px solid var(--plum);
-  border-radius: 100px;
-  font-size: 13px;
-  font-weight: 500;
-  text-decoration: none;
-}
-.storeButton { background: var(--plum); color: white; }
-.storeButton:hover { background: #563663; }
-.websiteButton { color: var(--plum); background: transparent; }
-.websiteButton:hover { background: #ffffff80; }
+.heroLinks a { min-height: 44px; text-decoration: none; justify-content: center; }
 .heroLinks .availability { flex-basis: 100%; color: #786b7e; font-size: 11px; }
-.heroLinks a:focus-visible { outline: 2px solid var(--plum); outline-offset: 4px; }
+.heroLinks a:focus-visible, .button:focus-visible { outline: 2px solid #0e0e0e; outline-offset: 4px; }
 .heroStage {
   display: flex;
   gap: 24px;
@@ -396,18 +381,7 @@
   line-height: 1.75;
   color: #6e5c77;
 }
-.button {
-  display: inline-block;
-  margin-top: 30px;
-  background: var(--plum);
-  color: white;
-  padding: 16px 26px;
-  border-radius: 100px;
-  font-size: 14px;
-}
-.button:hover {
-  background: #563663;
-}
+.button { margin-top: 30px; min-height: 44px; text-decoration: none; }
 .footer {
   padding: 30px var(--pad);
   display: flex;
