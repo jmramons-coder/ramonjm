@@ -75,7 +75,6 @@ export default function NudgePage() {
             </div>
           </div>
           <div className={styles.heroStage}>
-            <span className={styles.orbit} aria-hidden="true" />
             <NudgeDemo />
             <div className={styles.secondPhone}>
               <Phone

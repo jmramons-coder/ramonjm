@@ -96,16 +96,6 @@
   min-width: 0;
   padding: 30px 0;
 }
-.orbit {
-  position: absolute;
-  z-index: -1;
-  width: 110%;
-  aspect-ratio: 1;
-  background: #e8dcf4;
-  border-radius: 50%;
-  top: 12%;
-  left: -5%;
-}
 .phone {
   background: #252128;
   border-radius: clamp(22px, 3vw, 36px);
