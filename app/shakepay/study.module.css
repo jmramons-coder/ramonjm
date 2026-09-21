@@ -61,3 +61,15 @@
 .page .filmControls .soundButton{width:52px;height:52px;min-width:52px;min-height:52px;padding:0;border-radius:50%}
 
 .prototypeOffer{grid-column:1/-1;background:#fff;color:#171717;border-radius:24px;padding:32px 36px}.sandboxSection .prototypeOffer p{color:#595959}.prototypeOffer h3{font-size:28px;letter-spacing:-.025em;margin:12px 0 16px}.prototypeOffer>p{max-width:880px}.prototypeOffer .prototypeNote{font-size:14px;line-height:1.7;margin-top:22px;padding-top:22px;border-top:1px solid #ececec}@media(max-width:700px){.prototypeOffer{padding:26px;margin-top:20px}.prototypeOffer h3{font-size:24px}}
+
+/* Keep supporting detail available without overwhelming the main story. */
+.collapsibleSection{padding:0 clamp(24px,8vw,120px)}
+.collapsibleSection>details{border-top:1px solid #dedede}
+.collapsibleSection summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:88px;padding:24px 0;cursor:pointer;font-size:clamp(20px,2vw,28px);font-weight:500;letter-spacing:-.025em}
+.collapsibleSection summary::-webkit-details-marker{display:none}
+.collapsibleSection details[open]>summary .disclosurePlus{transform:rotate(45deg)}
+.collapsibleSection .section{padding:12px 0 48px}
+.collapsibleSection .sandboxSection{padding:32px;border-radius:24px;margin-bottom:32px;gap:32px}
+.collapsibleSection .section h2{font-size:clamp(30px,3.5vw,48px)}
+.collapsibleSection+.opportunityNote{padding-top:24px}
+@media(max-width:800px){.collapsibleSection{padding-inline:24px}.collapsibleSection summary{min-height:76px;font-size:22px}.collapsibleSection .sandboxSection{padding:24px;grid-template-columns:1fr}}

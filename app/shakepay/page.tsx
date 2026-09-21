@@ -33,12 +33,17 @@ export default async function Study({searchParams}:{searchParams:Promise<{error?
   </div></div>
   <ProfileWalkthrough />
  </section>
- <section id="sandbox" className={`${styles.section} ${styles.sandboxSection}`}>
+ <section id="sandbox" className={styles.collapsibleSection}>
+  <details><summary>R&amp;D sandbox<span aria-hidden="true" className={styles.disclosurePlus}>+</span></summary>
+   <div className={`${styles.section} ${styles.sandboxSection}`}>
   <div><p className={styles.eyebrow}>03 / R&amp;D sandbox</p><h2>Build it.<br/>Understand it.<br/>Explore within it.</h2></div>
   <div className={styles.sandboxCopy}><p>I rebuilt the core Shakepay experience as a local iOS app in SwiftUI, with AI assistance for development. It gave me a working environment to understand the existing flows, experiment, and integrate the Rewards proposal directly into the experience.</p><p>Instead of reviewing screens in isolation, I could test how the idea connects to Home, Profile, benefits, and everyday interactions.</p><div className={styles.aiBuildNote}><h3>Built with agentic AI.</h3><p>I used GPT-6 Astra in Codex as my coding assistant to rebuild the iOS experience in SwiftUI. I directed the product decisions, compared the result with the reference app, and iterated on the interactions.</p></div><div className={styles.sandboxFacts}><span>Native iOS · SwiftUI</span><span>Working interactions</span><span>Fictional demo data</span></div></div>
   <aside className={styles.prototypeOffer}><p className={styles.eyebrow}>For the Shakepay team</p><h3>Explore the full prototype.</h3><p>I can provide access to the complete prototype and GitHub repository so your team can interact directly with the proposed experience and explore the code behind it.</p><p className={styles.prototypeNote}>I’m a product designer, not an engineer, and I don’t manually review all of the generated code. I use this as a tool to make ideas tangible, rather than present it as an engineering-ready deliverable. I guide the build toward established practices; engineering review would still be needed. My ambition is for this work to become a useful starting point for developers—helping the team move faster without starting from scratch.</p></aside>
+  </div></details>
  </section>
- <section id="process" className={`${styles.section} ${styles.processSection}`}>
+ <section id="process" className={styles.collapsibleSection}>
+  <details><summary>My process<span aria-hidden="true" className={styles.disclosurePlus}>+</span></summary>
+   <div className={`${styles.section} ${styles.processSection}`}>
   <div className={styles.processIntro}><p className={styles.eyebrow}>04 / My process</p><h2>From what I have.<br/>To what it brings me.</h2><p>As a longtime Shakepay user who has followed crypto on and off for years, I wanted to understand the opportunity beyond buying Bitcoin: how everyday financial habits could make the product more useful over time.</p></div>
   <div className={styles.processSteps}>
    <article><span>01 / Understand the context</span><h3>Understand Shakepay’s place in everyday finance.</h3><p>I used agentic AI research, alongside my experience with Shakepay and familiarity with alternatives such as Wealthsimple and Desjardins, to understand the market. I explored how cards, direct deposit, and Bitcoin rewards could build a longer-term relationship through everyday financial habits.</p></article>
@@ -47,8 +52,11 @@ export default async function Study({searchParams}:{searchParams:Promise<{error?
    <article><span>04 / Make it tangible</span><h3>See how everyday rewards could add up.</h3><p>Rewards connects what you have received to the products and habits behind it. The calculator then explores how changing savings, card spending, or qualifying deposits could change rewards over time. The idea is to make a possible snowball effect tangible: small contributions accumulating into something meaningful, with clear assumptions rather than a promise of growth.</p></article>
   </div>
   <div className={styles.processTakeaway}><p>Rates describe a benefit.<br/><strong>Rewards make its outcome visible.</strong></p><span>A design hypothesis, not a validated customer insight. This exploration has not yet been tested with users or Shakepay’s team.</span></div>
+  </div></details>
  </section>
- <section id="validation" className={styles.section}>
+ <section id="validation" className={styles.collapsibleSection}>
+  <details><summary>Questions to explore<span aria-hidden="true" className={styles.disclosurePlus}>+</span></summary>
+   <div className={styles.section}>
   <p className={styles.eyebrow}>05 / Questions to explore</p>
   <h2>Questions this<br/>first iteration raises.</h2>
   <p>The prototype makes the idea tangible. These are the questions I would explore next with the team and with users.</p>
@@ -58,6 +66,7 @@ export default async function Study({searchParams}:{searchParams:Promise<{error?
    <article><span>03 / How to show value</span><h3>Sats, dollars, or both?</h3><p>Bitcoin’s price changes. Which view helps people understand their rewards: exact sats, dollars at payout, or today’s value? Estimates need equally clear assumptions.</p></article>
   </div>
   <p className={styles.note}>I would also validate the calculation rules: which actions earn rewards, which unlock a tier, and when rates or eligibility change. Any projection should make its price and reinvestment assumptions explicit.</p>
+  </div></details>
  </section>
  <section id="next-opportunities" className={`${styles.section} ${styles.opportunityNote}`}>
   <details><summary>What else could be explored?<span aria-hidden="true" className={styles.disclosurePlus}>+</span></summary><p>Automation is another opportunity: how people set up financial habits around recurring deposits, Bitcoin purchases, and investing—and how those experiences connect across the app.</p></details>
