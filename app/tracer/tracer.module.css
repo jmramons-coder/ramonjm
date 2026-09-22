@@ -818,7 +818,7 @@
 .visitWebsite:hover { background: #154492; }
 .productHero h1 { font-size: clamp(34px, 4.8vw, 70px); line-height: 1.05; letter-spacing: -.055em; font-weight: 500; margin: 22px 0 18px; }
 .productHeroCopy > p { max-width: 620px; font-size: 16px; line-height: 1.65; color: #526174; }
-.productHero .workspace { max-width: 1100px; padding-top: 32px; }
+.productHero .workspace { max-width: 980px; padding-top: 32px; }
 .productHero .tablet { transform: none; margin-bottom: 16px; }
 .heroContext { max-width: 1080px; margin: 26px auto 0; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px 24px; font-size: 10px; line-height: 1.6; color: #5c6a7b; }
 @media(max-width:650px) {
@@ -849,8 +849,8 @@
   .markPair > div { min-height: 300px; padding: 24px; }
 }
 
-/* A clean screen edge without the metallic frame or captured image boundary. */
-.productHero .tablet{padding:0;border:0;background:#fff;overflow:hidden;box-shadow:0 16px 30px -22px #172a4c35}
-.productHero .tabletScreen{border-radius:inherit}
+/* A restrained silver device frame around a clean screenshot edge. */
+.productHero .tablet{padding:clamp(6px,.8vw,9px);border:1px solid #b8c0c8;background:#e4e8ec;border-radius:clamp(17px,2vw,25px);overflow:hidden;box-shadow:0 20px 36px -22px #172a4c45,0 2px 4px #172a4c12}
+.productHero .tabletScreen{border-radius:clamp(10px,1.2vw,16px);outline:1px solid #c5cbd1}
 .productHero .tabletScreen a{overflow:hidden;border-radius:inherit}
 .productHero .tabletScreen img{width:calc(100% + 4px);max-width:none;margin:-2px}
