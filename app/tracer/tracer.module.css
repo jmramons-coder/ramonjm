@@ -848,3 +848,9 @@
   .principles img { height: 100px; }
   .markPair > div { min-height: 300px; padding: 24px; }
 }
+
+/* A clean screen edge without the metallic frame or captured image boundary. */
+.productHero .tablet{padding:0;border:0;background:#fff;overflow:hidden;box-shadow:0 16px 30px -22px #172a4c35}
+.productHero .tabletScreen{border-radius:inherit}
+.productHero .tabletScreen a{overflow:hidden;border-radius:inherit}
+.productHero .tabletScreen img{width:calc(100% + 4px);max-width:none;margin:-2px}
