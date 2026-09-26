@@ -57,10 +57,10 @@ export default function Home() {
             <Link className={styles.project} href="/shakepay">
               <Image className={`${styles.projectIcon} ${styles.rounded}`} src="/shakepay-icon.png" alt="" width={44} height={44} />
               <div className={styles.projectBody}>
-                <div className={styles.projectHeading}><h3>Shakepay · Rewards exploration</h3><span className={styles.collaboration}>Private study</span></div>
+                <div className={styles.projectHeading}><h3>Shakepay · Rewards exploration</h3><span className={styles.collaboration}>Independent study</span></div>
                 <p>Making everyday rewards easier to understand.<br /><span className={styles.studyDisclosure}>Unsolicited concept · Not affiliated with Shakepay</span></p>
               </div>
-              <span className={styles.view} aria-label="Access code required"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="3" stroke="currentColor" strokeWidth="1.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" strokeWidth="1.5"/></svg></span>
+              <span className={styles.view} aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
             </Link>
           </li></ul>
         </section>

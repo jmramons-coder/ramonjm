@@ -1,10 +1,8 @@
 import { open, stat } from "node:fs/promises";
 import path from "node:path";
-import { hasAccess } from "../../access";
 export const runtime="nodejs";
 export const dynamic="force-dynamic";
 export async function GET(request:Request,{params}:{params:Promise<{asset:string}>}) {
- if(!await hasAccess()) return new Response("Unauthorized",{status:401,headers:{"Cache-Control":"private, no-store"}});
  const {asset}=await params; const files:Record<string,string>={film:"film.mp4",profile:"profile.png",compare:"compare.png","profile-loop":"profile-loop.mp4",potential:"potential.png",poster:"poster.jpg",home:"home.jpg",rewards:"rewards.jpg","home-loop":"home-loop.mp4","rewards-loop":"rewards-loop.mp4","potential-loop":"potential-loop.mp4"}; const name=files[asset];
  if(typeof name!=="string") return new Response("Not found",{status:404});
  const file=path.join(process.cwd(),"private-media",name); const {size}=await stat(file);
