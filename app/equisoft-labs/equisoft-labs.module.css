@@ -222,6 +222,8 @@
 }
 
 .prototypeSection {
+  /* Viewport-based gutters need a full-width section, not the shared 1320px cap. */
+  width: 100%;
   max-width: none;
   padding-right: max(20px, calc((100vw - 1320px) / 2));
   padding-left: max(20px, calc((100vw - 1320px) / 2));
