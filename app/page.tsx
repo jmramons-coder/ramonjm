@@ -21,7 +21,7 @@ export default function Home() {
         <section className={styles.intro} aria-labelledby="page-title">
           <p className={styles.eyebrow}>{portfolio.name} · {portfolio.role}</p>
           <h1 id="page-title">{portfolio.headline}</h1>
-          <p>{portfolio.intro[0]}<br />{portfolio.intro[1]}</p>
+          <div className={styles.introCopy}>{portfolio.intro.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
         </section>
 
         <section className={styles.section} aria-labelledby="clients-title">
@@ -31,7 +31,8 @@ export default function Home() {
               <Image className={styles.clientLogo} src="/equisoft-symbol.svg" alt="" width={44} height={44} />
               <div className={styles.clientBody}>
                 <div className={styles.clientHeading}><h3>Equisoft</h3><span className={styles.current}><span aria-hidden="true" />Current</span></div>
-                <p>Senior product designer<br />Fintech & insurance · 0-to-1</p>
+                <p>Senior product designer<br />Fintech & insurance</p>
+                <p className={styles.currentSummary}>From designing across the product suite to leading the AI committee, I help shape strategic insurance products through agentic solutions and AI integrations.</p>
                 <ul className={styles.domains} aria-label="Equisoft product experience">
                   <li><span className={styles.acronym}>CRM</span><span>Customer relationship management</span></li>
                   <li><span className={styles.acronym}>PaaS</span><span>Policy administration</span></li>

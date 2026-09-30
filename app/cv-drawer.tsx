@@ -118,9 +118,9 @@ export function CvDrawer() {
 
                 <div className="cv-drawer-scroll">
                   <div className="cv-drawer-intro">
-                    <h2 id="cv-drawer-title">José Manuel Ramon</h2>
+                    <h2 id="cv-drawer-title">Ramon JM</h2>
                     <p className="cv-drawer-role">
-                      Senior Product Designer · Design & development
+                      Senior Product Designer · AI-native builder
                     </p>
                     <p>
                       Seven years of experience connecting research, product strategy,

@@ -1,8 +1,11 @@
 .main { max-width: 900px; padding: 0 32px; }
 .intro { padding: 76px 0 64px; }
 .eyebrow { color: var(--body); font-size: 14px; margin-bottom: 16px; }
-.intro h1 { font-size: clamp(32px, 5vw, 48px); line-height: 1.12; font-weight: 500; letter-spacing: -1.8px; margin-bottom: 16px; }
-.intro > p:last-child { color: var(--body); font-size: 16px; line-height: 1.6; max-width: 440px; }
+.intro h1 { font-size: clamp(30px, 4.4vw, 40px); line-height: 1.12; font-weight: 500; letter-spacing: -1.8px; margin-bottom: 16px; }
+.intro h1 { max-width: 680px; text-wrap: balance; }
+.introCopy { max-width: 650px; color: var(--body); font-size: 16px; line-height: 1.65; }
+.introCopy p + p { margin-top: 14px; font-size: 14px; }
+.clientBody > .currentSummary { max-width: 620px; margin-top: 12px; }
 .section { margin-bottom: 52px; scroll-margin-top: 100px; }
 .section h2 { font-size: 15px; line-height: 1.5; font-weight: 500; color: var(--body); margin-bottom: 16px; }
 .projectNote { max-width: 620px; margin: -6px 0 20px; color: var(--body); font-size: 13px; line-height: 1.65; }
@@ -34,7 +37,8 @@
   .main { padding: 0 20px; }
   .intro { padding: 40px 0 44px; }
   .intro h1 { letter-spacing: -1px; }
-  .intro > p:last-child { font-size: 14px; }
+  .introCopy { font-size: 15px; }
+  .introCopy p + p { font-size: 13px; }
   .section { margin-bottom: 40px; }
   .client, .project { gap: 14px; padding: 18px 0; }
   .clientLogo, .projectIcon { width: 36px; height: 36px; }

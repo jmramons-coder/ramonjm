@@ -1,10 +1,14 @@
 export const portfolio = {
   name: "Ramon JM",
   role: "Senior product designer",
-  headline: "I design useful things.",
-  intro: ["Complex products at work.", "Independent ideas brought to life."],
+  headline: "I design and build digital products.",
+  intro: [
+    "AI-native, with seven years across fintech and insurance. From research to launch, I connect strategy, design and code to build for business growth, retention and thoughtful experiences.",
+    "Inspired by architecture and industrial design, I experiment daily with product ideas, branding, AI-generated images and video, and distribution.",
+  ],
+  socialIntro: "AI-native product design and development. Fintech, insurance and independent ideas, from zero to one.",
   title: "Ramon JM — Senior Product Designer",
-  description: "I design useful things. Complex products at work. Independent ideas brought to life. Explore my collaborations and six side projects in design and development.",
+  description: "Ramon JM — Senior product designer and AI-native builder. Seven years across fintech and insurance, connecting strategy, design and development from idea to launch.",
 };
 
 export const projects = [

@@ -16,9 +16,9 @@ export default function OpenGraphImage() {
             <div style={{ fontSize: 19, color: "#646464" }}>{portfolio.role}</div>
           </div>
         </div>
-        <div style={{ display: "flex", marginTop: 64, fontSize: 76, fontWeight: 700, letterSpacing: "-3px", lineHeight: 1.1 }}>{portfolio.headline}</div>
+        <div style={{ display: "flex", marginTop: 50, fontSize: 66, fontWeight: 700, letterSpacing: "-3px", lineHeight: 1.1 }}>{portfolio.headline}</div>
         <div style={{ display: "flex", flexDirection: "column", marginTop: 24, fontSize: 28, lineHeight: 1.5, color: "#646464" }}>
-          {portfolio.intro.map((line) => <div key={line}>{line}</div>)}
+          {portfolio.socialIntro}
         </div>
         <div style={{ display: "flex", flexDirection: "column", marginTop: "auto", paddingTop: 24, borderTop: "1px solid #dedede", gap: 14 }}>
           <div style={{ fontSize: 18, color: "#646464" }}>Side projects · Design & development</div>
