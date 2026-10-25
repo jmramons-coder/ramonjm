@@ -19,6 +19,7 @@
 .tracer .product, .roi .product { border-radius: 12px; filter: drop-shadow(0 22px 22px #112a3825); }
 .abeam { background: #e4f5ff; color: #095c80; }
 .abeam .product { width: 38%; height: 55%; }
+.orb { width: min(34%, 240px); flex: 0 0 auto; filter: drop-shadow(0 28px 35px #075cc421); }
 .crypto { background: #f1ebd9; color: #4f5033; }
 .crypto .product { width: 52%; height: 76%; }
 .roi { background: #e1ecf4; color: #28445f; }

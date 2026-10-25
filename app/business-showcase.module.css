@@ -1,0 +1,421 @@
+.card {
+  --surface: var(--portfolio-card, #191919);
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--portfolio-border, #303030);
+  border-radius: var(--portfolio-radius, 20px);
+  background: var(--surface);
+  color: var(--portfolio-text, #f3f3f3);
+  container-type: inline-size;
+}
+.heading {
+  display: flex;
+  padding: 20px 20px 17px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.heading p {
+  margin: 0 0 5px;
+  color: var(--portfolio-muted, #b0b0b0);
+  font-size: 11px;
+  line-height: 1.5;
+}
+.heading h2 {
+  margin: 0;
+  font-size: 23px;
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 1.2;
+}
+.heading > img {
+  display: block;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  object-fit: contain;
+  border-radius: 11px;
+}
+.choices {
+  display: flex;
+  gap: 5px;
+  padding: 0 20px 17px;
+}
+.choices button {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 11px;
+  border: 1px solid var(--portfolio-border, #303030);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--portfolio-muted, #b0b0b0);
+  font: inherit;
+  font-size: 12px;
+  line-height: 1.3;
+  cursor: pointer;
+  transition:
+    background 160ms,
+    color 160ms;
+}
+.choices button[aria-pressed="true"] {
+  border-color: transparent;
+  background: var(--portfolio-contrast, #fff);
+  color: var(--portfolio-contrast-ink, #111);
+}
+.card button:focus-visible,
+.card a:focus-visible,
+.card input:focus-visible {
+  outline: 2px solid var(--portfolio-focus, #bcd6ff);
+  outline-offset: 3px;
+}
+.projectLink {
+  display: flex;
+  min-height: 60px;
+  padding: 14px 20px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-top: 1px solid var(--portfolio-border, #303030);
+  color: var(--portfolio-text, #f3f3f3);
+  font-size: 13px;
+  line-height: 1.5;
+  transition: background 160ms;
+}
+.projectLink:hover {
+  background: var(--portfolio-control, #303030);
+}
+.projectLink > svg {
+  width: 17px;
+  height: 17px;
+  flex: 0 0 auto;
+}
+.projectLink:focus-visible {
+  outline-offset: -5px !important;
+}
+.roiStage {
+  position: relative;
+  display: flex;
+  height: 300px;
+  margin: 0 14px;
+  overflow: hidden;
+  align-items: center;
+  border: 1px solid #d5e5ef;
+  border-radius: 12px;
+  background: #e7f2f9;
+}
+.roiImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.calculator {
+  position: absolute;
+  right: -16px;
+  bottom: 26px;
+  width: 37%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 9px 14px #17517a1a);
+}
+.sceneLabel {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  max-width: calc(100% - 20px);
+  padding: 6px 8px;
+  border: 1px solid #ffffffd9;
+  border-radius: 6px;
+  background: #ffffffed;
+  color: #385a73;
+  font-size: 10px;
+  line-height: 1.4;
+}
+.timeScenario {
+  padding: 19px 20px 20px;
+}
+.scenarioHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.scenarioHeading label {
+  max-width: 16ch;
+  color: var(--portfolio-muted, #b0b0b0);
+  font-size: 12px;
+  line-height: 1.5;
+}
+.scenarioHeading output {
+  flex: 0 0 auto;
+  font-size: 29px;
+  font-weight: 450;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.055em;
+}
+.scenarioHeading output > span {
+  font-size: 11px;
+  letter-spacing: 0;
+  color: var(--portfolio-muted, #b0b0b0);
+}
+.timeScenario input {
+  display: block;
+  width: 100%;
+  height: 44px;
+  margin: 9px 0 3px;
+  accent-color: #2b82ad;
+  cursor: pointer;
+}
+.timeScenario p {
+  display: flex;
+  margin: 0;
+  justify-content: space-between;
+  gap: 8px;
+  color: var(--portfolio-subtle, #a0a0a0);
+  font-size: 10px;
+  line-height: 1.5;
+}
+.shakeStage {
+  position: relative;
+  height: 500px;
+  overflow: hidden;
+  background: var(--portfolio-control, #f0f3f5);
+  isolation: isolate;
+}
+.shakePhone {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  width: 214px;
+  overflow: hidden;
+  aspect-ratio: 804 / 1748;
+  border: 3px solid #243c4b;
+  border-radius: 29px;
+  background: #fff;
+  box-shadow: 0 13px 22px #1265a31a;
+  transform: translateX(-50%);
+}
+.shakePhone img,
+.shakePhone video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.shakeHeading {
+  min-height: 80px;
+  padding-block: 16px;
+}
+.shakepay .choices {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.shakeIdentity {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 11px;
+}
+.shakeIdentity > img {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 9px;
+  object-fit: contain;
+}
+.shakeIdentity h2 {
+  font-size: 21px;
+}
+.shakeIdentity a {
+  color: inherit;
+  text-decoration: none;
+}
+.shakePlayback {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  flex-shrink: 0;
+  place-items: center;
+  border: 1px solid var(--portfolio-border, #303030);
+  border-radius: 50%;
+  background: var(--portfolio-control, #303030);
+  color: var(--portfolio-text, #f3f3f3);
+  cursor: pointer;
+}
+.shakePlayback:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+.shakePlayback svg {
+  width: 16px;
+  height: 16px;
+}
+.shakeDisclosure {
+  margin: 0;
+  padding: 12px 20px;
+  color: var(--portfolio-muted, #b0b0b0);
+  font-size: 11px;
+  line-height: 1.5;
+}
+.disclosure {
+  min-height: 64px;
+  margin: 0;
+  padding: 15px 20px;
+  color: var(--portfolio-subtle, #a0a0a0);
+  font-size: 11px;
+  line-height: 1.65;
+}
+.cryptoStage {
+  position: relative;
+  display: flex;
+  height: 330px;
+  margin: 0 14px;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #415234;
+  border-radius: 13px;
+  background: #26381a;
+}
+.treasure {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.plannerStage {
+  background: #eaf0e6;
+  border-color: #cfdbca;
+}
+.cryptoBrowser {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  background: #fff;
+}
+.browserBar {
+  display: flex;
+  height: 25px;
+  flex-shrink: 0;
+  padding: 0 10px;
+  align-items: center;
+  gap: 4px;
+  border-bottom: 1px solid #e8ebe5;
+  background: #fafbf8;
+  color: #72816a;
+}
+.browserBar i {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #b7c5af;
+}
+.browserBar span {
+  margin-left: 7px;
+  font-size: 9px;
+}
+.cryptoBrowser > img {
+  display: block;
+  width: 100%;
+  height: calc(100% - 25px);
+  min-height: 0;
+  object-fit: contain;
+}
+.cryptoStatement {
+  display: flex;
+  min-height: 88px;
+  padding: 18px 20px 4px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+.cryptoStatement p {
+  margin: 0;
+  color: var(--portfolio-muted, #b0b0b0);
+  font-size: 15px;
+  line-height: 1.6;
+  letter-spacing: -0.025em;
+}
+.cryptoStatement strong {
+  color: var(--portfolio-text, #f3f3f3);
+  font-weight: 480;
+}
+.cryptoStatement img {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+}
+.stepPicker {
+  display: grid;
+  min-height: 88px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  padding: 18px 14px 4px;
+}
+.stepPicker button {
+  display: flex;
+  min-width: 0;
+  padding: 10px 8px;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  border: 1px solid var(--portfolio-border, #303030);
+  border-radius: 9px;
+  background: transparent;
+  color: var(--portfolio-muted, #b0b0b0);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+.stepPicker button > span {
+  color: var(--portfolio-subtle, #a0a0a0);
+  font-size: 10px;
+}
+.stepPicker button[aria-pressed="true"] {
+  background: var(--portfolio-control, #303030);
+  border-color: var(--portfolio-subtle, #a0a0a0);
+  color: var(--portfolio-text, #f3f3f3);
+}
+.card[data-paused="true"] *,
+.card[data-paused="true"] *::before,
+.card[data-paused="true"] *::after {
+  transition: none !important;
+  animation: none !important;
+}
+@container (max-width: 310px) {
+  .heading {
+    padding-inline: 16px;
+  }
+  .choices {
+    padding-inline: 16px;
+    gap: 4px;
+  }
+  .choices button {
+    padding-inline: 9px;
+    font-size: 11px;
+  }
+  .roiStage {
+    height: 265px;
+  }
+  .scenarioHeading output {
+    font-size: 26px;
+  }
+  .timeScenario p {
+    flex-wrap: wrap;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .card *,
+  .card *::before,
+  .card *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}

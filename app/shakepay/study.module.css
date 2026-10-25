@@ -85,3 +85,99 @@
   .collapsibleSection .section{padding-inline:0}
   .collapsibleSection .sandboxSection{padding-inline:32px}
 }
+
+/* The same study can live in the portfolio's scrolling, blurred-backdrop view. */
+.expanded {
+  --study-gutter: clamp(24px, 5.5vw, 88px);
+  display: grid;
+  gap: 24px;
+  min-height: 0;
+  background: transparent;
+}
+
+.expanded > section {
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 30px;
+}
+
+.expanded .film,
+.expanded > .section,
+.expanded .closing {
+  padding: clamp(40px, 6vw, 88px) var(--study-gutter);
+}
+
+.expanded > .section,
+.expanded .collapsibleSection {
+  background: rgb(255 255 255 / 96%);
+}
+
+.expanded .film h2,
+.expanded .section h2,
+.expanded .galleryHeading h2,
+.expanded .closing h2 {
+  font-size: clamp(32px, 4.2vw, 62px);
+}
+
+.expanded .galleryHeading,
+.expanded .galleryNote,
+.expanded .gallery {
+  padding-inline: var(--study-gutter);
+}
+
+.expanded .gallery {
+  scroll-padding-inline: var(--study-gutter);
+}
+
+.expanded .collapsibleSection {
+  padding: 0;
+}
+
+.expanded .collapsibleSection > .section {
+  padding: clamp(40px, 6vw, 88px) var(--study-gutter);
+}
+
+.expanded .collapsibleSection > .sandboxSection {
+  margin: 0;
+  border-radius: 0;
+  gap: clamp(28px, 4vw, 56px);
+}
+
+.expanded .nextReading > p:last-child {
+  max-width: 760px;
+}
+
+.expanded button:disabled {
+  cursor: default;
+  opacity: 0.55;
+}
+
+@media (max-width: 800px) {
+  .expanded {
+    --study-gutter: 24px;
+    gap: 16px;
+  }
+
+  .expanded > section {
+    border-radius: 24px;
+  }
+
+  .expanded .film,
+  .expanded > .section,
+  .expanded .closing,
+  .expanded .collapsibleSection > .section {
+    padding: 40px var(--study-gutter);
+  }
+
+  .expanded .filmPlayer {
+    max-width: 320px;
+  }
+
+  .expanded .gallerySection {
+    padding-block: 40px;
+  }
+
+  .expanded .galleryHeading h2 {
+    font-size: 32px;
+  }
+}

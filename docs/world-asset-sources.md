@@ -30,3 +30,11 @@ Refinements made in the original Figma file:
 Figma exported the section at 1× (10377 × 3804). Each panel was extracted losslessly using its actual Figma bounds, not a screen capture: x=[309,1743,3151,4574,5944,7314,8748], y=468, width=1320, height=2868. Full-resolution PNG exports are in artifacts/world-figma/exports. Portfolio WebP versions are 990 × 2151 at quality 92, displayed at a maximum card width of 290 CSS pixels.
 
 The case study adds all seven panels in a keyboard-focusable, responsive scroll-snap gallery with descriptive alt text and links to larger versions.
+
+## Homepage App Store gallery — October 24, 2026
+
+The former character artwork tile now uses the original seven `public/world/store-*.webp` panels. The completed-set panel with the woman doing push-ups is the initial preview. Clicking expands the same panel with adjacent artwork visible; native horizontal scrolling, touch swipes, mouse-wheel scrolling, arrow keys, adjacent-panel clicks and pagination center each panel. Scale and opacity follow its distance from center. X, backdrop and Escape return the selected panel to the grid; reduced motion skips the zoom and scale effect. The live website at https://www.pushedworld.com/ was reviewed for presentation context; its existing portfolio App Store exports remain unchanged.
+
+## Clean Buster interaction — October 24, 2026
+
+Swapped the Shakepay product and Case Management registry positions. Replaced the older multi-section PushedWorld prototype card with one interactive Buster composition. The vivid blue gradient, three original push-up poses and phone-camera prop follow the live product website’s hero. `hero-phone.webp` derives from `https://www.pushedworld.com/assets/media/hero-phone-aligned-stage.png?v=20260731-hero-blue1` (1200×968 transparent source), resized to 1000px wide. One click plays top/middle/bottom/middle/top over 850ms and increments a local demo count. Global pause and reduced motion update the number without movement. No actual camera tracking or workout storage occurs. The old prototype video remains in the repository but no longer appears in this clean interactive tile.

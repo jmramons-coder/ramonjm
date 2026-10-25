@@ -1,0 +1,222 @@
+.dialog {
+  width: min(1180px, calc(100vw - 32px));
+  max-width: none;
+  max-height: calc(100dvh - 32px);
+  margin: auto;
+  padding: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  border: 1px solid var(--portfolio-border, #303030);
+  border-radius: 20px;
+  background: var(--portfolio-card, #191919);
+  color: var(--portfolio-text, #f3f3f3);
+  box-shadow: 0 32px 100px #0009;
+}
+.dialog::backdrop {
+  background: #000b;
+  backdrop-filter: blur(14px);
+}
+.header {
+  position: sticky;
+  z-index: 4;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--portfolio-border);
+  background: var(--portfolio-card);
+}
+.header h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.4;
+}
+.header p {
+  margin-top: 5px;
+  max-width: 740px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--portfolio-muted);
+}
+.close {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  flex: 0 0 auto;
+  padding: 11px;
+  place-items: center;
+  border: 1px solid var(--portfolio-border);
+  border-radius: 50%;
+  background: var(--portfolio-control);
+  color: inherit;
+  cursor: pointer;
+}
+.close svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  stroke-width: 1.5;
+}
+.stage {
+  display: grid;
+  min-height: 260px;
+  height: min(61dvh, 680px);
+  padding: 22px;
+  place-items: center;
+  background: color-mix(in srgb, var(--portfolio-card) 92%, #8b98aa 8%);
+}
+.image {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  min-height: 0;
+  object-fit: contain;
+  border-radius: 8px;
+  animation: reveal 180ms ease both;
+}
+.bottom {
+  display: flex;
+  padding: 18px 24px 8px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.bottom > p {
+  max-width: 690px;
+  color: var(--portfolio-muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+.count {
+  display: inline-block;
+  margin-right: 14px;
+  color: var(--portfolio-text);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-shrink: 0;
+}
+.actions > a {
+  display: flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  color: var(--portfolio-text);
+  white-space: nowrap;
+}
+.navigation {
+  display: flex;
+  gap: 5px;
+}
+.navigation button {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border: 1px solid var(--portfolio-border);
+  border-radius: 50%;
+  background: var(--portfolio-control);
+  color: inherit;
+  font: inherit;
+  font-size: 19px;
+  cursor: pointer;
+}
+.thumbnails {
+  display: flex;
+  gap: 8px;
+  padding: 12px 24px 20px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+.thumbnails button {
+  display: grid;
+  width: 70px;
+  height: 56px;
+  flex-shrink: 0;
+  padding: 3px;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  background: var(--portfolio-control);
+  cursor: pointer;
+  opacity: 0.55;
+}
+.thumbnails button[aria-pressed="true"] {
+  opacity: 1;
+  border-color: var(--portfolio-text);
+}
+.thumbnails img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 5px;
+}
+.dialog button:hover {
+  background: var(--portfolio-control-hover);
+}
+.dialog :is(button, a):focus-visible {
+  outline: 2px solid var(--portfolio-focus, #85adff);
+  outline-offset: 3px;
+}
+@keyframes reveal {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (max-width: 600px) {
+  .dialog {
+    width: calc(100vw - 20px);
+    max-height: calc(100dvh - 20px);
+  }
+  .header {
+    padding: 16px;
+    gap: 12px;
+  }
+  .header h2 {
+    font-size: 18px;
+  }
+  .header p {
+    font-size: 12px;
+  }
+  .stage {
+    padding: 12px;
+    min-height: 220px;
+    height: 49dvh;
+  }
+  .bottom {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+    padding: 14px 16px 4px;
+  }
+  .actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .thumbnails {
+    padding: 10px 16px 16px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .image {
+    animation: none;
+  }
+}
+.dialog[data-paused="true"] .image {
+  animation: none;
+}

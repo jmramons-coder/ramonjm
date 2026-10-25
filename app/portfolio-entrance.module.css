@@ -1,0 +1,8 @@
+.entrance { position: fixed; z-index: 110; inset: 0; pointer-events: none; background: #080a0d; animation: entranceVeil 2200ms ease both; }
+.aura { position: absolute; left: 20%; top: 15%; width: 60%; height: 70%; opacity: .55; background: radial-gradient(ellipse at 35% 45%,#396bb94d,transparent 60%),radial-gradient(ellipse at 65% 55%,#849b7730,transparent 65%); filter: blur(60px); animation: auraDrift 2200ms ease both; }
+.skeleton { position: absolute; inset: 100px 20px auto; height: min(52vh,500px); display: grid; grid-template-columns: .85fr 2.7fr .85fr; gap: 20px; animation: skeletonReveal 1300ms ease both; }.skeleton i { border: 1px solid #ffffff13; background: linear-gradient(120deg,#ffffff03,#ffffff07,#ffffff03); border-radius: 20px; }.skeleton i:nth-child(2) { height: 66%; }
+@keyframes entranceVeil { 0%,22% { opacity: 1; } 62%,100% { opacity: 0; } }
+@keyframes auraDrift { from { transform: translate(-3%,2%) scale(.95); } to { transform: translate(3%,-2%) scale(1.15); } }
+@keyframes skeletonReveal { 0%,42% { opacity: 0; transform: translateY(10px); } 68% { opacity: 1; } 100% { opacity: 0; transform: translateY(0); } }
+@media(max-width:760px) { .skeleton { inset-inline: 16px; grid-template-columns: 1fr; height: 65vh; }.skeleton i { min-height: 100px; }.skeleton i:nth-child(2) { height: auto; } }
+@media(prefers-reduced-motion:reduce) { .entrance { display: none; } }

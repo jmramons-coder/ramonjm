@@ -9,9 +9,9 @@
 .section { margin-bottom: 52px; scroll-margin-top: 100px; }
 .section h2 { font-size: 15px; line-height: 1.5; font-weight: 500; color: var(--body); margin-bottom: 16px; }
 .projectNote { max-width: 620px; margin: -6px 0 20px; color: var(--body); font-size: 13px; line-height: 1.65; }
-.buildTag { display: inline-flex; align-items: center; gap: 5px; vertical-align: middle; margin-left: 6px; padding: 3px 8px; border: 1px solid #dcdcdc; border-radius: 7px; background: #eeeeee; color: var(--ink); font-size: 10px; font-weight: 500; line-height: 1.4; white-space: nowrap; }
-.list > li { border-top: 1px solid #0000000d; }
-.list > li:last-child { border-bottom: 1px solid #0000000d; }
+.buildTag { display: inline-flex; align-items: center; gap: 5px; vertical-align: middle; margin-left: 6px; padding: 3px 8px; border: 1px solid var(--portfolio-border); border-radius: 7px; background: var(--portfolio-control); color: var(--ink); font-size: 10px; font-weight: 500; line-height: 1.4; white-space: nowrap; }
+.list > li { border-top: 1px solid var(--portfolio-border); }
+.list > li:last-child { border-bottom: 1px solid var(--portfolio-border); }
 .client, .project { display: flex; align-items: flex-start; gap: 20px; padding: 22px 0; }
 .clientLogo, .projectIcon { width: 44px; height: 44px; object-fit: contain; flex-shrink: 0; }
 .petalLogo { transform: scale(1.35); }
@@ -23,7 +23,7 @@
 .domains .aiRow { padding-left: 5px; }
 .aiRow :global(.ai-avatar) { width: 24px; flex-basis: 24px; height: 24px; margin: -3px 0; }
 .project { position: relative; isolation: isolate; align-items: center; border-radius: 12px; }
-.project::before { content: ""; position: absolute; z-index: -1; inset: 5px -14px; border-radius: 12px; background: #eeeeee; opacity: 0; transition: opacity 150ms ease; pointer-events: none; }
+.project::before { content: ""; position: absolute; z-index: -1; inset: 5px -14px; border-radius: 12px; background: var(--portfolio-card); opacity: 0; transition: opacity 150ms ease; pointer-events: none; }
 .project:hover::before, .project:focus-visible::before { opacity: 1; }
 .project:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
 .rounded { border-radius: 11px; box-shadow: 0 2px 5px #00000012; }
@@ -51,9 +51,12 @@
 @media (prefers-reduced-motion: reduce) { .project { transition: none; } }
 
 .clientHeading { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-.current { display: inline-flex; align-items: center; gap: 5px; padding: 3px 7px; border-radius: 20px; background: #eaf2ec; color: #376444; font-size: 10px; line-height: 1.3; }
+.current { display: inline-flex; align-items: center; gap: 5px; padding: 3px 7px; border-radius: 20px; background: var(--portfolio-positive-bg); color: var(--portfolio-positive); font-size: 10px; line-height: 1.3; }
 .current > span { width: 5px; height: 5px; border-radius: 50%; background: #399358; }
-.acronym { flex-shrink: 0; background: #e9e9e9; color: #565656; border-radius: 10px; padding: 2px 5px; font-size: 8px; font-weight: 500; line-height: 1.5; }
+.acronym { flex-shrink: 0; background: var(--portfolio-control); color: var(--portfolio-muted); border-radius: 10px; padding: 2px 5px; font-size: 8px; font-weight: 500; line-height: 1.5; }
+
+:global([data-portfolio-theme="dark"]) .clientLogo:not(.equisoftLogo) { filter: brightness(0) invert(1); opacity: .9; }
+:global([data-portfolio-theme="dark"]) .clientLogo.petalLogo { filter: grayscale(1) invert(1); }
 
 .projectHeading { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; }
 .collaboration { display: inline-flex; padding: 2px 7px; border: 1px solid var(--line); border-radius: 20px; color: var(--body); font-size: 10px; line-height: 1.4; font-weight: 400; }
@@ -64,3 +67,18 @@
 
 @media(max-width:600px){.project::before{inset:4px -10px;border-radius:10px}}
 @media(prefers-reduced-motion:reduce){.project::before{transition:none}}
+.currentStudy {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  min-height: 44px;
+  margin-top: 18px;
+  color: #315cf5;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.currentStudy:focus-visible {
+  outline: 2px solid #315cf5;
+  outline-offset: 4px;
+}

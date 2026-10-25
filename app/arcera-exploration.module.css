@@ -1,0 +1,191 @@
+.dialog { position: fixed; inset: 0; width: 100%; height: 100%; max-width: none; max-height: none; margin: 0; padding: 90px 56px 70px; overflow-y: auto; overscroll-behavior: contain; border: 0; background: #15223524; color: #edf2f7; }
+.dialog::backdrop { background: #111b294d; backdrop-filter: blur(32px) saturate(.85); }
+.close { position: fixed; z-index: 10; top: 20px; right: 24px; width: 44px; height: 44px; display: grid; place-items: center; padding: 11px; border: 1px solid #ffffff40; border-radius: 50%; background: #20252db0; color: #fff; backdrop-filter: blur(16px); cursor: pointer; }.close svg { width: 20px; height: 20px; stroke: currentColor; stroke-width: 1.5; }.close:focus-visible { outline: 2px solid white; outline-offset: 4px; }
+.caseStudy { width: min(1180px,100%); margin: 0 auto; }.intro { display: grid; grid-template-columns: minmax(260px,.85fr) minmax(0,1.15fr); align-items: start; gap: clamp(40px,7vw,110px); }
+.previewColumn { position: sticky; top: 22px; display: grid; justify-items: center; gap: 18px; }.previewPhone { position: relative; width: min(100%,360px); aspect-ratio: 1206 / 2622; overflow: hidden; border-radius: 32px; border: 2px solid #6a778633; transform-origin: top left; }.previewPhone video { display: block; width: 100%; height: 100%; object-fit: cover; }.recordingLabel { color: #7f8c9d; font-size: 10px; letter-spacing: .03em; }
+.eyebrow,.sectionIntro > span,.fishingCopy > span { display: block; color: #9dbddd; font-size: 10px; text-transform: uppercase; letter-spacing: .11em; line-height: 1.6; }.anatomy h1 { margin: 20px 0; font-size: clamp(36px,4.7vw,62px); font-weight: 500; letter-spacing: -.055em; line-height: 1.02; }.lead { margin: 0; font-size: 16px; line-height: 1.75; color: #c2cbd7; }.scope { margin: 18px 0 0; font-size: 12px; color: #8996a7; line-height: 1.7; }
+.anatomyList { margin-top: 40px; }.anatomyRow { display: grid; grid-template-columns: 78px minmax(0,1fr); gap: 22px; padding: 25px 0; border-top: 1px solid #ffffff14; }.layerThumbnail { position: relative; height: 102px; border: 1px solid #b7d9ff23; border-radius: 13px; overflow: hidden; background: linear-gradient(145deg,#203f65,#122238); }.layerThumbnail img { object-fit: contain; }.anatomyRow:first-child .layerThumbnail img { object-fit: cover; }.anatomyRow span { color: #89a6c9; font-size: 9px; text-transform: uppercase; letter-spacing: .08em; }.anatomyRow h2 { margin: 8px 0; font-size: 18px; font-weight: 500; letter-spacing: -.025em; }.anatomyRow p { margin: 0; color: #a2afbf; font-size: 13px; line-height: 1.8; }.gulls { position: absolute; inset: 0; width: 100%; height: 100%; color: #f5fcff; }
+.implementation { border: 1px solid #a6c9f324; border-radius: 16px; padding: 22px; background: #83b6fa08; margin-top: 20px; }.implementation > span { font-size: 12px; color: #cfdef0; }.implementation p { color: #97a8bd; font-size: 12px; line-height: 1.8; margin: 12px 0; }.implementation small { display: block; color: #6f8197; font-size: 10px; line-height: 1.7; }
+.depthSection { display: grid; grid-template-columns: .8fr 1.2fr; align-items: center; gap: 50px; margin-top: 120px; padding: 70px 0; border-top: 1px solid #ffffff14; border-bottom: 1px solid #ffffff14; }.sectionIntro h2,.fishingCopy h2 { margin: 20px 0; font-size: clamp(32px,4vw,48px); font-weight: 500; letter-spacing: -.05em; line-height: 1.08; }.sectionIntro p,.fishingCopy p { color: #a5b1c1; font-size: 14px; line-height: 1.8; }.sectionIntro button { display: inline-flex; align-items: center; gap: 30px; min-height: 42px; padding: 0 15px; border: 1px solid #ffffff30; border-radius: 999px; background: #ffffff08; color: #d1e4ff; font: inherit; font-size: 11px; cursor: pointer; margin-top: 14px; }.sectionIntro ol { margin: 26px 0 0; padding: 0 0 0 18px; color: #73859d; font-size: 11px; line-height: 2.1; }
+.depthStage { --lift: 36px; position: relative; min-width: 0; height: 600px; perspective: 1300px; background: radial-gradient(ellipse at 50% 50%,#315c8b20,transparent 68%); }.depthStage[data-separated="false"] { --lift: 0px !important; }.layerStack { position: absolute; left: calc(50% - 100px); top: 130px; width: 200px; height: 435px; transform-style: preserve-3d; transform: rotateX(52deg) rotateZ(-27deg); }.plane { position: absolute; inset: 0; overflow: hidden; border-radius: 16px; border: 1px solid #c7e4ff40; background: #a6d1ff08; box-shadow: 0 18px 30px #0004; transition: transform 650ms cubic-bezier(.22,1,.36,1); }.plane img { object-fit: contain; }.skyPlane { transform: translateZ(0); }.skyPlane img { object-fit: cover; }.sunPlane { transform: translateZ(calc(var(--lift) * 1)); }.sunPlane img { width: 67% !important; height: auto !important; inset: 10% auto auto 16.5% !important; }.cloudPlane { transform: translateZ(calc(var(--lift) * 2)); }.horizonPlane { transform: translateZ(calc(var(--lift) * 3)); }.horizonPlane > img { top: auto !important; bottom: 0 !important; height: 37% !important; object-fit: cover; }.identityPlane { transform: translateZ(calc(var(--lift) * 4)); display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding: 0 9px 30px; }.identityPlane > img { width: 100%; height: auto; margin-bottom: -15px; }.identityPlane span { color: #eef7ff; font-size: 7px; margin: 25px 0 12px; }.identityPlane i { width: 90%; border-radius: 999px; padding: 8px; background: #2888dbb0; border: 1px solid #ffffff45; color: white; font-size: 8px; text-align: center; font-style: normal; }.stageCaption { position: absolute; bottom: 10px; left: 0; right: 0; text-align: center; color: #6b829f; font-size: 10px; }
+.fishingSection { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 100px; padding-top: 100px; }.fishingCopy > span { color: #b0ab97; }.fishingCopy h2 { color: #e6dfd0; }.fishingCopy small { display: block; margin-top: 28px; color: #78847e; font-size: 10px; line-height: 1.8; }.tones { display: flex; align-items: center; gap: 7px; margin-top: 26px; }.tones i { width: 23px; height: 23px; border-radius: 50%; }.tones span { color: #9a9b8b; font-size: 10px; margin-left: 8px; }.fishingPhone { position: relative; justify-self: center; width: min(100%,360px); aspect-ratio: 9 / 19.5; overflow: hidden; border-radius: 32px; background: #273a3c; border: 2px solid #aaa68e30; }.fishingPhone > img { object-fit: cover; }.fishingPhone::after { position: absolute; inset: 0; content: ""; background: linear-gradient(#122b2815,transparent 40%,#112b31b0); pointer-events: none; }.fishingTitle { position: absolute; z-index: 2; top: 12%; left: 24px; right: 24px; color: #243b3c; text-align: center; }.fishingTitle > span { font-size: 8px; letter-spacing: .22em; }.fishingTitle h3 { font-family: Georgia,serif; font-size: 49px; font-weight: 400; letter-spacing: -.06em; margin: 12px 0; }.fishingTitle p { margin: 0; font-size: 10px; color: #4e5a55; }.fishingEntry { position: absolute; z-index: 2; left: 24px; right: 24px; bottom: 33px; text-align: center; }.fishingEntry button { width: 100%; min-height: 46px; display: flex; align-items: center; justify-content: space-between; border: 1px solid #eee6d33d; border-radius: 10px; padding: 0 17px; background: #d9d0bde8; color: #2b3a36; font: inherit; font-size: 12px; cursor: pointer; }.fishingEntry small { display: block; margin-top: 13px; color: #d7d7c8c0; font-size: 9px; }.mist { position: absolute; z-index: 1; inset: 28% -30% 30%; background: radial-gradient(ellipse,#f4f3d62b,transparent 65%); filter: blur(15px); animation: mistDrift 20s ease-in-out infinite alternate; }.fishingJournal { position: absolute; z-index: 3; inset: 0; padding: 65px 27px 30px; background: #e4dfd1ed; color: #34463e; backdrop-filter: blur(14px); }.fishingJournal > span { font-size: 8px; letter-spacing: .15em; }.fishingJournal h3 { font-family: Georgia,serif; font-size: 37px; font-weight: 400; letter-spacing: -.05em; line-height: 1.1; margin: 32px 0 15px; }.fishingJournal p { font-size: 11px; color: #6f7568; }.fishingJournal ul { margin: 35px 0; padding: 0; list-style: none; }.fishingJournal li { padding: 18px 0; border-top: 1px solid #4b625425; font-size: 12px; }.fishingJournal li span { font-size: 9px; color: #8f967e; margin-right: 16px; }.fishingJournal button { background: transparent; border: 0; border-bottom: 1px solid #6c7b6250; padding: 10px 0; color: #52644f; font: inherit; font-size: 11px; cursor: pointer; }
+@keyframes mistDrift { from { transform: translateX(-6%); opacity: .5; } to { transform: translateX(6%); opacity: 1; } }
+.caseStudy[data-paused="true"] .mist { animation: none; }.caseStudy[data-paused="true"] .plane { transition: none; }
+@media(max-width:800px) { .dialog { padding: 80px 22px 40px; }.intro { grid-template-columns: 1fr; gap: 45px; }.previewColumn { position: relative; top: auto; }.previewPhone { width: min(72vw,330px); }.anatomy h1 { font-size: 42px; }.depthSection,.fishingSection { grid-template-columns: 1fr; gap: 30px; }.depthSection { margin-top: 65px; padding: 45px 0; }.depthStage { height: 530px; }.layerStack { top: 80px; }.fishingSection { padding-top: 60px; }.fishingPhone { width: min(80vw,360px); } }
+@media(prefers-reduced-motion:reduce) { .mist { animation: none; }.plane { transition: none; } }
+.dialog { overflow-x: hidden; }
+.depthStage { overflow: clip; }
+.previewPhone { width: min(100%,360px,calc((100dvh - 150px) * .45995)); }
+@media(max-width:800px) { .previewPhone { width: min(72vw,330px,calc((100dvh - 150px) * .45995)); } }
+
+/* Anatomy assets float at their own aspect ratios, without thumbnail chrome. */
+.anatomyRow { grid-template-columns: 156px minmax(0,1fr); gap: 26px; align-items: center; padding-block: 30px; }
+.layerThumbnail { height: 204px; border: 0; border-radius: 0; overflow: visible; background: transparent; isolation: isolate; }
+.layerThumbnail::before { content: ""; position: absolute; z-index: -1; inset: 8% -6%; background: radial-gradient(ellipse,#214b774d,transparent 72%); pointer-events: none; }
+.layerThumbnail[data-asset="sun"]::before { background: radial-gradient(ellipse,#28486b55,transparent 72%); }
+.layerThumbnail[data-asset="wordmark"] { height: 130px; }
+.layerThumbnail img,.anatomyRow:first-child .layerThumbnail img { object-fit: contain; }
+.anatomyRow p { font-size: 12px; line-height: 1.75; }
+.gulls { overflow: visible; animation: gullGlide 7s ease-in-out infinite alternate; }
+.gulls path { transform-box: fill-box; transform-origin: center 70%; animation: gullWings 1050ms ease-in-out infinite; }
+.gulls g:nth-child(2) path { animation-delay: -350ms; }
+.gulls g:nth-child(3) path { animation-delay: -720ms; }
+@keyframes gullWings { 0%,100% { transform: scaleY(1); } 50% { transform: scaleY(.36); } }
+@keyframes gullGlide { from { translate: -5px 2px; } to { translate: 6px -3px; } }
+.caseStudy[data-paused="true"] .gulls,.caseStudy[data-paused="true"] .gulls path { animation-play-state: paused; }
+@media(max-width:1050px) and (min-width:801px) { .intro { gap: 36px; grid-template-columns: .7fr 1.3fr; } }
+@media(max-width:500px) { .anatomyRow { grid-template-columns: 130px minmax(0,1fr); gap: 18px; }.layerThumbnail { height: 180px; }.anatomyRow h2 { font-size: 16px; }.anatomyRow p { font-size: 11px; } }
+@media(prefers-reduced-motion:reduce) { .gulls,.gulls path { animation: none; } }
+
+/* River transfer study: separately composed environment, atmosphere, foreground and UI. */
+.fishingSection { gap: 80px; padding-bottom: 60px; }
+.fishingPhone { perspective: 1100px; width: min(100%,390px); border: 1px solid #b7e6db45; background: #144e51; box-shadow: 0 0 90px #2fb3aa12; }
+.fishingPhone::after { display: none; }
+.riverComposition { position: absolute; inset: 0; transform-style: preserve-3d; transition: transform 900ms cubic-bezier(.22,1,.36,1); }
+.riverPlane { position: absolute; inset: 0; border-radius: inherit; transition: transform 900ms cubic-bezier(.22,1,.36,1),box-shadow 900ms; }
+.riverPlane img { object-fit: cover; }
+.riverBase { transform: scale(1.04) translate(calc(var(--river-x,0) * -4px),calc(var(--river-y,0) * -4px)); }
+.riverAtmosphere { overflow: clip; transform: scale(1.07) translate(calc(var(--river-x,0) * -8px),calc(var(--river-y,0) * -6px)); pointer-events: none; }
+.riverAtmosphere img { animation: riverCloudDrift 22s ease-in-out infinite alternate; }
+.riverForeground { transform: scale(1.07) translate(calc(var(--river-x,0) * -17px),calc(var(--river-y,0) * -12px)); pointer-events: none; }
+.riverInterface { background: linear-gradient(#123b4c15,transparent 48%,#063b4a85); }
+.fishingTitle { top: 11%; color: #f7f2d9; text-shadow: 0 2px 12px #15465380; }
+.fishingTitle svg { display: block; width: 50px; height: 32px; margin: 0 auto 16px; color: #fff4cd; }
+.fishingTitle > span { font-size: 8px; font-weight: 600; letter-spacing: .19em; }
+.fishingTitle h3 { font-family: inherit; font-size: clamp(68px,8vw,92px); font-weight: 850; font-style: italic; letter-spacing: -.075em; margin: 1px 0 7px; line-height: 1; text-shadow: 0 2px 0 #318985,0 4px 0 #15595d,0 8px 16px #0b4a5460; }
+.fishingTitle p { color: #edf7df; font-size: 11px; letter-spacing: .04em; }
+.fishingEntry { bottom: 34px; }
+.fishingEntry button { min-height: 52px; border: 1px solid #ffe2b9; border-radius: 16px; background: linear-gradient(#ffc493,#ff9e69); color: #4c342c; font-size: 13px; font-weight: 650; box-shadow: 0 5px 0 #a75339,0 12px 20px #083b4940,inset 0 1px 0 #fff4d1; transition: transform 180ms,box-shadow 180ms; }
+.fishingEntry button:hover { transform: translateY(-2px); box-shadow: 0 7px 0 #a75339,0 14px 24px #083b4940,inset 0 1px 0 #fff4d1; }
+.fishingEntry button:active { transform: translateY(4px); box-shadow: 0 1px 0 #a75339; }
+.fishingEntry small { color: #e4f7e0; text-shadow: 0 1px 5px #124b59; margin-top: 19px; }
+.fishingJournal { background: #e8f0dcec; color: #174b4b; }
+.riverLayerToggle { display: inline-flex; align-items: center; gap: 25px; min-height: 43px; margin-top: 26px; padding: 0 15px; border: 1px solid #8cdfcf50; border-radius: 999px; background: #4eb9a810; color: #bcf0df; font: inherit; font-size: 11px; cursor: pointer; }
+.riverLayerList { padding-left: 17px; margin: 23px 0 0; color: #8ca6a0; font-size: 11px; line-height: 2; }
+.fishingPhone[data-exploded="true"] { overflow: visible; background: transparent; border-color: transparent; box-shadow: none; }
+.fishingPhone[data-exploded="true"] .riverComposition { transform: rotateX(35deg) rotateZ(-16deg) scale(.78); }
+.fishingPhone[data-exploded="true"] .riverPlane { border: 1px solid #bcffe445; box-shadow: 0 25px 35px #0004; border-radius: 24px; }
+.fishingPhone[data-exploded="true"] .riverBase { transform: translateZ(0); overflow: hidden; }
+.fishingPhone[data-exploded="true"] .riverAtmosphere { transform: translateZ(65px); }
+.fishingPhone[data-exploded="true"] .riverForeground { transform: translateZ(130px); }
+.fishingPhone[data-exploded="true"] .riverInterface { transform: translateZ(195px); pointer-events: none; }
+@keyframes riverCloudDrift { from { translate: -6px 0; } to { translate: 6px -4px; } }
+.caseStudy[data-paused="true"] .riverAtmosphere img { animation-play-state: paused; }
+.caseStudy[data-paused="true"] .riverComposition,.caseStudy[data-paused="true"] .riverPlane { transition: none; }
+@media(max-width:800px) { .fishingSection { gap: 55px; }.fishingPhone { width: min(80vw,390px); }.fishingPhone[data-exploded="true"] .riverComposition { transform: rotateX(35deg) rotateZ(-12deg) scale(.7); } }
+@media(prefers-reduced-motion:reduce) { .riverAtmosphere img { animation: none; }.riverComposition,.riverPlane,.fishingEntry button { transition: none; }.riverBase,.riverAtmosphere,.riverForeground { transform: none; } }
+.riverAtmosphere img { transform: translateY(-16%); opacity: .72; }
+
+/* A self-contained dark art canvas preserves contrast in either portfolio theme. */
+.dialog { color-scheme: dark; --portfolio-text: #edf2f7; --portfolio-muted: #a5b1c1; --portfolio-focus: #bcefe2; }
+.fishingEntry button { justify-content: center; min-height: 50px; border: 1px solid #ffe4c680; border-radius: 14px; background: linear-gradient(180deg,#ffd1a5,#ffaf7f); color: #3c3830; font-size: 13px; font-weight: 600; letter-spacing: .01em; box-shadow: inset 0 1px 0 #fff0d9b0,0 4px 18px #163d4a30; }
+.fishingEntry button:hover { transform: translateY(-1px); background: linear-gradient(180deg,#ffdbb8,#ffbc91); box-shadow: inset 0 1px 0 #fff6e7,0 5px 22px #163d4a38; }
+.fishingEntry button:active { transform: translateY(0); box-shadow: inset 0 1px 3px #a66b3920; }
+.fishingEntry button:focus-visible,.riverLayerToggle:focus-visible,.sectionIntro button:focus-visible { outline: 2px solid #fff1d2; outline-offset: 4px; }
+
+/* One shared, local depth control for both assembly studies. */
+.layerControl { position: absolute; z-index: 8; left: 50%; bottom: 8px; transform: translateX(-50%); display: flex; align-items: center; gap: 10px; width: 210px; padding: 6px 13px 6px 6px; border: 1px solid #d5eaff30; border-radius: 999px; background: #253039c9; backdrop-filter: blur(20px); box-shadow: 0 8px 30px #0002; }
+.layerControl button { position: relative; flex: 0 0 36px; width: 36px; height: 36px; display: grid; place-items: center; padding: 8px; border: 0; border-radius: 50%; background: #ffffff10; color: #deefed; cursor: pointer; }
+.layerControl button:hover { background: #ffffff20; }.layerControl svg { width: 21px; height: 21px; }
+.layerControl button > span { position: absolute; bottom: calc(100% + 16px); left: 50%; transform: translateX(-50%); width: max-content; padding: 8px 11px; border-radius: 9px; background: #f4f8fa; color: #18232d; font-size: 10px; opacity: 0; visibility: hidden; pointer-events: none; }
+.layerControl button:is(:hover,:focus-visible) > span { opacity: 1; visibility: visible; }
+.layerControl input { width: 100%; min-width: 0; height: 28px; margin: 0; accent-color: #b8e6df; cursor: ew-resize; }
+.layerControl :is(button,input):focus-visible { outline: 2px solid #bcefe2; outline-offset: 3px; }
+.depthStage { height: 680px; overflow: visible; }
+.layerStack { width: 240px; height: 522px; left: calc(50% - 120px); top: 110px; }
+.sunPlane { transform: translateZ(calc(var(--lift) * var(--layer-amount,1))); }.cloudPlane { transform: translateZ(calc(var(--lift) * var(--layer-amount,1) * 2)); }.horizonPlane { transform: translateZ(calc(var(--lift) * var(--layer-amount,1) * 3)); }.identityPlane { transform: translateZ(calc(var(--lift) * var(--layer-amount,1) * 4)); }
+.riverStage { position: relative; min-width: 0; width: 100%; display: grid; justify-items: center; padding-bottom: 84px; }
+.riverStage .layerControl { bottom: 8px; }
+.fishingPhone[data-exploded="true"] .riverComposition { transform: rotateX(52deg) rotateZ(-27deg) scale(.78); }
+.fishingPhone[data-exploded="true"] .riverAtmosphere { transform: translateZ(calc(65px * var(--river-depth,1))); }.fishingPhone[data-exploded="true"] .riverForeground { transform: translateZ(calc(130px * var(--river-depth,1))); }.fishingPhone[data-exploded="true"] .riverInterface { transform: translateZ(calc(195px * var(--river-depth,1))); }
+.fishingTitle { top: 9%; }
+.fishingTitle .fishEmblem { display: block; position: relative; width: 96px; height: 70px; object-fit: contain; margin: 0 auto 3px; filter: drop-shadow(0 3px 6px #144b5a70); }
+.fishingTitle > span { font-size: 9px; font-weight: 750; font-style: italic; letter-spacing: .11em; color: #fff1d4; text-shadow: 0 1px 0 #175b62,0 2px 8px #103d4b; }
+.fishingTitle h3 { font-size: clamp(64px,7vw,82px); margin: 5px 0 8px; }
+.fishingTitle p { color: #fff0d2; font-size: 12px; font-weight: 650; font-style: italic; letter-spacing: .025em; text-shadow: 0 1px 0 #175b62,0 2px 8px #103d4b; }
+@media(max-width:800px) { .depthStage { height: 620px; }.layerStack { width: 220px; height: 478px; left: calc(50% - 110px); top: 95px; }.fishingPhone[data-exploded="true"] .riverComposition { transform: rotateX(52deg) rotateZ(-27deg) scale(.7); } }
+@media(prefers-reduced-motion:reduce) { .layerControl * { scroll-behavior: auto; } }
+.fishingPhone { width: min(100%,390px,calc((100dvh - 180px) * 9 / 19.5)); }
+@media(max-width:800px) { .fishingPhone { width: min(80vw,390px,calc((100dvh - 180px) * 9 / 19.5)); } }
+@media(max-width:800px) { .depthStage,.riverStage { overflow: clip; }.fishingPhone[data-exploded="true"] .riverComposition { transform: rotateX(52deg) rotateZ(-27deg) scale(.62); } }
+
+/* Local water displacement keeps the river moving without disturbing its sky or UI. */
+.riverWater { position: absolute; inset: 0; clip-path: inset(43% 0 0); pointer-events: none; }
+.riverWater > img { object-fit: cover; }
+.waterGlints { position: absolute; inset: 42% -15% -5%; opacity: .16; mix-blend-mode: screen; background: repeating-radial-gradient(ellipse at 45% 0%,transparent 0 19px,#a0f9e54a 20px 21px,transparent 23px 36px); mask-image: linear-gradient(transparent,#000 35%,transparent); animation: riverGlints 7s linear infinite; }
+.riverWater:not([data-moving="true"]) .waterGlints { animation-play-state: paused; }
+.canopyArt { clip-path: inset(0 0 45%); transform-origin: 50% 0; animation: pineSway 7s ease-in-out infinite alternate; }
+.groundedArt { clip-path: inset(55% 0 0); }
+.riverAtmosphere img { animation-duration: 14s; }
+@keyframes pineSway { from { transform: rotate(-1.2deg) scale(1.025) translateX(-3px); } to { transform: rotate(1.2deg) scale(1.025) translateX(3px); } }
+@keyframes riverGlints { from { background-position: 0 0; transform: translateY(-8px) scaleX(1); } to { background-position: 80px 36px; transform: translateY(8px) scaleX(1.04); } }
+@keyframes riverCloudDrift { from { translate: -12px 2px; } to { translate: 12px -6px; } }
+.caseStudy[data-paused="true"] .canopyArt,.caseStudy[data-paused="true"] .waterGlints { animation-play-state: paused; }
+@media(prefers-reduced-motion:reduce) { .canopyArt,.waterGlints { animation: none; }.riverWater > img { filter: none !important; } }
+.fishingPhone { overflow: clip; }
+
+/* Readable editorial scale over the actual, softly blurred portfolio. */
+.caseStudy { text-shadow: 0 1px 12px #08152630; }
+.recordingLabel,.scope { font-size: 14px; color: #c1ccdb; }
+.eyebrow,.sectionIntro > span,.fishingCopy > span,.anatomyRow span { font-size: 12px; color: #bfd3ec; }
+.anatomyRow p,.sectionIntro p,.fishingCopy p,.lead { font-size: 17px; line-height: 1.75; color: #e0e6ee; }
+.anatomyRow h2 { font-size: 22px; }
+.implementation > span { font-size: 16px; }
+.implementation p,.sectionIntro ol,.riverLayerList { font-size: 15px; color: #d0dce9; }
+.implementation small,.fishingCopy small { font-size: 14px; color: #b9c8d8; }
+.layerControl { background: #172e4ad9; border-color: #a5c6ef40; }
+.layerControl input { accent-color: #a9caf5; }
+.layerControl button > span { font-size: 12px; }
+:global(:root:has([data-portfolio-theme="light"])) .dialog { background: #edf3fa30; color: #172c43; color-scheme: light; text-shadow: none; }
+:global(:root:has([data-portfolio-theme="light"])) .dialog::backdrop { background: #eef3f54d; }
+:global(:root:has([data-portfolio-theme="light"])) .dialog :is(.recordingLabel,.scope,.eyebrow,.sectionIntro > span,.fishingCopy > span,.anatomyRow span,.anatomyRow p,.sectionIntro p,.fishingCopy p,.lead,.implementation > span,.implementation p,.implementation small,.sectionIntro ol,.riverLayerList,.fishingCopy small) { color: #344c64; }
+:global(:root:has([data-portfolio-theme="light"])) .fishingCopy h2 { color: #172c43; }
+:global(:root:has([data-portfolio-theme="light"])) .anatomyRow,:global(:root:has([data-portfolio-theme="light"])) .depthSection { border-color: #203c5920; }
+:global(:root:has([data-portfolio-theme="light"])) .implementation { background: #ffffff40; border-color: #203c5920; }
+@media(max-width:500px) { .anatomyRow { grid-template-columns: 1fr; gap: 18px; }.layerThumbnail { width: 190px; height: 230px; justify-self: center; }.anatomyRow h2 { font-size: 22px; }.anatomyRow p { font-size: 16px; }.sectionIntro p,.fishingCopy p { font-size: 16px; } }
+
+/* Neutral white controls remain consistent across both composition studies. */
+.layerControl { color-scheme: light; background: #f8fafcf0; border-color: #ffffffcc; box-shadow: 0 6px 24px #10223618,inset 0 1px 0 #fff; }
+.layerControl button { background: #e7ebf0; color: #344151; }
+.layerControl button:hover { background: #dce2e9; }
+.layerControl input { accent-color: #68778a; }
+.layerControl :is(button,input):focus-visible { outline-color: #65768b; }
+
+/* This is a scrolling study: short viewports must not shrink the artwork UI. */
+.dialog { height: 100dvh; padding-top: max(90px, calc(env(safe-area-inset-top) + 72px)); padding-bottom: max(40px, env(safe-area-inset-bottom)); }
+.close { top: max(20px, env(safe-area-inset-top)); right: max(24px, env(safe-area-inset-right)); }
+.caseStudy, .intro > *, .depthSection > *, .fishingSection > * { min-width: 0; }
+.previewPhone { width: min(100%, 360px); }
+.fishingPhone { width: min(100%, 390px); }
+.layerControl { max-width: calc(100% - 16px); }
+@media (max-width: 800px) {
+  .dialog { padding-inline: clamp(16px, 4vw, 22px); }
+  .previewPhone { width: min(100%, 72vw, 330px); }
+  .fishingPhone { width: min(100%, 80vw, 390px); }
+  .depthStage, .riverStage { container-type: inline-size; }
+  .layerStack { transform: rotateX(52deg) rotateZ(-27deg) scale(var(--depth-preview-scale, 1)); }
+  .fishingPhone[data-exploded="true"] .riverComposition { transform: rotateX(52deg) rotateZ(-27deg) scale(var(--river-preview-scale, .7)); }
+  .close { top: max(16px, env(safe-area-inset-top)); right: max(18px, env(safe-area-inset-right)); }
+}
+@media (max-width: 430px) {
+  .depthStage { height: 500px; }
+  .layerStack { top: 35px; }
+  .anatomy h1 { font-size: clamp(34px, 10vw, 42px); }
+  .fishingTitle { left: 16px; right: 16px; }
+  .fishingTitle .fishEmblem { width: 82px; height: 60px; }
+  .fishingTitle h3 { font-size: clamp(58px, 17vw, 72px); }
+  .fishingEntry { left: 16px; right: 16px; bottom: 26px; }
+  .fishingEntry small { font-size: 10px; line-height: 1.5; }
+}
+
+@container (max-width: 480px) {
+  .layerStack { --depth-preview-scale: .8; }
+}
+@container (max-width: 380px) {
+  .layerStack { --depth-preview-scale: .68; }
+  .riverComposition { --river-preview-scale: .52; }
+}
+@container (max-width: 320px) {
+  .layerStack { --depth-preview-scale: .58; }
+  .riverComposition { --river-preview-scale: .46; }
+}

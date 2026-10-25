@@ -1,0 +1,965 @@
+.card {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: var(--preview-height);
+  min-width: 0;
+  overflow: hidden;
+  flex-direction: column;
+  border: 1px solid var(--portfolio-border, #dedede);
+  border-radius: var(--portfolio-radius, 20px);
+  background: var(--portfolio-card, #fafafa);
+  color: var(--portfolio-text, #222);
+  container-type: inline-size;
+  isolation: isolate;
+}
+
+.heading {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  min-height: 70px;
+  padding: 22px 22px 0;
+  align-items: center;
+  gap: 10px;
+}
+
+.projectIcon {
+  display: block;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 auto;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+.heading h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 520;
+  letter-spacing: -0.055em;
+  line-height: 1.2;
+}
+
+.heading p {
+  margin: 4px 0 0;
+  color: var(--portfolio-muted, #666);
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: -0.015em;
+}
+
+.body {
+  position: relative;
+  z-index: 2;
+  min-height: 0;
+  flex: 1;
+}
+
+.projectLink {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  min-height: 60px;
+  padding: 0 22px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  border-top: 1px solid var(--portfolio-border, #dedede);
+  background: transparent;
+  color: inherit;
+  font-size: 13px;
+  font-weight: 450;
+  letter-spacing: -0.02em;
+}
+
+.projectLink > svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.projectLink:hover {
+  background: #00000006;
+}
+
+.projectLink:focus-visible {
+  outline: 2px solid var(--portfolio-focus, #527aac);
+  outline-offset: -6px;
+}
+
+.tabs {
+  display: flex;
+  min-height: 42px;
+  margin: 18px 22px 0;
+  padding: 3px;
+  gap: 3px;
+  border: 1px solid var(--portfolio-border, #d7dfe7);
+  border-radius: 12px;
+  background: var(--portfolio-control, #ffffff78);
+}
+
+.tabs button {
+  display: flex;
+  min-width: 0;
+  min-height: 40px;
+  padding: 7px 10px;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--portfolio-muted, #627180);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 450;
+  letter-spacing: -0.02em;
+  cursor: pointer;
+  transition:
+    background 150ms,
+    color 150ms;
+}
+
+.tabs button[aria-pressed="true"] {
+  background: var(--portfolio-contrast, #fff);
+  color: var(--portfolio-contrast-ink, #222);
+}
+
+.tabs button:hover:not([aria-pressed="true"]) {
+  background: var(--portfolio-control-hover, #e3eaf2);
+}
+
+.tabs button:focus-visible,
+.repActions button:focus-visible,
+.roiControls input:focus-visible {
+  outline: 2px solid var(--portfolio-focus, #527aac);
+  outline-offset: 3px;
+}
+
+.viewEnter {
+  animation: view-enter 220ms ease both;
+}
+
+@keyframes view-enter {
+  from {
+    opacity: 0.55;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* aBeam: a quiet, light application inset. */
+.abeam {
+  background: #e8f0f8;
+}
+
+:global([data-portfolio-theme="dark"]) .abeam {
+  background: #202b37;
+}
+
+.abeamWindow {
+  height: 272px;
+  margin: 16px 16px 0;
+  overflow: hidden;
+  border: 1px solid #d4dee9;
+  border-radius: 12px;
+  background: #fff;
+  color: #344b63;
+}
+
+.browserBar {
+  display: flex;
+  height: 22px;
+  padding: 0 9px;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e9eef3;
+  background: #fafcfe;
+}
+
+.browserBar > span {
+  display: flex;
+  gap: 3px;
+}
+
+.browserBar i {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #cfdae5;
+}
+
+.browserBar small {
+  color: #64788e;
+  font-size: 10px;
+}
+
+.context {
+  padding: 15px 16px;
+}
+
+.demoLabel {
+  margin: 0;
+  color: #63768b;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.context h3 {
+  margin: 10px 0 0;
+  color: #2a435e;
+  font-size: 16px;
+  font-weight: 550;
+  letter-spacing: -0.035em;
+  line-height: 1.4;
+}
+
+.clientNames {
+  margin: 5px 0 0;
+  color: #5d7288;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.contextFacts {
+  display: grid;
+  margin: 14px 0 0;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 14px;
+}
+
+.contextFacts dt {
+  color: #5d7288;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.contextFacts dd {
+  margin: 2px 0 0;
+  color: #3e5975;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.clarify {
+  display: flex;
+  margin: 12px 0 0;
+  padding-top: 11px;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  border-top: 1px solid #e6edf5;
+  color: #445e79;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.clarify > span {
+  color: #5d7288;
+  white-space: nowrap;
+}
+
+.explorerImage {
+  display: block;
+  width: 100%;
+  height: calc(100% - 22px);
+  object-fit: cover;
+  object-position: center top;
+}
+
+.abeamCaption {
+  margin: 10px 20px 0;
+  color: var(--portfolio-muted, #627180);
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* PushedWorld: a small, playable moment in the game world. */
+.world {
+  border-color: #4b3a70;
+  background: #302149;
+  color: #fff;
+}
+
+.world .heading p {
+  color: #d9cee9;
+}
+
+.world .body {
+  display: flex;
+  flex-direction: column;
+}
+
+.worldStage {
+  position: relative;
+  min-height: 185px;
+  margin-top: 17px;
+  overflow: hidden;
+  flex: 1;
+}
+
+.worldScene {
+  object-fit: cover;
+  object-position: center 44%;
+}
+
+.worldStageShade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #3021490d, transparent 40%, #302149);
+}
+
+.worldLevel {
+  position: absolute;
+  z-index: 2;
+  top: 13px;
+  left: 22px;
+  padding: 6px 10px;
+  border: 1px solid #ffffff38;
+  border-radius: 9px;
+  background: #33234ad9;
+  color: #f4efff;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.buster {
+  position: absolute;
+  z-index: 2;
+  right: 5%;
+  bottom: 1px;
+  left: 5%;
+  height: 190px;
+}
+
+.pose {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 110ms ease;
+}
+
+.activePose {
+  opacity: 1;
+}
+
+.worldControls {
+  padding: 0 22px 18px;
+}
+
+.repSummary {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.repSummary strong {
+  color: #fff;
+  font-size: 41px;
+  font-weight: 530;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.065em;
+  line-height: 1;
+}
+
+.repSummary strong span {
+  color: #c0b1d9;
+  font-size: 23px;
+  font-weight: 400;
+}
+
+.repSummary p {
+  margin: 5px 0 0;
+  color: #d4c8e7;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.setStatus {
+  padding-bottom: 3px;
+  color: #dfd2f1;
+  font-size: 12px;
+  line-height: 1.4;
+  text-align: right;
+}
+
+.repProgress {
+  display: block;
+  width: 100%;
+  height: 5px;
+  margin: 12px 0 14px;
+  overflow: hidden;
+  border: 0;
+  border-radius: 5px;
+  appearance: none;
+  background: #58446f;
+  color: #ceb1ff;
+}
+
+.repProgress::-webkit-progress-bar {
+  border-radius: 5px;
+  background: #58446f;
+}
+
+.repProgress::-webkit-progress-value {
+  border-radius: 5px;
+  background: #ceb1ff;
+  transition: width 220ms ease;
+}
+
+.repProgress::-moz-progress-bar {
+  border-radius: 5px;
+  background: #ceb1ff;
+  transition: width 220ms ease;
+}
+
+.repActions {
+  display: flex;
+  gap: 8px;
+}
+
+.repActions button {
+  min-height: 44px;
+  border: 0;
+  border-radius: 10px;
+  font: inherit;
+  font-size: 12px;
+  letter-spacing: -0.025em;
+  cursor: pointer;
+}
+
+.repButton {
+  display: flex;
+  padding: 9px 12px;
+  flex: 1;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: #eee2ff;
+  color: #39244e;
+  font-weight: 500 !important;
+}
+
+.repButton > span {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.repButton:disabled {
+  cursor: default;
+}
+
+.resetButton {
+  padding: 9px 10px;
+  background: #49345f;
+  color: #f0e4ff;
+}
+
+.world .projectLink {
+  border-color: #ffffff24;
+}
+
+/* Tracer: campaign art surrounds a real product / identity study. */
+.tracerWrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--portfolio-radius, 20px);
+}
+
+.tracerBackdrop {
+  object-fit: cover;
+  object-position: 58% center;
+}
+
+.tracer {
+  background: transparent;
+  color: #fff;
+}
+
+.tracer::before {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: linear-gradient(180deg, #102019d9, #10201924 45%, #102019d9);
+  content: "";
+}
+
+.tracer .heading p {
+  color: #e0e8e0;
+}
+
+.tracerPanel {
+  position: absolute;
+  top: 19px;
+  right: 16px;
+  bottom: 78px;
+  left: 16px;
+  overflow: hidden;
+  border: 1px solid #ffffff50;
+  border-radius: 13px;
+  background: #f3f5f5;
+}
+
+.tracerWork {
+  object-fit: cover;
+  object-position: 57% top;
+}
+
+.tracerIdentity {
+  object-fit: cover;
+  object-position: left center;
+}
+
+.tracerPanelLabel {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 27px 13px 12px;
+  background: linear-gradient(180deg, transparent, #102019d9);
+  color: #fff;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.tracerTabs {
+  position: absolute;
+  right: 16px;
+  bottom: 13px;
+  left: 16px;
+  margin: 0;
+  border-color: #ffffff38;
+  background: #12221dce;
+}
+
+.tracerTabs button {
+  color: #e4eee8;
+}
+
+.tracerTabs button[aria-pressed="true"] {
+  background: #f1f5ed;
+  color: #263b2c;
+}
+
+.tracerTabs button:hover:not([aria-pressed="true"]) {
+  background: #ffffff18;
+}
+
+.tracer .projectLink {
+  border-color: #ffffff30;
+  background: #1020198c;
+}
+
+/* Decision ROI: an intentionally simple, labelled hours-only scenario. */
+.roi {
+  border-color: #334551;
+  background: #142532;
+  color: #eef6fc;
+}
+
+.roi .heading p {
+  color: #bad0df;
+}
+
+.roiBody {
+  position: relative;
+  height: 100%;
+  padding: 32px 22px 16px;
+}
+
+.calculator {
+  position: absolute;
+  top: -7px;
+  right: -18px;
+  width: 142px;
+  height: 142px;
+  object-fit: contain;
+}
+
+.roiLabel {
+  position: relative;
+  margin: 0;
+  color: #c0d4e2;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.roiOutput {
+  position: relative;
+  display: flex;
+  width: fit-content;
+  margin-top: 15px;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.roiOutput strong {
+  font-size: 66px;
+  font-weight: 480;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.075em;
+  line-height: 0.95;
+}
+
+.roiOutput > span {
+  color: #bbd0de;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.roiControls {
+  margin-top: 29px;
+}
+
+.roiControls label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: #e0edf6;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.roiControls label > span {
+  padding: 3px 7px;
+  border-radius: 6px;
+  background: #294457;
+  color: #e3f3ff;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.roiControls input {
+  display: block;
+  width: 100%;
+  height: 44px;
+  margin: 4px 0 0;
+  padding: 0;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.roiControls input::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 5px;
+  background: #506a7d;
+}
+
+.roiControls input::-webkit-slider-thumb {
+  width: 20px;
+  height: 20px;
+  margin-top: -8px;
+  border: 2px solid #d6edfc;
+  border-radius: 50%;
+  appearance: none;
+  background: #a0d0ee;
+}
+
+.roiControls input::-moz-range-track {
+  height: 4px;
+  border-radius: 5px;
+  background: #506a7d;
+}
+
+.roiControls input::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #d6edfc;
+  border-radius: 50%;
+  background: #a0d0ee;
+}
+
+.roiControls > p,
+.roiNote {
+  display: block;
+  margin: 0;
+  color: #bad0df;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.roiNote {
+  margin-top: 11px;
+  max-width: 280px;
+}
+
+.roi .projectLink {
+  border-color: #405260;
+}
+
+/* Shakepay: the actual independent study, with no invented projections. */
+.shakepay {
+  border-color: #367da7;
+  background: #096897;
+  color: #fff;
+}
+
+:global([data-portfolio-theme="dark"]) .shakepay {
+  background: #124e70;
+}
+
+.shakepay .heading p {
+  color: #e1f2ff;
+}
+
+.shakepay .body {
+  display: flex;
+  flex-direction: column;
+}
+
+.shakepay .tabs {
+  border-color: #ffffff4d;
+  background: #07527b;
+}
+
+.shakepay .tabs button {
+  color: #e3f5ff;
+}
+
+.shakepay .tabs button[aria-pressed="true"] {
+  background: #eef8ff;
+  color: #175677;
+}
+
+.shakepay .tabs button:hover:not([aria-pressed="true"]) {
+  background: #ffffff1c;
+}
+
+.shakepayStage {
+  position: relative;
+  min-height: 0;
+  margin-top: 13px;
+  overflow: hidden;
+  flex: 1;
+}
+
+.shakepayOrbit {
+  position: absolute;
+  top: 22px;
+  left: 50%;
+  width: 290px;
+  height: 290px;
+  border: 1px solid #ffffff2e;
+  border-radius: 50%;
+  transform: translateX(-50%);
+}
+
+.shakepayPhone {
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  height: calc(100% - 8px);
+  overflow: hidden;
+  aspect-ratio: 384 / 835;
+  border: 3px solid #194760;
+  border-radius: 25px;
+  background: #fff;
+  transform: translateX(-50%);
+}
+
+.shakepayPhone img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.shakepayLabel {
+  position: absolute;
+  right: 12px;
+  bottom: 18px;
+  left: 12px;
+  width: fit-content;
+  margin: 0 auto;
+  padding: 7px 11px;
+  border: 1px solid #ffffff4d;
+  border-radius: 8px;
+  background: #064c72ed;
+  color: #f4fbff;
+  font-size: 12px;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.studyNote {
+  margin: 7px 14px 13px;
+  color: #e1f2ff;
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.shakepay .projectLink {
+  border-color: #ffffff38;
+}
+
+/* CryptoCroc: a character-led concept, with a clear security boundary. */
+.crypto {
+  background: #efe0bd;
+}
+
+:global([data-portfolio-theme="dark"]) .crypto {
+  background: #342b1d;
+}
+
+.cryptoStage {
+  position: relative;
+  height: 100%;
+}
+
+.cryptoMascot {
+  position: absolute;
+  top: -7px;
+  right: -18px;
+  width: clamp(220px, 73cqw, 300px);
+  height: auto;
+  object-fit: contain;
+}
+
+.cryptoNote {
+  position: absolute;
+  z-index: 2;
+  right: 18px;
+  bottom: 79px;
+  left: 18px;
+  min-height: 114px;
+  padding: 14px;
+  border: 1px solid var(--portfolio-border, #ded6c7);
+  border-radius: 14px;
+  background: var(--portfolio-card, #faf8f0);
+}
+
+.cryptoDemo {
+  margin: 0 0 8px;
+  color: var(--portfolio-muted, #746b58);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.cryptoNote h3 {
+  margin: 0;
+  color: var(--portfolio-text, #403623);
+  font-size: 15px;
+  font-weight: 520;
+  letter-spacing: -0.03em;
+  line-height: 1.4;
+}
+
+.cryptoNote div > p {
+  margin: 6px 0 0;
+  color: var(--portfolio-muted, #746b58);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.cryptoTabs {
+  position: absolute;
+  right: 18px;
+  bottom: 14px;
+  left: 18px;
+  margin: 0;
+}
+
+.card[data-paused="true"] *,
+.card[data-paused="true"] *::before,
+.card[data-paused="true"] *::after {
+  animation: none !important;
+  transition: none !important;
+}
+
+.card[data-paused="true"] .repProgress::-webkit-progress-value,
+.card[data-paused="true"] .repProgress::-moz-progress-bar {
+  transition: none;
+}
+
+.card[data-paused="true"] .pose {
+  opacity: 0;
+}
+
+.card[data-paused="true"] .restPose {
+  opacity: 1;
+}
+
+@container (max-width: 300px) {
+  .heading {
+    padding-inline: 18px;
+  }
+
+  .heading h2 {
+    font-size: 20px;
+  }
+
+  .heading p {
+    font-size: 12px;
+  }
+
+  .tabs {
+    margin-right: 16px;
+    margin-left: 16px;
+  }
+
+  .tabs button {
+    padding-inline: 7px;
+  }
+
+  .context {
+    padding-right: 13px;
+    padding-left: 13px;
+  }
+
+  .worldControls {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .repButton {
+    padding-inline: 9px;
+  }
+
+  .roiBody {
+    padding-right: 18px;
+    padding-left: 18px;
+  }
+
+  .tracerTabs,
+  .cryptoTabs {
+    margin: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card *,
+  .card *::before,
+  .card *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .repProgress::-webkit-progress-value,
+  .repProgress::-moz-progress-bar {
+    transition: none;
+  }
+
+  .pose {
+    opacity: 0;
+  }
+
+  .restPose {
+    opacity: 1;
+  }
+}

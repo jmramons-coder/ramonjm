@@ -1,0 +1,34 @@
+.shell {
+  display: block;
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(ellipse at 28% 20%, var(--orb-light), transparent 60%),
+    radial-gradient(ellipse at 75% 68%, var(--orb-dark), var(--orb-mid) 65%);
+}
+.canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  border-radius: 50%;
+}
+
+.field {
+  aspect-ratio: auto;
+  border-radius: inherit;
+}
+.field .canvas {
+  border-radius: inherit;
+}
+
+/* Subpixel alpha keeps the rim clean even when WebGL is unavailable. */
+.smooth {
+  -webkit-mask-image: radial-gradient(circle closest-side, #000 calc(100% - .75px), transparent 100%);
+  mask-image: radial-gradient(circle closest-side, #000 calc(100% - .75px), transparent 100%);
+}

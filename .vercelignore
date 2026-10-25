@@ -5,3 +5,8 @@ node_modules
 
 artifacts
 docs
+
+.vercel
+work
+outputs
+.DS_Store

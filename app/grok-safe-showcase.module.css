@@ -1,0 +1,247 @@
+.card {
+  width: 100%;
+  min-width: 0;
+  color: var(--portfolio-text, #f3f3f3);
+}
+.card[data-open="true"] > div { visibility: hidden; }
+.scenario {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 16px 0;
+}
+.preview { display: grid; width: 100%; place-items: center; }
+.phone {
+  position: relative;
+  width: min(270px, calc(100% - 32px));
+  overflow: hidden;
+  border: 3px solid #171717;
+  border-radius: 36px;
+  background: #fff;
+  box-shadow: 0 18px 36px #0004, 0 0 0 1px #ffffff20;
+  transform-origin: top left;
+  transition: box-shadow 240ms;
+}
+.phone:has(.inspectTrigger:hover) { box-shadow: 0 22px 48px #0005, 0 0 0 1px #ffffff90; }
+.phone video { display: block; width: 100%; height: auto; aspect-ratio: 1206 / 2622; object-fit: contain; }
+.inspectTrigger { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; border-radius: inherit; background: transparent; cursor: zoom-in; }
+.inspectTrigger:focus-visible { outline: 2px solid #9ec5ff; outline-offset: -4px; }
+.scenarioControls {
+  width: min(330px, calc(100% - 16px));
+  margin-top: 18px;
+  padding: 7px 13px 8px;
+  border: 1px solid var(--portfolio-border, #ffffff25);
+  border-radius: 28px;
+  background: color-mix(in srgb, var(--portfolio-card, #191919) 82%, transparent);
+  color: var(--portfolio-text, #f3f3f3);
+  backdrop-filter: blur(24px) saturate(1.3);
+  box-shadow: 0 10px 30px #0002, inset 0 1px 0 #ffffff08;
+}
+.controlRow { display: flex; align-items: center; gap: 4px; }
+.playback, .restart, .close {
+  display: inline-flex;
+  width: 44px;
+  height: 44px;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+.playback svg { width: 18px; height: 18px; }
+.restart svg { width: 18px; height: 18px; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.time { margin-left: auto; padding-right: 9px; font-size: 11px; font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--portfolio-muted, #aaa); }
+.timeline { display: block; width: 100%; height: 20px; margin: 0; accent-color: var(--portfolio-text, #fff); cursor: pointer; }
+.scenarioControls button:hover { background: var(--portfolio-control-hover, #ffffff15); }
+.scenarioControls button:disabled, .timeline:disabled { opacity: .45; cursor: default; }
+.scenarioControls :is(button,input):focus-visible, .close:focus-visible { outline: 2px solid var(--portfolio-focus, #85adff); outline-offset: 2px; }
+.srOnly { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.mediaError { margin: 8px 0; font-size: 12px; color: var(--portfolio-muted, #aaa); }
+.dialog {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 24px;
+  overflow: clip;
+  border: 0;
+  background: transparent;
+  color: var(--portfolio-text, #fff);
+}
+.dialog[open] { display: grid; place-items: center; }
+.dialog::backdrop { background: #080b0b85; backdrop-filter: blur(22px) saturate(.75); }
+.dialog > .scenario { width: min(430px, calc(100vw - 32px)); padding: 0; pointer-events: none; }
+.dialog .preview { width: 100%; min-width: 0; grid-template-columns: minmax(0, 1fr); pointer-events: none; }
+.scenario[data-expanded="true"] .phone {
+  width: min(430px, calc((100dvh - 156px) * .45995), calc(100vw - 64px));
+  max-width: 100%;
+  pointer-events: auto;
+}
+.scenario[data-expanded="true"] .scenarioControls { pointer-events: auto; }
+.close { position: absolute; z-index: 3; top: 20px; right: 20px; border: 1px solid #ffffff50; background: #20262590; color: #fff; backdrop-filter: blur(16px); }
+.close:hover { background: #202625d0; }
+.close svg { width: 20px; height: 20px; stroke: currentColor; stroke-width: 1.5; }
+.floatingBrand { position: absolute; top: 24px; left: 24px; display: flex; align-items: center; gap: 10px; color: #fff; }
+.floatingBrand img { width: 34px; height: 34px; border-radius: 10px; object-fit: contain; }
+.floatingBrand h2 { margin: 0; font-size: 17px; font-weight: 550; letter-spacing: -.035em; }
+@media (max-width: 600px) {
+  .dialog { padding: 12px; }
+  .close { top: 12px; right: 12px; }
+  .floatingBrand { top: 18px; left: 18px; }
+  .scenario[data-expanded="true"] .phone { width: min(calc((100dvh - 170px) * .45995), calc(100vw - 64px)); }
+}
+@media (prefers-reduced-motion: reduce) { .phone { transition: none; } }
+
+.listEntry {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.listMark {
+  box-sizing: border-box;
+  padding: 8px;
+  border-radius: 11px;
+  background: #f1f0ed;
+}
+
+.listTitle {
+  display: block;
+  color: var(--ink);
+  font-size: 16px;
+  font-weight: 550;
+  line-height: 1.4;
+  letter-spacing: -0.03em;
+}
+
+.listDescription {
+  display: block;
+  margin-top: 6px;
+  color: var(--body);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.listEntry > span:last-child svg {
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+
+.scenario[data-film="true"] .phone { border: 0; border-radius: 20px; background: #039fe8; box-shadow: 0 18px 36px #0004; }
+.scenario[data-film="true"] .phone video { aspect-ratio: 9 / 16; }
+.scenario[data-expanded="true"][data-film="true"] .phone { width: min(430px,calc((100dvh - 156px) * .5625),calc(100vw - 64px)); }
+@media(max-width:600px) { .scenario[data-expanded="true"][data-film="true"] .phone { width: min(calc((100dvh - 170px) * .5625),calc(100vw - 64px)); } }
+
+.scenario:not([data-film="true"]) .phone { width: min(var(--mockup-phone-width),100%); border: var(--mockup-phone-border); border-radius: var(--mockup-phone-radius); box-shadow: var(--mockup-phone-shadow); }
+.scenario[data-expanded="true"]:not([data-film="true"]) .phone { width: min(430px,calc((100dvh - 170px) * .45995),calc(100vw - 64px)); }
+
+.scenarioControls { display: grid; grid-template-columns: 38px 38px minmax(60px,1fr) auto; align-items: center; gap: 4px; width: min(430px,calc(100% - 16px)); padding: 5px 8px; }
+.controlRow { display: contents; }
+.scenarioControls .playback,.scenarioControls .restart { width: 38px; height: 38px; }
+.scenarioControls .time { grid-column: 4; grid-row: 1; margin: 0; padding: 0 6px; font-size: 10px; }
+.scenarioControls .timeline { grid-column: 3; grid-row: 1; height: 36px; min-width: 0; }
+.scenarioControls .mediaError { grid-column: 1 / -1; }
+
+.dialog[data-grok-concept] .floatingBrand img { filter: invert(1); border-radius: 0; }
+.conceptBanner { position: absolute; top: 20px; left: 50%; transform: translateX(-50%); width: min(540px,calc(100vw - 520px)); padding: 11px 16px; border: 1px solid #ffffff24; border-radius: 14px; background: #171b20b8; backdrop-filter: blur(20px); color: #fff; box-shadow: inset 0 1px 0 #ffffff09,0 8px 30px #0002; text-align: center; }
+.conceptTag { display: block; font-size: 10px; font-weight: 550; letter-spacing: .04em; color: #b9c6d7; }
+.conceptBanner p { margin: 5px 0 0; font-size: 12px; line-height: 1.5; text-wrap: balance; }
+@media(max-width:900px) {
+  .conceptBanner { top: 70px; width: min(540px,calc(100vw - 36px)); padding: 10px 14px; }
+  .dialog[data-grok-concept] > .scenario { transform: translateY(48px); }
+  .dialog[data-grok-concept] .scenario[data-expanded="true"] .phone { width: min(430px,calc((100dvh - 280px) * .45995),calc(100vw - 64px)); }
+}
+@media(min-width:901px) {
+  .dialog[data-grok-concept] > .scenario { transform: translateY(28px); }
+  .dialog[data-grok-concept] .scenario[data-expanded="true"] .phone { width: min(430px,calc((100dvh - 240px) * .45995),calc(100vw - 64px)); }
+}
+
+.scenario:not([data-expanded="true"]) { padding: 0; }
+.scenario:not([data-expanded="true"]) .phone { width: 100%; }
+
+.dialog {
+  --viewer-safe-top: env(safe-area-inset-top, 0px);
+  --viewer-safe-right: env(safe-area-inset-right, 0px);
+  --viewer-safe-bottom: env(safe-area-inset-bottom, 0px);
+  --viewer-safe-left: env(safe-area-inset-left, 0px);
+}
+.dialog .floatingBrand { top: calc(24px + var(--viewer-safe-top)); left: calc(24px + var(--viewer-safe-left)); }
+.dialog .close { top: calc(20px + var(--viewer-safe-top)); right: calc(20px + var(--viewer-safe-right)); }
+.scenario[data-expanded="true"]:not([data-film="true"]) .phone {
+  width: min(430px, calc((100dvh - 170px - var(--viewer-safe-top) - var(--viewer-safe-bottom)) * .45995), calc(100vw - 64px - var(--viewer-safe-left) - var(--viewer-safe-right)));
+}
+.scenario[data-expanded="true"][data-film="true"] .phone {
+  width: min(430px, calc((100dvh - 170px - var(--viewer-safe-top) - var(--viewer-safe-bottom)) * .5625), calc(100vw - 64px - var(--viewer-safe-left) - var(--viewer-safe-right)));
+}
+@media (max-width: 900px) {
+  .dialog .floatingBrand { top: calc(18px + var(--viewer-safe-top)); left: calc(18px + var(--viewer-safe-left)); }
+  .dialog .close { top: calc(12px + var(--viewer-safe-top)); right: calc(12px + var(--viewer-safe-right)); }
+  .dialog .conceptBanner { top: calc(70px + var(--viewer-safe-top)); }
+  .dialog[data-grok-concept] .scenario[data-expanded="true"] .phone {
+    width: min(430px, calc((100dvh - 280px - var(--viewer-safe-top) - var(--viewer-safe-bottom)) * .45995), calc(100vw - 64px - var(--viewer-safe-left) - var(--viewer-safe-right)));
+  }
+}
+@media (min-width: 901px) {
+  .dialog .conceptBanner { top: calc(20px + var(--viewer-safe-top)); }
+  .dialog[data-grok-concept] .scenario[data-expanded="true"] .phone {
+    width: min(430px, calc((100dvh - 240px - var(--viewer-safe-top) - var(--viewer-safe-bottom)) * .45995), calc(100vw - 64px - var(--viewer-safe-left) - var(--viewer-safe-right)));
+  }
+}
+
+/* Use a separate information/control rail when the viewport is short. */
+@media (orientation: landscape) and (max-height: 600px) {
+  .dialog {
+    --viewer-rail: clamp(196px, 30vw, 260px);
+    padding: 0;
+  }
+  .dialog .floatingBrand { top: calc(18px + var(--viewer-safe-top)); left: calc(18px + var(--viewer-safe-left)); }
+  .dialog .close { top: calc(14px + var(--viewer-safe-top)); right: calc(14px + var(--viewer-safe-right)); }
+  .dialog > .scenario,
+  .dialog[data-grok-concept] > .scenario {
+    width: calc(100% - var(--viewer-rail) - var(--viewer-safe-left) - var(--viewer-safe-right));
+    margin-left: calc(var(--viewer-rail) + var(--viewer-safe-left));
+    margin-right: var(--viewer-safe-right);
+    transform: none;
+  }
+  .dialog .scenario[data-expanded="true"]:not([data-film="true"]) .phone,
+  .dialog[data-grok-concept] .scenario[data-expanded="true"] .phone {
+    width: min(430px, calc((100dvh - 48px - var(--viewer-safe-top) - var(--viewer-safe-bottom)) * .45995), calc(100vw - var(--viewer-rail) - 40px - var(--viewer-safe-left) - var(--viewer-safe-right)));
+  }
+  .dialog .scenario[data-expanded="true"][data-film="true"] .phone {
+    width: min(430px, calc((100dvh - 48px - var(--viewer-safe-top) - var(--viewer-safe-bottom)) * .5625), calc(100vw - var(--viewer-rail) - 40px - var(--viewer-safe-left) - var(--viewer-safe-right)));
+  }
+  .dialog .scenarioControls {
+    position: absolute;
+    left: calc(18px + var(--viewer-safe-left));
+    bottom: calc(18px + var(--viewer-safe-bottom));
+    width: calc(var(--viewer-rail) - 30px);
+    margin: 0;
+    grid-template-columns: 38px 38px minmax(0, 1fr);
+    border-radius: 20px;
+  }
+  .dialog .scenarioControls .time { grid-column: 3; grid-row: 1; padding-inline: 2px; text-align: right; }
+  .dialog .scenarioControls .timeline { grid-column: 1 / -1; grid-row: 2; height: 24px; }
+  .dialog .conceptBanner {
+    top: calc(76px + var(--viewer-safe-top));
+    left: calc(18px + var(--viewer-safe-left));
+    width: calc(var(--viewer-rail) - 30px);
+    max-height: calc(100dvh - 188px - var(--viewer-safe-top) - var(--viewer-safe-bottom));
+    overflow-y: auto;
+    transform: none;
+    text-align: left;
+    padding: 10px 12px;
+  }
+}

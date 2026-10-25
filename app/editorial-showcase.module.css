@@ -1,0 +1,412 @@
+.card {
+  --ambient-state: paused;
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  height: var(--art-height);
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--portfolio-border, #303030);
+  border-radius: var(--portfolio-radius, 20px);
+  background: #171b1b;
+  color: #fff;
+  container-type: inline-size;
+}
+.artButton {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: inherit;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: zoom-in;
+}
+.artButton:focus-visible {
+  outline: 3px solid var(--portfolio-focus, #85adff);
+  outline-offset: -5px;
+}
+.topLabel {
+  position: absolute;
+  z-index: 3;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  color: inherit;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  line-height: 1.5;
+  pointer-events: none;
+  opacity: 0.8;
+}
+.caption {
+  position: absolute;
+  z-index: 3;
+  inset: auto 0 0;
+  display: flex;
+  min-height: 92px;
+  padding: 24px 20px 20px;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 15px;
+  background: linear-gradient(transparent, #0009 45%, #000c);
+  pointer-events: none;
+}
+.caption h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 510;
+  letter-spacing: -0.045em;
+  line-height: 1.3;
+}
+.caption p {
+  margin-top: 4px;
+  font-size: 12px;
+  color: #ffffffe0;
+  line-height: 1.5;
+}
+.caption > svg {
+  width: 18px;
+  height: 18px;
+  margin-bottom: 4px;
+  flex-shrink: 0;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.openHint {
+  position: absolute;
+  z-index: 4;
+  top: 58px;
+  right: 16px;
+  display: inline-flex;
+  min-height: 36px;
+  padding: 0 11px;
+  align-items: center;
+  gap: 9px;
+  border: 1px solid #ffffff30;
+  border-radius: 999px;
+  background: #14191edb;
+  color: #fff;
+  font-size: 11px;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition:
+    opacity 180ms,
+    transform 180ms;
+}
+.openHint svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  stroke-width: 1.4;
+}
+.artButton:is(:hover, :focus-visible) .openHint {
+  opacity: 1;
+  transform: none;
+}
+.light {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  background: radial-gradient(
+    circle at var(--light-x, 50%) var(--light-y, 50%),
+    #ffffff25,
+    transparent 52%
+  );
+  opacity: 0;
+  transition: opacity 300ms;
+  pointer-events: none;
+}
+.artButton:hover .light {
+  opacity: 1;
+}
+.landscape {
+  object-fit: cover;
+}
+.glassMark {
+  position: absolute;
+  z-index: 1;
+  top: 62px;
+  left: 50%;
+  width: min(76%, 290px);
+  height: auto;
+  transform: translateX(-50%);
+  filter: drop-shadow(0 22px 30px #18352850);
+  transition: filter 300ms;
+}
+.brandWord {
+  position: absolute;
+  z-index: 1;
+  top: 68%;
+  left: 20px;
+  color: #fff;
+  font-size: clamp(46px, 18cqw, 76px);
+  font-weight: 500;
+  letter-spacing: -0.08em;
+  line-height: 1;
+}
+.tracerBrand .caption {
+  min-height: 89px;
+}
+.tracerBrand .topLabel {
+  text-shadow: 0 1px 8px #183528;
+}
+.tracerProcess {
+  background: #194fa7;
+}
+.processTitle {
+  position: absolute;
+  top: 58px;
+  left: 20px;
+  font-size: clamp(28px, 9cqw, 39px);
+  font-weight: 480;
+  letter-spacing: -0.055em;
+  line-height: 1.1;
+}
+.markStudies {
+  position: absolute;
+  top: 167px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  height: 72px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+.markStudies img {
+  width: 25%;
+  height: 60px;
+  object-fit: contain;
+  border-radius: 8px;
+  opacity: 0.94;
+}
+.tracerProcess .caption {
+  min-height: 76px;
+  padding-top: 15px;
+  background: linear-gradient(transparent, #0b2d715c);
+}
+.nudgeStudio {
+  --portfolio-focus: #315cf5;
+  background: #e9edcf;
+  color: #303a25;
+}
+.studioTitle {
+  position: absolute;
+  z-index: 1;
+  top: 55px;
+  left: 20px;
+  font-size: clamp(31px, 10cqw, 44px);
+  line-height: 1.03;
+  font-weight: 500;
+  letter-spacing: -0.065em;
+}
+.studioRing {
+  position: absolute;
+  left: 48%;
+  top: 100px;
+  width: 230px;
+  height: 230px;
+  border: 1px solid #6e7b3f35;
+  border-radius: 50%;
+}
+.ipadScene {
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top: 123px;
+  width: 105%;
+  max-width: none;
+  height: auto;
+  animation: ipad-float 7s ease-in-out infinite;
+  animation-play-state: var(--ambient-state);
+}
+.nudgeStudio .caption {
+  background: linear-gradient(transparent, #e9edcff5 35%, #e9edcf);
+}
+.nudgeStudio .caption p {
+  color: #556045;
+}
+.worldCrew {
+  background: #34234e;
+}
+.crew {
+  object-fit: cover;
+  object-position: 50% 39%;
+  transition: transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.worldCrew .topLabel {
+  text-shadow: 0 1px 10px #0008;
+}
+.worldCrew .artButton:hover .crew {
+  transform: scale(1.04);
+}
+.cryptoAdventure {
+  --portfolio-focus: #315cf5;
+  background: #e9c878;
+  color: #2f3d23;
+}
+.adventureSun {
+  position: absolute;
+  top: 61px;
+  left: 50%;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: #fff0b95c;
+  transform: translateX(-50%);
+}
+.adventureCloud {
+  position: absolute;
+  top: 165px;
+  left: -30%;
+  width: 160%;
+  height: 140px;
+  border: 1px solid #fff1c56e;
+  border-radius: 50%;
+  transform: rotate(-12deg);
+}
+.glider {
+  position: absolute;
+  z-index: 1;
+  top: 35px;
+  left: 50%;
+  width: min(90%, 310px);
+  height: 370px;
+  object-fit: contain;
+  animation: glider-float 8s ease-in-out infinite;
+  animation-play-state: var(--ambient-state);
+}
+.cryptoAdventure .caption {
+  background: linear-gradient(transparent, #d1b266e8 40%, #d1b266);
+}
+.cryptoAdventure .caption p {
+  color: #374329;
+}
+.nextPlayer {
+  background: #250c70;
+}
+.handoff {
+  object-fit: cover;
+  object-position: center 43%;
+  transition: transform 600ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.nextPlayer .artButton:hover .handoff {
+  transform: scale(1.04);
+}
+.nextPlayer .topLabel {
+  padding: 6px 9px;
+  top: 14px;
+  left: 14px;
+  right: auto;
+  border: 1px solid #ffffff20;
+  border-radius: 999px;
+  background: #10052c80;
+}
+.beamIdentity {
+  background: #e2f0ff;
+  color: #163e6b;
+}
+.identityLink {
+  position: absolute;
+  inset: 0;
+  display: block;
+  color: inherit;
+}
+.identityLink h2 {
+  position: absolute;
+  bottom: 22px;
+  left: 22px;
+  margin: 0;
+  font-size: 23px;
+  font-weight: 530;
+  letter-spacing: -0.9px;
+  line-height: 1.2;
+}
+.identityLink:focus-visible {
+  outline: 3px solid #315cf5;
+  outline-offset: -5px;
+}
+.identityOrb {
+  position: absolute;
+  top: 33px;
+  left: 50%;
+  width: min(76%, 260px);
+  aspect-ratio: 1;
+  transform: translateX(-50%);
+  animation: identity-breathe 8s ease-in-out infinite;
+  animation-play-state: var(--ambient-state);
+}
+.identityOrb > * {
+  width: 100%;
+  height: 100%;
+}
+@keyframes identity-breathe {
+  0%,
+  100% {
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    transform: translateX(-50%) scale(1.035);
+  }
+}
+@keyframes ipad-float {
+  0%,
+  100% {
+    transform: translate(-50%, 0);
+  }
+  50% {
+    transform: translate(-50%, -7px);
+  }
+}
+@keyframes glider-float {
+  0%,
+  100% {
+    transform: translate(-50%, 0) rotate(-1deg);
+  }
+  50% {
+    transform: translate(-50%, -9px) rotate(1deg);
+  }
+}
+.card[data-paused="true"] * {
+  animation-play-state: paused;
+  transition: none;
+}
+.card[data-paused="true"] .light {
+  display: none;
+}
+@media (hover: none) {
+  .openHint {
+    top: 54px;
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .light {
+    display: none;
+  }
+  .card *,
+  .card *::before,
+  .card *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .ipadScene,
+  .glider {
+    transform: translateX(-50%);
+  }
+  .artButton:hover .crew,
+  .artButton:hover .handoff {
+    transform: none;
+  }
+}

@@ -1,0 +1,137 @@
+.gallery {
+  width: 100%;
+  max-width: var(--portfolio-width, 1920px);
+  margin: 0 auto;
+  padding: 0 var(--portfolio-gutter, 20px);
+}
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.filters {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.filters button {
+  display: inline-flex;
+  min-height: 44px;
+  padding: 0 14px;
+  align-items: center;
+  gap: 9px;
+  border: 1px solid var(--portfolio-border);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--portfolio-muted);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  transition:
+    background 160ms,
+    color 160ms;
+}
+.filters button > span {
+  font-size: 10px;
+  opacity: 0.65;
+}
+.filters button[aria-pressed="true"] {
+  background: var(--portfolio-contrast);
+  border-color: var(--portfolio-contrast);
+  color: var(--portfolio-contrast-ink);
+}
+.filters button:hover:not([aria-pressed="true"]) {
+  background: var(--portfolio-card);
+  color: var(--portfolio-text);
+}
+.filters button:focus-visible {
+  outline: 2px solid var(--portfolio-focus);
+  outline-offset: 4px;
+}
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.playground {
+  width: 100%;
+  column-count: 1;
+  column-gap: var(--portfolio-gap, 20px);
+  column-fill: balance;
+  orphans: 1;
+  widows: 1;
+  font-size: 0;
+  line-height: 0;
+}
+
+.masonryItem {
+  display: block;
+  width: 100%;
+  margin: 0 0 var(--portfolio-gap, 20px);
+  break-inside: avoid;
+  font-size: 16px;
+  line-height: normal;
+}
+
+@media (min-width: 640px) {
+  .playground {
+    column-count: 2;
+  }
+}
+
+@media (min-width: 980px) {
+  .playground {
+    column-count: 3;
+  }
+}
+
+@media (min-width: 1320px) {
+  .playground {
+    column-count: 4;
+  }
+}
+
+@media (min-width: 1680px) {
+  .playground {
+    column-count: 5;
+  }
+}
+@media (max-width: 760px) {
+  .toolbar {
+    margin-bottom: 14px;
+  }
+  .filters {
+    gap: 6px;
+  }
+  .filters button {
+    min-height: 44px;
+    padding-inline: 12px;
+    font-size: 11px;
+    gap: 7px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .filters button {
+    transition: none;
+  }
+}
+
+/* Anchor the leading desktop cards while keeping each column vertical. */
+@media (min-width: 1320px) {
+  .masonryItem[data-filter="all"]:is([data-piece="case-workspace"], [data-piece="world"], [data-piece="decision"]) { break-before: column; }
+}
+@media (min-width: 1680px) {
+  .masonryItem[data-filter="all"][data-piece="midjourney"] { break-before: column; }
+}
+
+/* Mockups share their masonry column width; spacing belongs to the grid. */
+.playground { --mockup-phone-width: 100%; }

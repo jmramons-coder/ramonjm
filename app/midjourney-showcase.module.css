@@ -1,0 +1,85 @@
+.card {
+  position: relative;
+  aspect-ratio: 1;
+  width: 100%;
+  min-width: 0;
+  border-radius: var(--portfolio-radius, 20px);
+}
+.tile {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: inherit;
+  background: #171a16;
+  cursor: zoom-in;
+  transition: box-shadow 240ms;
+}
+.tile:hover { box-shadow: 0 14px 36px #0004; }
+.tile:focus-visible { outline: 2px solid var(--portfolio-focus, #c3d8ff); outline-offset: 4px; }
+.tile[data-open="true"] { visibility: hidden; }
+.artwork { position: absolute; inset: 0; overflow: hidden; border-radius: inherit; }
+.dialog {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 24px;
+  overflow: hidden;
+  border: 0;
+  background: transparent;
+}
+.dialog[open] { display: grid; place-items: center; }
+.dialog::backdrop { background: #080b0b85; backdrop-filter: blur(22px) saturate(.75); }
+.panel {
+  position: relative;
+  width: min(900px, calc(100vw - 48px), calc((100dvh - 48px) * var(--art-ratio)));
+  aspect-ratio: var(--art-ratio);
+  border: 0;
+  border-radius: 24px;
+  background: #171a16;
+  box-shadow: 0 32px 100px #0007;
+  transform-origin: top left;
+}
+.close {
+  position: absolute;
+  z-index: 3;
+  top: 14px;
+  right: 14px;
+  display: grid;
+  width: 44px;
+  height: 44px;
+  padding: 11px;
+  place-items: center;
+  border: 1px solid #ffffff65;
+  border-radius: 50%;
+  background: #14251c80;
+  color: #fff;
+  backdrop-filter: blur(16px);
+  cursor: pointer;
+  transition: background 180ms;
+}
+.close:hover { background: #14251cc0; }
+.close:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
+.close svg { width: 20px; height: 20px; stroke: currentColor; stroke-width: 1.5; }
+@media (max-width: 600px) {
+  .dialog { padding: 12px; }
+  .panel { width: min(calc(100vw - 24px), calc((100dvh - 24px) * var(--art-ratio))); border-radius: 20px; }
+  .close { top: 10px; right: 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tile, .tile::after, .close { transition: none; }
+}
+
+.artwork { width: 100%; height: 100%; object-fit: contain; }
+.label { position: absolute; top: 20px; left: 20px; right: 76px; color: white; font-size: 15px; line-height: 1.5; text-shadow: 0 1px 12px #000; pointer-events: none; }
+.label span { margin-inline: 5px; }
+
+.close { position: fixed; top: 20px; right: 24px; }
+@media(max-width:600px) { .close { top: 16px; right: 18px; } }

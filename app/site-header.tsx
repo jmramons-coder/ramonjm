@@ -1,7 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  useSyncExternalStore,
+  type ReactNode,
+} from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
   ArrowLeft02Icon,
@@ -25,7 +31,11 @@ export function SiteHeader({
   backHref,
   backLabel = "Back to side projects",
   textOnly = false,
+  center,
+  beforeActions,
 }: {
+  center?: ReactNode;
+  beforeActions?: ReactNode;
   textOnly?: boolean;
   home?: boolean;
   tone?: "light" | "dark";
@@ -39,9 +49,12 @@ export function SiteHeader({
     if (home) return;
     let frame = 0;
     const update = () => {
-      const distance = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = distance > 0 ? Math.max(0, Math.min(1, window.scrollY / distance)) : 1;
-      if (progressRef.current) progressRef.current.style.transform = `scaleX(${progress})`;
+      const distance =
+        document.documentElement.scrollHeight - window.innerHeight;
+      const progress =
+        distance > 0 ? Math.max(0, Math.min(1, window.scrollY / distance)) : 1;
+      if (progressRef.current)
+        progressRef.current.style.transform = `scaleX(${progress})`;
     };
     const schedule = () => {
       cancelAnimationFrame(frame);
@@ -94,7 +107,7 @@ export function SiteHeader({
 
   return (
     <header
-      className={`site-header site-header--${tone}${isScrolled ? " is-scrolled" : ""}`}
+      className={`site-header site-header--${tone}${center ? " site-header--with-center" : ""}${isScrolled ? " is-scrolled" : ""}`}
       id={home ? "top" : undefined}
     >
       <div className="header-leading">
@@ -104,7 +117,12 @@ export function SiteHeader({
             href={resolvedBackHref}
             aria-label={backLabel}
           >
-            <HugeiconsIcon icon={ArrowLeft02Icon} size={19} strokeWidth={1.8} aria-hidden="true" />
+            <HugeiconsIcon
+              icon={ArrowLeft02Icon}
+              size={19}
+              strokeWidth={1.8}
+              aria-hidden="true"
+            />
           </Link>
         ) : null}
         <Link
@@ -115,7 +133,9 @@ export function SiteHeader({
           <span>Ramon JM</span>
         </Link>
       </div>
+      {center ? <div className="header-center">{center}</div> : null}
       <div className="header-actions">
+        {beforeActions}
         <CvDrawer />
         <div className="contact-menu" ref={contactRef}>
           <button
@@ -175,7 +195,11 @@ export function SiteHeader({
           </div>
         </div>
       </div>
-      {!home && <div className="reading-progress" aria-hidden="true"><div ref={progressRef} className="reading-progress-fill" /></div>}
+      {!home && (
+        <div className="reading-progress" aria-hidden="true">
+          <div ref={progressRef} className="reading-progress-fill" />
+        </div>
+      )}
     </header>
   );
 }

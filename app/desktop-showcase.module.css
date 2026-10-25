@@ -1,0 +1,515 @@
+.card {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--portfolio-border, #303030);
+  border-radius: var(--portfolio-radius, 20px);
+  background: var(--portfolio-card, #191919);
+  color: var(--portfolio-text, #f3f3f3);
+  isolation: isolate;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 20px 20px 0;
+}
+
+.identity {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.identity h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.45px;
+}
+
+.identity p {
+  margin: 4px 0 0;
+  color: var(--portfolio-muted, #b0b0b0);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.tracerIcon {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  padding: 4px;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.caseLink {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--portfolio-border, #303030);
+  border-radius: 50%;
+  color: inherit;
+  transition: background 160ms ease;
+}
+
+.caseLink:hover {
+  background: var(--portfolio-control-hover, #3b3b3b);
+}
+
+.caseLink svg {
+  width: 20px;
+  height: 20px;
+  transform: rotate(-35deg);
+  stroke: currentColor;
+  stroke-width: 1.5;
+}
+
+.tracerIntro {
+  padding: 25px 20px 22px;
+}
+
+.eyebrow {
+  display: block;
+  color: var(--portfolio-muted, #b0b0b0);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.tracerIntro p {
+  max-width: 320px;
+  margin: 8px 0 0;
+  font-size: clamp(23px, 2.1vw, 28px);
+  font-weight: 500;
+  letter-spacing: -0.9px;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.tracerInspect {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  min-height: 44px;
+  max-width: 100%;
+  margin-top: 10px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--portfolio-text, #f3f3f3);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+}
+
+.tracerFooter p {
+  margin: 0;
+  color: var(--portfolio-muted, #b0b0b0);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.tracerInspect svg,
+.panLabels svg {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  transition: transform 180ms ease;
+}
+
+.tracerInspect:hover svg {
+  transform: translateX(3px);
+}
+
+.abeam {
+  --portfolio-focus: #1769c1;
+  background: #f7faff;
+  color: #20466c;
+}
+
+.beamHeader {
+  display: flex;
+  min-height: 77px;
+  padding: 16px 20px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.beamIdentity {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 10px;
+  color: inherit;
+}
+
+.beamIdentity h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 550;
+  letter-spacing: -0.9px;
+  line-height: 1.2;
+}
+
+.beamOrb {
+  display: block;
+  width: 38px;
+  height: 38px;
+  flex: none;
+  animation: beam-breathe 6.8s ease-in-out infinite;
+}
+
+.beamOrb > * {
+  width: 100%;
+  height: 100%;
+}
+
+.beamCaptureNote {
+  color: #667c92;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.beamStage {
+  position: relative;
+  aspect-ratio: 1.025;
+  overflow: hidden;
+  background: #fff;
+}
+
+.beamSlide {
+  position: absolute;
+  inset: 12px 14px;
+  opacity: 0;
+  transform: translateY(9px);
+  pointer-events: none;
+  transition:
+    opacity 650ms ease,
+    transform 850ms cubic-bezier(0.2, 0.65, 0.2, 1);
+}
+
+.beamSlide[data-active="true"] {
+  z-index: 1;
+  opacity: 1;
+  transform: none;
+}
+
+.beamImage {
+  object-fit: contain;
+  object-position: center;
+  user-select: none;
+}
+
+.beamSlide[data-view="2"] {
+  inset: 24px 14px;
+}
+
+.beamNavigation {
+  display: flex;
+  min-height: 65px;
+  padding: 6px 16px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.beamNavigation > div {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.beamNavigation button {
+  position: relative;
+  min-height: 44px;
+  padding: 0 9px;
+  border: 0;
+  background: transparent;
+  color: #6b7f92;
+  font: inherit;
+  font-size: 11px;
+  cursor: pointer;
+  transition: color 180ms ease;
+}
+
+.beamNavigation button::after {
+  position: absolute;
+  right: 9px;
+  bottom: 6px;
+  left: 9px;
+  height: 2px;
+  border-radius: 2px;
+  background: #2787f5;
+  content: "";
+  opacity: 0;
+  transform: scaleX(0.5);
+  transition:
+    opacity 180ms ease,
+    transform 240ms ease;
+}
+
+.beamNavigation button:is(:hover, [aria-pressed="true"]) {
+  color: #135eab;
+}
+
+.beamNavigation button[aria-pressed="true"]::after {
+  opacity: 1;
+  transform: none;
+}
+
+.abeam :is(a, button):focus-visible {
+  outline-color: #1769c1;
+  outline-offset: 2px;
+}
+
+@keyframes beam-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.07);
+  }
+}
+
+@media (max-width: 400px) {
+  .beamHeader {
+    padding-inline: 16px;
+  }
+  .beamNavigation {
+    padding-inline: 8px;
+  }
+}
+
+.tracerIntro {
+  padding-bottom: 25px;
+}
+
+.tracerFrame {
+  margin: 0 12px;
+  overflow: hidden;
+  border: 1px solid #d5d9e0;
+  border-radius: 14px;
+  background: #fff;
+  color: #272b33;
+}
+
+.tracerCaptureBar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 36px;
+  padding: 0 12px;
+  border-bottom: 1px solid #e6e8ec;
+  background: #fafbfc;
+  font-size: 10px;
+}
+
+.tracerCaptureBar svg {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  stroke-width: 1.2;
+}
+
+.tracerLive {
+  margin-left: auto;
+  color: #747981;
+  font-size: 9px;
+}
+
+.panorama {
+  position: relative;
+  height: 365px;
+  overflow: hidden;
+  container-type: inline-size;
+  background: #f7f7f8;
+}
+
+.panoramaTrack {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: max(100%, 818px);
+  height: 365px;
+  transform: translateX(calc((100cqw - 100%) * var(--pan, 0.8)));
+}
+
+.panoramaTrack img {
+  object-fit: cover;
+  object-position: top left;
+  user-select: none;
+}
+
+.panControls {
+  padding: 0 12px 1px;
+  border-top: 1px solid #e6e8ec;
+  background: #fafbfc;
+}
+
+.panLabels {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.panLabels button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #4c535e;
+  font: inherit;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.panLabels button:hover {
+  color: #215dce;
+}
+
+.panLabels svg {
+  width: 15px;
+  height: 15px;
+}
+
+.panSlider {
+  display: flex;
+  align-items: center;
+  height: 44px;
+  margin-top: -10px;
+  cursor: ew-resize;
+}
+
+.panSlider input {
+  width: 100%;
+  height: 44px;
+  margin: 0;
+  appearance: none;
+  background: transparent;
+  accent-color: #2868df;
+  cursor: ew-resize;
+  touch-action: pan-y;
+}
+
+.panSlider input::-webkit-slider-runnable-track {
+  height: 3px;
+  border-radius: 3px;
+  background: #d8deea;
+}
+
+.panSlider input::-webkit-slider-thumb {
+  width: 24px;
+  height: 24px;
+  margin-top: -10.5px;
+  appearance: none;
+  border: 5px solid #fff;
+  border-radius: 50%;
+  background: #2868df;
+  box-shadow: 0 0 0 1px #b8c6de;
+}
+
+.panSlider input::-moz-range-track {
+  height: 3px;
+  border-radius: 3px;
+  background: #d8deea;
+}
+
+.panSlider input::-moz-range-thumb {
+  box-sizing: border-box;
+  width: 24px;
+  height: 24px;
+  border: 5px solid #fff;
+  border-radius: 50%;
+  background: #2868df;
+  box-shadow: 0 0 0 1px #b8c6de;
+}
+
+.tracerFooter {
+  padding: 20px;
+}
+
+.tracerInspect {
+  margin-top: 5px;
+}
+
+.card a:focus-visible,
+.card button:focus-visible,
+.panSlider input:focus-visible {
+  outline: 2px solid var(--portfolio-focus, #c3d8ff);
+  outline-offset: 3px;
+}
+
+.tracerFrame button:focus-visible,
+.panSlider input:focus-visible {
+  outline-color: #205ec6;
+  outline-offset: -2px;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.card[data-still="true"] *,
+.card[data-still="true"] *::before,
+.card[data-still="true"] *::after {
+  animation: none !important;
+  transition: none !important;
+}
+
+@media (max-width: 400px) {
+  .header {
+    padding: 16px 16px 0;
+  }
+  .identity {
+    gap: 9px;
+  }
+  .identity h2 {
+    font-size: 17px;
+  }
+  .identity p {
+    font-size: 11px;
+  }
+  .tracerIntro {
+    padding: 24px 16px 20px;
+  }
+  .tracerIntro p {
+    font-size: 24px;
+  }
+  .tracerFooter {
+    padding: 18px 16px;
+  }
+  .tracerLive {
+    font-size: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card *,
+  .card *::before,
+  .card *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

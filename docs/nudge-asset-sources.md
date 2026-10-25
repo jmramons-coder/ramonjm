@@ -24,3 +24,11 @@ Product framing is grounded in current website copy and the September 6 launch r
 ## App Store campaign
 
 The seven `store-*.webp` panels come from `/Users/codex/Documents/Codex/2026-09-05/le/outputs/nudge-dimensional-campaign/exports/iphone/`, matching the reviewed files listed in `outputs/nudge-release-63/screenshot-upload-manifest.json`. Each 1320 × 2868 source was proportionally resized to 990 pixels wide and encoded as WebP at quality 91. Full compositions are retained, presented as original App Store launch artwork, and linked to full-size copies.
+
+## Homepage sticker tile — October 24, 2026
+
+The former “Little things. Lighter days.” campaign slot now hosts the native task-creation demo. Its previous grid slot is a clean interactive sticker composition. Original `sticker-medal.png` and `sticker-sparkle-check.png` from `/Users/codex/Documents/Codex/2026-10-15/nudge-1.0.2-review/recovered-ios/Nudge/Assets.xcassets` were converted losslessly to `public/showcase/nudge/sticker-*.webp`, retaining transparency. CSS supplies the vivid background and restrained pointer movement; click/tap adds a short wiggle. Global pause and reduced motion disable movement. No duplicate demo was added; gallery totals remain 18 / 9 products / 7 art / 2 archive.
+
+## Video-first expanded gallery — October 24, 2026
+
+The Nudge grid remains the native interaction video without controls. Expansion now opens a horizontal scroll-snap gallery with that video first, followed by all seven existing `public/nudge/store-*.webp` App Store panels. The centered panel grows while neighboring panels remain visible, matching the PushedWorld gallery. The video pauses when a screenshot becomes selected, and its controls disappear. The compact single-row player includes play/pause, replay, seeking and elapsed/total time; position returns to the grid on close. The shared Grok Safe/Shakepay launch control bar was also reduced to a single row with the same action/seek/time layout. Verified video pause, screenshot selection, control hiding and mobile overflow.

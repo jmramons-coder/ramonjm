@@ -1,0 +1,22 @@
+.card { --x: 0px; --y: 0px; position: relative; isolation: isolate; width: 100%; height: 420px; overflow: hidden; border-radius: var(--portfolio-radius,20px); background: #adf24b; background-image: radial-gradient(ellipse at 12% 10%,#e8ff80,transparent 65%),linear-gradient(145deg,#ccfb62,#7ce79c); }
+.glow { position: absolute; inset: 15% -30% -55% 0; border-radius: 50%; background: #f4ffb075; filter: blur(35px); pointer-events: none; }
+.sticker { position: absolute; display: block; padding: 0; border: 0; background: transparent; cursor: grab; -webkit-tap-highlight-color: transparent; transition: transform 450ms cubic-bezier(.22,1,.36,1); filter: drop-shadow(0 30px 22px #365e2738); }
+.sticker img { display: block; width: 100%; height: auto; user-select: none; }
+.medal { z-index: 1; width: 47%; top: 9%; left: 10%; transform: translate(var(--x),var(--y)) rotate(-16deg); }
+.check { z-index: 2; width: 41%; right: 9%; bottom: 9%; transform: translate(calc(var(--x) * -1),calc(var(--y) * -1)) rotate(13deg); }
+.medal:hover { transform: translate(var(--x),calc(var(--y) - 8px)) rotate(-10deg) scale(1.04); }
+.check:hover { transform: translate(calc(var(--x) * -1),calc(var(--y) * -1 - 8px)) rotate(7deg) scale(1.04); }
+.sticker:active { cursor: grabbing; }
+.sticker:focus-visible { outline: 2px solid #314b20; outline-offset: 5px; border-radius: 30px; }
+.card[data-paused="true"] .sticker { transition: none; transform: rotate(-16deg); }
+.card[data-paused="true"] .check { transform: rotate(13deg); }
+@media(prefers-reduced-motion:reduce) { .sticker { transition: none; }.medal,.medal:hover { transform: rotate(-16deg); }.check,.check:hover { transform: rotate(13deg); } }
+
+.sticker img { animation: stickerFloat 5.8s ease-in-out infinite; }
+.check img { animation-duration: 6.6s; animation-delay: -2.4s; }
+@keyframes stickerFloat {
+  0%, 100% { transform: translateY(5px) rotate(-2deg); }
+  50% { transform: translateY(-9px) rotate(2deg); }
+}
+.card[data-paused="true"] .sticker img { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) { .sticker img { animation: none; } }

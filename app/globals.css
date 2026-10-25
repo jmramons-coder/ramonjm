@@ -3137,3 +3137,176 @@ a:focus-visible {
 .cv-evidence-list a { font-size: 14px; font-weight: 550; text-decoration: underline; text-underline-offset: 4px; }
 .cv-evidence-list p { margin-top: 5px; }
 .cv-evidence-list a:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+
+/* The home view switch occupies the center without changing case-study headers. */
+.site-header--with-center {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 16px;
+}
+.site-header--with-center .header-leading { justify-self: start; }
+.header-center { justify-self: center; }
+.site-header--with-center .header-actions { justify-self: end; }
+.site-header--with-center .wordmark { padding-top: 0; }
+@media (max-width: 759px) {
+  .site-header--with-center { gap: 8px; }
+  .site-header--with-center .header-actions { gap: 6px; }
+  .site-header--with-center .header-action { padding: 0 10px; font-size: 12px; }
+  .site-header--with-center .header-contact:not(:has(.header-contact-plane)) { padding-right: 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+/* The homepage theme also reaches the CV portal mounted on body. Keeping the
+   scope in CSS gives both themes their correct first paint and isolates studies. */
+:root:has([data-portfolio-theme]) {
+  --portfolio-width: 1920px;
+  --portfolio-gutter: 20px;
+  --portfolio-radius: 20px;
+  --portfolio-gap: 20px;
+  --max-width: var(--portfolio-width);
+  --page-pad: var(--portfolio-gutter);
+}
+:root:has([data-portfolio-theme="dark"]) {
+  color-scheme: dark;
+  --page: #000;
+  --ink: #f3f3f3;
+  --body: #b0b0b0;
+  --muted: #a0a0a0;
+  --quiet: #272727;
+  --line: #333;
+  --portfolio-card: #191919;
+  --portfolio-card-hover: #202020;
+  --portfolio-border: #303030;
+  --portfolio-text: #f3f3f3;
+  --portfolio-muted: #b0b0b0;
+  --portfolio-subtle: #a0a0a0;
+  --portfolio-control: #303030;
+  --portfolio-control-hover: #3b3b3b;
+  --portfolio-contrast: #fff;
+  --portfolio-contrast-ink: #111;
+  --portfolio-focus: #c3d8ff;
+  --portfolio-positive: #9dd2aa;
+  --portfolio-positive-bg: #202c23;
+}
+:root:has([data-portfolio-theme="light"]) {
+  color-scheme: light;
+  --page: #f1f1f0;
+  --ink: #171717;
+  --body: #60605e;
+  --muted: #686866;
+  --quiet: #e6e6e3;
+  --line: #d8d8d5;
+  --portfolio-card: #fff;
+  --portfolio-card-hover: #fafaf9;
+  --portfolio-border: #d8d8d5;
+  --portfolio-text: #171717;
+  --portfolio-muted: #60605e;
+  --portfolio-subtle: #686866;
+  --portfolio-control: #e7e7e4;
+  --portfolio-control-hover: #dededb;
+  --portfolio-contrast: #191919;
+  --portfolio-contrast-ink: #fff;
+  --portfolio-focus: #315cf5;
+  --portfolio-positive: #376444;
+  --portfolio-positive-bg: #eaf2ec;
+}
+:root:has([data-portfolio-theme]) .site-header {
+  min-height: 68px;
+  padding: 12px max(var(--portfolio-gutter), calc((100vw - var(--portfolio-width)) / 2 + var(--portfolio-gutter)));
+  align-items: center;
+  color: var(--portfolio-text);
+}
+:root:has([data-portfolio-theme]) .site-header.is-scrolled {
+  background: color-mix(in srgb, var(--page) 92%, transparent);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 var(--portfolio-border);
+}
+:root:has([data-portfolio-theme]) .wordmark { padding-top: 0; font-size: 15px; letter-spacing: -.03em; }
+:root:has([data-portfolio-theme]) .header-action {
+  min-height: 40px;
+  padding: 0 16px;
+  border: 1px solid var(--portfolio-border);
+  background: var(--portfolio-card);
+  color: var(--portfolio-text);
+  box-shadow: none;
+  font-size: 13px;
+  font-weight: 450;
+  letter-spacing: -.015em;
+}
+:root:has([data-portfolio-theme]) .header-action:hover { background: var(--portfolio-control); color: var(--portfolio-text); }
+:root:has([data-portfolio-theme]) .header-contact { padding-right: 16px; }
+:root:has([data-portfolio-theme]) .contact-menu-list {
+  padding: 7px;
+  border-color: var(--portfolio-border);
+  border-radius: 16px;
+  background: var(--portfolio-card);
+  color: var(--portfolio-text);
+  box-shadow: 0 12px 32px #0003;
+}
+:root:has([data-portfolio-theme]) .contact-menu-list a:hover { background: var(--portfolio-control); }
+:root:has([data-portfolio-theme]) .contact-menu-icon { background: var(--portfolio-control); color: var(--portfolio-muted); }
+:root:has([data-portfolio-theme]) .contact-menu-list small { color: var(--portfolio-muted); }
+:root:has([data-portfolio-theme]) .skip-link { background: var(--portfolio-contrast); color: var(--portfolio-contrast-ink); }
+:root:has([data-portfolio-theme]) .cv-drawer-backdrop { background: #0008; backdrop-filter: blur(5px); }
+:root:has([data-portfolio-theme]) .cv-drawer {
+  border: 1px solid var(--portfolio-border);
+  border-radius: 20px;
+  background: var(--portfolio-card);
+  color: var(--portfolio-text);
+  box-shadow: 0 24px 72px #0004;
+  backdrop-filter: none;
+}
+:root:has([data-portfolio-theme]) .cv-drawer-header,
+:root:has([data-portfolio-theme]) .cv-section,
+:root:has([data-portfolio-theme]) .cv-work-list li,
+:root:has([data-portfolio-theme]) .cv-drawer-footer { border-color: var(--portfolio-border); }
+:root:has([data-portfolio-theme]) .cv-drawer-updated,
+:root:has([data-portfolio-theme]) .cv-section-label,
+:root:has([data-portfolio-theme]) .cv-work-list li span:last-child,
+:root:has([data-portfolio-theme]) .cv-drawer-footer > p { color: var(--portfolio-muted); }
+:root:has([data-portfolio-theme]) .cv-drawer-close,
+:root:has([data-portfolio-theme]) .cv-contact-link {
+  border-color: var(--portfolio-border);
+  background: var(--portfolio-control);
+  color: var(--portfolio-text);
+}
+:root:has([data-portfolio-theme]) .cv-drawer-close:hover,
+:root:has([data-portfolio-theme]) .cv-contact-link:hover { background: var(--portfolio-control-hover); color: var(--portfolio-text); }
+:root:has([data-portfolio-theme]) .cv-drawer-scroll { scrollbar-color: var(--portfolio-border) transparent; }
+:root:has([data-portfolio-theme]) :is(.header-action, .contact-menu-list a, .cv-drawer-close, .cv-contact-link):focus-visible { outline: 2px solid var(--portfolio-focus); outline-offset: 3px; }
+@media (max-width: 760px) {
+  :root:has([data-portfolio-theme]) { --portfolio-gutter: 20px; --portfolio-gap: 12px; }
+  :root:has([data-portfolio-theme]) .site-header { min-height: 64px; padding-top: 10px; padding-bottom: 10px; }
+  :root:has([data-portfolio-theme]) .header-actions { gap: 6px; }
+  :root:has([data-portfolio-theme]) .header-action { min-height: 38px; padding: 0 12px; font-size: 12px; }
+  :root:has([data-portfolio-theme]) .wordmark { font-size: 14px; }
+  :root:has([data-portfolio-theme]) .cv-drawer { top: 0; right: 0; bottom: 0; width: 100dvw; border: 0; border-radius: 0; box-shadow: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  :root:has([data-portfolio-theme]) :is(.header-action, .contact-menu-list, .contact-menu-list a, .cv-drawer, .cv-drawer-close, .cv-contact-link) { transition: none; }
+  :root:has([data-portfolio-theme]) .cv-drawer-close:hover,
+  :root:has([data-portfolio-theme]) .cv-contact-link:hover { transform: none; }
+}
+@media (max-width: 480px) {
+  :root:has([data-portfolio-theme]) .site-header--with-center { display: flex; gap: 8px; }
+  :root:has([data-portfolio-theme]) .header-action { padding-inline: 10px; }
+  :root:has([data-portfolio-theme]) .header-contact:not(:has(.header-contact-plane)) { padding-right: 10px; }
+  :root:has([data-portfolio-theme]) .wordmark { font-size: 13px; }
+}
+
+@media (max-width: 759px) {
+  .site-header--with-center { grid-template-columns: auto minmax(0,1fr); row-gap: 10px; padding-block: 12px; }
+  .site-header--with-center .header-leading { grid-column: 1; grid-row: 1; }
+  .site-header--with-center .header-actions { grid-column: 2; grid-row: 1; }
+  .site-header--with-center .header-center { grid-column: 1 / -1; grid-row: 2; }
+}
+
+:root { --mockup-phone-width: 270px; --mockup-phone-radius: 32px; --mockup-phone-border: 2px solid #171717; --mockup-phone-shadow: 0 18px 36px #0004; }
+
+:root:has([data-portfolio-theme="light"]) {
+  --mockup-phone-border: 0;
+  --mockup-phone-shadow: none;
+}

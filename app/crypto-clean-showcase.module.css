@@ -1,0 +1,83 @@
+.card { position: relative; width: 100%; overflow: hidden; border-radius: var(--portfolio-radius,20px); }
+.productCard { aspect-ratio: 1100 / 820; background: #fafafa; }.artCard { height: 420px; background: #e8f5ed; }
+.card[data-open="true"] { visibility: hidden; }
+.tile { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; border-radius: inherit; background: transparent; cursor: zoom-in; }
+.tile:hover { box-shadow: inset 0 0 0 1px #ffffff80; }.tile:focus-visible { outline: 2px solid #a5e0ba; outline-offset: -3px; }
+.visual { position: absolute; inset: 0; border-radius: inherit; overflow: hidden; background: #fafafa; }.visual img { object-fit: contain; transition: opacity 650ms ease; }.hidden { opacity: 0; pointer-events: none; }.active { opacity: 1; }
+.art { background: radial-gradient(ellipse at 25% 15%,#fbfff9,#e4f0e9 80%); }.art img { padding: 18px; object-fit: contain; filter: drop-shadow(0 16px 18px #345a3820); }
+.dialog { position: fixed; inset: 0; width: 100%; height: 100%; max-width: none; max-height: none; margin: 0; padding: 76px 24px; border: 0; background: transparent; overflow: clip; }.dialog[open] { display: grid; place-items: center; }.dialog::backdrop { background: #080b0b90; backdrop-filter: blur(24px) saturate(.75); }
+.panel { position: relative; width: min(1100px,calc(100vw - 48px),calc((100dvh - 160px) * var(--art-ratio))); aspect-ratio: var(--art-ratio); border-radius: 20px; transform-origin: top left; box-shadow: 0 28px 90px #0005; }
+.brand { position: fixed; top: 22px; left: 24px; }.brand img { object-fit: contain; border-radius: 10px; }
+.close { position: fixed; top: 20px; right: 24px; z-index: 3; display: grid; place-items: center; width: 44px; height: 44px; padding: 11px; border: 1px solid #ffffff50; border-radius: 50%; background: #181e1980; color: #fff; cursor: pointer; }.close svg { width: 20px; height: 20px; stroke: currentColor; stroke-width: 1.5; }
+.navigation { position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; }.navigation button { width: 44px; height: 44px; border: 1px solid #ffffff40; border-radius: 50%; background: #18221ab0; color: #fff; font-size: 26px; cursor: pointer; }.navigation button:focus-visible,.close:focus-visible { outline: 2px solid #b5edc7; outline-offset: 3px; }
+.card[data-paused="true"] img { transition: none; }@media(prefers-reduced-motion:reduce) { .visual img { transition: none; } }
+@media(max-width:600px) { .dialog { padding-inline: 12px; }.panel { width: min(calc(100vw - 24px),calc((100dvh - 160px) * var(--art-ratio))); }.brand { top: 18px; left: 18px; }.close { top: 16px; right: 18px; } }
+
+.productCard { aspect-ratio: auto; padding-bottom: 48px; background: #fafafa; }
+.productCard .tile { position: relative; display: block; aspect-ratio: 1100 / 820; height: auto; touch-action: pan-y; }
+.desktop img { object-fit: contain; padding: 7px; }
+.panel { touch-action: pan-y; }
+.brand { display: flex; align-items: center; gap: 8px; color: #fff; font-size: 18px; font-weight: 550; }
+.plannerNavigation { display: flex; justify-content: center; gap: 4px; padding: 4px; border: 1px solid #ffffff45; border-radius: 999px; background: #1b251ee6; backdrop-filter: blur(18px); }
+.plannerNavigation button { min-height: 36px; padding: 0 12px; border: 0; border-radius: 999px; background: transparent; color: #ffffffb0; font-size: 11px; cursor: pointer; }
+.plannerNavigation [aria-pressed="true"] { background: #e5f8eb; color: #1c3c29; }
+.plannerNavigation button:focus-visible { outline: 2px solid #b5edc7; outline-offset: 2px; }
+.gridPlannerNavigation { position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%); width: max-content; }
+.gridPlannerNavigation .plannerNavigation { padding: 2px; border-color: #e4e9e5; background: #f0f3f1; }
+.gridPlannerNavigation button { color: #69756d; min-height: 32px; padding-inline: 10px; font-size: 10px; }
+.gridPlannerNavigation [aria-pressed="true"] { background: #fff; color: #203c2a; box-shadow: 0 1px 5px #0001; }
+.modalPlannerNavigation { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); }
+
+.brand .skull { border-radius: 0; filter: none; }
+.plannerNavigation { border-color: #ffffff70; background: #f2f2f2e8; box-shadow: 0 8px 30px #0002; }
+.plannerNavigation button { color: #676767; }
+.plannerNavigation [aria-pressed="true"] { background: #fff; color: #151515; box-shadow: 0 1px 5px #00000012; }
+.plannerNavigation button:focus-visible { outline-color: #777; }
+
+.productCard { aspect-ratio: 1.08; padding: 0; background: radial-gradient(ellipse at 50% 110%,#344052,#191919 78%); perspective: 1000px; }
+.productCard .tile { position: absolute; inset: 0; width: 100%; height: 100%; aspect-ratio: auto; border-radius: inherit; }
+.desktopDevice { position: absolute; top: 28px; left: 12px; right: 12px; padding: 3px; border: 1px solid #aab5c1; border-radius: 12px; background: linear-gradient(135deg,#c9cfd5,#7b8794); transform: perspective(1000px) rotateX(0) translateY(0); transform-origin: center bottom; transition: transform 850ms cubic-bezier(.22,1,.36,1); }
+.desktopChrome { position: relative; display: flex; align-items: center; gap: 4px; height: 23px; padding: 0 8px; border-radius: 8px 8px 0 0; background: #ebedf0; color: #59616c; }
+.desktopChrome i { width: 4px; height: 4px; border-radius: 50%; background: #b1b7bf; }
+.desktopChrome span { position: absolute; inset-inline: 45px; text-align: center; font-size: 8px; font-weight: 500; }
+.desktopScreen { position: relative; aspect-ratio: 1100 / 820; border-radius: 0 0 8px 8px; overflow: hidden; background: white; }
+.desktopScreen .desktop img { padding: 0; }
+.productCard[data-revealed="false"] .desktopDevice { transform: perspective(1000px) rotateX(13deg) translateY(32px) scale(.96); }
+.productCard .gridPlannerNavigation { bottom: 12px; }
+.productCard .gridPlannerNavigation .plannerNavigation { background: #ffffff10; border-color: #ffffff25; }
+.productCard .gridPlannerNavigation button { color: #ffffffa0; }
+.productCard .gridPlannerNavigation [aria-pressed="true"] { color: #fff; background: #ffffff20; box-shadow: none; }
+@media(prefers-reduced-motion:reduce) { .desktopDevice { transition: none; } }
+.productCard { aspect-ratio: .95; }
+
+/* The inline preview is just the desktop; navigation lives in the expanded view. */
+.productCard { aspect-ratio: 1.08; }
+
+/* The application itself fills the card, without a device or studio backdrop. */
+.productCard { aspect-ratio: 1100 / 820; background: #fafafa; perspective: none; }
+.productCard .desktop img { padding: 0; }
+
+.liveGrid { position: absolute; inset: 0; container-type: inline-size; overflow: hidden; border-radius: inherit; background: #fafafa; }
+.liveGrid iframe { display: block; width: 1100px; height: 820px; border: 0; transform: scale(calc(100cqw / 1100px)); transform-origin: top left; background: #fafafa; }
+.liveSite { display: block; width: 100%; height: 100%; border: 0; border-radius: inherit; background: #fafafa; }
+.expandLive { position: absolute; z-index: 2; top: 10px; right: 10px; display: grid; place-items: center; width: 34px; height: 34px; padding: 9px; border: 1px solid #dbe1de; border-radius: 50%; background: #ffffffed; color: #3c5145; box-shadow: 0 2px 8px #0001; cursor: zoom-in; }
+.expandLive svg { width: 16px; height: 16px; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; }
+.expandLive:hover { background: #f0f5f1; }.expandLive:focus-visible { outline: 2px solid #5a946d; outline-offset: 3px; }
+
+.brand .makeCredit { display: inline-flex; align-items: center; gap: 7px; margin-left: 10px; padding: 6px 10px; border: 1px solid #ffffff30; border-radius: 999px; background: #ffffff0c; color: #ffffffc7; font-size: 11px; font-weight: 400; }
+.makeCredit svg { width: 12px; height: 18px; }
+@media(max-width:600px) { .brand { flex-wrap: wrap; max-width: calc(100vw - 90px); }.brand .makeCredit { margin-left: 0; font-size: 10px; padding: 5px 8px; } }
+
+/* Reserve the header and safe areas; let the live site use a phone-sized viewport. */
+.dialog { height: 100dvh; padding-top: max(84px, calc(env(safe-area-inset-top) + 72px)); padding-bottom: max(76px, calc(env(safe-area-inset-bottom) + 64px)); }
+.brand { max-width: calc(100vw - 112px); }
+.close { top: max(20px, env(safe-area-inset-top)); right: max(24px, env(safe-area-inset-right)); }
+.navigation { bottom: max(18px, env(safe-area-inset-bottom)); }
+@media (max-width: 600px), (max-height: 500px) {
+  .dialog { padding: max(100px, calc(env(safe-area-inset-top) + 88px)) 12px max(18px, env(safe-area-inset-bottom)); }
+  .dialog[data-artwork="true"] { padding-bottom: max(80px, calc(env(safe-area-inset-bottom) + 64px)); }
+  .panel[data-artwork="false"] { width: 100%; height: 100%; min-height: 0; aspect-ratio: auto; }
+  .brand { top: max(16px, env(safe-area-inset-top)); left: max(18px, env(safe-area-inset-left)); gap: 8px; font-size: 16px; }
+  .brand .makeCredit { margin-left: 0; }
+  .close { top: max(16px, env(safe-area-inset-top)); right: max(18px, env(safe-area-inset-right)); }
+}

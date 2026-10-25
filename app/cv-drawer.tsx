@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
-import Link from "next/link";
 import { createPortal } from "react-dom";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Cancel01Icon, SentIcon } from "@hugeicons/core-free-icons";
@@ -32,7 +31,9 @@ export function CvDrawer() {
         setIsOpen(false);
       }
       if (event.key === "Tab") {
-        const elements = dialogRef.current?.querySelectorAll<HTMLElement>('a[href], button:not([disabled])');
+        const elements = dialogRef.current?.querySelectorAll<HTMLElement>(
+          "a[href], button:not([disabled])",
+        );
         if (!elements?.length) return;
         const first = elements[0];
         const last = elements[elements.length - 1];
@@ -76,7 +77,10 @@ export function CvDrawer() {
 
       {isMounted
         ? createPortal(
-            <div className={`cv-drawer-root${isOpen ? " is-open" : ""}`} inert={!isOpen}>
+            <div
+              className={`cv-drawer-root${isOpen ? " is-open" : ""}`}
+              inert={!isOpen}
+            >
               <button
                 className="cv-drawer-backdrop"
                 type="button"
@@ -123,8 +127,9 @@ export function CvDrawer() {
                       Senior Product Designer · AI-native builder
                     </p>
                     <p>
-                      Seven years of experience connecting research, product strategy,
-                      interaction design, and development. Based in Quebec City.
+                      Seven years of experience connecting research, product
+                      strategy, interaction design, and development. Based in
+                      Quebec City.
                     </p>
                   </div>
 
@@ -139,10 +144,11 @@ export function CvDrawer() {
                       <h3>Equisoft</h3>
                       <p className="cv-section-meta">Senior Product Designer</p>
                       <p>
-                        Designing fintech and insurance products from discovery to
-                        delivery, in partnership with product and engineering.
-                        Work spans policy administration, customer relationships,
-                        digital insurance tools, and case management.
+                        Designing fintech and insurance products from discovery
+                        to delivery, in partnership with product and
+                        engineering. Work spans policy administration, customer
+                        relationships, digital insurance tools, and case
+                        management.
                       </p>
                       <p className="cv-domain-copy">
                         Led an AI committee exploring agentic solutions and AI
@@ -152,24 +158,61 @@ export function CvDrawer() {
                     </div>
                   </section>
 
-                  <section className="cv-section" aria-labelledby="cv-experience-title">
-                    <p className="cv-section-label" id="cv-experience-title">Earlier experience</p>
+                  <section
+                    className="cv-section"
+                    aria-labelledby="cv-experience-title"
+                  >
+                    <p className="cv-section-label" id="cv-experience-title">
+                      Earlier experience
+                    </p>
                     <ul className="cv-work-list">
-                      <li><span>FolksHR</span><span>Product design for HR software</span></li>
-                      <li><span>PetalMD</span><span>User research in Quebec’s healthcare system</span></li>
-                      <li><span>Peak Media</span><span>Immersive experience design for museums</span></li>
+                      <li>
+                        <span>FolksHR</span>
+                        <span>Product design for HR software</span>
+                      </li>
+                      <li>
+                        <span>PetalMD</span>
+                        <span>User research in Quebec’s healthcare system</span>
+                      </li>
+                      <li>
+                        <span>Peak Media</span>
+                        <span>Immersive experience design for museums</span>
+                      </li>
                     </ul>
                   </section>
 
-                  <section className="cv-section" aria-labelledby="cv-work-title">
-                    <p className="cv-section-label" id="cv-work-title">Side projects</p>
+                  <section
+                    className="cv-section"
+                    aria-labelledby="cv-work-title"
+                  >
+                    <p className="cv-section-label" id="cv-work-title">
+                      Independent projects
+                    </p>
                     <ul className="cv-work-list">
-                      <li><Link href="/nudge" onClick={() => setIsOpen(false)}>Nudge</Link><span>Shared tasks · iPhone & iPad</span></li>
-                      <li><Link href="/world" onClick={() => setIsOpen(false)}>PushedWorld</Link><span>Daily push-ups · Augmented reality</span></li>
-                      <li><Link href="/tracer" onClick={() => setIsOpen(false)}>Tracer</Link><span>Research due diligence</span></li>
-                      <li><Link href="/abeam" onClick={() => setIsOpen(false)}>aBeam</Link><span>Travel agency conversations</span></li>
-                      <li><Link href="/crypto-inheritance" onClick={() => setIsOpen(false)}>CryptoCroc</Link><span>Crypto inheritance</span></li>
-                      <li><Link href="/equisoft-labs" onClick={() => setIsOpen(false)}>Decision ROI</Link><span>Decision-making prototype</span></li>
+                      <li>
+                        <span>Nudge</span>
+                        <span>Shared tasks · iPhone & iPad</span>
+                      </li>
+                      <li>
+                        <span>PushedWorld</span>
+                        <span>Daily push-ups · Augmented reality</span>
+                      </li>
+                      <li>
+                        <span>Tracer</span>
+                        <span>Research due diligence</span>
+                      </li>
+                      <li>
+                        <span>aBeam</span>
+                        <span>Travel agency conversations</span>
+                      </li>
+                      <li>
+                        <span>CryptoCroc</span>
+                        <span>Crypto inheritance</span>
+                      </li>
+                      <li>
+                        <span>Decision ROI</span>
+                        <span>Decision-making prototype</span>
+                      </li>
                     </ul>
                   </section>
 
