@@ -864,7 +864,7 @@ function CaseRecordContent({
   return (
     <div
       ref={content}
-      className={`${styles.recordContent} ${tab === "task" ? styles.taskRecordContent : tab === "document" ? styles.documentRecordContent : ""}`}
+      className={`${styles.recordContent} ${styles.recordSurface} ${tab === "document" ? styles.documentRecordContent : ""}`}
       id={`${idPrefix}-body-${entry.key}`}
       role="tabpanel"
       aria-labelledby={`${idPrefix}-tab-${entry.key}`}
@@ -877,12 +877,12 @@ function CaseRecordContent({
     >
       {tab === "task" ? (
         <>
-          <header className={styles.taskRecordHeader}>
+          <header className={styles.recordSurfaceHeader}>
             <span className={styles.recordType}>TASK · {currentCase.ref}</span>
             <h3>{currentTask.name}</h3>
             <Status value={currentTask.status} />
           </header>
-          <div className={styles.taskRecordBody}>
+          <div className={styles.recordSurfaceBody}>
             {analysisAgent !== null && (
               <section
                 className={styles.insightBanner}
@@ -939,124 +939,134 @@ function CaseRecordContent({
         </>
       ) : tab === "requirement" ? (
         <>
-          <span className={styles.recordType}>
-            REQUIREMENT · REQ–{104 + requirement}
-          </span>
-          <h3>{currentRequirement[0]}</h3>
-          <Status value={currentRequirement[1]} />
-          <dl className={styles.properties}>
-            <div>
-              <dt>Required for</dt>
-              <dd>
-                <button
-                  className={styles.relatedTaskLink}
-                  onClick={() => onTask(true)}
-                  title={`Open ${getTaskAction(currentTask, task).title}`}
-                >
-                  {currentTask.name}
+          <header className={styles.recordSurfaceHeader}>
+            <span className={styles.recordType}>
+              REQUIREMENT · REQ–{104 + requirement}
+            </span>
+            <h3>{currentRequirement[0]}</h3>
+            <Status value={currentRequirement[1]} />
+          </header>
+          <div className={styles.recordSurfaceBody}>
+            <dl className={styles.properties}>
+              <div>
+                <dt>Required for</dt>
+                <dd>
+                  <button
+                    className={styles.relatedTaskLink}
+                    onClick={() => onTask(true)}
+                    title={`Open ${getTaskAction(currentTask, task).title}`}
+                  >
+                    {currentTask.name}
+                  </button>
+                </dd>
+              </div>
+              <div>
+                <dt>{currentRequirement[1]}</dt>
+                <dd>
+                  {isRequirementSatisfied(currentRequirement[1])
+                    ? "Today, 09:58"
+                    : "Today, 09:24"}
+                </dd>
+              </div>
+              <div>
+                <dt>Source</dt>
+                <dd>Applicant submission</dd>
+              </div>
+            </dl>
+            {financial ? (
+              <div className={styles.finding}>
+                <span>
+                  <Icon name="recommend" className={styles.studyMark} />
+                  Financial Screening · Recorded finding
+                </span>
+                <h4>
+                  Company evidence received.
+                  <br />
+                  Personal evidence outstanding.
+                </h4>
+                <p>
+                  The company statements are attached. They do not replace the
+                  applicant’s personal financial statement.
+                </p>
+                <button onClick={() => onTask(true)}>
+                  Review with the task
+                  <Icon name="arrow" />
                 </button>
-              </dd>
-            </div>
-            <div>
-              <dt>{currentRequirement[1]}</dt>
-              <dd>
-                {isRequirementSatisfied(currentRequirement[1])
-                  ? "Today, 09:58"
-                  : "Today, 09:24"}
-              </dd>
-            </div>
-            <div>
-              <dt>Source</dt>
-              <dd>Applicant submission</dd>
-            </div>
-          </dl>
-          {financial ? (
-            <div className={styles.finding}>
-              <span>
-                <Icon name="recommend" className={styles.studyMark} />
-                Financial Screening · Recorded finding
-              </span>
-              <h4>
-                Company evidence received.
-                <br />
-                Personal evidence outstanding.
-              </h4>
-              <p>
-                The company statements are attached. They do not replace the
-                applicant’s personal financial statement.
+              </div>
+            ) : (
+              <p className={styles.recordDescription}>
+                {currentRequirement[1] === "Fulfilled"
+                  ? "This requirement is fulfilled. Its supporting document remains available in the same case."
+                  : currentRequirement[1] === "Received"
+                    ? "Evidence has been received for this requirement. Open the linked file to inspect it in the same case."
+                    : "The evidence has been ordered but not received. The related work stays blocked until this requirement is met."}
               </p>
-              <button onClick={() => onTask(true)}>
-                Review with the task
+            )}
+            <h4 className={styles.sectionTitle}>Evidence</h4>
+            {isRequirementSatisfied(currentRequirement[1]) ? (
+              <button
+                className={styles.fileLink}
+                onClick={() => onDocument(requirement)}
+              >
+                <Icon name="file" />
+                <span>
+                  <strong>{documentName}</strong>
+                  <small>
+                    PDF · Received today · {financial ? "3 pages" : "2 pages"}
+                  </small>
+                </span>
                 <Icon name="arrow" />
               </button>
-            </div>
-          ) : (
-            <p className={styles.recordDescription}>
-              {currentRequirement[1] === "Fulfilled"
-                ? "This requirement is fulfilled. Its supporting document remains available in the same case."
-                : currentRequirement[1] === "Received"
-                  ? "Evidence has been received for this requirement. Open the linked file to inspect it in the same case."
-                  : "The evidence has been ordered but not received. The related work stays blocked until this requirement is met."}
-            </p>
-          )}
-          <h4 className={styles.sectionTitle}>Evidence</h4>
-          {isRequirementSatisfied(currentRequirement[1]) ? (
-            <button
-              className={styles.fileLink}
-              onClick={() => onDocument(requirement)}
-            >
-              <Icon name="file" />
-              <span>
-                <strong>{documentName}</strong>
-                <small>
-                  PDF · Received today · {financial ? "3 pages" : "2 pages"}
-                </small>
-              </span>
-              <Icon name="arrow" />
-            </button>
-          ) : (
-            <p className={styles.recordDescription}>
-              No document received yet.
-            </p>
-          )}
-          {financial && (
-            <>
-              <h4 className={styles.sectionTitle}>Still required</h4>
-              <div className={styles.outstanding}>
-                <Icon name="clock" />
-                <span>
-                  Personal financial statement
-                  <small>Not received · Blocks financial review</small>
-                </span>
-              </div>
-            </>
-          )}
+            ) : (
+              <p className={styles.recordDescription}>
+                No document received yet.
+              </p>
+            )}
+            {financial && (
+              <>
+                <h4 className={styles.sectionTitle}>Still required</h4>
+                <div className={styles.outstanding}>
+                  <Icon name="clock" />
+                  <span>
+                    Personal financial statement
+                    <small>Not received · Blocks financial review</small>
+                  </span>
+                </div>
+              </>
+            )}
+          </div>
         </>
       ) : tab === "document" ? (
         <>
-          <span className={styles.recordType}>
-            DOCUMENT · DOC–{301 + requirement}
-          </span>
-          <h3>{documentName}</h3>
-          <CaseDocumentViewer
-            documentName={documentName}
-            receivedTime={
-              documentRows.find((row) => row.requirement === requirement)
-                ?.received ?? "09:58"
-            }
-            requirementName={currentRequirement[0]}
-            requirementReference={`REQ–${104 + requirement}`}
-            requirementStatus={currentRequirement[1]}
-            caseReference={currentCase.ref}
-            clientName={currentCase.client}
-            financial={financial}
-            taskName={currentTask.name}
-            actionTitle={getTaskAction(currentTask, task).title}
-            active={active}
-            onRequirement={() => onRequirement(requirement)}
-            onTask={() => onTask()}
-            onAction={() => onTask(true)}
-          />
+          <header className={styles.recordSurfaceHeader}>
+            <span className={styles.recordType}>
+              DOCUMENT · DOC–{301 + requirement}
+            </span>
+            <h3>{documentName}</h3>
+          </header>
+          <div
+            className={`${styles.recordSurfaceBody} ${styles.documentRecordBody}`}
+          >
+            <CaseDocumentViewer
+              documentName={documentName}
+              receivedTime={
+                documentRows.find((row) => row.requirement === requirement)
+                  ?.received ?? "09:58"
+              }
+              requirementName={currentRequirement[0]}
+              requirementReference={`REQ–${104 + requirement}`}
+              requirementStatus={currentRequirement[1]}
+              caseReference={currentCase.ref}
+              clientName={currentCase.client}
+              financial={financial}
+              taskName={currentTask.name}
+              actionTitle={getTaskAction(currentTask, task).title}
+              active={active}
+              onRequirement={() => onRequirement(requirement)}
+              onTask={() => onTask()}
+              onAction={() => onTask(true)}
+            />
+          </div>
         </>
       ) : null}
     </div>

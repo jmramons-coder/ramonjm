@@ -6,6 +6,7 @@
   flex-direction: column;
   min-width: 0;
   min-height: 0;
+  background: var(--case-panel-background, #fafbfc);
   color: #354253;
   text-align: left;
 }
@@ -28,7 +29,8 @@
 
 .context {
   flex-shrink: 0;
-  padding: 8px 24px 12px;
+  padding: 16px var(--case-panel-inset, 25px) 18px;
+  background: var(--case-panel-background, #fafbfc);
 }
 
 .metadata {
@@ -152,7 +154,7 @@
   grid-template-columns: minmax(0, 2fr) minmax(200px, 1fr);
   min-width: 0;
   min-height: 0;
-  border-top: 1px solid #e8ecf1;
+  border-top: 1px solid var(--case-panel-divider, #e8ecf1);
   overflow: hidden;
 }
 
@@ -586,8 +588,8 @@
   padding: 18px 16px;
   overflow-y: auto;
   overscroll-behavior: contain;
-  border-left: 1px solid #e8ecf1;
-  background: #fff;
+  border-left: 1px solid var(--case-panel-divider, #e8ecf1);
+  background: var(--case-panel-background, #fafbfc);
   scrollbar-width: thin;
   scrollbar-color: #d8dfeb transparent;
 }
@@ -749,7 +751,7 @@
   }
   .insights {
     overflow: visible;
-    border-top: 1px solid #e8ecf1;
+    border-top: 1px solid var(--case-panel-divider, #e8ecf1);
     border-left: 0;
   }
   .insightList {
@@ -758,9 +760,6 @@
 }
 
 @container case-document (max-width: 390px) {
-  .context {
-    padding-inline: 16px;
-  }
   .relations {
     padding-inline: 10px;
   }

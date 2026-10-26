@@ -297,13 +297,11 @@ export function CaseAssistantChat({
       aria-label="Case assistant"
       data-paused={paused}
     >
-      <div className={styles.context}>
-        <span>
-          {caseRef}
-          <span aria-hidden="true"> · </span>
-          {clientName}
-        </span>
-      </div>
+      <header className={styles.header}>
+        <span className={styles.recordType}>ASSISTANT · {caseRef}</span>
+        <h3 className={styles.headerTitle}>Case assistant</h3>
+        <p className={styles.clientName}>{clientName}</p>
+      </header>
 
       <div
         ref={logRef}

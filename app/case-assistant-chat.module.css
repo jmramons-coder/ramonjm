@@ -6,40 +6,52 @@
   min-height: 0;
   height: 100%;
   overflow: hidden;
-  background: #fff;
+  background: var(--case-panel-background, #fafbfc);
   color: #1e2936;
   font: inherit;
   text-align: left;
 }
 
-.context {
-  display: flex;
-  align-items: center;
+.header {
   flex-shrink: 0;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 17px 23px 12px;
-  color: #8d98a7;
+  padding: 12px var(--case-panel-inset, 25px) 16px;
+  border-bottom: 1px solid var(--case-panel-divider, #e8ecf1);
+  background: var(--case-panel-header-background, #fff);
+}
+
+.recordType {
+  display: block;
+  color: #738092;
   font-size: 10px;
+  line-height: 1.4;
+  letter-spacing: .065em;
+}
+
+.chat .headerTitle {
+  position: static;
+  margin: 5px 0;
+  padding: 0;
+  background: transparent;
+  color: #1e2936;
+  font-size: 24px;
+  font-weight: 550;
+  line-height: 1.2;
+  letter-spacing: -0.05em;
+  overflow-wrap: anywhere;
+}
+
+.chat .clientName {
+  margin: 0;
+  color: #738092;
+  font-size: 11px;
   line-height: 1.5;
-}
-
-.context > span:first-child {
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.context > span:first-child > span {
-  margin-inline: 4px;
-  color: #c1c8d1;
 }
 
 .conversation {
   flex: 1;
   min-height: 0;
-  padding: 10px 23px 26px;
+  padding: 16px var(--case-panel-inset, 25px) 26px;
+  background: var(--case-panel-background, #fafbfc);
   overflow-y: auto;
   overscroll-behavior: contain;
   scrollbar-width: thin;
@@ -154,7 +166,7 @@
   max-width: 90%;
   padding: 11px 14px;
   border-radius: 12px 12px 3px 12px;
-  background: #f0f3f7;
+  background: #fff;
 }
 
 .chat .messageBody p {
@@ -251,9 +263,9 @@
 .composerArea {
   flex-shrink: 0;
   margin: 0;
-  padding: 13px 18px 15px;
-  border-top: 1px solid #f0f2f6;
-  background: #fff;
+  padding: 13px var(--case-panel-inset, 25px) 18px;
+  border-top: 1px solid var(--case-panel-divider, #e8ecf1);
+  background: var(--case-panel-background, #fafbfc);
 }
 
 .composer {
@@ -413,12 +425,10 @@
 }
 
 @media (max-width: 600px) {
-  .context {
-    padding-inline: 19px;
-  }
-
+  .header,
+  .composerArea,
   .conversation {
-    padding-inline: 19px;
+    padding-inline: var(--case-panel-inset, 20px);
   }
 
   .chat .welcome h3 {
@@ -431,10 +441,6 @@
 
   .chat .composer input {
     font-size: 16px;
-  }
-
-  .composerArea {
-    padding-inline: 14px;
   }
 }
 

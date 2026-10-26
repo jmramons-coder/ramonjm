@@ -1528,6 +1528,10 @@ button.actionEvidenceRow:is(:hover, :focus-visible) > span:not(.status) {
   color: #1e2936;
 }
 .workspace {
+  --case-panel-inset: 25px;
+  --case-panel-background: #fafbfc;
+  --case-panel-header-background: #fff;
+  --case-panel-divider: #e8ecf1;
   --case-ai-animation-state: running;
   --case-ai-surface: radial-gradient(ellipse at 12% 15%, #dacbf833, transparent 55%),
     radial-gradient(ellipse at 88% 85%, #c9dcff33, transparent 58%),
@@ -1858,25 +1862,26 @@ button.actionEvidenceRow:is(:hover, :focus-visible) > span:not(.status) {
   color: #9b752e;
   background: #fff7e8;
 }
-.recordPanel .taskRecordContent,
-.modalPanel .taskRecordContent {
-  --task-content-inset: 25px;
+.recordPanel .recordSurface,
+.modalPanel .recordSurface {
   display: flex;
   flex-direction: column;
   padding: 0;
-  background: #fafbfc;
+  background: var(--case-panel-background);
 }
-.taskRecordHeader {
+.recordSurfaceHeader {
   flex-shrink: 0;
-  padding: 12px var(--task-content-inset) 16px;
-  border-bottom: 1px solid #e8ecf1;
-  background: #fff;
+  padding: 12px var(--case-panel-inset) 16px;
+  border-bottom: 1px solid var(--case-panel-divider);
+  background: var(--case-panel-header-background);
 }
-.taskRecordHeader > .recordType {
+.recordSurfaceHeader > .recordType {
   display: block;
+  color: #738092;
+  font-size: 10px;
   line-height: 1.4;
 }
-.taskRecordHeader > h3 {
+.recordSurfaceHeader > h3 {
   margin: 5px 0;
   color: #1e2936;
   font-size: 24px;
@@ -1885,25 +1890,31 @@ button.actionEvidenceRow:is(:hover, :focus-visible) > span:not(.status) {
   letter-spacing: -.05em;
   overflow-wrap: anywhere;
 }
-.taskRecordBody {
+.recordSurfaceBody {
   flex: 1 0 auto;
   min-width: 0;
-  padding: 16px var(--task-content-inset) 18px;
-  background: #fafbfc;
+  padding: 16px var(--case-panel-inset) 18px;
+  background: var(--case-panel-background);
 }
-.taskRecordBody > .insightBanner:first-child,
-.taskRecordBody > .properties:first-child {
+.recordSurfaceBody > .insightBanner:first-child,
+.recordSurfaceBody > .properties:first-child {
   margin-top: 0;
+}
+.recordSurfaceBody .fileLink,
+.recordSurfaceBody .outstanding {
+  border: 1px solid #e4e8ee;
+  border-radius: 16px;
+  background: #fff;
 }
 .openCase,
 .sidebar nav button,
 .topbar > button:not(.contextAssistant) { border-radius: 6px; }
-.taskRecordContent .properties {
+.recordSurface .properties {
   gap: 8px;
   margin: 12px 0;
 }
-.taskRecordContent .properties > div { gap: 6px; }
-.taskRecordContent .taskDescription {
+.recordSurface .properties > div { gap: 6px; }
+.recordSurface .taskDescription {
   margin: 12px 0 0;
   color: #738092;
   font-size: 12px;
@@ -1966,25 +1977,16 @@ button.actionEvidenceRow:is(:hover, :focus-visible) > span:not(.status) {
 .workspace[data-paused="true"] { --case-ai-animation-state: paused; }
 .recordPanel .documentRecordContent,
 .modalPanel .documentRecordContent {
-  display: flex;
-  flex-direction: column;
   min-height: 0;
-  padding: 12px 0 0;
   overflow: hidden;
 }
-.documentRecordContent > .recordType {
-  flex-shrink: 0;
-  margin-inline: 24px;
-  line-height: 1.4;
-}
-.recordPanel .documentRecordContent > h3 {
-  position: static;
-  flex-shrink: 0;
-  margin: 5px 24px 12px;
+.documentRecordBody {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
   padding: 0;
-  font-size: 24px;
-  line-height: 1.2;
-  overflow-wrap: anywhere;
+  overflow: hidden;
 }
 @media (prefers-reduced-motion: reduce) {
   .recordContent .insightBanner,
@@ -1993,8 +1995,7 @@ button.actionEvidenceRow:is(:hover, :focus-visible) > span:not(.status) {
 }
 @media (max-width: 600px) {
   .workspace { --case-content-inset: 16px; }
-  .recordPanel .taskRecordContent,
-  .modalPanel .taskRecordContent { --task-content-inset: 20px; }
+  .workspace { --case-panel-inset: 20px; }
 }
 .preview > .workspace { --case-content-inset: 28px; }
 .assistantSession {
