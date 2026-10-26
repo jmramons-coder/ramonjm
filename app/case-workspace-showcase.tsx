@@ -206,6 +206,7 @@ type TaskActionDefinition = {
 };
 type CaseTask = {
   name: string;
+  description: string;
   stage: string;
   owner: string;
   status: string;
@@ -215,6 +216,8 @@ type CaseTask = {
 const tasks: CaseTask[] = [
   {
     name: "Review the application",
+    description:
+      "Verify that the application is complete and ready for evidence gathering.",
     stage: "Intake",
     owner: "Application Review",
     status: "Completed",
@@ -222,6 +225,8 @@ const tasks: CaseTask[] = [
   },
   {
     name: "Order the required evidence",
+    description:
+      "Collect the financial and medical evidence required for this case.",
     stage: "Evidence gathering",
     owner: "Requirement Ordering",
     status: "Completed",
@@ -229,6 +234,8 @@ const tasks: CaseTask[] = [
   },
   {
     name: "Review the replacement disclosure",
+    description:
+      "Review the proposed policy replacement and the applicant’s signed disclosure.",
     stage: "Evidence gathering",
     owner: "You",
     status: "To do",
@@ -236,6 +243,8 @@ const tasks: CaseTask[] = [
   },
   {
     name: "Review financial data",
+    description:
+      "Assess the applicant’s financial position using the company and personal statements.",
     stage: "Underwriting analysis",
     owner: "You",
     status: "In review",
@@ -243,6 +252,8 @@ const tasks: CaseTask[] = [
   },
   {
     name: "Reconcile evidence against the application",
+    description:
+      "Check that the evidence is consistent with the application before the case moves forward.",
     stage: "Underwriting analysis",
     owner: "Evidence Reconciliation",
     status: "Blocked",
@@ -250,6 +261,8 @@ const tasks: CaseTask[] = [
   },
   {
     name: "Assess medical and exposure risk",
+    description:
+      "Assess the medical and exposure information provided for this application.",
     stage: "Underwriting analysis",
     owner: "Underwriting",
     status: "Blocked",
@@ -257,6 +270,8 @@ const tasks: CaseTask[] = [
   },
   {
     name: "Record the underwriting decision",
+    description:
+      "Bring the financial and medical reviews together to record the case decision.",
     stage: "Decision & offer",
     owner: "You",
     status: "Blocked",
@@ -264,6 +279,8 @@ const tasks: CaseTask[] = [
   },
   {
     name: "Assemble and release the contract",
+    description:
+      "Prepare the contract documents for release once the decision is recorded.",
     stage: "Issue & delivery",
     owner: "Operations",
     status: "Blocked",
@@ -817,7 +834,7 @@ function CaseRecordContent({
   const documentName =
     documentRows.find((row) => row.requirement === requirement)?.name ??
     `${currentRequirement[0]}.pdf`;
-  const onAgentChange = (agentIndex: number | null) => onUpdate({ agentIndex });
+  const analysisAgent = agent ?? currentTask.agent;
   useLayoutEffect(() => {
     if (active && content.current)
       content.current.scrollTop = scrollPosition.current;
@@ -846,7 +863,7 @@ function CaseRecordContent({
   return (
     <div
       ref={content}
-      className={styles.recordContent}
+      className={`${styles.recordContent} ${tab === "task" ? styles.taskRecordContent : ""}`}
       id={`${idPrefix}-body-${entry.key}`}
       role="tabpanel"
       aria-labelledby={`${idPrefix}-tab-${entry.key}`}
@@ -862,55 +879,20 @@ function CaseRecordContent({
           <span className={styles.recordType}>TASK · {currentCase.ref}</span>
           <h3>{currentTask.name}</h3>
           <Status value={currentTask.status} />
-          {currentTask.agent !== null && (
-            <section className={styles.insightBanner} aria-label="AI insight">
-              <span>
-                AI insight
-                <button
-                  className={styles.insightSource}
-                  aria-label={`View recommendation from ${workforce[currentTask.agent].name}`}
-                  title={`View recommendation from ${workforce[currentTask.agent].name}`}
-                  aria-expanded={agent === currentTask.agent}
-                  onClick={() =>
-                    onAgentChange(
-                      agent === currentTask.agent ? null : currentTask.agent,
-                    )
-                  }
-                >
-                  <Icon name="recommend" />
-                </button>
-              </span>
-              <h4>
-                {task === 3
-                  ? "Personal financial statement still required."
-                  : task === 0
-                    ? "Application completeness checked."
-                    : "Evidence requirements recorded."}
-              </h4>
-              <p>{workforce[currentTask.agent].result}</p>
-              <button
-                onClick={() => {
-                  onRequirement(
-                    task === 3
-                      ? 2
-                      : getTaskAction(currentTask, task).requirements[0],
-                  );
-                }}
-              >
-                View requirement
-                <Icon name="arrow" />
-              </button>
+          {analysisAgent !== null && (
+            <section className={styles.insightBanner} aria-label="AI analysis">
+              <header className={styles.insightHeading}>
+                <h4>
+                  {analysisAgent === 2
+                    ? "Personal financial statement still required."
+                    : analysisAgent === 0
+                      ? "Application completeness checked."
+                      : "Evidence requirements recorded."}
+                </h4>
+                <span className={styles.insightTag}>AI</span>
+              </header>
+              <p>{workforce[analysisAgent].result}</p>
             </section>
-          )}
-          {agent !== null && (
-            <div className={styles.agentResult}>
-              <span>
-                <Icon name="recommend" className={styles.studyMark} />
-                {workforce[agent].name}
-              </span>
-              <p>{workforce[agent].result}</p>
-              <small>Recorded result · Sample scenario</small>
-            </div>
           )}
           <dl className={styles.properties}>
             <div>
@@ -932,6 +914,7 @@ function CaseRecordContent({
               <dd>Today</dd>
             </div>
           </dl>
+          <p className={styles.taskDescription}>{currentTask.description}</p>
           <TaskActions
             task={currentTask}
             key={task}
@@ -1285,6 +1268,9 @@ export function CaseWorkspace({
     const index = caseTasks.length;
     const created: CaseTask = {
       name: draft.name,
+      description:
+        draft.description ||
+        "Review the request and complete the actions needed to move this case forward.",
       stage: "Underwriting analysis",
       owner: draft.assignee,
       status: "To do",
@@ -1326,9 +1312,7 @@ export function CaseWorkspace({
     if (panel.activeKey === "assistant") {
       if (!document.activeElement?.closest('[role="tablist"]'))
         recordPanel.current
-          ?.querySelector<HTMLTextAreaElement>(
-            '[data-active-chat="true"] textarea',
-          )
+          ?.querySelector<HTMLInputElement>('[data-active-chat="true"] input')
           ?.focus({ preventScroll: true });
     } else {
       const selectedTab = recordPanel.current?.querySelector<HTMLButtonElement>(
@@ -1469,7 +1453,11 @@ export function CaseWorkspace({
             <button
               ref={assistantOpener}
               className={styles.contextAssistant}
-              aria-label={tab === "assistant" ? "Close contextual assistant" : "Open contextual assistant"}
+              aria-label={
+                tab === "assistant"
+                  ? "Close contextual assistant"
+                  : "Open contextual assistant"
+              }
               aria-expanded={tab === "assistant"}
               aria-controls={`${uid}-body-assistant`}
               aria-describedby={`${uid}-assistant-tooltip`}
@@ -1483,7 +1471,9 @@ export function CaseWorkspace({
                 className={styles.assistantTooltip}
                 role="tooltip"
               >
-                {tab === "assistant" ? "Close the assistant" : "Ask the assistant"}
+                {tab === "assistant"
+                  ? "Close the assistant"
+                  : "Ask the assistant"}
               </span>
             </button>
           )}

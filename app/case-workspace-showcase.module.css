@@ -123,14 +123,14 @@
   height: 15px;
 }
 .actionSection {
-  margin-top: 27px;
+  margin-top: 16px;
 }
 .actionSectionHeading {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  margin-bottom: 11px;
+  margin-bottom: 8px;
 }
 .actionSectionHeading h4 {
   margin: 0;
@@ -164,8 +164,8 @@
   gap: 10px;
   flex: 1;
   min-width: 0;
-  min-height: 64px;
-  padding: 13px 0 13px 14px;
+  min-height: 52px;
+  padding: 10px 0 10px 14px;
   border: 0;
   border-radius: 15px;
   background: #fff;
@@ -218,10 +218,10 @@
   overflow: hidden;
 }
 .actionDetails {
-  padding: 0 14px 14px;
+  padding: 0 14px 12px;
 }
 .actionDescription {
-  margin: 0 0 17px;
+  margin: 0 0 12px;
   color: #738092;
   font-size: 12px;
   line-height: 1.75;
@@ -344,11 +344,11 @@ button.actionEvidenceRow:is(:hover, :focus-visible) > span:not(.status) {
   .actionHeader {
     flex-wrap: wrap;
     gap: 0;
-    padding-bottom: 12px;
+    padding-bottom: 8px;
   }
   .actionTrigger {
     flex-basis: calc(100% - 12px);
-    min-height: 52px;
+    min-height: 44px;
   }
   .actionDescription {
     font-size: 12px;
@@ -1826,22 +1826,71 @@ button.actionEvidenceRow:is(:hover, :focus-visible) > span:not(.status) {
   font-variant-numeric: tabular-nums;
 }
 .activityTimestamp > span:last-child { color: #9aa3af; }
-.insightBanner .insightSource {
-  display: inline-grid;
-  place-items: center;
-  width: 28px;
-  height: 26px;
-  padding: 5px;
-  border: 0;
-  border-radius: 6px;
-  color: #738092;
-  text-decoration: none;
+/* Compact task details keep the action and its evidence in view. */
+.recordPanel .taskRecordContent,
+.modalPanel .taskRecordContent {
+  padding-block: 12px 18px;
 }
-.insightBanner .insightSource svg { width: 16px; height: 16px; }
-.insightBanner .insightSource:hover,
-.insightBanner .insightSource[aria-expanded="true"] {
-  background: #e6eef9;
-  color: #506c92;
+.taskRecordContent > .recordType {
+  display: block;
+  line-height: 1.4;
+}
+.recordPanel .taskRecordContent > h3 {
+  top: -12px;
+  margin: 5px 0;
+  padding-block: 0;
+}
+.taskRecordContent .properties {
+  gap: 8px;
+  margin: 12px 0;
+}
+.taskRecordContent .properties > div { gap: 6px; }
+.taskRecordContent .taskDescription {
+  margin: 12px 0 0;
+  color: #738092;
+  font-size: 12px;
+  line-height: 1.65;
+}
+.recordContent .insightBanner {
+  margin: 12px 0;
+  padding: 12px 14px;
+  border-color: #e5e9f3;
+  background: #f8f9fd;
+}
+.insightHeading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.insightHeading h4 {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.insightHeading .insightTag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  min-width: 29px;
+  height: 22px;
+  padding: 0 7px;
+  border: 1px solid #dcdff3;
+  border-radius: 8px;
+  background: linear-gradient(120deg, #f0eafd, #e9f2ff);
+  box-shadow: 0 2px 5px #8571c31a;
+  color: #7060a3;
+  font-size: 10px;
+  font-weight: 550;
+  line-height: 1;
+}
+.recordContent .insightBanner p {
+  margin: 6px 0 0;
+  font-size: 12px;
+  line-height: 1.65;
 }
 @media (max-width: 600px) {
   .workspace { --case-content-inset: 16px; }
