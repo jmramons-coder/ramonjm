@@ -16,6 +16,7 @@ import { CreateCaseTaskDialog, type CaseTaskDraft } from "./case-create-task";
 import { CaseAssistantChat } from "./case-assistant-chat";
 import { CasePanelResizeHandle } from "./case-panel-resize";
 import { CaseContextTabs } from "./case-context-tabs";
+import { CaseHeaderActions } from "./case-header-actions";
 import {
   CaseActionControls,
   type CaseActionStatus,
@@ -1123,7 +1124,6 @@ export function CaseWorkspace({
     Record<string, CaseActionStatus>
   >({});
   const [creatingTask, setCreatingTask] = useState(false);
-  const [taskDraft, setTaskDraft] = useState<Partial<CaseTaskDraft>>();
   const createOpener = useRef<HTMLButtonElement>(null);
   const recordPanel = useRef<HTMLElement>(null);
   const workBody = useRef<HTMLDivElement>(null);
@@ -1359,13 +1359,35 @@ export function CaseWorkspace({
       className={styles.workspace}
       data-preview={preview}
       data-paused={paused}
+      onClickCapture={(event) => {
+        if (!panel.visible || creatingTask) return;
+        const target = event.target;
+        if (
+          !(target instanceof Element) ||
+          recordPanel.current?.contains(target)
+        )
+          return;
+        if (
+          target.closest(
+            'button, a[href], input, textarea, select, label, summary, [role="button"], [role="link"], [role="tab"], [role="menuitem"], [role="option"], [role="separator"], [contenteditable]:not([contenteditable="false"]), [popover]',
+          )
+        )
+          return;
+        const row = target.closest("tr");
+        if (
+          row?.querySelector('button, a[href], [role="button"], [role="link"]')
+        )
+          return;
+        const nestedDialog = target.closest("dialog");
+        if (nestedDialog && root.current?.contains(nestedDialog)) return;
+        dispatchPanel({ type: "hide" });
+      }}
     >
       <aside className={styles.sidebar}>
         <div className={styles.studyIdentity}>
           <Icon name="grid" />
           <strong>Workspace</strong>
         </div>
-        <span className={styles.workspaceName}>Interaction study</span>
         <nav aria-label="Case workspace navigation">
           <button
             data-active={selected === null && !mine}
@@ -1644,55 +1666,16 @@ export function CaseWorkspace({
                   </div>
                 </div>
               </div>
-              <div className={styles.caseHeaderActions}>
-                <button
-                  className={styles.caseSecondaryAction}
-                  title="View the next decision action"
-                  onClick={() => {
-                    setView("Tasks");
-                    setQuery("");
-                    openTask(6);
-                  }}
-                >
-                  <Icon name="bell" />
-                  Decision
-                </button>
-                <button
-                  className={styles.casePrimaryAction}
-                  title={`Create a callback task for ${currentCase.client}`}
-                  onClick={(event) => {
-                    createOpener.current = event.currentTarget;
-                    setTaskDraft({
-                      name: `Call back ${currentCase.client}`,
-                      assignee: caseOwnerName,
-                      description: `Follow up with ${currentCase.client} about case ${currentCase.ref}.`,
-                    });
-                    setCreatingTask(true);
-                  }}
-                >
-                  <Icon name="phone" />
-                  Call back
-                </button>
-                <button
-                  className={styles.assignedAvatar}
-                  aria-label={"View assignment for " + caseOwnerName}
-                  aria-describedby={uid + "-owner-tooltip"}
-                  onClick={() => {
-                    setView("Overview");
-                    setQuery("");
-                    dispatchPanel({ type: "hide" });
-                  }}
-                >
-                  <span aria-hidden="true">{caseOwnerInitials}</span>
-                  <span
-                    id={uid + "-owner-tooltip"}
-                    role="tooltip"
-                    className={styles.assigneeTooltip}
-                  >
-                    Assigned to {caseOwnerName}
-                  </span>
-                </button>
-              </div>
+              <CaseHeaderActions
+                className={styles.caseHeaderActions}
+                assigneeName={caseOwnerName}
+                assigneeInitials={caseOwnerInitials}
+                onViewAssignment={() => {
+                  setView("Overview");
+                  setQuery("");
+                  dispatchPanel({ type: "hide" });
+                }}
+              />
             </header>
             <div
               className={styles.caseTabs}
@@ -1702,25 +1685,22 @@ export function CaseWorkspace({
             >
               {(
                 [
-                  { label: "Overview", icon: "grid", count: null },
-                  { label: "Tasks", icon: "task", count: caseTasks.length },
+                  { label: "Overview", count: null },
+                  { label: "Tasks", count: caseTasks.length },
                   {
                     label: "Requirements",
-                    icon: "check",
                     count: requirements.length,
                   },
                   {
                     label: "Documents",
-                    icon: "file",
                     count: documentRows.length,
                   },
                   {
                     label: "Activity",
-                    icon: "clock",
                     count: caseActivity.length,
                   },
                 ] as const
-              ).map(({ label, icon, count }) => (
+              ).map(({ label, count }) => (
                 <button
                   key={label}
                   role="tab"
@@ -1733,9 +1713,6 @@ export function CaseWorkspace({
                     dispatchPanel({ type: "hide" });
                   }}
                 >
-                  <span className={styles.caseTabIcon}>
-                    <Icon name={icon} />
-                  </span>
                   <span className={styles.caseTabLabel}>{label}</span>
                   {count !== null && (
                     <span className={styles.caseTabCount}>{count}</span>
@@ -1822,7 +1799,6 @@ export function CaseWorkspace({
                             className={styles.createTaskButton}
                             onClick={(event) => {
                               createOpener.current = event.currentTarget;
-                              setTaskDraft(undefined);
                               dispatchPanel({ type: "hide" });
                               setCreatingTask(true);
                             }}
@@ -2105,7 +2081,6 @@ export function CaseWorkspace({
       </div>
       {creatingTask && (
         <CreateCaseTaskDialog
-          initialDraft={taskDraft}
           onCreate={createTask}
           onClose={() => {
             setCreatingTask(false);
@@ -2150,7 +2125,7 @@ function WorkspaceDialog({
     <dialog
       ref={dialog}
       className={styles.dialog}
-      aria-label="Contextual workflow study"
+      aria-label="Agent-first software"
       onCancel={(event) => {
         event.preventDefault();
         onClose();
@@ -2161,14 +2136,18 @@ function WorkspaceDialog({
     >
       <header className={styles.modalBrand}>
         <span>
-          Contextual workflows<small>Interaction study · Fictional data</small>
+          Agent-first software
+          <small>
+            People and AI specialists collaborate on tasks, evidence and
+            insights in context.
+          </small>
         </span>
       </header>
       <button
         ref={close}
         className={styles.modalClose}
-        aria-label="Close contextual workflow study"
-        title="Close concept"
+        aria-label="Close agent-first workspace"
+        title="Close workspace"
         onClick={onClose}
       >
         <Icon name="close" />
@@ -2188,10 +2167,10 @@ export function CaseWorkspaceShowcase({ paused }: { paused: boolean }) {
       <DesktopProjectCard
         name="Case management"
         title={<>Agent-first.<br /><em>Data in context.</em></>}
-        detail="Contextual workflows · Interaction study"
+        detail="People + AI specialists · Connected casework"
         tone="case"
-        label="Contextual workflow interaction study"
-        openLabel="Explore contextual workflows"
+        label="Agent-first case management workspace"
+        openLabel="Explore agent-first workspace"
         opener={opener}
         paused={paused}
         opened={open}

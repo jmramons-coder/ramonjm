@@ -1017,6 +1017,7 @@ button.actionEvidenceRow:is(:hover, :focus-visible) > span:not(.status) {
 
 /* The pattern study keeps the case identity quiet and its context in Overview. */
 .studyIdentity {
+  margin-bottom: 22px;
   display: flex;
   align-items: center;
   gap: 9px;
@@ -1947,4 +1948,19 @@ button.actionEvidenceRow:is(:hover, :focus-visible) > span:not(.status) {
   max-width: calc(100vw - 88px);
   top: max(20px, env(safe-area-inset-top));
   left: max(16px, env(safe-area-inset-left));
+}
+
+/* Give the project introduction enough room above the application. */
+.modalBrand > span { min-width: 0; }
+.modalBrand small {
+  max-width: 590px;
+  font-size: 11px;
+  line-height: 1.4;
+  letter-spacing: -.01em;
+}
+@media (max-width: 600px) {
+  .dialog { padding-top: 92px; }
+  .dialog > .modalPanel { height: calc(100dvh - 104px); }
+  .modalBrand { font-size: 16px; }
+  .modalBrand small { font-size: 10.5px; }
 }

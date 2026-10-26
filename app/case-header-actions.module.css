@@ -1,0 +1,194 @@
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+}
+.controls .assignee,
+.controls .decision,
+.controls .create,
+.controls .options {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  gap: 7px;
+  min-height: 34px;
+  margin: 0;
+  border: 1px solid #dde4ec;
+  background: #fff;
+  color: #45546a;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background 160ms,
+    border-color 160ms,
+    color 160ms;
+}
+.controls .assignee {
+  width: 32px;
+  min-height: 32px;
+  padding: 0;
+  border-color: #e0e5ed;
+  border-radius: 50%;
+  background: #eef2f8;
+  color: #64758e;
+  font-size: 10px;
+  letter-spacing: -0.025em;
+}
+.controls .decision,
+.controls .create {
+  padding: 0 13px;
+  border-radius: 999px;
+}
+.controls .decision:disabled {
+  border-color: #e5e9ee;
+  background: #fbfcfd;
+  color: #9ba5b2;
+  opacity: 1;
+  cursor: not-allowed;
+}
+.controls .options {
+  width: 32px;
+  padding: 0;
+  border-color: transparent;
+  border-radius: 8px;
+}
+.controls .decision svg,
+.controls .create svg,
+.controls .options svg {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.controls .options svg {
+  width: 16px;
+  height: 16px;
+  stroke: none;
+}
+.controls .assignee:hover,
+.controls .assignee:active,
+.controls .create:hover,
+.controls .create[aria-expanded="true"],
+.controls .options:hover,
+.controls .options[aria-expanded="true"] {
+  border-color: #d7dfe9;
+  background: #f4f6f9;
+  color: #344356;
+}
+.controls .assignee:focus-visible,
+.controls .create:focus-visible,
+.controls .options:focus-visible,
+.controls .popup:focus-visible {
+  outline: 2px solid #96bce9;
+  outline-offset: 2px;
+}
+.controls .popup {
+  position: fixed;
+  inset: auto;
+  width: 198px;
+  max-width: calc(100vw - 16px);
+  margin: 0;
+  padding: 5px;
+  border: 1px solid #e1e6ed;
+  border-radius: 12px;
+  background: #fff;
+  color: #344356;
+  font-family: var(--font-geist-sans), Arial, sans-serif;
+  box-shadow:
+    0 8px 28px #2532461a,
+    0 2px 5px #25324608;
+}
+.popup::backdrop {
+  background: transparent;
+}
+.controls .popup button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 40px;
+  padding: 10px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.4;
+  text-align: left;
+}
+.controls .popup button:disabled {
+  color: #99a3b1;
+  opacity: 1;
+  cursor: not-allowed;
+}
+.controls .tooltip {
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  bottom: calc(100% + 7px);
+  padding: 7px 9px;
+  border: 1px solid #e7ebef;
+  border-radius: 7px;
+  background: #fff;
+  box-shadow: 0 3px 12px #2532460d;
+  color: #344356;
+  font-size: 10px;
+  font-weight: 450;
+  line-height: 1.3;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 140ms,
+    visibility 140ms;
+}
+.controls .assignee .tooltip {
+  right: auto;
+  left: 0;
+}
+.assignee:hover .tooltip,
+.assignee:focus-visible .tooltip,
+.options:hover .tooltip,
+.options:focus-visible .tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+@media (max-width: 600px) {
+  .controls {
+    gap: 6px;
+  }
+  .controls .assignee,
+  .controls .options {
+    width: 36px;
+    min-height: 36px;
+  }
+  .controls .decision,
+  .controls .create {
+    min-height: 36px;
+    padding-inline: 12px;
+  }
+  .controls .popup button {
+    min-height: 44px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .controls .assignee,
+  .controls .decision,
+  .controls .create,
+  .controls .options,
+  .controls .tooltip {
+    transition: none;
+  }
+}
