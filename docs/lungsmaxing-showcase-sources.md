@@ -72,3 +72,11 @@ The separate gallery opens, advances, closes with Escape and returns focus to it
 
 ## Slider character reveal — October 25, 2026
 The dark side now uses the original `assets/media/ember-death-scythe.png` (unchanged copy at `public/showcase/lungsmaxing/ember-skull.png`). The existing laser/burning-vape artwork is clipped to the revealed percentage, with the skull-mask artwork clipped to the remaining percentage. At zero there are no lasers or burning vape; at 100 the active scene is fully visible. Both artworks share the slider value without timed animation.
+
+## Registration and responsive footer — October 25, 2026
+
+The two existing poses now share one 720px coordinate system, aligned to both pupil centers. The skull image uses an 80.3725% width, 1.5463% left offset, 4.7873% top offset and 2.8278° rotation. Their hands, flame silhouettes and props differ in the original artwork; the registration preserves those originals rather than repainting them.
+
+This update supersedes the earlier portfolio geometry notes above. The custom ARIA slider has a reachable 48px thumb, a shared background/character reveal edge and full-state endpoint masks. It supports arrows, PageUp/PageDown, Home/End and captured pointer/touch dragging. The thumb sits below the face. The footer is a normal grid row, with duration above two equal columns for estimated savings and avoided use moments. The original calculation is unchanged, and its baseline remains available through the slider description.
+
+Focused checks passed on a production build: portrait widths from 320px to desktop, a 844×390 landscape modal, arithmetic endpoints, touch dragging and keyboard operation. There was no metric overflow or thumb/footer overlap. The expanded view returns to the full card bounds and restores focus to the expand button. Targeted ESLint, TypeScript, the optimized Next.js webpack build and `git diff --check` passed. Evidence is in `outputs/lungs-layout/`.

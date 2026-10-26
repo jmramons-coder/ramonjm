@@ -33,33 +33,40 @@ function Outcome({ progress, onProgress, onExpand, opener }: { progress: number;
   const days = Math.round(7 + 358 * progress / 100);
   const money = Math.round(days / 7 * 50);
   const moments = Math.round(days / 7 * 5);
-  return <div ref={scene} className={styles.outcome} style={{ "--outcome-ratio": progress / 100 } as CSSProperties}>
-    <div className={styles.darkScene} /><div className={styles.brightScene} />
-    <div className={styles.normalCharacter}><Image className={styles.ember} src="/showcase/lungsmaxing/ember-skull.png" alt="Ember wearing the brand’s skull mask" width={520} height={520} unoptimized /></div>
-    <div className={styles.activeCharacter}><Image className={styles.ember} src="/showcase/lungsmaxing/ember-vape.webp" alt="Ember revealing laser vision and a burning vape as the preview advances" width={720} height={720} unoptimized sizes="(max-width: 640px) 100vw, 700px" /></div>
-    {onExpand && <button ref={opener} className={styles.expand} aria-label="Expand Lungsmaxing outcome preview" aria-haspopup="dialog" onClick={onExpand} />}
-    {onExpand && <header className={styles.header}><Image src="/showcase/lungsmaxing/icon.webp" alt="" width={32} height={32} unoptimized /><h2>Lungsmaxing</h2></header>}
-    <div className={styles.divider} aria-hidden="true" />
-    <div className={styles.grip} role="slider" tabIndex={0} aria-label="Preview time after quitting, from one week to one year" aria-valuemin={0} aria-valuemax={100} aria-valuenow={progress} aria-describedby={`${id}-baseline`} aria-valuetext={`${durationLabel(days)}; estimated ${money} Canadian dollars saved; ${moments} use moments avoided`}
-      onPointerDown={(event) => { event.currentTarget.setPointerCapture(event.pointerId); drag(event); }}
-      onPointerMove={(event) => { if (event.buttons === 1 || event.currentTarget.hasPointerCapture(event.pointerId)) drag(event); }}
-      onPointerUp={(event) => { drag(event); if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId); }}
-      onKeyDown={(event) => { let value = progress; if (event.key === 'ArrowRight' || event.key === 'ArrowUp') value += 1; else if (event.key === 'ArrowLeft' || event.key === 'ArrowDown') value -= 1; else if (event.key === 'Home') value = 0; else if (event.key === 'End') value = 100; else return; event.preventDefault(); onProgress(Math.max(0,Math.min(100,value))); }}>
-      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m8 8-4 4 4 4m8-8 4 4-4 4M4 12h16" /></svg>
-    </div>
-    <div className={styles.controls}>
-      <div className={styles.totals}>
-        <div><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="4"/><path d="M16 10h5v5h-5a2.5 2.5 0 0 1 0-5Z" /></svg><strong>{currency.format(money)}</strong><span>saved</span></div>
-        <output className={styles.duration}><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>{durationLabel(days)}</span></output>
-        <div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 7v5c0 5 8 9 8 9s8-4 8-9V7l-8-4Z"/><path d="m8 12 3 3 5-6" /></svg><strong>{moments}</strong><span>moments avoided</span></div>
+  const endpoint = progress === 0 ? "start" : progress === 100 ? "end" : undefined;
+
+  return <div className={styles.outcome} data-endpoint={endpoint} style={{ "--outcome-ratio": progress / 100 } as CSSProperties}>
+    <div ref={scene} className={styles.visual}>
+      <div className={styles.darkScene} /><div className={styles.brightScene} />
+      <div className={styles.normalCharacter}><div className={styles.artboard}><Image className={`${styles.ember} ${styles.skull}`} src="/showcase/lungsmaxing/ember-skull.png" alt="Ember wearing the brand’s skull mask" width={520} height={520} unoptimized draggable={false} /></div></div>
+      <div className={styles.activeCharacter}><div className={styles.artboard}><Image className={styles.ember} src="/showcase/lungsmaxing/ember-vape.webp" alt="Ember revealing laser vision and a burning vape as the preview advances" width={720} height={720} unoptimized draggable={false} sizes="(max-width: 640px) 100vw, 700px" /></div></div>
+      {onExpand && <button ref={opener} className={styles.expand} aria-label="Expand Lungsmaxing outcome preview" aria-haspopup="dialog" onClick={onExpand} />}
+      {onExpand && <header className={styles.header}><Image src="/showcase/lungsmaxing/icon.webp" alt="" width={32} height={32} unoptimized /><h2>Lungsmaxing</h2></header>}
+      <div className={styles.divider} aria-hidden="true" />
+      <div className={styles.grip} role="slider" tabIndex={0} aria-label="Preview time after quitting, from one week to one year" aria-valuemin={0} aria-valuemax={100} aria-valuenow={progress} aria-describedby={`${id}-baseline`} aria-valuetext={`${durationLabel(days)}; estimated ${money} Canadian dollars saved; ${moments} use moments avoided`}
+        onPointerDown={(event) => { event.currentTarget.setPointerCapture(event.pointerId); drag(event); }}
+        onPointerMove={(event) => { if (event.buttons === 1 || event.currentTarget.hasPointerCapture(event.pointerId)) drag(event); }}
+        onPointerUp={(event) => { drag(event); if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId); }}
+        onKeyDown={(event) => { let value = progress; if (event.key === 'ArrowRight' || event.key === 'ArrowUp') value += 1; else if (event.key === 'ArrowLeft' || event.key === 'ArrowDown') value -= 1; else if (event.key === 'PageUp') value += 10; else if (event.key === 'PageDown') value -= 10; else if (event.key === 'Home') value = 0; else if (event.key === 'End') value = 100; else return; event.preventDefault(); onProgress(Math.max(0,Math.min(100,value))); }}>
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m8 8-4 4 4 4m8-8 4 4-4 4M4 12h16" /></svg>
       </div>
-      <span className={styles.srOnly} id={`${id}-baseline`}>Illustrative baseline: CAD $50 and 5 use moments per week. Estimates, not guaranteed outcomes.</span>
     </div>
+    <footer className={styles.controls}>
+      <div className={styles.horizon}>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <span>After</span><output aria-live="off">{durationLabel(days)}</output>
+      </div>
+      <dl className={styles.totals}>
+        <div><dt>Estimated saved</dt><dd><output aria-live="off">{currency.format(money)}</output></dd></div>
+        <div><dt>Use moments avoided</dt><dd><output aria-live="off">{moments}</output></dd></div>
+      </dl>
+      <span className={styles.srOnly} id={`${id}-baseline`}>Illustrative baseline: CAD $50 and 5 use moments per week. Estimates, not guaranteed outcomes.</span>
+    </footer>
   </div>;
 }
-function LungsPreview({ origin, opener, paused, progress, onProgress, onClose }: {
+function LungsPreview({ origin, returnTarget, paused, progress, onProgress, onClose }: {
   origin: Bounds;
-  opener: RefObject<HTMLButtonElement | null>;
+  returnTarget: RefObject<HTMLElement | null>;
   paused: boolean;
   progress: number;
   onProgress: (value: number) => void;
@@ -95,7 +102,7 @@ function LungsPreview({ origin, opener, paused, progress, onProgress, onClose }:
     if (closing.current) return;
     closing.current = true;
     const image = panel.current;
-    const destination = opener.current?.getBoundingClientRect();
+    const destination = returnTarget.current?.getBoundingClientRect();
     if (image && destination && !paused && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       animation.current?.cancel();
       const source = image.getBoundingClientRect();
@@ -105,8 +112,8 @@ function LungsPreview({ origin, opener, paused, progress, onProgress, onClose }:
       ], { duration: 320, easing: "cubic-bezier(.4,0,.2,1)", fill: "forwards" });
       await animation.current.finished.catch(() => {});
     }
+    dialog.current?.close();
     onClose();
-    requestAnimationFrame(() => opener.current?.focus({ preventScroll: true }));
   }
 
   return (
@@ -127,8 +134,17 @@ export function LungsShowcase({ paused }: { paused: boolean }) {
   const card = useRef<HTMLElement>(null);
   const [progress, setProgress] = useState(50);
   const [origin, setOrigin] = useState<Bounds | null>(null);
+  const wasOpen = useRef(false);
+  useEffect(() => {
+    if (origin) {
+      wasOpen.current = true;
+    } else if (wasOpen.current) {
+      wasOpen.current = false;
+      opener.current?.focus({ preventScroll: true });
+    }
+  }, [origin]);
   return <><article ref={card} className={styles.card} aria-label="Lungsmaxing" data-open={!!origin}>
     <Outcome opener={opener} progress={progress} onProgress={setProgress} onExpand={() => { const box = card.current?.getBoundingClientRect(); if (box) setOrigin({ left: box.left, top: box.top, width: box.width, height: box.height }); }} />
 
-  </article>{origin && <LungsPreview origin={origin} opener={opener} paused={paused} progress={progress} onProgress={setProgress} onClose={() => setOrigin(null)} />}</>;
+  </article>{origin && <LungsPreview origin={origin} returnTarget={card} paused={paused} progress={progress} onProgress={setProgress} onClose={() => setOrigin(null)} />}</>;
 }
