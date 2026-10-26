@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import { headers } from "next/headers";
 import { Geist } from "next/font/google";
 import "./globals.css";
 import { portfolio } from "./portfolio-content";
@@ -15,41 +14,38 @@ export const viewport: Viewport = {
   themeColor: "#f7f7f7",
 };
 
-export async function generateMetadata(): Promise<Metadata> {
-  const requestHeaders = await headers();
-  const host =
-    requestHeaders.get("x-forwarded-host") ??
-    requestHeaders.get("host") ??
-    "localhost:3000";
-  const protocol =
-    requestHeaders.get("x-forwarded-proto") ??
-    (host.startsWith("localhost") ? "http" : "https");
-  const baseUrl = new URL(`${protocol}://${host}`);
-  const { title, description } = portfolio;
+const { title, description } = portfolio;
+const shareImage = {
+  url: "/social/portfolio-grid-20261025.png",
+  width: 1200,
+  height: 630,
+  alt: "Ramon JM — product design and development, with aBeam, Nudge, Tracer and PushedWorld from the current portfolio.",
+};
 
-  return {
-    metadataBase: baseUrl,
+export const metadata: Metadata = {
+  metadataBase: new URL("https://www.ramonjm.com"),
+  title,
+  description,
+  alternates: { canonical: "/" },
+  openGraph: {
     title,
     description,
-    alternates: { canonical: "/" },
-    openGraph: {
-      title,
-      description,
-      type: "website",
-      url: "/",
-      siteName: "Ramon JM",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-    },
-    robots: {
-      index: true,
-      follow: true,
-    },
-  };
-}
+    type: "website",
+    url: "/",
+    siteName: "Ramon JM",
+    images: [{ ...shareImage, type: "image/png" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: [shareImage],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
 
 export default function RootLayout({
   children,
