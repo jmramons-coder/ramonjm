@@ -69,3 +69,14 @@ Use captures from this exact repository and label sample scenarios accurately. D
 Defensible outcomes are the working artifact and design choices: connected work, dependency-aware execution, attributed findings, bounded contextual assistance and explicit decisions. Business results, research quotes, adoption, role/team/timeline and rollout need separate evidence.
 
 This was a read-only review of checkout identity, documentation, intake/workflow instantiation, tasks/requirements, dependency gates, panel history, document preview, decision flow and assistant source. No build, database mutation, import, model request or integration test was performed. Runtime captures are a separate workstream; their exact source/harness belongs in `case-management-asset-sources.md`.
+
+
+## Portfolio assistant and global queues — 26 October 2026
+
+The public reconstruction now uses the same fictional records for queues, record panels and assistant replies. It follows the source assistant’s summary, next-step, blockers, requirements, documents, people, timing, automation and policy-file patterns, reviewed in `features/assistant/lib/respond.ts`, `capabilities/case-*.ts`, `lib/blocks.ts`, `model/tool-catalog.ts`, `lib/case-file.ts` and `supabase/functions/assistant/prompts.ts`.
+
+Replies are deterministic in the portfolio: no model, source tenant, database or customer record is queried. Policy answers show only the authored policy number, insured, request and type. File answers distinguish received metadata from file contents; unsupported questions and mutation requests are explicit about that boundary. Linked cards open the matching case’s task, requirement, document or overview, retaining the existing contextual tab stack and separate conversation per case. Fresh answers include the action outcome selected in the local demonstration, without treating it as task completion.
+
+Cases and Tasks are separate modules. My cases is the initial page. My tasks is based on task assignee across all five authored cases, independent of the case-owner scope. Both modules retain All/My tabs, shared table styles and search; task creation is disabled. Case-specific human assignments and due dates come from a shared task fixture, so the queue, record header and assistant agree. These are authored workflow examples, not a claim that all source cases share identical work.
+
+Verification includes durable assistant tests for grounding, valid contextual targets, isolation, unsupported questions, read-only behavior, current action status and empty sources, plus the existing panel-state tests.

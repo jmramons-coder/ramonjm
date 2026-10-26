@@ -8,173 +8,70 @@ import {
   useState,
   type FormEvent,
 } from "react";
+import {
+  buildCaseAssistantReply,
+  caseAssistantPrompts,
+  type AssistantRecord,
+  type AssistantTarget,
+  type CaseAssistantContext,
+  type CaseAssistantReply,
+} from "./case-assistant-replies";
 import styles from "./case-assistant-chat.module.css";
 
 export type CaseAssistantChatProps = {
   caseRef: string;
   clientName: string;
+  context: CaseAssistantContext;
+  onOpenOverview: () => void;
+  onOpenDocument: (requirementIndex: number) => void;
   onOpenTask: (index: number) => void;
   onOpenRequirement: (index: number) => void;
   paused?: boolean;
   active?: boolean;
 };
 
-type ContextLink = {
-  label: string;
-  type: "task" | "requirement";
-  index: number;
-};
-
-type Reply = {
-  paragraphs: string[];
-  points?: string[];
-  links?: ContextLink[];
-};
-
-type Message = Reply & {
+type Message = CaseAssistantReply & {
   id: number;
   role: "user" | "assistant";
 };
 
-const starterPrompts = [
-  "What’s holding up this case?",
-  "What should I do next?",
-  "What have the AI specialists done?",
-];
-
-function sampleReply(
-  question: string,
-  caseRef: string,
-  clientName: string,
-): Reply {
-  const normalized = question.toLocaleLowerCase();
-
-  if (
-    /agent|specialist|assistant|\bai\b|who.*(review|check|work)/.test(
-      normalized,
-    )
-  ) {
-    return {
-      paragraphs: ["Three specialists have recorded work on this sample case:"],
-      points: [
-        "Application Review checked the application and supplements. No missing answers were recorded.",
-        "Requirement Ordering recorded the evidence requests. The attending physician statement is ordered.",
-        "Financial Screening found that the company statements were received, but the personal financial statement is still outstanding.",
-      ],
-      links: [
-        { label: "Application review", type: "task", index: 0 },
-        { label: "Evidence ordering", type: "task", index: 1 },
-        { label: "Financial review", type: "task", index: 3 },
-      ],
-    };
-  }
-
-  if (/next|should|priority|action|recommend|proceed/.test(normalized)) {
-    return {
-      paragraphs: [
-        "Follow up on the personal financial statement, then continue the financial review when it arrives.",
-        "The audited company statements are already received. Natalie’s review stays open while personal evidence is outstanding; the recorded AI finding doesn’t complete the review.",
-      ],
-      links: [
-        {
-          label: "Personal financial statement",
-          type: "requirement",
-          index: 2,
-        },
-        { label: "Review financial data", type: "task", index: 3 },
-      ],
-    };
-  }
-
-  if (
-    /missing|hold|block|waiting|outstanding|delay|personal/.test(normalized)
-  ) {
-    return {
-      paragraphs: [
-        "The financial review is waiting on the applicant’s personal financial statement.",
-        "Financial Screening recorded the gap. The company’s audited statements are received, but they don’t replace the personal statement. Natalie still needs to review the complete financial evidence.",
-      ],
-      links: [
-        {
-          label: "Personal financial statement",
-          type: "requirement",
-          index: 2,
-        },
-        { label: "Review financial data", type: "task", index: 3 },
-      ],
-    };
-  }
-
-  if (/document|evidence|audited|received|medical|physician/.test(normalized)) {
-    return {
-      paragraphs: ["The sample case records these evidence states:"],
-      points: [
-        "Fulfilled: signed application, with its supporting document available.",
-        "Received: audited financial statements and replacement disclosure.",
-        "Ordered: personal financial statement and attending physician statement; receipt has not been recorded.",
-      ],
-      links: [
-        {
-          label: "Audited financial statements",
-          type: "requirement",
-          index: 1,
-        },
-        {
-          label: "Personal financial statement",
-          type: "requirement",
-          index: 2,
-        },
-        { label: "Physician statement", type: "requirement", index: 4 },
-      ],
-    };
-  }
-
-  if (/financial|finance/.test(normalized)) {
-    return {
-      paragraphs: [
-        "The company’s audited statements have been received. The applicant’s personal financial statement remains outstanding.",
-        "Natalie’s financial review stays in review until the complete evidence can be assessed.",
-      ],
-      links: [
-        { label: "Review financial data", type: "task", index: 3 },
-        {
-          label: "Personal financial statement",
-          type: "requirement",
-          index: 2,
-        },
-      ],
-    };
-  }
-
-  if (
-    /overview|summari[sz]e|summary|status|progress|about|case|\bhi\b|hello/.test(
-      normalized,
-    )
-  ) {
-    return {
-      paragraphs: [`${caseRef} is ${clientName}’s sample life-insurance case.`],
-      points: [
-        "Application review and evidence ordering are complete.",
-        "Financial review is in progress with Natalie. The personal financial statement is the recorded gap.",
-        "Evidence reconciliation, risk assessment, and the underwriting decision remain blocked by the preceding work.",
-      ],
-      links: [
-        { label: "Review financial data", type: "task", index: 3 },
-        { label: "Missing personal statement", type: "requirement", index: 2 },
-      ],
-    };
-  }
-
-  return {
-    paragraphs: [
-      "That detail isn’t included in this sample case. I can explain its recorded progress, outstanding evidence, next step, or specialist activity.",
-      "The current financial-review gap is the applicant’s personal financial statement. You can inspect the linked records for context.",
-    ],
-    links: [
-      { label: "Review financial data", type: "task", index: 3 },
-      { label: "Personal financial statement", type: "requirement", index: 2 },
-    ],
-  };
+function RecordRow({
+  record,
+  onOpen,
+}: {
+  record: AssistantRecord;
+  onOpen: (target: AssistantTarget) => void;
+}) {
+  const content = (
+    <>
+      <ChatIcon name={record.target?.type ?? "task"} />
+      <span className={styles.recordCopy}>
+        <strong>{record.title}</strong>
+        {record.detail && <span>{record.detail}</span>}
+      </span>
+      {record.ai && <span className={styles.aiBadge}>AI</span>}
+      {record.status && (
+        <span className={styles.recordStatus} data-status={record.status}>
+          {record.status}
+        </span>
+      )}
+    </>
+  );
+  return (
+    <li>
+      {record.target ? (
+        <button
+          type="button"
+          className={styles.recordRow}
+          onClick={() => record.target && onOpen(record.target)}
+        >
+          {content}
+        </button>
+      ) : (
+        <div className={styles.recordRow}>{content}</div>
+      )}
+    </li>
+  );
 }
 
 function AssistantMark() {
@@ -186,7 +83,11 @@ function AssistantMark() {
   );
 }
 
-function ChatIcon({ name }: { name: "send" | "task" | "document" }) {
+function ChatIcon({
+  name,
+}: {
+  name: "send" | "task" | "requirement" | "document" | "overview";
+}) {
   return (
     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
       {name === "send" ? (
@@ -195,6 +96,16 @@ function ChatIcon({ name }: { name: "send" | "task" | "document" }) {
         <>
           <rect x="4" y="5" width="16" height="16" rx="3" />
           <path d="M9 3h6v4H9zm-1 10 2 2 5-5" />
+        </>
+      ) : name === "requirement" ? (
+        <>
+          <path d="m12 3 8 4v10l-8 4-8-4V7Z" />
+          <path d="m8 12 3 3 5-6" />
+        </>
+      ) : name === "overview" ? (
+        <>
+          <rect x="4" y="4" width="16" height="16" rx="3" />
+          <path d="M4 10h16M10 10v10" />
         </>
       ) : (
         <path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9Zm0 0v6h6M8 13h8m-8 4h5" />
@@ -206,6 +117,9 @@ function ChatIcon({ name }: { name: "send" | "task" | "document" }) {
 export function CaseAssistantChat({
   caseRef,
   clientName,
+  context,
+  onOpenOverview,
+  onOpenDocument,
   onOpenTask,
   onOpenRequirement,
   paused = false,
@@ -259,7 +173,12 @@ export function CaseAssistantChat({
   function ask(text: string) {
     if (!text.trim() || pendingRef.current) return;
     pendingRef.current = true;
-    const response = sampleReply(text, caseRef, clientName);
+    const response = buildCaseAssistantReply(
+      text,
+      caseRef,
+      clientName,
+      context,
+    );
     const userMessage: Message = {
       id: nextMessageId.current++,
       role: "user",
@@ -284,6 +203,13 @@ export function CaseAssistantChat({
     if (paused) finish();
     else replyTimer.current = setTimeout(finish, 280);
     inputRef.current?.focus({ preventScroll: true });
+  }
+
+  function openRecord(target: AssistantTarget) {
+    if (target.type === "overview") onOpenOverview();
+    else if (target.type === "document") onOpenDocument(target.index);
+    else if (target.type === "requirement") onOpenRequirement(target.index);
+    else onOpenTask(target.index);
   }
 
   function submit(event: FormEvent<HTMLFormElement>) {
@@ -323,7 +249,7 @@ export function CaseAssistantChat({
             <h3>How can I help with this case?</h3>
             <p>Explore the case, its evidence, and the work behind it.</p>
             <div className={styles.prompts} aria-label="Suggested questions">
-              {starterPrompts.map((prompt) => (
+              {caseAssistantPrompts(context).map((prompt) => (
                 <button type="button" key={prompt} onClick={() => ask(prompt)}>
                   {prompt}
                 </button>
@@ -332,7 +258,7 @@ export function CaseAssistantChat({
           </div>
         )}
 
-        {messages.map((message) => (
+        {messages.map((message, messageIndex) => (
           <article
             key={message.id}
             className={styles.message}
@@ -350,36 +276,49 @@ export function CaseAssistantChat({
               {message.paragraphs.map((paragraph, index) => (
                 <p key={index}>{paragraph}</p>
               ))}
-              {message.points && (
-                <ul>
-                  {message.points.map((point) => (
-                    <li key={point}>{point}</li>
+              {message.facts && message.facts.length > 0 && (
+                <dl className={styles.facts}>
+                  {message.facts.map((fact) => (
+                    <div key={fact.label}>
+                      <dt>{fact.label}</dt>
+                      <dd>{fact.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              )}
+              {message.records && message.records.length > 0 && (
+                <ul
+                  className={styles.records}
+                  aria-label="Related case records"
+                >
+                  {message.records.map((record, index) => (
+                    <RecordRow
+                      key={`${record.target?.type ?? "event"}-${index}`}
+                      record={record}
+                      onOpen={openRecord}
+                    />
                   ))}
                 </ul>
               )}
-              {message.links && (
-                <div
-                  className={styles.contextLinks}
-                  aria-label="Related case records"
-                >
-                  {message.links.map((link) => (
-                    <button
-                      key={`${link.type}-${link.index}`}
-                      type="button"
-                      onClick={() =>
-                        link.type === "task"
-                          ? onOpenTask(link.index)
-                          : onOpenRequirement(link.index)
-                      }
-                    >
-                      <ChatIcon
-                        name={link.type === "task" ? "task" : "document"}
-                      />
-                      {link.label}
-                    </button>
-                  ))}
-                </div>
-              )}
+              {message.role === "assistant" &&
+                messageIndex === messages.length - 1 &&
+                message.suggestions && (
+                  <div
+                    className={styles.followUps}
+                    aria-label="Suggested follow-up questions"
+                  >
+                    {message.suggestions.map((prompt) => (
+                      <button
+                        type="button"
+                        key={prompt}
+                        disabled={pending}
+                        onClick={() => ask(prompt)}
+                      >
+                        {prompt}
+                      </button>
+                    ))}
+                  </div>
+                )}
             </div>
           </article>
         ))}
@@ -389,7 +328,7 @@ export function CaseAssistantChat({
               <AssistantMark />
             </span>
             <span>
-              Preparing sample response
+              Reading the case
               <span className={styles.pendingDots} aria-hidden="true">
                 …
               </span>

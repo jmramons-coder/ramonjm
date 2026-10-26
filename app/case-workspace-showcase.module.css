@@ -479,9 +479,17 @@
   box-shadow: 0 1px 2px #1723330d;
   transition: background 150ms ease, border-color 150ms ease;
 }
-.createTaskButton:hover {
+.createTaskButton:hover:not(:disabled) {
   border-color: #142131;
   background: #142131;
+}
+.workspace .createTaskButton:disabled {
+  border-color: #e1e6ec;
+  background: #eef1f5;
+  box-shadow: none;
+  color: #a8b0bb;
+  opacity: 1;
+  cursor: not-allowed;
 }
 .createTaskButton svg {
   width: 14px;
@@ -2043,4 +2051,59 @@
   .dialog > .modalPanel { height: calc(100dvh - 104px); }
   .modalBrand { font-size: 16px; }
   .modalBrand small { font-size: 10.5px; }
+}
+
+/* Workspace modules stay available when the sidebar is hidden. */
+.topbar .mobileModules { display: none; }
+@media (max-width: 600px) {
+  .topbar .mobileModules {
+    display: flex;
+    align-items: center;
+    flex: 0 1 auto;
+    min-width: 0;
+    gap: 4px;
+  }
+  .topbar .mobileModules button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 32px;
+    padding: 6px 10px;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    background: transparent;
+    color: #738092;
+    font-size: 11px;
+    line-height: 1.2;
+    white-space: nowrap;
+    transition: border-color 150ms ease, background 150ms ease, color 150ms ease;
+  }
+  .topbar .mobileModules button > svg {
+    width: 14px;
+    height: 14px;
+    color: #98a3b1;
+  }
+  .topbar .mobileModules button:hover:not([data-active="true"]) {
+    background: #f5f7fa;
+    color: #344356;
+  }
+  .topbar .mobileModules button[data-active="true"] {
+    border-color: #e7ebf0;
+    background: #f3f6f9;
+    box-shadow: inset 0 0 0 1px #e7ebf0;
+    color: #263241;
+  }
+  .topbar .mobileModules button[data-active="true"] > svg { color: #627489; }
+  .topbar .mobileModules button:focus-visible {
+    outline: 2px solid #7196cb;
+    outline-offset: 1px;
+  }
+  .topbar .mobileWorkspaceMark,
+  .topbar .moduleBreadcrumb,
+  .topbar .caseBreadcrumb { display: none; }
+}
+.preview .topbar .mobileModules { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  .topbar .mobileModules button { transition: none; }
 }

@@ -24,7 +24,7 @@
   color: #738092;
   font-size: 10px;
   line-height: 1.4;
-  letter-spacing: .065em;
+  letter-spacing: 0.065em;
 }
 
 .chat .headerTitle {
@@ -187,38 +187,163 @@
   line-height: 1.65;
 }
 
-.messageBody ul {
+.facts {
   display: grid;
-  gap: 10px;
-  margin: 12px 0;
-  padding-left: 16px;
-  color: #677486;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 100px), 1fr));
+  gap: 12px;
+  margin: 14px 0;
+  padding: 13px 14px;
+  border: 1px solid #e6eaf0;
+  border-radius: 16px;
+  background: #fff;
+}
+
+.facts > div {
+  min-width: 0;
+}
+
+.facts dt {
+  margin-bottom: 5px;
+  color: #8a96a6;
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+.facts dd {
+  margin: 0;
+  color: #344356;
   font-size: 12px;
-  line-height: 1.8;
+  font-weight: 500;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
 }
 
-.messageBody li::marker {
-  color: #a9b6c6;
-  font-size: 8px;
+.chat .records {
+  display: grid;
+  gap: 6px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
 }
 
-.contextLinks {
+.records > li {
+  min-width: 0;
+}
+
+.chat .recordRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #e4e9ef;
+  border-radius: 16px;
+  background: #fff;
+  color: #637185;
+  font: inherit;
+  text-align: left;
+}
+
+.chat button.recordRow {
+  cursor: pointer;
+  transition:
+    border-color 150ms ease,
+    background 150ms ease;
+}
+
+.chat button.recordRow:hover {
+  border-color: #c8d8eb;
+  background: #fbfdff;
+}
+
+.chat .recordRow > svg {
+  flex: 0 0 15px;
+  width: 15px;
+  height: 15px;
+  margin-top: 1px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.45;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.recordCopy {
+  display: grid;
+  flex: 1;
+  gap: 4px;
+  min-width: 0;
+}
+
+.recordCopy > strong {
+  color: #344356;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.recordCopy > span {
+  color: #8a96a6;
+  font-size: 10px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.recordStatus {
+  flex-shrink: 0;
+  max-width: 78px;
+  padding: 3px 6px;
+  border-radius: 6px;
+  background: #f2f4f7;
+  color: #7e8a99;
+  font-size: 9px;
+  line-height: 1.4;
+}
+
+.recordStatus[data-status="Completed"],
+.recordStatus[data-status="Fulfilled"],
+.recordStatus[data-status="Received"] {
+  background: #eef8f2;
+  color: #408563;
+}
+
+.recordStatus[data-status="In review"],
+.recordStatus[data-status="In progress"] {
+  background: #eff5fe;
+  color: #5686bf;
+}
+
+.recordStatus[data-status="Ordered"] {
+  background: #fff7e8;
+  color: #9b752e;
+}
+
+.aiBadge {
+  flex-shrink: 0;
+  padding: 3px 5px;
+  border: 1px solid #e5e3f1;
+  border-radius: 6px;
+  background: linear-gradient(120deg, #f6f1fc, #f1f5ff);
+  color: #786b96;
+  font-size: 9px;
+  line-height: 1.4;
+}
+
+.followUps {
   display: flex;
   flex-wrap: wrap;
   gap: 7px;
-  margin-top: 16px;
+  margin-top: 15px;
 }
 
-.chat .contextLinks button {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
+.chat .followUps button {
   max-width: 100%;
-  padding: 7px 9px;
-  border: 1px solid #e3e8ef;
-  border-radius: 7px;
+  padding: 7px 10px;
+  border: 1px solid #dfe6ee;
+  border-radius: 999px;
   background: #fff;
-  color: #64768e;
+  color: #738399;
   font: inherit;
   font-size: 10px;
   line-height: 1.5;
@@ -226,25 +351,17 @@
   cursor: pointer;
   transition:
     border-color 150ms ease,
-    color 150ms ease,
-    background 150ms ease;
+    color 150ms ease;
 }
 
-.chat .contextLinks button:hover {
-  border-color: #c9d9ed;
-  background: #f9fbff;
+.chat .followUps button:hover {
+  border-color: #bfd0e5;
   color: #4979ae;
 }
 
-.chat .contextLinks button svg {
-  flex: 0 0 13px;
-  width: 13px;
-  height: 13px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.4;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+.chat .followUps button:disabled {
+  cursor: default;
+  opacity: 0.6;
 }
 
 .pending {

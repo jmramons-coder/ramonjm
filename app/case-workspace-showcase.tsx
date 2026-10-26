@@ -12,8 +12,8 @@ import {
 } from "react";
 import styles from "./case-workspace-showcase.module.css";
 import { CaseAssignee, CaseTableToolbar } from "./case-table-controls";
-import { CreateCaseTaskDialog, type CaseTaskDraft } from "./case-create-task";
 import { CaseAssistantChat } from "./case-assistant-chat";
+import type { CaseAssistantContext } from "./case-assistant-replies";
 import { CasePanelResizeHandle } from "./case-panel-resize";
 import { CaseContextTabs } from "./case-context-tabs";
 import { CaseHeaderActions } from "./case-header-actions";
@@ -181,7 +181,7 @@ const caseRows = [
     client: "Jordan Lee",
     due: "Today",
     owner: "Marcus",
-    progress: 2,
+    progress: 3,
     priority: "Normal",
   },
   {
@@ -197,7 +197,7 @@ const caseRows = [
     client: "Taylor Brooks",
     due: "Tomorrow",
     owner: "Lina",
-    progress: 1,
+    progress: 3,
     priority: "High",
   },
   {
@@ -205,7 +205,7 @@ const caseRows = [
     client: "Casey Rivera",
     due: "Oct 28",
     owner: "You",
-    progress: 2,
+    progress: 3,
     priority: "Normal",
   },
 ];
@@ -221,6 +221,7 @@ type CaseTask = {
   owner: string;
   status: string;
   agent: number | null;
+  due?: string;
   action?: TaskActionDefinition;
 };
 const tasks: CaseTask[] = [
@@ -398,7 +399,31 @@ const documentRows = [
     actor: "Marcus Reed",
     received: "09:12",
   },
+  {
+    name: "Replacement disclosure.pdf",
+    requirement: 3,
+    task: 2,
+    actor: "Natalie Adams",
+    received: "09:42",
+  },
 ];
+
+function getCaseTasks(caseIndex: number): CaseTask[] {
+  const currentCase = caseRows[caseIndex];
+  return tasks.map((task) => ({
+    ...task,
+    owner: task.owner === "You" ? currentCase.owner : task.owner,
+    due: currentCase.due,
+  }));
+}
+function getCaseStage(caseIndex: number) {
+  const progress = caseRows[caseIndex].progress;
+  return progress === 3
+    ? "Review"
+    : progress === 2
+      ? "Evidence gathering"
+      : "Intake";
+}
 
 function Status({ value }: { value: string }) {
   return (
@@ -557,103 +582,122 @@ function TaskActions({
   );
 }
 
+type TaskTableEntry = CaseTask & { index: number; caseIndex?: number };
 function CaseTaskTable({
   rows,
   active,
+  activeCase,
+  global = false,
+  label = "Case tasks",
   onOpen,
   onAgent,
+  onCase,
 }: {
-  rows: ((typeof tasks)[number] & { index: number })[];
+  rows: TaskTableEntry[];
   active: number | null;
-  onOpen: (index: number) => void;
-  onAgent: (index: number, agent: number) => void;
+  activeCase?: number;
+  global?: boolean;
+  label?: string;
+  onOpen: (index: number, caseIndex?: number) => void;
+  onAgent: (index: number, agent: number, caseIndex?: number) => void;
+  onCase?: (caseIndex: number) => void;
 }) {
+  const widths = global ? [32, 23, 23, 12, 10] : [45, 27, 16, 12];
   return (
-    <table className={styles.workTable} aria-label="Case tasks">
+    <table
+      className={`${styles.workTable} ${global ? styles.caseQueueTable : ""}`}
+      aria-label={label}
+    >
       <colgroup>
-        <col style={{ width: "45%" }} />
-        <col style={{ width: "27%" }} />
-        <col style={{ width: "16%" }} />
-        <col style={{ width: "12%" }} />
+        {widths.map((width, index) => (
+          <col key={index} style={{ width: `${width}%` }} />
+        ))}
       </colgroup>
       <thead>
         <tr>
           <th scope="col">Task</th>
+          {global && <th scope="col">Case / Client</th>}
           <th scope="col">Assigned to</th>
           <th scope="col">Status</th>
           <th scope="col">Due</th>
         </tr>
       </thead>
       <tbody>
-        {rows.map((row) => (
-          <TaskTableRow
-            key={row.index}
-            row={row}
-            active={active === row.index}
-            onOpen={onOpen}
-            onAgent={onAgent}
-          />
-        ))}
+        {rows.map((row) => {
+          const specialist = isSpecialist(row.owner);
+          const relatedCase = caseRows[row.caseIndex ?? 0];
+          return (
+            <tr
+              key={`${row.caseIndex ?? 0}-${row.index}`}
+              data-selected={
+                active === row.index &&
+                (!global || activeCase === row.caseIndex)
+              }
+              onClick={() => onOpen(row.index, row.caseIndex)}
+            >
+              <td>
+                <button
+                  className={styles.tableTaskButton}
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    onOpen(row.index, row.caseIndex);
+                  }}
+                  aria-label={`Open task ${row.name}${global ? `, ${relatedCase.client}` : ""}`}
+                >
+                  <span>
+                    <strong>{row.name}</strong>
+                    <small>{row.stage}</small>
+                  </span>
+                </button>
+              </td>
+              {global && (
+                <td>
+                  <button
+                    className={styles.tableTaskButton}
+                    aria-label={`Open case ${relatedCase.ref}, ${relatedCase.client}`}
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      onCase?.(row.caseIndex!);
+                    }}
+                  >
+                    <span>
+                      <strong>{relatedCase.client}</strong>
+                      <small>{relatedCase.ref}</small>
+                    </span>
+                  </button>
+                </td>
+              )}
+              <td>
+                <CaseAssignee
+                  name={personName(row.owner)}
+                  specialist={specialist}
+                  onClick={
+                    specialist && row.agent !== null
+                      ? () => onAgent(row.index, row.agent!, row.caseIndex)
+                      : undefined
+                  }
+                />
+              </td>
+              <td>
+                <Status value={row.status} />
+              </td>
+              <td>
+                <span className={styles.tableDue}>
+                  {row.status === "Completed" ? "—" : (row.due ?? "Today")}
+                </span>
+              </td>
+            </tr>
+          );
+        })}
         {!rows.length && (
           <tr>
-            <td colSpan={4} className={styles.empty}>
+            <td colSpan={global ? 5 : 4} className={styles.empty}>
               No tasks match your search.
             </td>
           </tr>
         )}
       </tbody>
     </table>
-  );
-}
-function TaskTableRow({
-  row,
-  active,
-  onOpen,
-  onAgent,
-}: {
-  row: (typeof tasks)[number] & { index: number };
-  active: boolean;
-  onOpen: (index: number) => void;
-  onAgent: (index: number, agent: number) => void;
-}) {
-  const specialist = isSpecialist(row.owner);
-  return (
-    <tr data-selected={active} onClick={() => onOpen(row.index)}>
-      <td>
-        <button
-          className={styles.tableTaskButton}
-          onClick={(event) => {
-            event.stopPropagation();
-            onOpen(row.index);
-          }}
-          aria-label={`Open task ${row.name}`}
-        >
-          <span>
-            <strong>{row.name}</strong>
-            <small>{row.stage}</small>
-          </span>
-        </button>
-      </td>
-      <td>
-        <CaseAssignee
-          name={personName(row.owner)}
-          specialist={specialist}
-          onClick={
-            specialist && row.agent !== null
-              ? () => onAgent(row.index, row.agent!)
-              : undefined
-          }
-        />
-      </td>
-      <td>
-        <Status value={row.status} />
-      </td>
-      <td>
-        <span className={styles.tableDue}>
-          {row.status === "Completed" ? "—" : "Today"}
-        </span>
-      </td>
-    </tr>
   );
 }
 type CaseActivityEntry = {
@@ -708,6 +752,15 @@ const activityRows: CaseActivityEntry[] = [
     record: "Case",
   },
 ];
+function getCaseActivity(caseIndex: number): CaseActivityEntry[] {
+  return activityRows.map((entry) => ({
+    ...entry,
+    title:
+      entry.record === "Case"
+        ? `Case assigned to ${personName(caseRows[caseIndex].owner)}`
+        : entry.title,
+  }));
+}
 const activityDateFormatter = new Intl.DateTimeFormat("en-CA", {
   timeZone: "America/Toronto",
   month: "short",
@@ -920,7 +973,7 @@ function CaseRecordContent({
               </div>
               <div>
                 <dt>Due</dt>
-                <dd>Today</dd>
+                <dd>{currentTask.due ?? "Today"}</dd>
               </div>
             </dl>
             <p className={styles.taskDescription}>{currentTask.description}</p>
@@ -1066,16 +1119,12 @@ export function CaseWorkspace({
   );
   const [assistantCaseIndex, setAssistantCaseIndex] = useState(0);
   const [query, setQuery] = useState("");
-  const [mine, setMine] = useState(false);
-  const [taskSets, setTaskSets] = useState<Record<number, CaseTask[]>>({});
-  const [activitySets, setActivitySets] = useState<
-    Record<number, CaseActivityEntry[]>
-  >({});
+  const [module, setModule] = useState<"cases" | "tasks">("cases");
+  const [mine, setMine] = useState(true);
+  const [myTasks, setMyTasks] = useState(true);
   const [actionStatuses, setActionStatuses] = useState<
     Record<string, CaseActionStatus>
   >({});
-  const [creatingTask, setCreatingTask] = useState(false);
-  const createOpener = useRef<HTMLButtonElement>(null);
   const recordPanel = useRef<HTMLElement>(null);
   const workBody = useRef<HTMLDivElement>(null);
   const assistantOpener = useRef<HTMLButtonElement>(null);
@@ -1092,8 +1141,8 @@ export function CaseWorkspace({
     : null;
   const task =
     activeRecord?.caseIndex === selected ? activeRecord.taskIndex : null;
-  const caseTasks = taskSets[selected ?? 0] ?? tasks;
-  const caseActivity = activitySets[selected ?? 0] ?? activityRows;
+  const caseTasks = getCaseTasks(selected ?? 0);
+  const caseActivity = getCaseActivity(selected ?? 0);
   const currentCase = caseRows[selected ?? 0];
   const caseOwnerName = personName(currentCase.owner);
   const caseOwnerInitials = caseOwnerName
@@ -1101,7 +1150,86 @@ export function CaseWorkspace({
     .map((word) => word[0])
     .join("");
 
+  const navigationCaseIndex =
+    selected ?? (panel.visible ? (activeRecord?.caseIndex ?? assistantCaseIndex) : undefined);
+  const navigationCase =
+    navigationCaseIndex === undefined ? null : caseRows[navigationCaseIndex];
+
+  function navigateModule(next: "cases" | "tasks") {
+    setModule(next);
+    setSelected(null);
+    setQuery("");
+    dispatchPanel({ type: "hide" });
+  }
+  function assistantContext(caseIndex: number): CaseAssistantContext {
+    const row = caseRows[caseIndex];
+    const sourceTasks = getCaseTasks(caseIndex);
+    return {
+      status: "In progress",
+      owner: personName(row.owner),
+      stage: getCaseStage(caseIndex),
+      priority: row.priority,
+      due: row.due,
+      policy: {
+        "Policy number": `LIF–${40218 + caseIndex}`,
+        Insured: row.client,
+        Type: "Individual life",
+        Request: "New business",
+      },
+      tasks: sourceTasks.map((task, index) => {
+        const action = getTaskAction(task, index);
+        const specialist =
+          task.agent === null ? undefined : workforce[task.agent];
+        return {
+          index,
+          name: task.name,
+          status: task.status,
+          assignee: personName(task.owner),
+          stage: task.stage,
+          due: task.due,
+          description: task.description,
+          agent: specialist?.name,
+          analysis: specialist?.result,
+          blocker: task.status === "Blocked" ? action.description : undefined,
+          action: {
+            title: action.title,
+            requirements: action.requirements,
+            status:
+              actionStatuses[`${caseIndex}-${index}`] ??
+              (task.status === "Completed" ? "Completed" : undefined),
+          },
+        };
+      }),
+      requirements: requirements.map(([name, status], index) => ({
+        index,
+        name,
+        status,
+        taskIndices: sourceTasks.flatMap((task, taskIndex) =>
+          getTaskAction(task, taskIndex).requirements.includes(index)
+            ? [taskIndex]
+            : [],
+        ),
+        receivedAt: documentRows.find(
+          (document) => document.requirement === index,
+        )?.received,
+      })),
+      documents: documentRows.map((document) => ({
+        requirementIndex: document.requirement,
+        name: document.name,
+        receivedAt: `25 Oct 2026 · ${document.received}`,
+      })),
+      activity: getCaseActivity(caseIndex).map((entry) => ({
+        title: entry.title,
+        actor: personName(entry.actor),
+        at: `${activityDateFormatter.format(new Date(entry.occurredAt))} · ${activityTimeFormatter.format(new Date(entry.occurredAt))}`,
+        agent: isSpecialist(entry.actor),
+        taskIndex: entry.taskIndex ?? undefined,
+        requirementIndex: entry.requirementIndex,
+      })),
+    };
+  }
   function openCase(index: number) {
+    setModule("cases");
     setSelected(index);
     setView("Tasks");
     dispatchPanel({ type: "hide" });
@@ -1115,11 +1243,9 @@ export function CaseWorkspace({
     options: {
       agentIndex?: number | null;
       revealAction?: boolean;
-      task?: CaseTask;
     } = {},
   ) {
-    const sourceTask =
-      options.task ?? (taskSets[caseIndex] ?? tasks)[taskIndex];
+    const sourceTask = getCaseTasks(caseIndex)[taskIndex];
     if (!sourceTask) return;
     const key = `${kind}-${caseIndex}-${kind === "task" ? taskIndex : requirementIndex}`;
     const label =
@@ -1157,11 +1283,10 @@ export function CaseWorkspace({
       caseIndex?: number;
       agentIndex?: number | null;
       revealAction?: boolean;
-      task?: CaseTask;
     } = {},
   ) {
     const caseIndex = options.caseIndex ?? selected ?? 0;
-    const sourceTask = options.task ?? (taskSets[caseIndex] ?? tasks)[index];
+    const sourceTask = getCaseTasks(caseIndex)[index];
     if (!sourceTask) return;
     registerRecord(
       "task",
@@ -1200,7 +1325,7 @@ export function CaseWorkspace({
   }
   function openAssistant() {
     setAssistantCaseIndex(
-      selected ?? activeRecord?.caseIndex ?? assistantCaseIndex,
+      (panel.visible ? activeRecord?.caseIndex : undefined) ?? selected ?? assistantCaseIndex,
     );
     recordOpener.current = assistantOpener.current;
     dispatchPanel({ type: "select", key: "assistant" });
@@ -1213,50 +1338,6 @@ export function CaseWorkspace({
         : assistantOpener.current;
       target?.focus({ preventScroll: true });
     });
-  }
-  function createTask(draft: CaseTaskDraft) {
-    const caseIndex = selected ?? 0;
-    const index = caseTasks.length;
-    const created: CaseTask = {
-      name: draft.name,
-      description:
-        draft.description ||
-        "Review the request and complete the actions needed to move this case forward.",
-      stage: "Underwriting analysis",
-      owner: draft.assignee,
-      status: "To do",
-      agent: null,
-      action: {
-        title: draft.name,
-        description:
-          draft.description ||
-          "Review the task and link the evidence needed to move it forward.",
-        requirements: [],
-      },
-    };
-    setTaskSets((previous) => ({
-      ...previous,
-      [caseIndex]: [...(previous[caseIndex] ?? tasks), created],
-    }));
-    const occurredAt = new Date().toISOString();
-    setActivitySets((previous) => ({
-      ...previous,
-      [caseIndex]: [
-        {
-          title: `Task created: ${draft.name}`,
-          actor: "Natalie Adams",
-          occurredAt,
-          a: null,
-          taskIndex: index,
-          record: "Task",
-        },
-        ...(previous[caseIndex] ?? activityRows),
-      ],
-    }));
-    setCreatingTask(false);
-    setView("Tasks");
-    setQuery("");
-    openTask(index, { caseIndex, task: created });
   }
   useEffect(() => {
     if (!panel.visible) return;
@@ -1280,6 +1361,23 @@ export function CaseWorkspace({
         .toLowerCase()
         .includes(query.toLowerCase()),
   );
+  const allTasks = caseRows.flatMap((_, caseIndex) =>
+    getCaseTasks(caseIndex).map((task, index) => ({
+      ...task,
+      index,
+      caseIndex,
+    })),
+  );
+  const myTaskCount = allTasks.filter((task) => task.owner === "You").length;
+  const visibleGlobalTasks = allTasks.filter((task) => {
+    const row = caseRows[task.caseIndex];
+    return (
+      (!myTasks || task.owner === "You") &&
+      `${task.name} ${personName(task.owner)} ${task.status} ${task.stage} ${row.ref} ${row.client}`
+        .toLowerCase()
+        .includes(query.toLowerCase())
+    );
+  });
   const visibleTasks = caseTasks
     .map((row, index) => ({ ...row, index }))
     .filter((row) =>
@@ -1311,7 +1409,7 @@ export function CaseWorkspace({
       data-preview={preview}
       data-paused={paused}
       onClickCapture={(event) => {
-        if (!panel.visible || creatingTask) return;
+        if (!panel.visible) return;
         const target = event.target;
         if (
           !(target instanceof Element) ||
@@ -1339,47 +1437,39 @@ export function CaseWorkspace({
           <Icon name="grid" />
           <strong>Workspace</strong>
         </div>
-        <nav aria-label="Case workspace navigation">
+        <nav aria-label="Workspace modules">
           <button
-            data-active={selected === null && !mine}
-            onClick={() => {
-              setSelected(null);
-              dispatchPanel({ type: "hide" });
-              setMine(false);
-              setQuery("");
-            }}
+            data-active={module === "cases"}
+            aria-current={module === "cases" ? "page" : undefined}
+            onClick={() => navigateModule("cases")}
           >
             <Icon name="case" />
-            All cases<span>5</span>
+            Cases<span>{caseRows.length}</span>
           </button>
           <button
-            data-active={selected === null && mine}
-            onClick={() => {
-              setSelected(null);
-              dispatchPanel({ type: "hide" });
-              setMine(true);
-              setQuery("");
-            }}
+            data-active={module === "tasks"}
+            aria-current={module === "tasks" ? "page" : undefined}
+            onClick={() => navigateModule("tasks")}
           >
             <Icon name="task" />
-            Assigned to me<span>3</span>
+            Tasks<span>{allTasks.length}</span>
           </button>
         </nav>
         <span className={styles.sideLabel}>OPEN CASE</span>
-        {selected !== null ? (
+        {navigationCase ? (
           <button
             className={styles.openCase}
-            onClick={() => dispatchPanel({ type: "hide" })}
+            onClick={() => openCase(navigationCaseIndex!)}
           >
             <span className={styles.avatar}>
-              {currentCase.client
+              {navigationCase.client
                 .split(" ")
-                .map((x) => x[0])
+                .map((word) => word[0])
                 .join("")}
             </span>
             <span>
-              <strong>{currentCase.client}</strong>
-              <small>{currentCase.ref}</small>
+              <strong>{navigationCase.client}</strong>
+              <small>{navigationCase.ref}</small>
             </span>
           </button>
         ) : (
@@ -1407,22 +1497,35 @@ export function CaseWorkspace({
           <span className={styles.mobileWorkspaceMark} aria-hidden="true">
             <Icon name="grid" />
           </span>
-          <button
-            onClick={() => {
-              setSelected(null);
-              dispatchPanel({ type: "hide" });
-              setQuery("");
-            }}
+          <nav
+            className={styles.mobileModules}
+            aria-label="Mobile workspace modules"
           >
-            {selected === null ? "Workspace" : "Cases"}
+            {(["cases", "tasks"] as const).map((item) => (
+              <button
+                key={item}
+                type="button"
+                data-active={module === item}
+                aria-current={module === item ? "page" : undefined}
+                onClick={() => navigateModule(item)}
+              >
+                {item === "cases" ? "Cases" : "Tasks"}
+              </button>
+            ))}
+          </nav>
+          <button
+            className={styles.moduleBreadcrumb}
+            onClick={() => navigateModule(module)}
+          >
+            {module === "cases" ? "Cases" : "Tasks"}
           </button>
           {selected !== null && (
-            <>
-              <span>/</span>
-              <strong>{currentCase.ref}</strong>
-            </>
+            <span className={styles.caseBreadcrumb}>
+              / <strong>{currentCase.ref}</strong>
+            </span>
           )}
-          {selected !== null && (
+          {(selected !== null ||
+            (panel.visible && panel.entries.length > 0)) && (
             <button
               ref={assistantOpener}
               className={styles.contextAssistant}
@@ -1451,7 +1554,93 @@ export function CaseWorkspace({
             </button>
           )}
         </header>
-        {selected === null ? (
+        {selected === null && module === "tasks" ? (
+          <section className={styles.queue} aria-label="Task list">
+            <div className={styles.pageTitle}>
+              <div>
+                <h2>Tasks</h2>
+                <p>People and specialists, working across cases.</p>
+              </div>
+              <span className={styles.count}>
+                {visibleGlobalTasks.length} tasks
+              </span>
+            </div>
+            <div
+              className={`${styles.caseTabs} ${styles.queueTabs}`}
+              role="tablist"
+              aria-label="Task list views"
+              onKeyDown={navigateTabs}
+            >
+              {[true, false].map((assigned) => (
+                <button
+                  key={String(assigned)}
+                  role="tab"
+                  id={`${uid}-tasks-${assigned ? "mine" : "all"}-tab`}
+                  tabIndex={myTasks === assigned ? 0 : -1}
+                  aria-selected={myTasks === assigned}
+                  aria-controls={`${uid}-tasks-content`}
+                  onClick={() => {
+                    setMyTasks(assigned);
+                    setQuery("");
+                  }}
+                >
+                  <span className={styles.caseTabLabel}>
+                    {assigned ? "My tasks" : "All tasks"}
+                  </span>
+                  <span className={styles.caseTabCount}>
+                    {assigned ? myTaskCount : allTasks.length}
+                  </span>
+                </button>
+              ))}
+            </div>
+            <div
+              id={`${uid}-tasks-content`}
+              role="tabpanel"
+              aria-labelledby={`${uid}-tasks-${myTasks ? "mine" : "all"}-tab`}
+            >
+              <CaseTableToolbar
+                query={query}
+                onQueryChange={setQuery}
+                searchLabel="Search tasks"
+                placeholder="Search tasks or cases…"
+                action={
+                  <button
+                    className={styles.createTaskButton}
+                    type="button"
+                    disabled
+                    title="Task creation is unavailable in this showcase"
+                  >
+                    <Icon name="plus" />
+                    Create task
+                  </button>
+                }
+              />
+              <div
+                className={styles.tableViewport}
+                role="region"
+                aria-label="Tasks table scroll area"
+                tabIndex={0}
+              >
+                <CaseTaskTable
+                  global
+                  rows={visibleGlobalTasks}
+                  label={myTasks ? "My tasks" : "All tasks"}
+                  active={
+                    panel.visible && activeRecord?.kind === "task"
+                      ? activeRecord.taskIndex
+                      : null
+                  }
+                  activeCase={activeRecord?.caseIndex}
+                  onOpen={(index, caseIndex) => openTask(index, { caseIndex })}
+                  onAgent={(index, agentIndex, caseIndex) =>
+                    openTask(index, { caseIndex, agentIndex })
+                  }
+                  onCase={openCase}
+                />
+              </div>
+            </div>
+          </section>
+        ) : selected === null ? (
           <section className={styles.queue} aria-label="Case list">
             <div className={styles.pageTitle}>
               <div>
@@ -1468,12 +1657,13 @@ export function CaseWorkspace({
               aria-label="Case list views"
               onKeyDown={navigateTabs}
             >
-              {[false, true].map((assigned) => (
+              {[true, false].map((assigned) => (
                 <button
                   key={String(assigned)}
                   role="tab"
                   tabIndex={mine === assigned ? 0 : -1}
                   aria-selected={mine === assigned}
+                  id={`${uid}-cases-${assigned ? "mine" : "all"}-tab`}
                   aria-controls={`${uid}-queue-content`}
                   onClick={() => {
                     setMine(assigned);
@@ -1481,7 +1671,7 @@ export function CaseWorkspace({
                   }}
                 >
                   <span className={styles.caseTabLabel}>
-                    {assigned ? "Assigned to me" : "All cases"}
+                    {assigned ? "My cases" : "All cases"}
                   </span>
                   <span className={styles.caseTabCount}>
                     {assigned
@@ -1494,7 +1684,7 @@ export function CaseWorkspace({
             <div
               id={`${uid}-queue-content`}
               role="tabpanel"
-              aria-label={mine ? "Assigned to me" : "All cases"}
+              aria-labelledby={`${uid}-cases-${mine ? "mine" : "all"}-tab`}
               key={mine ? "mine" : "all"}
             >
               <CaseTableToolbar
@@ -1511,7 +1701,7 @@ export function CaseWorkspace({
               >
                 <table
                   className={`${styles.workTable} ${styles.caseQueueTable}`}
-                  aria-label={mine ? "Cases assigned to me" : "All cases"}
+                  aria-label={mine ? "My cases" : "All cases"}
                 >
                   <colgroup>
                     <col style={{ width: "32%" }} />
@@ -1583,19 +1773,6 @@ export function CaseWorkspace({
                   </tbody>
                 </table>
               </div>
-            </div>
-            <div className={styles.queueNote}>
-              <Icon name="recommend" className={styles.studyMark} />
-              <span>
-                AI agents work within the case.
-                <small>
-                  Assignments, results and exceptions stay attached to the work.
-                </small>
-              </span>
-              <button onClick={() => openCase(0)}>
-                Open Avery’s case
-                <Icon name="arrow" />
-              </button>
             </div>
           </section>
         ) : (
@@ -1748,11 +1925,9 @@ export function CaseWorkspace({
                         view === "Tasks" ? (
                           <button
                             className={styles.createTaskButton}
-                            onClick={(event) => {
-                              createOpener.current = event.currentTarget;
-                              dispatchPanel({ type: "hide" });
-                              setCreatingTask(true);
-                            }}
+                            type="button"
+                            disabled
+                            title="Task creation is unavailable in this showcase"
                           >
                             <Icon name="plus" />
                             Create task
@@ -1771,7 +1946,7 @@ export function CaseWorkspace({
                           <CaseTaskTable
                             rows={visibleTasks}
                             active={tab === "task" ? task : null}
-                            onOpen={openTask}
+                            onOpen={(index) => openTask(index)}
                             onAgent={(index, a) => {
                               openTask(index, { agentIndex: a });
                             }}
@@ -1973,9 +2148,7 @@ export function CaseWorkspace({
               entry={entry}
               idPrefix={uid}
               active={panel.visible && panel.activeKey === entry.key}
-              currentTask={
-                (taskSets[entry.caseIndex] ?? tasks)[entry.taskIndex]
-              }
+              currentTask={getCaseTasks(entry.caseIndex)[entry.taskIndex]}
               actionStatus={
                 actionStatuses[`${entry.caseIndex}-${entry.taskIndex}`]
               }
@@ -2021,6 +2194,18 @@ export function CaseWorkspace({
                 <CaseAssistantChat
                   caseRef={row.ref}
                   clientName={row.client}
+                  context={assistantContext(index)}
+                  onOpenOverview={() => {
+                    openCase(index);
+                    setView("Overview");
+                  }}
+                  onOpenDocument={(requirementIndex) =>
+                    openDocument(
+                      requirementIndex,
+                      requirementTaskIndices[requirementIndex],
+                      index,
+                    )
+                  }
                   paused={paused}
                   active={
                     panel.visible &&
@@ -2043,17 +2228,6 @@ export function CaseWorkspace({
           </div>
         </aside>
       </div>
-      {creatingTask && (
-        <CreateCaseTaskDialog
-          onCreate={createTask}
-          onClose={() => {
-            setCreatingTask(false);
-            requestAnimationFrame(() =>
-              createOpener.current?.focus({ preventScroll: true }),
-            );
-          }}
-        />
-      )}
     </div>
   );
 }
@@ -2117,7 +2291,7 @@ function WorkspaceDialog({
         <Icon name="close" />
       </button>
       <div className={styles.modalPanel}>
-        <CaseWorkspace paused={paused || !open} startInCase />
+        <CaseWorkspace paused={paused || !open} />
       </div>
     </dialog>
   );
@@ -2166,7 +2340,7 @@ export function CaseWorkspaceShowcase({ paused }: { paused: boolean }) {
 export function CaseConceptDemo() {
   return (
     <div className={`${styles.modalPanel} ${styles.standalone}`}>
-      <CaseWorkspace startInCase />
+      <CaseWorkspace />
     </div>
   );
 }
