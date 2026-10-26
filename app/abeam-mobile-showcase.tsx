@@ -73,20 +73,6 @@ const desktopScreens: Capture[] = [
     height: 1000,
     alt: "Actual aBeam desktop hotel detail drawer with property photography and captured room information.",
   },
-  {
-    name: "Brief",
-    src: "/showcase/abeam/desktop-brief.webp",
-    width: 1440,
-    height: 1000,
-    alt: "Actual aBeam desktop client brief with the illustrative Maya and Alex trip context and preferences.",
-  },
-  {
-    name: "Follow-up",
-    src: "/showcase/abeam/desktop-follow-up.webp",
-    width: 1440,
-    height: 1000,
-    alt: "Actual aBeam desktop follow-up editor with an illustrative client email and travel summary.",
-  },
 ];
 
 function ScreenImage({
