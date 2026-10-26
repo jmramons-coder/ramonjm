@@ -295,16 +295,19 @@
 
 .source {
   border-radius: 6px;
-  outline: 2px solid transparent;
-  outline-offset: 5px;
+  outline: 1px solid transparent;
+  outline-offset: 4px;
+  box-shadow: inset 0 0 0 1px transparent;
   transition:
     background 200ms ease,
-    outline-color 200ms ease;
+    outline-color 200ms ease,
+    box-shadow 200ms ease;
 }
 
 .source[data-highlighted] {
-  outline-color: #99bce7;
-  background: #e8f2ff;
+  outline-color: #d7ddef;
+  background: linear-gradient(130deg, #fbf9ff, #f5f9ff);
+  box-shadow: inset 0 0 0 1px #ddd8ef;
 }
 
 .document .financialTable {
@@ -546,7 +549,12 @@
   gap: 10px;
 }
 
-.insight {
+.document .insight {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
   padding: 14px 13px;
   border: 1px solid #e8e5ef;
   border-radius: 14px;
@@ -557,6 +565,10 @@
     linear-gradient(120deg, #faf9fd, #f7f9fd 55%, #faf7fc)
   );
   box-shadow: 0 2px 8px #232b3d05;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
   background-size: 200% 200%;
   animation: insightGradient 14s ease-in-out infinite alternate;
   animation-play-state: var(--case-ai-animation-state, running);
@@ -565,12 +577,24 @@
     box-shadow 160ms ease;
 }
 
-.insight[data-selected] {
-  border-color: #b8cee8;
-  box-shadow: 0 0 0 2px #b8cee825;
+.document .insight:hover {
+  border-color: #d7d4e8;
+  box-shadow: 0 3px 10px #232b3d0a;
 }
 
-.document .insight h5 {
+.document .insight[data-selected] {
+  border-color: transparent;
+  background:
+    linear-gradient(125deg, #fcfaff, #f7faff 58%, #faf7fd) padding-box,
+    linear-gradient(125deg, #d9d0ee, #cadcf1 58%, #ddd2ec) border-box;
+  background-size: 200% 200%;
+  box-shadow:
+    0 0 0 2px #eeeefa80,
+    0 3px 10px #232b3d06;
+}
+
+.document .insightTitle {
+  display: block;
   margin: 0 0 7px;
   color: #26313e;
   font-size: 12px;
@@ -578,7 +602,8 @@
   line-height: 1.5;
 }
 
-.document .insight p {
+.document .insightText {
+  display: block;
   margin: 0;
   color: #556171;
   font-size: 11px;
@@ -591,17 +616,10 @@
   gap: 5px;
   max-width: 100%;
   margin-top: 11px;
-  padding: 4px 0;
-  border: 0;
-  border-radius: 3px;
-  background: transparent;
-  color: #6e5a9e;
+  color: #8b94a5;
   font-size: 10px;
   line-height: 1.55;
   text-align: left;
-  text-decoration: underline;
-  text-decoration-color: #9b8abb50;
-  text-underline-offset: 3px;
 }
 
 .document .citation svg {
@@ -609,11 +627,6 @@
   width: 12px;
   height: 12px;
   margin-top: 1px;
-}
-
-.document .citation:hover {
-  color: #514278;
-  text-decoration-color: currentColor;
 }
 
 .document .reviewNote {
@@ -626,6 +639,11 @@
 .document button:focus-visible,
 .viewport:focus-visible {
   outline: 2px solid #93add2;
+  outline-offset: 3px;
+}
+
+.document .insight:focus-visible {
+  outline: 2px solid #7c8eaf;
   outline-offset: 3px;
 }
 

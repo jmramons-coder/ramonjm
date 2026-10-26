@@ -600,6 +600,7 @@ export function CaseDocumentViewer({
             </div>
           </div>
           <div
+            id={`${id}-preview`}
             ref={viewport}
             className={styles.viewport}
             data-dragging={dragging || undefined}
@@ -664,28 +665,36 @@ export function CaseDocumentViewer({
             <span className={styles.aiTag}>AI</span>
           </header>
           <p className={styles.insightsIntro}>
-            Grounded in this document. Select a source to inspect the evidence.
+            Select an insight to see its source in the document.
           </p>
           <div className={styles.insightList}>
             {insights.map((insight) => (
-              <article
+              <button
+                type="button"
                 className={styles.insight}
                 key={insight.source}
                 data-selected={highlighted === insight.source || undefined}
+                aria-label={`View source: ${insight.title}`}
+                aria-describedby={`${id}-${insight.source}-text ${id}-${insight.source}-citation`}
+                aria-controls={`${id}-preview`}
+                aria-pressed={highlighted === insight.source}
+                onClick={() => selectPage(insight.page, insight.source)}
               >
-                <h5>{insight.title}</h5>
-                <p>{insight.text}</p>
-                <button
-                  type="button"
+                <span className={styles.insightTitle}>{insight.title}</span>
+                <span
+                  className={styles.insightText}
+                  id={`${id}-${insight.source}-text`}
+                >
+                  {insight.text}
+                </span>
+                <span
                   className={styles.citation}
-                  aria-label={`View source: ${insight.citation}`}
-                  aria-pressed={highlighted === insight.source}
-                  onClick={() => selectPage(insight.page, insight.source)}
+                  id={`${id}-${insight.source}-citation`}
                 >
                   <Icon name="file" />
                   {insight.citation}
-                </button>
-              </article>
+                </span>
+              </button>
             ))}
           </div>
           <p className={styles.reviewNote}>

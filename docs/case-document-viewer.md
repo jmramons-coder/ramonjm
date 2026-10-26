@@ -8,7 +8,7 @@ Actions list compact requirements without duplicating their attachments. The req
 
 Received and fulfilled requirements show the document canvas and its insight rail directly, without requiring a second navigation step. Ordered requirements show an empty evidence area, with no invented document or findings. The document tab retains the same viewer for file-focused inspection. Each record keeps its own viewer state.
 
-The viewer pairs a document canvas with an insight rail. Page thumbnails change the selected page; zoom and drag-to-pan support closer inspection. Each finding cites a page and passage in the authored document, so a source selection reveals the evidence behind the finding. Selected page, zoom and citation remain local to the mounted document record until its contextual tab is cleared.
+The viewer pairs a document canvas with an insight rail. Page thumbnails change the selected page; zoom and drag-to-pan support closer inspection. Each finding is one keyboard-accessible card button with a plain-text page citation. Activating any part of the card reveals its source passage; activating it again recenters the same source after panning. The selected passage uses a near-white lilac/blue gradient and two delicate painted borders, without shifting the document layout. Selected page, zoom and citation remain local to the mounted document record until its contextual tab is cleared.
 
 Task analysis cards, requirement findings, document insights and the assistant shortcut share the same animated lilac surface. Reduced-motion preferences stop the surface animation. Narrow document panels adapt the preview and findings to the available space.
 
