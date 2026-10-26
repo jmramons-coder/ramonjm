@@ -522,7 +522,7 @@ function TaskActions({
                 <h5>Requirements</h5>
                 <ul className={styles.actionEvidence}>
                   {action.requirements.map((index) => (
-                    <li key={index}>
+                    <li key={index} className={styles.actionRequirementCard}>
                       <button
                         className={styles.actionEvidenceRow}
                         onClick={() => onRequirement(index)}
