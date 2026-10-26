@@ -45,107 +45,18 @@
   line-height: 1.5;
 }
 
-.relations {
-  min-width: 0;
-  padding: 8px 12px;
-  border: 1px solid #e4e8ee;
-  border-radius: 16px;
-  background: #fff;
-}
-
-.requirementRow {
-  display: flex;
-  align-items: center;
+.links {
+  display: grid;
   gap: 8px;
   min-width: 0;
 }
 
-.requirementIcon {
-  display: grid;
-  flex-shrink: 0;
-  place-items: center;
-  width: 22px;
-  height: 22px;
-  color: #8b96a4;
-}
-
-.requirementIdentity {
-  display: grid;
-  gap: 1px;
-  flex: 1;
-  min-width: 0;
-}
-
-.requirementIdentity > span {
-  color: #929ba8;
-  font-size: 10px;
-  line-height: 1.4;
-}
-
-.requirementStatus {
-  flex-shrink: 0;
-  padding: 3px 7px;
-  border-radius: 6px;
-  background: #f3f5f8;
-  color: #738092;
-  font-size: 11px;
-  line-height: 1.4;
-}
-
-.requirementStatus[data-state="Received"],
-.requirementStatus[data-state="Fulfilled"] {
-  background: #eef8f2;
-  color: #408563;
-}
-
-.document .contextLink {
-  display: inline;
-  padding: 0;
-  border: 0;
-  border-radius: 3px;
-  background: transparent;
-  color: #2774ce;
-  font-size: 12px;
-  line-height: 1.5;
-  text-align: left;
-  text-decoration: underline;
-  text-decoration-color: transparent;
-  text-underline-offset: 3px;
-  overflow-wrap: anywhere;
-  transition:
-    color 150ms ease,
-    text-decoration-color 150ms ease;
-}
-
-.document .contextLink:hover {
-  color: #185ca7;
-  text-decoration-color: currentColor;
-}
-
-.relationships {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 4px 14px;
-  margin: 7px 0 0 30px;
-}
-
-.relationships > div {
-  display: flex;
-  align-items: baseline;
-  gap: 7px;
-  min-width: 0;
-}
-
-.relationships dt {
-  flex-shrink: 0;
-  color: #929ba8;
-  font-size: 11px;
-  line-height: 1.5;
-}
-
-.relationships dd {
-  min-width: 0;
+.document .links h4 {
   margin: 0;
+  color: #8a96a5;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.5;
 }
 
 .viewer {
@@ -733,9 +644,6 @@
 }
 
 @container case-document (max-width: 540px) {
-  .relationships {
-    grid-template-columns: minmax(0, 1fr);
-  }
   .viewer {
     grid-template-columns: minmax(0, 1fr);
     overflow-y: auto;
@@ -760,22 +668,6 @@
 }
 
 @container case-document (max-width: 390px) {
-  .relations {
-    padding-inline: 10px;
-  }
-  .requirementRow {
-    flex-wrap: wrap;
-    row-gap: 4px;
-  }
-  .requirementIdentity {
-    min-width: 120px;
-  }
-  .relationships {
-    margin-left: 0;
-  }
-  .relationships dt {
-    width: 36px;
-  }
   .toolbar {
     padding-inline: 10px;
   }

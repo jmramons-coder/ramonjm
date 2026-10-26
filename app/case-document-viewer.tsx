@@ -8,9 +8,10 @@ import {
   type PointerEvent,
   type ReactNode,
 } from "react";
+import { CaseRecordLink, CaseTaskActionPath } from "./case-record-links";
 import styles from "./case-document-viewer.module.css";
 
-type ViewerIcon = "file" | "minus" | "plus" | "fit" | "pages" | "requirement";
+type ViewerIcon = "file" | "minus" | "plus" | "fit" | "pages";
 
 function Icon({ name }: { name: ViewerIcon }) {
   const paths: Record<ViewerIcon, ReactNode> = {
@@ -24,12 +25,6 @@ function Icon({ name }: { name: ViewerIcon }) {
       <>
         <rect x="7" y="3" width="13" height="16" rx="2" />
         <path d="M4 7v12a3 3 0 0 0 3 3h9" />
-      </>
-    ),
-    requirement: (
-      <>
-        <circle cx="12" cy="12" r="9" />
-        <path d="m8 12 3 3 5-6" />
       </>
     ),
   };
@@ -376,7 +371,6 @@ export function CaseDocumentViewer({
   documentName,
   requirementName,
   requirementStatus,
-  requirementReference,
   caseReference,
   clientName,
   financial,
@@ -387,11 +381,11 @@ export function CaseDocumentViewer({
   onRequirement,
   onTask,
   onAction,
+  showContext = true,
 }: {
   documentName: string;
   requirementName: string;
   requirementStatus: string;
-  requirementReference: string;
   caseReference: string;
   clientName: string;
   financial: boolean;
@@ -402,6 +396,7 @@ export function CaseDocumentViewer({
   onRequirement: () => void;
   onTask: () => void;
   onAction: () => void;
+  showContext?: boolean;
 }) {
   const [pageIndex, setPageIndex] = useState(0);
   const [zoom, setZoom] = useState(100);
@@ -537,64 +532,32 @@ export function CaseDocumentViewer({
       data-active={active}
       aria-label={`Document viewer for ${documentName}`}
     >
-      <div className={styles.context}>
-        <div className={styles.metadata}>
-          <span>PDF · {pages.length} pages</span>
-          <span>Received 25 Oct 2026 · {receivedTime}</span>
-        </div>
-        <section
-          className={styles.relations}
-          aria-label="Linked document context"
-        >
-          <div className={styles.requirementRow}>
-            <span className={styles.requirementIcon}>
-              <Icon name="requirement" />
-            </span>
-            <div className={styles.requirementIdentity}>
-              <span>{requirementReference}</span>
-              <button
-                type="button"
-                className={styles.contextLink}
-                onClick={onRequirement}
-              >
-                {requirementName}
-              </button>
-            </div>
-            <span
-              className={styles.requirementStatus}
-              data-state={requirementStatus}
-            >
-              {requirementStatus}
-            </span>
+      {showContext && (
+        <div className={styles.context}>
+          <div className={styles.metadata}>
+            <span>PDF · {pages.length} pages</span>
+            <span>Received 25 Oct 2026 · {receivedTime}</span>
           </div>
-          <dl className={styles.relationships}>
-            <div>
-              <dt>Task</dt>
-              <dd>
-                <button
-                  type="button"
-                  className={styles.contextLink}
-                  onClick={onTask}
-                >
-                  {taskName}
-                </button>
-              </dd>
-            </div>
-            <div>
-              <dt>Action</dt>
-              <dd>
-                <button
-                  type="button"
-                  className={styles.contextLink}
-                  onClick={onAction}
-                >
-                  {actionTitle}
-                </button>
-              </dd>
-            </div>
-          </dl>
-        </section>
-      </div>
+          <section
+            className={styles.links}
+            aria-label="Linked document context"
+          >
+            <h4>Links</h4>
+            <CaseTaskActionPath
+              taskName={taskName}
+              actionTitle={actionTitle}
+              onTask={onTask}
+              onAction={onAction}
+            />
+            <CaseRecordLink
+              kind="requirement"
+              name={requirementName}
+              status={requirementStatus}
+              onOpen={onRequirement}
+            />
+          </section>
+        </div>
+      )}
       <div ref={viewerLayout} className={styles.viewer}>
         <section className={styles.preview} aria-label="Document preview">
           <div className={styles.toolbar}>

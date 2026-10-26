@@ -1,0 +1,136 @@
+.record.record {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-width: 0;
+  min-height: 40px;
+  margin: 0;
+  padding: 7px 10px;
+  border: 1px solid #e4e8ee;
+  border-radius: 16px;
+  background: #fff;
+  color: #8b96a4;
+  font: inherit;
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color 150ms ease,
+    background 150ms ease;
+}
+
+.record.record > svg {
+  display: block;
+  flex: 0 0 17px;
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.name {
+  flex: 1;
+  min-width: 0;
+  color: #2774ce;
+  overflow-wrap: anywhere;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 3px;
+  transition:
+    color 150ms ease,
+    text-decoration-color 150ms ease;
+}
+
+.status {
+  flex-shrink: 0;
+  padding: 3px 7px;
+  border-radius: 6px;
+  background: #f3f5f8;
+  color: #738092;
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+.status[data-state="Received"],
+.status[data-state="Fulfilled"],
+.status[data-state="Completed"] {
+  background: #eef8f2;
+  color: #408563;
+}
+
+.status[data-state="Ordered"] {
+  background: #fff7e8;
+  color: #9b752e;
+}
+
+.record.record:hover {
+  border-color: #cbd8e8;
+  background: #fcfdff;
+}
+
+.record:hover .name {
+  color: #185ca7;
+  text-decoration-color: currentColor;
+}
+
+.path {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 3px 7px;
+  min-width: 0;
+}
+
+.path.path button {
+  min-width: 0;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 3px;
+  background: transparent;
+  color: #738092;
+  font: inherit;
+  font-size: 11px;
+  line-height: 1.6;
+  text-align: left;
+  overflow-wrap: anywhere;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  transition:
+    color 150ms ease,
+    text-decoration-color 150ms ease;
+}
+
+.path.path button:hover {
+  color: #465972;
+  text-decoration-color: currentColor;
+}
+
+.separator {
+  color: #bdc5d0;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.record.record:focus-visible,
+.path.path button:focus-visible {
+  outline: 2px solid #93add2;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .record,
+  .name,
+  .path.path button {
+    transition: none;
+  }
+}

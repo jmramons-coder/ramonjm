@@ -18,6 +18,7 @@ import { CasePanelResizeHandle } from "./case-panel-resize";
 import { CaseContextTabs } from "./case-context-tabs";
 import { CaseHeaderActions } from "./case-header-actions";
 import { CaseDocumentViewer } from "./case-document-viewer";
+import { CaseRecordLink, CaseTaskActionPath } from "./case-record-links";
 import {
   CaseActionControls,
   type CaseActionStatus,
@@ -532,15 +533,13 @@ function TaskActions({
                 <h5>Requirements</h5>
                 <ul className={styles.actionEvidence}>
                   {action.requirements.map((index) => (
-                    <li key={index} className={styles.actionRequirementCard}>
-                      <button
-                        className={styles.actionEvidenceRow}
-                        onClick={() => onRequirement(index)}
-                      >
-                        <Icon name="requirement" />
-                        <span>{requirements[index][0]}</span>
-                        <Status value={requirements[index][1]} />
-                      </button>
+                    <li key={index}>
+                      <CaseRecordLink
+                        kind="requirement"
+                        name={requirements[index][0]}
+                        status={requirements[index][1]}
+                        onOpen={() => onRequirement(index)}
+                      />
                     </li>
                   ))}
                 </ul>
@@ -831,6 +830,9 @@ function CaseRecordContent({
   const agent = entry.agentIndex;
   const currentCase = caseRows[entry.caseIndex];
   const currentRequirement = requirements[requirement];
+  const hasEvidence = isRequirementSatisfied(currentRequirement[1]);
+  const evidenceLayout =
+    tab === "document" || (tab === "requirement" && hasEvidence);
   const financial = requirement === 1;
   const documentName =
     documentRows.find((row) => row.requirement === requirement)?.name ??
@@ -864,7 +866,7 @@ function CaseRecordContent({
   return (
     <div
       ref={content}
-      className={`${styles.recordContent} ${styles.recordSurface} ${tab === "document" ? styles.documentRecordContent : ""}`}
+      className={`${styles.recordContent} ${styles.recordSurface} ${evidenceLayout ? styles.documentRecordContent : ""}`}
       id={`${idPrefix}-body-${entry.key}`}
       role="tabpanel"
       aria-labelledby={`${idPrefix}-tab-${entry.key}`}
@@ -946,93 +948,66 @@ function CaseRecordContent({
             <h3>{currentRequirement[0]}</h3>
             <Status value={currentRequirement[1]} />
           </header>
-          <div className={styles.recordSurfaceBody}>
-            <dl className={styles.properties}>
-              <div>
-                <dt>Required for</dt>
-                <dd>
-                  <button
-                    className={styles.relatedTaskLink}
-                    onClick={() => onTask(true)}
-                    title={`Open ${getTaskAction(currentTask, task).title}`}
-                  >
-                    {currentTask.name}
-                  </button>
-                </dd>
-              </div>
-              <div>
-                <dt>{currentRequirement[1]}</dt>
-                <dd>
-                  {isRequirementSatisfied(currentRequirement[1])
-                    ? "Today, 09:58"
-                    : "Today, 09:24"}
-                </dd>
-              </div>
-              <div>
-                <dt>Source</dt>
-                <dd>Applicant submission</dd>
-              </div>
-            </dl>
-            {financial ? (
-              <div className={styles.finding}>
-                <span>
-                  <Icon name="recommend" className={styles.studyMark} />
-                  Financial Screening · Recorded finding
-                </span>
-                <h4>
-                  Company evidence received.
-                  <br />
-                  Personal evidence outstanding.
-                </h4>
-                <p>
-                  The company statements are attached. They do not replace the
-                  applicant’s personal financial statement.
-                </p>
-                <button onClick={() => onTask(true)}>
-                  Review with the task
-                  <Icon name="arrow" />
-                </button>
-              </div>
+          <div
+            className={`${styles.recordSurfaceBody} ${hasEvidence ? styles.documentRecordBody : ""}`}
+          >
+            <section
+              className={styles.requirementContext}
+              aria-label="Requirement links"
+            >
+              <h4 className={styles.linksTitle}>Links</h4>
+              <CaseTaskActionPath
+                taskName={currentTask.name}
+                actionTitle={getTaskAction(currentTask, task).title}
+                onTask={() => onTask()}
+                onAction={() => onTask(true)}
+              />
+              {hasEvidence && (
+                <CaseRecordLink
+                  kind="document"
+                  name={documentName}
+                  status="Received"
+                  onOpen={() => onDocument(requirement)}
+                />
+              )}
+            </section>
+            {hasEvidence ? (
+              <CaseDocumentViewer
+                documentName={documentName}
+                receivedTime={
+                  documentRows.find((row) => row.requirement === requirement)
+                    ?.received ?? "09:58"
+                }
+                requirementName={currentRequirement[0]}
+                requirementStatus={currentRequirement[1]}
+                caseReference={currentCase.ref}
+                clientName={currentCase.client}
+                financial={financial}
+                taskName={currentTask.name}
+                actionTitle={getTaskAction(currentTask, task).title}
+                active={active}
+                showContext={false}
+                onRequirement={() => onRequirement(requirement)}
+                onTask={() => onTask()}
+                onAction={() => onTask(true)}
+              />
             ) : (
-              <p className={styles.recordDescription}>
-                {currentRequirement[1] === "Fulfilled"
-                  ? "This requirement is fulfilled. Its supporting document remains available in the same case."
-                  : currentRequirement[1] === "Received"
-                    ? "Evidence has been received for this requirement. Open the linked file to inspect it in the same case."
-                    : "The evidence has been ordered but not received. The related work stays blocked until this requirement is met."}
-              </p>
-            )}
-            <h4 className={styles.sectionTitle}>Evidence</h4>
-            {isRequirementSatisfied(currentRequirement[1]) ? (
-              <button
-                className={styles.fileLink}
-                onClick={() => onDocument(requirement)}
+              <section
+                className={styles.evidenceEmpty}
+                aria-label="Evidence not received"
               >
-                <Icon name="file" />
-                <span>
-                  <strong>{documentName}</strong>
-                  <small>
-                    PDF · Received today · {financial ? "3 pages" : "2 pages"}
-                  </small>
+                <span className={styles.emptyDocumentIcon}>
+                  <Icon name="file" />
                 </span>
-                <Icon name="arrow" />
-              </button>
-            ) : (
-              <p className={styles.recordDescription}>
-                No document received yet.
-              </p>
-            )}
-            {financial && (
-              <>
-                <h4 className={styles.sectionTitle}>Still required</h4>
-                <div className={styles.outstanding}>
-                  <Icon name="clock" />
-                  <span>
-                    Personal financial statement
-                    <small>Not received · Blocks financial review</small>
-                  </span>
-                </div>
-              </>
+                <h4>Awaiting evidence</h4>
+                <p>
+                  No document received yet. The preview and document insights
+                  will appear here when evidence arrives.
+                </p>
+                <span className={styles.emptyEvidenceNote}>
+                  Ordered 25 Oct 2026 · 09:24
+                </span>
+              </section>
             )}
           </div>
         </>
@@ -1054,7 +1029,6 @@ function CaseRecordContent({
                   ?.received ?? "09:58"
               }
               requirementName={currentRequirement[0]}
-              requirementReference={`REQ–${104 + requirement}`}
               requirementStatus={currentRequirement[1]}
               caseReference={currentCase.ref}
               clientName={currentCase.client}
@@ -1965,6 +1939,16 @@ export function CaseWorkspace({
           ref={recordPanel}
           className={styles.recordPanel}
           data-record-kind={tab ?? undefined}
+          data-record-layout={
+            tab === "document" ||
+            (tab === "requirement" &&
+              activeRecord &&
+              isRequirementSatisfied(
+                requirements[activeRecord.requirementIndex][1],
+              ))
+              ? "evidence"
+              : undefined
+          }
           hidden={!panel.visible}
           aria-label="Case record panel"
         >
