@@ -1516,7 +1516,9 @@ export function CaseWorkspace({
                 tab === "assistant" ? closeRecordPanel() : openAssistant()
               }
             >
-              <Icon name="assistant" />
+              <span className={styles.assistantPlate} aria-hidden="true">
+                <Icon name="assistant" />
+              </span>
               <span
                 id={`${uid}-assistant-tooltip`}
                 className={styles.assistantTooltip}

@@ -1549,7 +1549,7 @@ button.actionEvidenceRow:hover {
 }
 
 
-/* A quiet silver chat control gains a blue glow only while its panel is open. */
+/* Brushed silver, a milled rim and a recessed glyph keep the shortcut tactile. */
 .topbar .contextAssistant {
   position: relative;
   display: grid;
@@ -1557,17 +1557,42 @@ button.actionEvidenceRow:hover {
   isolation: isolate;
   flex: 0 0 34px;
   width: 34px;
-  height: 32px;
+  height: 34px;
   min-height: 0;
   margin-left: auto;
   padding: 0;
-  border: 1px solid #d7dce4;
+  border: 1px solid #9ca5b0;
   border-radius: 10px;
-  background: linear-gradient(165deg, #fff 3%, #f4f5f7 50%, #e6e9ee 100%);
-  box-shadow: inset 0 1px 0 #fff, inset 0 -1px 0 #a2acb716, 0 1px 3px #2534490c;
-  color: #788594;
+  background: linear-gradient(145deg, #fff 2%, #c2c9d1 44%, #f7f8fa 76%, #a0aab6);
+  box-shadow: inset 0 1px 0 #fff, inset 0 -1px 0 #6c798b40, 0 1px 2px #25344924;
+  color: #626c78;
   cursor: pointer;
-  transition: background 180ms ease, border-color 180ms ease, box-shadow 180ms ease, color 180ms ease;
+  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease, color 220ms ease;
+}
+.assistantPlate {
+  position: absolute;
+  inset: 1px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid #ffffff85;
+  border-bottom-color: #82909f38;
+  border-radius: 8px;
+  background:
+    repeating-linear-gradient(0deg, #ffffff0a 0 1px, #43536408 1px 2px, transparent 2px 3px),
+    linear-gradient(125deg, #f2f4f6 0%, #d1d7de 26%, #f4f6f8 45%, #c3cbd4 69%, #e7ecf1 100%);
+  box-shadow: inset 0 1px 2px #ffffffa6, inset 0 -1px 2px #74829524;
+  pointer-events: none;
+}
+.assistantPlate::after {
+  position: absolute;
+  z-index: 1;
+  inset: -40% -70%;
+  background: linear-gradient(108deg, transparent 36%, #ffffff12 42%, #ffffffb3 49%, #ffffff28 55%, transparent 62%);
+  opacity: 0;
+  transform: translateX(-75%);
+  content: "";
+  transition: transform 680ms cubic-bezier(.2,.65,.3,1), opacity 180ms ease;
 }
 .contextAssistant::before {
   position: absolute;
@@ -1581,24 +1606,38 @@ button.actionEvidenceRow:hover {
   content: "";
   transition: opacity 180ms ease;
 }
-.topbar .contextAssistant > svg {
+.topbar .assistantPlate > svg {
+  position: relative;
+  z-index: 2;
   width: 18px;
   height: 18px;
-  stroke-width: 1.5;
-  filter: drop-shadow(0 1px 0 #ffffffb3);
-}
-.topbar .contextAssistant:hover {
-  border-color: #c1cbd8;
-  color: #5e6e81;
-  box-shadow: inset 0 1px 0 #fff, 0 2px 6px #25344912;
+  stroke-width: 1.55;
+  filter: drop-shadow(0 .8px 0 #ffffffe6) drop-shadow(0 -.3px .25px #35425340);
 }
 .topbar .contextAssistant[aria-expanded="true"] {
-  border-color: #bbd0ed;
-  background: linear-gradient(160deg, #fff 4%, #f4f8ff 48%, #e4edfb 100%);
-  box-shadow: inset 0 1px 0 #fff, 0 2px 7px #528be32b, 0 5px 15px #79a6ee20;
+  border-color: #a3b6cf;
+  box-shadow: inset 0 1px 0 #fff, inset 0 -1px 0 #6c798b40, 0 2px 7px #528be32b, 0 5px 15px #79a6ee20;
   color: #5579a8;
 }
 .contextAssistant[aria-expanded="true"]::before { opacity: 1; }
+@media (hover: hover) {
+  .topbar .contextAssistant:hover {
+    border-color: #8e9aa9;
+    box-shadow: inset 0 1px 0 #fff, inset 0 -1px 0 #6c798b40, 0 3px 7px #25344925;
+    color: #4e5967;
+    transform: translateY(-1px);
+  }
+  .contextAssistant:hover .assistantPlate::after {
+    opacity: .85;
+    transform: translateX(75%);
+  }
+  .topbar .contextAssistant[aria-expanded="true"]:hover {
+    border-color: #96afd0;
+    color: #476b9a;
+    box-shadow: inset 0 1px 0 #fff, inset 0 -1px 0 #6c798b40, 0 3px 9px #528be336, 0 6px 17px #79a6ee26;
+  }
+}
+.topbar .contextAssistant:active { transform: translateY(0); }
 .contextAssistant:focus-visible {
   outline: 2px solid #a2bce0;
   outline-offset: -1px;
@@ -1637,10 +1676,15 @@ button.actionEvidenceRow:hover {
   animation: none;
 }
 @media (prefers-reduced-motion:reduce) {
-  .contextAssistant, .contextAssistant::before, .assistantTooltip { transition: none; }
+  .contextAssistant, .contextAssistant::before, .assistantPlate::after, .assistantTooltip { transition: none; }
+  .assistantPlate::after { display: none; }
+  .topbar .contextAssistant:hover { transform: none; }
 }
 .workspace[data-paused="true"] .contextAssistant,
-.workspace[data-paused="true"] .contextAssistant::before { transition: none; }
+.workspace[data-paused="true"] .contextAssistant::before,
+.workspace[data-paused="true"] .assistantPlate::after { transition: none; }
+.workspace[data-paused="true"] .assistantPlate::after { display: none; }
+.workspace[data-paused="true"] .contextAssistant:hover { transform: none; }
 
 /* Keep the shortcut quiet and close to the application corner. */
 .mobileWorkspaceMark { display: none; }
@@ -1660,7 +1704,8 @@ button.actionEvidenceRow:hover {
   .mobileWorkspaceMark > svg { display: block; width: 18px; height: 18px; margin: 3px; color: #8b96a4; }
   .topbar,
   .modalPanel .topbar { padding-right: 6px; }
-  .topbar .contextAssistant { flex-basis: 32px; width: 32px; height: 30px; border-radius: 9px; }
+  .topbar .contextAssistant { flex-basis: 32px; width: 32px; height: 32px; border-radius: 9px; }
+  .contextAssistant .assistantPlate { border-radius: 7px; }
   .workBody > .recordPanel,
   .modalPanel .workBody > .recordPanel { width: 100%; min-width: 0; }
 }
