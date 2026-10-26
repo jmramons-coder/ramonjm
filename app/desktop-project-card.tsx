@@ -101,7 +101,7 @@ export function DesktopProjectCard({
           onOpen({ left, top, width, height });
         }}
       >
-        <span className={styles.hint}>Click to explore</span>
+        <span className={styles.hint} data-discovery-hint>Click to explore</span>
       </button>
     </article>
   );

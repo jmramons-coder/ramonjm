@@ -76,6 +76,22 @@
 .tileContent {
   display: flow-root;
   min-width: 0;
+  transition: filter 240ms ease;
+}
+
+.playground[data-grid-focus] > .masonryItem:not([data-focus-active]) > .tileContent {
+  filter: grayscale(1);
+}
+
+/* Expanded native dialogs must never inherit a preview's filter or containing block. */
+:global(body:has(dialog[open])) .tileContent {
+  filter: none !important;
+  transition: none;
+}
+
+.playground[data-discovery-hint-visible] :global([data-discovery-hint]) {
+  opacity: 0;
+  visibility: hidden;
 }
 
 /* Normal grid rows keep the first row stable before cards are measured. */
@@ -133,7 +149,8 @@
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .filters button {
+  .filters button,
+  .tileContent {
     transition: none;
   }
 }

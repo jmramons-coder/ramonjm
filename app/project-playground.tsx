@@ -29,6 +29,8 @@ import { DecisionArtworkShowcase } from "./decision-art-showcase";
 import { BusterShowcase } from "./buster-showcase";
 
 import { CaseWorkspaceShowcase } from "./case-workspace-showcase";
+import { ProjectDiscoverHint } from "./project-discover-hint";
+import { useProjectGridFocus } from "./use-project-grid-focus";
 
 type Filter = "all" | "products" | "studio" | "archive";
 const pieces: {
@@ -66,6 +68,8 @@ const filters: { id: Filter; label: string }[] = [
 export function ProjectPlayground({ paused }: { paused: boolean }) {
   const [filter, setFilter] = useState<Filter>("all");
   const playground = useRef<HTMLDivElement>(null);
+  const discoverHint = useRef<HTMLDivElement>(null);
+  const { hintVisible, resetFocus } = useProjectGridFocus(playground, discoverHint);
   const visible =
     filter === "all"
       ? pieces
@@ -131,7 +135,10 @@ export function ProjectPlayground({ paused }: { paused: boolean }) {
               type="button"
               aria-pressed={filter === item.id}
               aria-controls="project-playground"
-              onClick={() => setFilter(item.id)}
+              onClick={() => {
+                resetFocus();
+                setFilter(item.id);
+              }}
             >
               {item.label}
               <span>
@@ -165,6 +172,7 @@ export function ProjectPlayground({ paused }: { paused: boolean }) {
           </div>
         ))}
       </div>
+      <ProjectDiscoverHint elementRef={discoverHint} visible={hintVisible} paused={paused} />
     </div>
   );
 }
