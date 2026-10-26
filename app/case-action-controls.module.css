@@ -32,8 +32,9 @@
   width: 30px;
   border-color: transparent;
 }
-.statusTrigger {
+.controls .statusTrigger {
   padding: 0 10px;
+  border-radius: 999px;
 }
 .controls .options svg,
 .controls .statusTrigger svg,

@@ -532,7 +532,7 @@ button.actionEvidenceRow:is(:hover, :focus-visible) > span:not(.status) {
   margin-left: auto;
   padding: 8px 12px;
   border: 1px solid #273442;
-  border-radius: 7px;
+  border-radius: 999px;
   background: #273442;
   color: #fff;
   font-size: 11px !important;
@@ -862,7 +862,7 @@ button.actionEvidenceRow:is(:hover, :focus-visible) > span:not(.status) {
   min-height: 35px;
   padding: 8px 12px;
   border: 1px solid #dfe5ed;
-  border-radius: 7px;
+  border-radius: 999px;
   background: #fff;
   color: #738092;
   font: inherit;
