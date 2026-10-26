@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import {
   useEffect,
   useLayoutEffect,
@@ -1470,7 +1469,7 @@ export function CaseWorkspace({
             <button
               ref={assistantOpener}
               className={styles.contextAssistant}
-              aria-label="Open contextual assistant"
+              aria-label={tab === "assistant" ? "Close contextual assistant" : "Open contextual assistant"}
               aria-expanded={tab === "assistant"}
               aria-controls={`${uid}-body-assistant`}
               aria-describedby={`${uid}-assistant-tooltip`}
@@ -1478,32 +1477,13 @@ export function CaseWorkspace({
                 tab === "assistant" ? closeRecordPanel() : openAssistant()
               }
             >
-              <span className={styles.assistantRender} aria-hidden="true">
-                <Image
-                  className={styles.assistantRest}
-                  src="/showcase/case/assistant-plate.webp"
-                  alt=""
-                  width={256}
-                  height={256}
-                  unoptimized
-                  draggable={false}
-                />
-                <Image
-                  className={styles.assistantReflection}
-                  src="/showcase/case/assistant-plate-hover.webp"
-                  alt=""
-                  width={256}
-                  height={256}
-                  unoptimized
-                  draggable={false}
-                />
-              </span>
+              <Icon name="assistant" />
               <span
                 id={`${uid}-assistant-tooltip`}
                 className={styles.assistantTooltip}
                 role="tooltip"
               >
-                Ask the assistant
+                {tab === "assistant" ? "Close the assistant" : "Ask the assistant"}
               </span>
             </button>
           )}

@@ -1032,17 +1032,6 @@ button.actionEvidenceRow:hover {
   stroke-linejoin: round;
   color: #8b66c1;
 }
-.topbar .contextAssistant {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  margin-left: auto;
-  padding: 5px 0 5px 8px;
-  color: #738092;
-  font-size: 11px;
-}
-.contextAssistant:hover { color: #344356; }
-.topbar .contextAssistant .studyMark { width: 15px; height: 15px; }
 .activityPreview .studyMark { width: 17px; height: 17px; }
 .previewAgentIcon { background: #f6f1fe; border-color: #eae0f8; box-shadow: 0 2px 5px #8e6bc212; }
 .overviewFields dd > svg { width: 14px; height: 14px; color: #98a3b1; }
@@ -1518,63 +1507,52 @@ button.actionEvidenceRow:hover {
 }
 
 
-/* The silver surface and engraved mark are rendered in Blender. */
+/* A standard icon button keeps the assistant shortcut part of the app UI. */
 .topbar .contextAssistant {
   position: relative;
   display: grid;
   place-items: center;
-  isolation: isolate;
   flex: 0 0 36px;
   width: 36px;
   height: 36px;
   min-height: 0;
   margin-left: auto;
   padding: 0;
-  border: 0;
-  border-radius: 10px;
-  background: transparent;
+  border: 1px solid #e4e8ee;
+  border-radius: 8px;
+  background: #fff;
+  color: #738092;
   box-shadow: none;
   cursor: pointer;
-  transition: transform 240ms cubic-bezier(.22,1,.36,1);
+  transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
 }
-.assistantRender {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 100%;
-  filter: drop-shadow(0 2px 1px #0000001a) drop-shadow(0 5px 4px #00000024);
-  pointer-events: none;
-  transition: filter 240ms ease;
+.topbar .contextAssistant > svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 1.5;
 }
-.assistantRender > img {
-  position: absolute;
-  inset: 0;
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  transition: opacity 280ms ease;
+.topbar .contextAssistant:hover:not(:disabled) {
+  border-color: #d9e0e8;
+  background: #f5f7f9;
+  color: #344356;
 }
-.assistantRest { opacity: 1; }
-.assistantReflection { opacity: 0; }
 .topbar .contextAssistant[aria-expanded="true"] {
-  transform: translateY(-1px);
+  border-color: #d7dee7;
+  background: #edf1f5;
+  color: #344356;
 }
-.contextAssistant[aria-expanded="true"] .assistantRender {
-  filter: drop-shadow(0 3px 2px #0000001a) drop-shadow(0 7px 6px #00000029);
+.topbar .contextAssistant:active:not(:disabled) {
+  border-color: #cfd7e1;
+  background: #e5eaf0;
+  color: #26364a;
 }
-@media (hover: hover) {
-  .topbar .contextAssistant:hover { transform: translateY(-2px); }
-  .contextAssistant:hover .assistantRender {
-    filter: drop-shadow(0 3px 2px #00000014) drop-shadow(0 8px 6px #0000002e);
-  }
-  .contextAssistant:hover .assistantRest { opacity: 0; }
-  .contextAssistant:hover .assistantReflection { opacity: 1; }
+.topbar .contextAssistant:focus-visible {
+  outline: 2px solid #8c99aa;
+  outline-offset: 2px;
 }
-.topbar .contextAssistant:active { transform: translateY(0); }
-.contextAssistant:focus-visible {
-  outline: 2px solid #737373;
-  outline-offset: 3px;
+.topbar .contextAssistant:disabled {
+  opacity: .45;
+  cursor: not-allowed;
 }
 .assistantTooltip {
   position: absolute;
@@ -1596,7 +1574,7 @@ button.actionEvidenceRow:hover {
   transform: translateY(-3px);
   transition: opacity 140ms ease, transform 140ms ease;
 }
-.contextAssistant:is(:hover,:focus-visible)[aria-expanded="false"] .assistantTooltip {
+.contextAssistant:is(:hover,:focus-visible) .assistantTooltip {
   opacity: 1;
   transform: none;
 }
@@ -1611,17 +1589,9 @@ button.actionEvidenceRow:hover {
 }
 @media (prefers-reduced-motion:reduce) {
   .topbar .contextAssistant,
-  .assistantRender,
-  .assistantRender > img,
   .assistantTooltip { transition: none; }
-  .topbar .contextAssistant:is(:hover,[aria-expanded="true"]) { transform: none; }
 }
-.workspace[data-paused="true"] .contextAssistant,
-.workspace[data-paused="true"] .assistantRender,
-.workspace[data-paused="true"] .assistantRender > img { transition: none; }
-.workspace[data-paused="true"] .contextAssistant:is(:hover,[aria-expanded="true"]) { transform: none; }
-.workspace[data-paused="true"] .assistantRest { opacity: 1; }
-.workspace[data-paused="true"] .assistantReflection { opacity: 0; }
+.workspace[data-paused="true"] .contextAssistant { transition: none; }
 
 /* Keep the shortcut quiet and close to the application corner. */
 .mobileWorkspaceMark { display: none; }
@@ -1641,7 +1611,7 @@ button.actionEvidenceRow:hover {
   .mobileWorkspaceMark > svg { display: block; width: 18px; height: 18px; margin: 3px; color: #8b96a4; }
   .topbar,
   .modalPanel .topbar { padding-right: 6px; }
-  .topbar .contextAssistant { flex-basis: 34px; width: 34px; height: 34px; border-radius: 9px; }
+  .topbar .contextAssistant { flex-basis: 34px; width: 34px; height: 34px; border-radius: 8px; }
   .workBody > .recordPanel,
   .modalPanel .workBody > .recordPanel { width: 100%; min-width: 0; }
 }
