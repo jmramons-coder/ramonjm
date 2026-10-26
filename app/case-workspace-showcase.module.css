@@ -609,8 +609,8 @@ button.actionEvidenceRow:hover {
 }
 .workTable td,
 .modalPanel .workTable td {
-  height: 74px;
-  padding: 16px;
+  height: 58px;
+  padding: 10px 16px;
   border-bottom: 1px solid #edf0f4;
   background: #fff;
 }
@@ -977,7 +977,7 @@ button.actionEvidenceRow:hover {
   }
   .workTable td,
   .modalPanel .workTable td {
-    height: 74px;
+    height: 58px;
   }
   .modalPanel .taskStateIcon {
     display: grid;

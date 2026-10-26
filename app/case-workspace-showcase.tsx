@@ -609,7 +609,7 @@ function CaseTaskTable({
       </thead>
       <tbody>
         {rows.map((row) => (
-          <TaskTableRows
+          <TaskTableRow
             key={row.index}
             row={row}
             active={active === row.index}
@@ -628,7 +628,7 @@ function CaseTaskTable({
     </table>
   );
 }
-function TaskTableRows({
+function TaskTableRow({
   row,
   active,
   onOpen,
@@ -641,54 +641,42 @@ function TaskTableRows({
 }) {
   const specialist = isSpecialist(row.owner);
   return (
-    <>
-      <tr data-selected={active} onClick={() => onOpen(row.index)}>
-        <td>
-          <button
-            className={styles.tableTaskButton}
-            onClick={(event) => {
-              event.stopPropagation();
-              onOpen(row.index);
-            }}
-            aria-label={`Open task ${row.name}`}
-          >
-            <span>
-              <strong>{row.name}</strong>
-              <small>{row.stage}</small>
-            </span>
-          </button>
-        </td>
-        <td>
-          <CaseAssignee
-            name={personName(row.owner)}
-            specialist={specialist}
-            onClick={
-              specialist && row.agent !== null
-                ? () => onAgent(row.index, row.agent!)
-                : undefined
-            }
-          />
-        </td>
-        <td>
-          <Status value={row.status} />
-        </td>
-        <td>
-          <span className={styles.tableDue}>
-            {row.status === "Completed" ? "—" : "Today"}
+    <tr data-selected={active} onClick={() => onOpen(row.index)}>
+      <td>
+        <button
+          className={styles.tableTaskButton}
+          onClick={(event) => {
+            event.stopPropagation();
+            onOpen(row.index);
+          }}
+          aria-label={`Open task ${row.name}`}
+        >
+          <span>
+            <strong>{row.name}</strong>
+            <small>{row.stage}</small>
           </span>
-        </td>
-      </tr>
-      {active && (
-        <tr className={styles.tableAction}>
-          <td colSpan={4}>
-            <div>
-              <span>{getTaskAction(row, row.index).title}</span>
-              <small>Action</small>
-            </div>
-          </td>
-        </tr>
-      )}
-    </>
+        </button>
+      </td>
+      <td>
+        <CaseAssignee
+          name={personName(row.owner)}
+          specialist={specialist}
+          onClick={
+            specialist && row.agent !== null
+              ? () => onAgent(row.index, row.agent!)
+              : undefined
+          }
+        />
+      </td>
+      <td>
+        <Status value={row.status} />
+      </td>
+      <td>
+        <span className={styles.tableDue}>
+          {row.status === "Completed" ? "—" : "Today"}
+        </span>
+      </td>
+    </tr>
   );
 }
 type CaseActivityEntry = {
