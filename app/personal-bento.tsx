@@ -242,20 +242,52 @@ export function ProfileCard({ portraitSrc = "/profile/ramon.jpg" }: { portraitSr
 
 export function TodoCard({ paused = false }: MotionCardProps = {}) {
   const milestones = [
-    { title: "Study architecture, industrial design & human–computer interaction" },
-    { title: "Work in fintech & insurance" },
-    { title: "Build Pattern Viewer & reach my first users", detail: "My first app, built with pasted ChatGPT snippets." },
-    { title: "Launch my first iOS app" },
+    {
+      title: "Study architecture, industrial design & human–computer interaction",
+      completed: true,
+    },
+    { title: "Work in fintech & insurance", completed: true },
+    {
+      title: "Build my first web app & reach 500 users",
+      detail: "First build: pasting code snippets from ChatGPT in 2024. Now sunsetted.",
+      completed: true,
+    },
+    { title: "Launch my first iOS app", detail: "Nudge To-do", completed: true },
+    { title: "Work at an AI-first company", completed: false },
+    { title: "Work at a crypto company", completed: false },
+    { title: "Work at a robotics company", completed: false },
   ];
-  return <section className={`${styles.card} ${styles.todo}`} data-paused={paused} aria-labelledby="todo-title">
-    <div className={styles.cardHeading}><h2 id="todo-title">To-do</h2></div>
-    <ul className={styles.milestones}>
-      {milestones.map(({ title, detail }) => <li key={title}>
-        <span className={styles.milestoneCheck} aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="m4 8 2.5 2.5L12 5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></svg></span>
-        <div><span className={styles.srOnly}>Completed: </span><span>{title}</span>{detail && <small>{detail}</small>}</div>
-      </li>)}
-    </ul>
-  </section>;
+  return (
+    <section
+      className={`${styles.card} ${styles.todo}`}
+      data-paused={paused}
+      aria-labelledby="todo-title"
+    >
+      <div className={styles.cardHeading}><h2 id="todo-title">To-do</h2></div>
+      <ul className={styles.milestones}>
+        {milestones.map(({ title, detail, completed }) => (
+          <li key={title}>
+            <span
+              className={styles.milestoneCheck}
+              data-completed={completed}
+              aria-hidden="true"
+            >
+              {completed && (
+                <svg viewBox="0 0 16 16" fill="none">
+                  <path d="m4 8 2.5 2.5L12 5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              )}
+            </span>
+            <div>
+              <span className={styles.srOnly}>{completed ? "Completed: " : "To do: "}</span>
+              <span>{title}</span>
+              {detail && <small>{detail}</small>}
+            </div>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
 }
 
 export function CurrentWorkCard({ paused = false }: MotionCardProps) {
