@@ -2108,3 +2108,13 @@
 
 /* Remove native button padding so icon controls keep the same spacing scale. */
 .modalClose { padding: 0; }
+
+/* Fit the workspace inside the dialog's 4px-based gutters at every height. */
+.dialog {
+  grid-template-rows: minmax(0, 1fr);
+  overflow: hidden;
+}
+.dialog > .modalPanel {
+  height: min(848px, 100%);
+  min-height: 0;
+}
