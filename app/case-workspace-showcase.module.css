@@ -1860,27 +1860,44 @@ button.actionEvidenceRow:is(:hover, :focus-visible) > span:not(.status) {
 }
 .recordPanel .taskRecordContent,
 .modalPanel .taskRecordContent {
-  padding-block: 12px 18px;
+  --task-content-inset: 25px;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  background: #fafbfc;
 }
-.taskRecordContent > .recordType {
+.taskRecordHeader {
+  flex-shrink: 0;
+  padding: 12px var(--task-content-inset) 16px;
+  border-bottom: 1px solid #e8ecf1;
+  background: #fff;
+}
+.taskRecordHeader > .recordType {
   display: block;
   line-height: 1.4;
 }
-.recordPanel .taskRecordContent > h3 {
-  top: -12px;
+.taskRecordHeader > h3 {
   margin: 5px 0;
-  padding-block: 0;
+  color: #1e2936;
+  font-size: 24px;
+  font-weight: 550;
+  line-height: 1.2;
+  letter-spacing: -.05em;
+  overflow-wrap: anywhere;
 }
-.taskRecordContent > .taskHeaderDivider {
-  height: 0;
-  margin: 16px 0;
-  border: 0;
-  border-top: 1px solid #e8ecf1;
+.taskRecordBody {
+  flex: 1 0 auto;
+  min-width: 0;
+  padding: 16px var(--task-content-inset) 18px;
+  background: #fafbfc;
 }
-.taskRecordContent > .taskHeaderDivider + .insightBanner,
-.taskRecordContent > .taskHeaderDivider + .properties {
+.taskRecordBody > .insightBanner:first-child,
+.taskRecordBody > .properties:first-child {
   margin-top: 0;
 }
+.openCase,
+.sidebar nav button,
+.topbar > button:not(.contextAssistant) { border-radius: 6px; }
 .taskRecordContent .properties {
   gap: 8px;
   margin: 12px 0;
@@ -1976,6 +1993,8 @@ button.actionEvidenceRow:is(:hover, :focus-visible) > span:not(.status) {
 }
 @media (max-width: 600px) {
   .workspace { --case-content-inset: 16px; }
+  .recordPanel .taskRecordContent,
+  .modalPanel .taskRecordContent { --task-content-inset: 20px; }
 }
 .preview > .workspace { --case-content-inset: 28px; }
 .assistantSession {

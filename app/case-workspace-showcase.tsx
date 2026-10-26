@@ -877,59 +877,65 @@ function CaseRecordContent({
     >
       {tab === "task" ? (
         <>
-          <span className={styles.recordType}>TASK · {currentCase.ref}</span>
-          <h3>{currentTask.name}</h3>
-          <Status value={currentTask.status} />
-          <hr className={styles.taskHeaderDivider} />
-          {analysisAgent !== null && (
-            <section className={styles.insightBanner} aria-label="AI analysis">
-              <header className={styles.insightHeading}>
-                <h4>
-                  {analysisAgent === 2
-                    ? "Personal financial statement still required."
-                    : analysisAgent === 0
-                      ? "Application completeness checked."
-                      : "Evidence requirements recorded."}
-                </h4>
-                <span className={styles.insightTag}>AI</span>
-              </header>
-              <p>{workforce[analysisAgent].result}</p>
-            </section>
-          )}
-          <dl className={styles.properties}>
-            <div>
-              <dt>Assigned to</dt>
-              <dd>
-                <CaseAssignee
-                  name={personName(currentTask.owner)}
-                  specialist={isSpecialist(currentTask.owner)}
-                  compact
-                />
-              </dd>
-            </div>
-            <div>
-              <dt>Stage</dt>
-              <dd>{currentTask.stage}</dd>
-            </div>
-            <div>
-              <dt>Due</dt>
-              <dd>Today</dd>
-            </div>
-          </dl>
-          <p className={styles.taskDescription}>{currentTask.description}</p>
-          <TaskActions
-            task={currentTask}
-            key={task}
-            taskIndex={task}
-            actionStatus={actionStatus}
-            onActionStatusChange={onActionStatusChange}
-            active={active}
-            expanded={entry.actionExpanded}
-            onExpandedChange={(expanded) =>
-              onUpdate({ actionExpanded: expanded })
-            }
-            onRequirement={onRequirement}
-          />
+          <header className={styles.taskRecordHeader}>
+            <span className={styles.recordType}>TASK · {currentCase.ref}</span>
+            <h3>{currentTask.name}</h3>
+            <Status value={currentTask.status} />
+          </header>
+          <div className={styles.taskRecordBody}>
+            {analysisAgent !== null && (
+              <section
+                className={styles.insightBanner}
+                aria-label="AI analysis"
+              >
+                <header className={styles.insightHeading}>
+                  <h4>
+                    {analysisAgent === 2
+                      ? "Personal financial statement still required."
+                      : analysisAgent === 0
+                        ? "Application completeness checked."
+                        : "Evidence requirements recorded."}
+                  </h4>
+                  <span className={styles.insightTag}>AI</span>
+                </header>
+                <p>{workforce[analysisAgent].result}</p>
+              </section>
+            )}
+            <dl className={styles.properties}>
+              <div>
+                <dt>Assigned to</dt>
+                <dd>
+                  <CaseAssignee
+                    name={personName(currentTask.owner)}
+                    specialist={isSpecialist(currentTask.owner)}
+                    compact
+                  />
+                </dd>
+              </div>
+              <div>
+                <dt>Stage</dt>
+                <dd>{currentTask.stage}</dd>
+              </div>
+              <div>
+                <dt>Due</dt>
+                <dd>Today</dd>
+              </div>
+            </dl>
+            <p className={styles.taskDescription}>{currentTask.description}</p>
+            <TaskActions
+              task={currentTask}
+              key={task}
+              taskIndex={task}
+              actionStatus={actionStatus}
+              onActionStatusChange={onActionStatusChange}
+              active={active}
+              expanded={entry.actionExpanded}
+              onExpandedChange={(expanded) =>
+                onUpdate({ actionExpanded: expanded })
+              }
+              onRequirement={onRequirement}
+            />
+          </div>
         </>
       ) : tab === "requirement" ? (
         <>
@@ -1002,7 +1008,9 @@ function CaseRecordContent({
               <Icon name="file" />
               <span>
                 <strong>{documentName}</strong>
-                <small>PDF · Received today · {financial ? "3 pages" : "2 pages"}</small>
+                <small>
+                  PDF · Received today · {financial ? "3 pages" : "2 pages"}
+                </small>
               </span>
               <Icon name="arrow" />
             </button>
