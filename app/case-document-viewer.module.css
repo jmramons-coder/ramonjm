@@ -390,8 +390,8 @@
 }
 
 .source[data-highlighted] {
-  outline-color: #a993df;
-  background: #f1ebfc;
+  outline-color: #99bce7;
+  background: #e8f2ff;
 }
 
 .document .financialTable {
@@ -653,8 +653,8 @@
 }
 
 .insight[data-selected] {
-  border-color: #bda9df;
-  box-shadow: 0 0 0 2px #cdbce925;
+  border-color: #b8cee8;
+  box-shadow: 0 0 0 2px #b8cee825;
 }
 
 .document .insight h5 {

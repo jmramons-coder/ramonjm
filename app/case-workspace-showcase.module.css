@@ -1522,6 +1522,11 @@ button.actionEvidenceRow:is(:hover, :focus-visible) > span:not(.status) {
 
 
 /* A shared lilac surface connects analysis with the assistant shortcut. */
+.workspace::selection,
+.workspace *::selection {
+  background: #dcecff;
+  color: #1e2936;
+}
 .workspace {
   --case-ai-animation-state: running;
   --case-ai-surface: radial-gradient(ellipse at 12% 15%, #dacbf833, transparent 55%),
