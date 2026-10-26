@@ -17,6 +17,10 @@ import { CreateCaseTaskDialog, type CaseTaskDraft } from "./case-create-task";
 import { CaseAssistantChat } from "./case-assistant-chat";
 import { CasePanelResizeHandle } from "./case-panel-resize";
 import { CaseContextTabs } from "./case-context-tabs";
+import {
+  CaseActionControls,
+  type CaseActionStatus,
+} from "./case-action-controls";
 import { DesktopProjectCard } from "./desktop-project-card";
 import {
   casePanelReducer,
@@ -429,8 +433,9 @@ function CaseProgress({ progress }: { progress: number }) {
 function TaskActions({
   task,
   taskIndex,
-  reviewed,
-  onReview,
+  actionStatus,
+  onActionStatusChange,
+  active,
   onRequirement,
   onDocument,
   expanded,
@@ -438,19 +443,18 @@ function TaskActions({
 }: {
   task: CaseTask;
   taskIndex: number;
-  reviewed: boolean;
-  onReview: () => void;
+  actionStatus: CaseActionStatus | undefined;
+  onActionStatusChange: (status: CaseActionStatus) => void;
+  active: boolean;
   onRequirement: (index: number) => void;
   onDocument: (index: number) => void;
   expanded: boolean;
   onExpandedChange: (expanded: boolean) => void;
 }) {
   const action = getTaskAction(task, taskIndex);
-  const completed = task.status === "Completed";
-  const [checked, setChecked] = useState(false);
-  const trigger = useRef<HTMLButtonElement>(null);
+  const status =
+    actionStatus ?? (task.status === "Completed" ? "Completed" : undefined);
   const id = useId();
-  const status = reviewed ? "Reviewed" : task.status;
   return (
     <section
       className={styles.actionSection}
@@ -459,30 +463,31 @@ function TaskActions({
     >
       <div className={styles.actionSectionHeading}>
         <h4>Actions</h4>
-        <span>{completed || reviewed ? "1" : "0"} / 1</span>
+        <span>{status === "Completed" ? "1" : "0"} / 1</span>
       </div>
       <div className={styles.actionDisclosure}>
-        <button
-          ref={trigger}
-          className={styles.actionTrigger}
-          aria-expanded={expanded}
-          aria-controls={id}
-          onClick={() => onExpandedChange(!expanded)}
-        >
-          <span className={styles.actionChevron} data-expanded={expanded}>
-            <Icon name="arrow" />
-          </span>
-          <span className={styles.actionIdentity}>
-            <strong>{action.title}</strong>
-            <small>
-              {action.requirements.length}{" "}
-              {action.requirements.length === 1
-                ? "requirement"
-                : "requirements"}
-            </small>
-          </span>
-          <Status value={status} />
-        </button>
+        <div className={styles.actionHeader}>
+          <button
+            className={styles.actionTrigger}
+            aria-expanded={expanded}
+            aria-controls={id}
+            onClick={() => onExpandedChange(!expanded)}
+          >
+            <span className={styles.actionChevron}>
+              <Icon name="arrow" />
+            </span>
+            <span className={styles.actionIdentity}>
+              <strong>{action.title}</strong>
+            </span>
+          </button>
+          <CaseActionControls
+            status={status}
+            onStatusChange={onActionStatusChange}
+            active={active}
+            expanded={expanded}
+            onExpandedChange={onExpandedChange}
+          />
+        </div>
         <div
           className={styles.actionReveal}
           id={id}
@@ -493,86 +498,41 @@ function TaskActions({
           <div className={styles.actionInner}>
             <div className={styles.actionDetails}>
               <p className={styles.actionDescription}>{action.description}</p>
-              <ul
-                className={styles.actionEvidence}
-                aria-label="Action requirements"
+              <section
+                className={styles.actionRequirements}
+                aria-label="Requirements"
               >
-                {action.requirements.map((index) => (
-                  <li key={index}>
-                    <button
-                      className={styles.actionEvidenceRow}
-                      onClick={() => onRequirement(index)}
-                    >
-                      <Icon name="file" />
-                      <span>{requirements[index][0]}</span>
-                      <Status value={requirements[index][1]} />
-                    </button>
-                    {requirements[index][1] === "Received" && (
+                <h5>Requirements</h5>
+                <ul className={styles.actionEvidence}>
+                  {action.requirements.map((index) => (
+                    <li key={index}>
                       <button
-                        className={styles.actionDocumentLink}
-                        onClick={() => onDocument(index)}
+                        className={styles.actionEvidenceRow}
+                        onClick={() => onRequirement(index)}
                       >
                         <Icon name="file" />
-                        {documentRows.find((row) => row.requirement === index)
-                          ?.name ?? `${requirements[index][0]}.pdf`}
+                        <span>{requirements[index][0]}</span>
+                        <Status value={requirements[index][1]} />
                       </button>
-                    )}
-                  </li>
-                ))}
-              </ul>
-              {!action.requirements.length && (
-                <p className={styles.actionNotice}>
-                  No requirements linked yet.
-                </p>
-              )}
-              {taskIndex === 3 ? (
-                <div className={styles.actionFooter}>
-                  {reviewed ? (
-                    <div className={styles.actionRecorded} role="status">
-                      <Icon name="check" />
-                      <span>
-                        <strong>Review recorded</strong>
-                        <small>Evidence gap noted in this session.</small>
-                      </span>
-                    </div>
-                  ) : (
-                    <>
-                      <label className={styles.reviewCheck}>
-                        <input
-                          type="checkbox"
-                          checked={checked}
-                          onChange={(event) => setChecked(event.target.checked)}
-                        />
-                        I’ve reviewed the available evidence.
-                      </label>
-                      <button
-                        className={styles.primary}
-                        disabled={!checked}
-                        onClick={() => {
-                          onReview();
-                          requestAnimationFrame(() =>
-                            trigger.current?.focus({ preventScroll: true }),
-                          );
-                        }}
-                      >
-                        Record review
-                      </button>
-                    </>
-                  )}
+                      {requirements[index][1] === "Received" && (
+                        <button
+                          className={styles.actionDocumentLink}
+                          onClick={() => onDocument(index)}
+                        >
+                          <Icon name="file" />
+                          {documentRows.find((row) => row.requirement === index)
+                            ?.name ?? `${requirements[index][0]}.pdf`}
+                        </button>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+                {!action.requirements.length && (
                   <p className={styles.actionNotice}>
-                    The task stays in review until the personal financial
-                    statement is received.
+                    No requirements linked yet.
                   </p>
-                </div>
-              ) : (
-                <p className={styles.actionNotice}>
-                  {completed
-                    ? "Recorded in the case activity."
-                    : task.status === "Blocked"
-                      ? "Waiting on the preceding work and required evidence."
-                      : "Review the linked evidence before recording an outcome."}
-                </p>
-              )}
+                )}
+              </section>
             </div>
           </div>
         </div>
@@ -825,8 +785,8 @@ function CaseRecordContent({
   active,
   idPrefix,
   currentTask,
-  reviewed,
-  onReview,
+  actionStatus,
+  onActionStatusChange,
   onUpdate,
   onTask,
   onRequirement,
@@ -836,8 +796,8 @@ function CaseRecordContent({
   active: boolean;
   idPrefix: string;
   currentTask: CaseTask;
-  reviewed: boolean;
-  onReview: () => void;
+  actionStatus: CaseActionStatus | undefined;
+  onActionStatusChange: (status: CaseActionStatus) => void;
   onUpdate: (
     patch: Partial<Pick<CasePanelRecord, "agentIndex" | "actionExpanded">>,
   ) => void;
@@ -977,8 +937,9 @@ function CaseRecordContent({
             task={currentTask}
             key={task}
             taskIndex={task}
-            reviewed={reviewed}
-            onReview={onReview}
+            actionStatus={actionStatus}
+            onActionStatusChange={onActionStatusChange}
+            active={active}
             expanded={entry.actionExpanded}
             onExpandedChange={(expanded) =>
               onUpdate({ actionExpanded: expanded })
@@ -1176,9 +1137,9 @@ export function CaseWorkspace({
   const [activitySets, setActivitySets] = useState<
     Record<number, CaseActivityEntry[]>
   >({});
-  const [reviewedTasks, setReviewedTasks] = useState<Record<string, boolean>>(
-    {},
-  );
+  const [actionStatuses, setActionStatuses] = useState<
+    Record<string, CaseActionStatus>
+  >({});
   const [creatingTask, setCreatingTask] = useState(false);
   const [taskDraft, setTaskDraft] = useState<Partial<CaseTaskDraft>>();
   const createOpener = useRef<HTMLButtonElement>(null);
@@ -2105,13 +2066,13 @@ export function CaseWorkspace({
               currentTask={
                 (taskSets[entry.caseIndex] ?? tasks)[entry.taskIndex]
               }
-              reviewed={
-                !!reviewedTasks[`${entry.caseIndex}-${entry.taskIndex}`]
+              actionStatus={
+                actionStatuses[`${entry.caseIndex}-${entry.taskIndex}`]
               }
-              onReview={() =>
-                setReviewedTasks((previous) => ({
+              onActionStatusChange={(status) =>
+                setActionStatuses((previous) => ({
                   ...previous,
-                  [`${entry.caseIndex}-${entry.taskIndex}`]: true,
+                  [`${entry.caseIndex}-${entry.taskIndex}`]: status,
                 }))
               }
               onUpdate={(patch) =>

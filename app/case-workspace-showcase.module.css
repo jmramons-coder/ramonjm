@@ -146,20 +146,28 @@
   font-variant-numeric: tabular-nums;
 }
 .actionDisclosure {
-  overflow: hidden;
+  overflow: visible;
   border: 1px solid #e4e8ee;
-  border-radius: 10px;
+  border-radius: 16px;
   background: #fff;
+}
+.actionHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-right: 12px;
 }
 .actionTrigger {
   display: grid;
-  grid-template-columns: 16px minmax(0, 1fr) auto;
+  grid-template-columns: 16px minmax(0, 1fr);
   align-items: center;
   gap: 10px;
-  width: 100%;
+  flex: 1;
+  min-width: 0;
   min-height: 64px;
-  padding: 13px 14px;
+  padding: 13px 0 13px 14px;
   border: 0;
+  border-radius: 15px;
   background: #fff;
   text-align: left;
   transition: background 160ms ease;
@@ -195,18 +203,6 @@
   font-weight: 550;
   letter-spacing: -.025em;
 }
-.actionIdentity small {
-  display: block;
-  margin-top: 3px;
-  color: #98a3b0;
-  font-size: 10px;
-  line-height: 1.4;
-}
-.actionTrigger > .status {
-  flex-shrink: 0;
-  padding: 4px 6px;
-  font-size: 9px;
-}
 .actionReveal {
   display: grid;
   grid-template-rows: 0fr;
@@ -222,13 +218,25 @@
   overflow: hidden;
 }
 .actionDetails {
-  padding: 0 14px 16px 40px;
+  padding: 0 14px 14px;
 }
 .actionDescription {
   margin: 0 0 17px;
   color: #738092;
   font-size: 12px;
   line-height: 1.75;
+}
+.actionRequirements {
+  padding: 13px;
+  border: 1px solid #e7ebf0;
+  border-radius: 12px;
+  background: #fff;
+}
+.actionRequirements h5 {
+  margin: 0 0 5px;
+  color: #738092;
+  font-size: 10px;
+  font-weight: 500;
 }
 .actionEvidence {
   display: grid;
@@ -245,7 +253,6 @@
   min-height: 47px;
   padding: 10px 0;
   border: 0;
-  border-top: 1px solid #edf0f4;
   border-radius: 0;
   background: transparent;
   text-align: left;
@@ -284,53 +291,6 @@ button.actionEvidenceRow:hover {
   font-size: 8px;
   padding: 4px 5px;
 }
-.actionFooter {
-  display: grid;
-  gap: 12px;
-  padding-top: 16px;
-  border-top: 1px solid #edf0f4;
-}
-.actionFooter .reviewCheck {
-  gap: 8px;
-  margin: 0;
-  color: #738092;
-  font-size: 10px;
-  line-height: 1.7;
-}
-.actionFooter .reviewCheck input {
-  margin: 2px 0 0;
-}
-.actionFooter .primary {
-  width: auto;
-  min-height: 33px;
-  justify-self: start;
-  padding: 7px 12px;
-  border-radius: 7px;
-  font-size: 11px !important;
-}
-.actionRecorded {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  margin: 0;
-  color: #408563;
-  font-size: 11px;
-  line-height: 1.6;
-}
-.actionRecorded svg {
-  width: 14px;
-  height: 14px;
-}
-.actionRecorded small {
-  display: block;
-  margin-top: 3px;
-  color: #98a3b0;
-  font-size: 9px;
-  font-weight: 400;
-}
-.actionRecorded strong {
-  font-weight: 500;
-}
 .actionNotice {
   margin: 0;
   color: #8a96a5;
@@ -362,13 +322,22 @@ button.actionEvidenceRow:hover {
   }
   .actionTrigger {
     gap: 8px;
-    padding-inline: 12px;
+    padding-inline: 12px 0;
   }
   .actionIdentity strong {
     font-size: 12px;
   }
   .actionDetails {
-    padding-inline: 36px 12px;
+    padding-inline: 12px;
+  }
+  .actionHeader {
+    flex-wrap: wrap;
+    gap: 0;
+    padding-bottom: 12px;
+  }
+  .actionTrigger {
+    flex-basis: calc(100% - 12px);
+    min-height: 52px;
   }
   .actionDescription {
     font-size: 12px;
@@ -1910,7 +1879,7 @@ button.actionEvidenceRow:hover {
   align-items: center;
   gap: 7px;
   max-width: 100%;
-  margin: 0 0 12px 22px;
+  margin: 0 0 4px 22px;
   padding: 6px 0;
   border: 0;
   background: transparent;
