@@ -1521,7 +1521,17 @@ button.actionEvidenceRow:is(:hover, :focus-visible) > span:not(.status) {
 }
 
 
-/* A standard icon button keeps the assistant shortcut part of the app UI. */
+/* A shared lilac surface connects analysis with the assistant shortcut. */
+.workspace {
+  --case-ai-animation-state: running;
+  --case-ai-surface: radial-gradient(ellipse at 12% 15%, #dbc9fb99, transparent 55%),
+    radial-gradient(ellipse at 88% 85%, #bed6ff99, transparent 58%),
+    linear-gradient(120deg, #f0eafd, #e9f2ff 55%, #edddfa);
+}
+@keyframes aiSurfaceFlow {
+  from { background-position: 0% 20%; }
+  to { background-position: 100% 80%; }
+}
 .topbar .contextAssistant {
   position: relative;
   display: grid;
@@ -1532,13 +1542,15 @@ button.actionEvidenceRow:is(:hover, :focus-visible) > span:not(.status) {
   min-height: 0;
   margin-left: auto;
   padding: 0;
-  border: 1px solid #e4e8ee;
+  border: 1px solid #d8cdec;
   border-radius: 8px;
-  background: #fff;
-  color: #738092;
+  background: var(--case-ai-surface);
+  background-size: 200% 200%;
+  color: #6d5597;
   box-shadow: none;
   cursor: pointer;
-  transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
+  animation: aiSurfaceFlow 9s ease-in-out infinite alternate;
+  transition: border-color 160ms ease, color 160ms ease, box-shadow 160ms ease;
 }
 .topbar .contextAssistant > svg {
   width: 18px;
@@ -1546,22 +1558,22 @@ button.actionEvidenceRow:is(:hover, :focus-visible) > span:not(.status) {
   stroke-width: 1.5;
 }
 .topbar .contextAssistant:hover:not(:disabled) {
-  border-color: #d9e0e8;
-  background: #f5f7f9;
-  color: #344356;
+  border-color: #bca8db;
+  color: #59417e;
+  box-shadow: 0 2px 7px #75609518;
 }
 .topbar .contextAssistant[aria-expanded="true"] {
-  border-color: #d7dee7;
-  background: #edf1f5;
-  color: #344356;
+  border-color: #b7a0d8;
+  color: #59417e;
+  box-shadow: inset 0 0 0 1px #ffffff70;
 }
 .topbar .contextAssistant:active:not(:disabled) {
-  border-color: #cfd7e1;
-  background: #e5eaf0;
-  color: #26364a;
+  border-color: #ae96d0;
+  color: #49316d;
+  box-shadow: inset 0 1px 3px #59417e18;
 }
 .topbar .contextAssistant:focus-visible {
-  outline: 2px solid #8c99aa;
+  outline: 2px solid #9980bf;
   outline-offset: 2px;
 }
 .topbar .contextAssistant:disabled {
@@ -1615,6 +1627,9 @@ button.actionEvidenceRow:is(:hover, :focus-visible) > span:not(.status) {
   min-width: 320px;
   max-width: 100%;
   container: case-panel / inline-size;
+}
+.workBody > .recordPanel[data-record-kind="document"] {
+  width: var(--case-panel-width, min(840px, max(320px, calc(100% - 220px))));
 }
 @container case-panel (max-width: 380px) {
   .recordHeader > .recordTabs { gap: 13px; }
@@ -1872,11 +1887,16 @@ button.actionEvidenceRow:is(:hover, :focus-visible) > span:not(.status) {
   font-size: 12px;
   line-height: 1.65;
 }
-.recordContent .insightBanner {
+.recordContent .insightBanner,
+.recordContent .finding {
   margin: 12px 0;
   padding: 12px 14px;
-  border-color: #e5e9f3;
-  background: #f8f9fd;
+  border-color: #ddd3ef;
+  border-radius: 16px;
+  background: var(--case-ai-surface);
+  background-size: 200% 200%;
+  animation: aiSurfaceFlow 12s ease-in-out infinite alternate;
+  color: #4e4166;
 }
 .insightHeading {
   display: flex;
@@ -1890,6 +1910,7 @@ button.actionEvidenceRow:is(:hover, :focus-visible) > span:not(.status) {
   margin: 0;
   font-size: 13px;
   line-height: 1.5;
+  color: #493a61;
 }
 .insightHeading .insightTag {
   display: inline-flex;
@@ -1901,7 +1922,7 @@ button.actionEvidenceRow:is(:hover, :focus-visible) > span:not(.status) {
   padding: 0 7px;
   border: 1px solid #dcdff3;
   border-radius: 8px;
-  background: linear-gradient(120deg, #f0eafd, #e9f2ff);
+  background: #ffffff75;
   box-shadow: 0 2px 5px #8571c31a;
   color: #7060a3;
   font-size: 10px;
@@ -1912,6 +1933,40 @@ button.actionEvidenceRow:is(:hover, :focus-visible) > span:not(.status) {
   margin: 6px 0 0;
   font-size: 12px;
   line-height: 1.65;
+  color: #625571;
+}
+.workspace[data-paused="true"] .insightBanner,
+.workspace[data-paused="true"] .finding,
+.workspace[data-paused="true"] .contextAssistant {
+  animation-play-state: paused;
+}
+.workspace[data-paused="true"] { --case-ai-animation-state: paused; }
+.recordPanel .documentRecordContent,
+.modalPanel .documentRecordContent {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: 12px 0 0;
+  overflow: hidden;
+}
+.documentRecordContent > .recordType {
+  flex-shrink: 0;
+  margin-inline: 24px;
+  line-height: 1.4;
+}
+.recordPanel .documentRecordContent > h3 {
+  position: static;
+  flex-shrink: 0;
+  margin: 5px 24px 12px;
+  padding: 0;
+  font-size: 24px;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+@media (prefers-reduced-motion: reduce) {
+  .recordContent .insightBanner,
+  .recordContent .finding,
+  .topbar .contextAssistant { animation: none; }
 }
 @media (max-width: 600px) {
   .workspace { --case-content-inset: 16px; }

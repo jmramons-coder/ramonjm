@@ -17,6 +17,7 @@ import { CaseAssistantChat } from "./case-assistant-chat";
 import { CasePanelResizeHandle } from "./case-panel-resize";
 import { CaseContextTabs } from "./case-context-tabs";
 import { CaseHeaderActions } from "./case-header-actions";
+import { CaseDocumentViewer } from "./case-document-viewer";
 import {
   CaseActionControls,
   type CaseActionStatus,
@@ -868,7 +869,7 @@ function CaseRecordContent({
   return (
     <div
       ref={content}
-      className={`${styles.recordContent} ${tab === "task" ? styles.taskRecordContent : ""}`}
+      className={`${styles.recordContent} ${tab === "task" ? styles.taskRecordContent : tab === "document" ? styles.documentRecordContent : ""}`}
       id={`${idPrefix}-body-${entry.key}`}
       role="tabpanel"
       aria-labelledby={`${idPrefix}-tab-${entry.key}`}
@@ -1035,64 +1036,22 @@ function CaseRecordContent({
             DOCUMENT · DOC–{301 + requirement}
           </span>
           <h3>{documentName}</h3>
-          <div className={styles.documentContext}>
-            <Icon name="file" />
-            <span>{currentRequirement[0]}</span>
-            <button onClick={() => onRequirement(requirement)}>
-              Requirement
-            </button>
-          </div>
-          <div className={styles.paper}>
-            <header>
-              <span>NORTHLINE</span>
-              <small>
-                {financial ? "FINANCIAL STATEMENTS" : "CASE EVIDENCE"}
-              </small>
-            </header>
-            <h4>
-              {financial ? (
-                <>
-                  Company financial
-                  <br />
-                  statements
-                </>
-              ) : (
-                <>{currentRequirement[0]}</>
-              )}
-            </h4>
-            <span>ILLUSTRATIVE DOCUMENT · SAMPLE DATA</span>
-            <dl>
-              <div>
-                <dt>Submitted for</dt>
-                <dd>{currentCase.client}</dd>
-              </div>
-              <div>
-                <dt>Case reference</dt>
-                <dd>{currentCase.ref}</dd>
-              </div>
-              <div>
-                <dt>{financial ? "Reporting period" : "Submitted"}</dt>
-                <dd>{financial ? "Year ending 2025" : "Today"}</dd>
-              </div>
-            </dl>
-            <h5>Scope of this submission</h5>
-            <p>
-              {financial
-                ? "Company financial information. No personal financial statement accompanies this submission."
-                : `${currentRequirement[0]} received for this application. This is an illustrative case document.`}
-            </p>
-            <div className={styles.paperLines}>
-              <i />
-              <i />
-              <i />
-              <i />
-            </div>
-            <footer>1 / 1</footer>
-          </div>
-          <button className={styles.sourceLink} onClick={() => onTask(true)}>
-            Return to {currentTask.name}
-            <Icon name="arrow" />
-          </button>
+          <CaseDocumentViewer
+            documentName={documentName}
+            receivedTime={
+              documentRows.find((row) => row.requirement === requirement)
+                ?.received ?? "09:58"
+            }
+            requirementName={currentRequirement[0]}
+            caseReference={currentCase.ref}
+            clientName={currentCase.client}
+            financial={financial}
+            taskName={currentTask.name}
+            actionTitle={getTaskAction(currentTask, task).title}
+            active={active}
+            onRequirement={() => onRequirement(requirement)}
+            onTask={() => onTask(true)}
+          />
         </>
       ) : null}
     </div>
@@ -1990,6 +1949,7 @@ export function CaseWorkspace({
         <aside
           ref={recordPanel}
           className={styles.recordPanel}
+          data-record-kind={tab ?? undefined}
           hidden={!panel.visible}
           aria-label="Case record panel"
         >
