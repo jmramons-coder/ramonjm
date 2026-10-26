@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import {
   useEffect,
   useLayoutEffect,
@@ -1516,8 +1517,25 @@ export function CaseWorkspace({
                 tab === "assistant" ? closeRecordPanel() : openAssistant()
               }
             >
-              <span className={styles.assistantPlate} aria-hidden="true">
-                <Icon name="assistant" />
+              <span className={styles.assistantRender} aria-hidden="true">
+                <Image
+                  className={styles.assistantRest}
+                  src="/showcase/case/assistant-plate.webp"
+                  alt=""
+                  width={256}
+                  height={256}
+                  unoptimized
+                  draggable={false}
+                />
+                <Image
+                  className={styles.assistantReflection}
+                  src="/showcase/case/assistant-plate-hover.webp"
+                  alt=""
+                  width={256}
+                  height={256}
+                  unoptimized
+                  draggable={false}
+                />
               </span>
               <span
                 id={`${uid}-assistant-tooltip`}
