@@ -534,7 +534,7 @@ function TaskActions({
                 <Icon name="arrow" />
               </span>
             </button>
-            <span className={styles.actionIdentity}>
+            <span className={styles.actionIdentity} title={action.title}>
               <strong>{action.title}</strong>
             </span>
           </div>
@@ -1783,6 +1783,16 @@ export function CaseWorkspace({
         ) : (
           <>
             <header className={styles.caseHeader}>
+              <CaseHeaderActions
+                className={styles.caseHeaderActions}
+                assigneeName={caseOwnerName}
+                assigneeInitials={caseOwnerInitials}
+                onViewAssignment={() => {
+                  setView("Overview");
+                  setQuery("");
+                  dispatchPanel({ type: "hide" });
+                }}
+              />
               <div className={styles.caseHeaderMain}>
                 <div className={styles.caseIdentity}>
                   <h2 className={styles.caseTitle}>
@@ -1799,16 +1809,6 @@ export function CaseWorkspace({
                   </div>
                 </div>
               </div>
-              <CaseHeaderActions
-                className={styles.caseHeaderActions}
-                assigneeName={caseOwnerName}
-                assigneeInitials={caseOwnerInitials}
-                onViewAssignment={() => {
-                  setView("Overview");
-                  setQuery("");
-                  dispatchPanel({ type: "hide" });
-                }}
-              />
             </header>
             <div
               className={styles.caseTabs}

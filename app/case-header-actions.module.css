@@ -167,8 +167,10 @@
 }
 @media (max-width: 600px) {
   .controls {
+    flex-wrap: nowrap;
     gap: 8px;
   }
+  .controls .assignee { margin-right: auto; }
   .controls .assignee,
   .controls .options {
     width: 36px;
@@ -177,7 +179,7 @@
   .controls .decision,
   .controls .create {
     min-height: 36px;
-    padding-inline: 12px;
+    padding-inline: 8px;
   }
   .controls .popup button {
     min-height: 44px;

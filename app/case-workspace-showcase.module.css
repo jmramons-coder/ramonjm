@@ -2118,3 +2118,29 @@
   height: min(848px, 100%);
   min-height: 0;
 }
+
+
+/* Keep phone controls above the case identity, with one-line action labels. */
+.caseHeaderMain { order: 0; }
+.caseHeaderActions { order: 1; }
+.actionIdentity { flex: 1; }
+@media (max-width: 600px) {
+  .workspace[data-preview="false"] .caseHeader,
+  .modalPanel .workspace[data-preview="false"] .caseHeader {
+    align-items: stretch;
+    gap: 12px;
+  }
+  .workspace[data-preview="false"] .caseHeaderActions {
+    order: 0;
+    width: 100%;
+  }
+  .workspace[data-preview="false"] .caseHeaderMain { order: 1; }
+  .actionHeader { flex-wrap: nowrap; }
+  .actionHeading { flex-basis: 0; }
+  .actionIdentity { overflow: hidden; }
+  .actionIdentity strong {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
