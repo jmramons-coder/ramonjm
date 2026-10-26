@@ -10,7 +10,7 @@ import {
 } from "react";
 import styles from "./case-document-viewer.module.css";
 
-type ViewerIcon = "file" | "minus" | "plus" | "fit" | "pages" | "task";
+type ViewerIcon = "file" | "minus" | "plus" | "fit" | "pages" | "requirement";
 
 function Icon({ name }: { name: ViewerIcon }) {
   const paths: Record<ViewerIcon, ReactNode> = {
@@ -26,10 +26,10 @@ function Icon({ name }: { name: ViewerIcon }) {
         <path d="M4 7v12a3 3 0 0 0 3 3h9" />
       </>
     ),
-    task: (
+    requirement: (
       <>
-        <rect x="5" y="4" width="14" height="17" rx="3" />
-        <path d="M9 3h6v4H9zm0 9h6m-6 4h4" />
+        <circle cx="12" cy="12" r="9" />
+        <path d="m8 12 3 3 5-6" />
       </>
     ),
   };
@@ -375,6 +375,8 @@ function DocumentPaper({
 export function CaseDocumentViewer({
   documentName,
   requirementName,
+  requirementStatus,
+  requirementReference,
   caseReference,
   clientName,
   financial,
@@ -384,9 +386,12 @@ export function CaseDocumentViewer({
   active,
   onRequirement,
   onTask,
+  onAction,
 }: {
   documentName: string;
   requirementName: string;
+  requirementStatus: string;
+  requirementReference: string;
   caseReference: string;
   clientName: string;
   financial: boolean;
@@ -396,6 +401,7 @@ export function CaseDocumentViewer({
   active: boolean;
   onRequirement: () => void;
   onTask: () => void;
+  onAction: () => void;
 }) {
   const [pageIndex, setPageIndex] = useState(0);
   const [zoom, setZoom] = useState(100);
@@ -532,10 +538,20 @@ export function CaseDocumentViewer({
       aria-label={`Document viewer for ${documentName}`}
     >
       <div className={styles.context}>
-        <dl className={styles.metadata}>
-          <div>
-            <dt>Requirement</dt>
-            <dd>
+        <div className={styles.metadata}>
+          <span>PDF · {pages.length} pages</span>
+          <span>Received 25 Oct 2026 · {receivedTime}</span>
+        </div>
+        <section
+          className={styles.relations}
+          aria-label="Linked document context"
+        >
+          <div className={styles.requirementRow}>
+            <span className={styles.requirementIcon}>
+              <Icon name="requirement" />
+            </span>
+            <div className={styles.requirementIdentity}>
+              <span>{requirementReference}</span>
               <button
                 type="button"
                 className={styles.contextLink}
@@ -543,29 +559,41 @@ export function CaseDocumentViewer({
               >
                 {requirementName}
               </button>
-            </dd>
-          </div>
-          <div>
-            <dt>Received</dt>
-            <dd>25 Oct 2026 · {receivedTime}</dd>
-          </div>
-        </dl>
-        <div className={styles.action}>
-          <span className={styles.actionIcon}>
-            <Icon name="task" />
-          </span>
-          <div>
-            <span>Related action</span>
-            <button
-              type="button"
-              className={styles.contextLink}
-              title={`Open task ${taskName}`}
-              onClick={onTask}
+            </div>
+            <span
+              className={styles.requirementStatus}
+              data-state={requirementStatus}
             >
-              {actionTitle}
-            </button>
+              {requirementStatus}
+            </span>
           </div>
-        </div>
+          <dl className={styles.relationships}>
+            <div>
+              <dt>Task</dt>
+              <dd>
+                <button
+                  type="button"
+                  className={styles.contextLink}
+                  onClick={onTask}
+                >
+                  {taskName}
+                </button>
+              </dd>
+            </div>
+            <div>
+              <dt>Action</dt>
+              <dd>
+                <button
+                  type="button"
+                  className={styles.contextLink}
+                  onClick={onAction}
+                >
+                  {actionTitle}
+                </button>
+              </dd>
+            </div>
+          </dl>
+        </section>
       </div>
       <div ref={viewerLayout} className={styles.viewer}>
         <section className={styles.preview} aria-label="Document preview">

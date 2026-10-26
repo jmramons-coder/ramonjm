@@ -36,6 +36,7 @@ type IconName =
   | "case"
   | "recommend"
   | "file"
+  | "requirement"
   | "check"
   | "task"
   | "search"
@@ -62,6 +63,12 @@ function Icon({ name, ...props }: { name: IconName; className?: string }) {
     file: (
       <>
         <path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9Zm0 0v6h6M8 13h8m-8 4h6" />
+      </>
+    ),
+    requirement: (
+      <>
+        <circle cx="12" cy="12" r="9" />
+        <path d="m8 12 3 3 5-6" />
       </>
     ),
     check: <path d="m5 12 4 4L19 6" />,
@@ -459,7 +466,6 @@ function TaskActions({
   onActionStatusChange,
   active,
   onRequirement,
-  onDocument,
   expanded,
   onExpandedChange,
 }: {
@@ -469,7 +475,6 @@ function TaskActions({
   onActionStatusChange: (status: CaseActionStatus) => void;
   active: boolean;
   onRequirement: (index: number) => void;
-  onDocument: (index: number) => void;
   expanded: boolean;
   onExpandedChange: (expanded: boolean) => void;
 }) {
@@ -532,20 +537,10 @@ function TaskActions({
                         className={styles.actionEvidenceRow}
                         onClick={() => onRequirement(index)}
                       >
-                        <Icon name="file" />
+                        <Icon name="requirement" />
                         <span>{requirements[index][0]}</span>
                         <Status value={requirements[index][1]} />
                       </button>
-                      {isRequirementSatisfied(requirements[index][1]) && (
-                        <button
-                          className={styles.actionDocumentLink}
-                          onClick={() => onDocument(index)}
-                        >
-                          <Icon name="file" />
-                          {documentRows.find((row) => row.requirement === index)
-                            ?.name ?? `${requirements[index][0]}.pdf`}
-                        </button>
-                      )}
                     </li>
                   ))}
                 </ul>
@@ -934,7 +929,6 @@ function CaseRecordContent({
               onUpdate({ actionExpanded: expanded })
             }
             onRequirement={onRequirement}
-            onDocument={onDocument}
           />
         </>
       ) : tab === "requirement" ? (
@@ -1008,7 +1002,7 @@ function CaseRecordContent({
               <Icon name="file" />
               <span>
                 <strong>{documentName}</strong>
-                <small>PDF · Received today · 1 page</small>
+                <small>PDF · Received today · {financial ? "3 pages" : "2 pages"}</small>
               </span>
               <Icon name="arrow" />
             </button>
@@ -1043,6 +1037,8 @@ function CaseRecordContent({
                 ?.received ?? "09:58"
             }
             requirementName={currentRequirement[0]}
+            requirementReference={`REQ–${104 + requirement}`}
+            requirementStatus={currentRequirement[1]}
             caseReference={currentCase.ref}
             clientName={currentCase.client}
             financial={financial}
@@ -1050,7 +1046,8 @@ function CaseRecordContent({
             actionTitle={getTaskAction(currentTask, task).title}
             active={active}
             onRequirement={() => onRequirement(requirement)}
-            onTask={() => onTask(true)}
+            onTask={() => onTask()}
+            onAction={() => onTask(true)}
           />
         </>
       ) : null}

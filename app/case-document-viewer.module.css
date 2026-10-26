@@ -28,35 +28,72 @@
 
 .context {
   flex-shrink: 0;
-  padding: 12px 24px 18px;
+  padding: 8px 24px 12px;
 }
 
 .metadata {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 12px;
-  margin: 0 0 13px;
-}
-
-.metadata > div {
-  display: grid;
-  align-content: start;
-  gap: 5px;
-  min-width: 0;
-}
-
-.metadata dt,
-.action > div > span {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3px 12px;
+  margin: 0 0 8px;
   color: #8b96a4;
   font-size: 11px;
-  font-weight: 400;
   line-height: 1.5;
 }
 
-.metadata dd {
-  margin: 0;
+.relations {
+  min-width: 0;
+  padding: 8px 12px;
+  border: 1px solid #e4e8ee;
+  border-radius: 16px;
+  background: #fff;
+}
+
+.requirementRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.requirementIcon {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  color: #8b96a4;
+}
+
+.requirementIdentity {
+  display: grid;
+  gap: 1px;
+  flex: 1;
+  min-width: 0;
+}
+
+.requirementIdentity > span {
+  color: #929ba8;
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+.requirementStatus {
+  flex-shrink: 0;
+  padding: 3px 7px;
+  border-radius: 6px;
+  background: #f3f5f8;
+  color: #738092;
   font-size: 11px;
-  line-height: 1.6;
+  line-height: 1.4;
+}
+
+.requirementStatus[data-state="Received"],
+.requirementStatus[data-state="Fulfilled"] {
+  background: #eef8f2;
+  color: #408563;
 }
 
 .document .contextLink {
@@ -72,6 +109,7 @@
   text-decoration: underline;
   text-decoration-color: transparent;
   text-underline-offset: 3px;
+  overflow-wrap: anywhere;
   transition:
     color 150ms ease,
     text-decoration-color 150ms ease;
@@ -82,30 +120,30 @@
   text-decoration-color: currentColor;
 }
 
-.action {
+.relationships {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 4px 14px;
+  margin: 7px 0 0 30px;
+}
+
+.relationships > div {
   display: flex;
-  align-items: center;
-  gap: 10px;
-  min-height: 60px;
-  padding: 10px 14px;
-  border: 1px solid #e4e8ee;
-  border-radius: 16px;
-  background: #fff;
-}
-
-.actionIcon {
-  display: grid;
-  place-items: center;
-  width: 27px;
-  height: 27px;
-  flex-shrink: 0;
-  color: #8d98a7;
-}
-
-.action > div {
-  display: grid;
-  gap: 2px;
+  align-items: baseline;
+  gap: 7px;
   min-width: 0;
+}
+
+.relationships dt {
+  flex-shrink: 0;
+  color: #929ba8;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.relationships dd {
+  min-width: 0;
+  margin: 0;
 }
 
 .viewer {
@@ -575,10 +613,10 @@
   justify-content: center;
   min-width: 26px;
   height: 21px;
-  border: 1px solid #dcdff3;
+  border: 1px solid #ebe7f2;
   border-radius: 7px;
-  background: #f0eafd;
-  color: #7060a3;
+  background: #f8f6fc;
+  color: #7a6e91;
   font-size: 9px;
   font-weight: 550;
 }
@@ -597,14 +635,15 @@
 
 .insight {
   padding: 14px 13px;
-  border: 1px solid #e2dced;
+  border: 1px solid #e8e5ef;
   border-radius: 14px;
   background: var(
     --case-ai-surface,
-    radial-gradient(ellipse at 12% 15%, #dbc9fb99, transparent 55%),
-    radial-gradient(ellipse at 88% 85%, #bed6ff99, transparent 58%),
-    linear-gradient(120deg, #f0eafd, #e9f2ff 55%, #edddfa)
+    radial-gradient(ellipse at 12% 15%, #dacbf833, transparent 55%),
+    radial-gradient(ellipse at 88% 85%, #c9dcff33, transparent 58%),
+    linear-gradient(120deg, #faf9fd, #f7f9fd 55%, #faf7fc)
   );
+  box-shadow: 0 2px 8px #232b3d05;
   background-size: 200% 200%;
   animation: insightGradient 14s ease-in-out infinite alternate;
   animation-play-state: var(--case-ai-animation-state, running);
@@ -620,7 +659,7 @@
 
 .document .insight h5 {
   margin: 0 0 7px;
-  color: #514a72;
+  color: #26313e;
   font-size: 12px;
   font-weight: 550;
   line-height: 1.5;
@@ -628,7 +667,7 @@
 
 .document .insight p {
   margin: 0;
-  color: #625571;
+  color: #556171;
   font-size: 11px;
   line-height: 1.75;
 }
@@ -692,6 +731,9 @@
 }
 
 @container case-document (max-width: 540px) {
+  .relationships {
+    grid-template-columns: minmax(0, 1fr);
+  }
   .viewer {
     grid-template-columns: minmax(0, 1fr);
     overflow-y: auto;
@@ -719,13 +761,21 @@
   .context {
     padding-inline: 16px;
   }
-  .metadata {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 8px;
+  .relations {
+    padding-inline: 10px;
   }
-  .metadata > div:last-child {
-    grid-template-columns: 74px minmax(0, 1fr);
-    gap: 8px;
+  .requirementRow {
+    flex-wrap: wrap;
+    row-gap: 4px;
+  }
+  .requirementIdentity {
+    min-width: 120px;
+  }
+  .relationships {
+    margin-left: 0;
+  }
+  .relationships dt {
+    width: 36px;
   }
   .toolbar {
     padding-inline: 10px;

@@ -242,13 +242,13 @@
 .actionEvidence {
   display: grid;
   gap: 4px;
-  margin: 4px;
+  margin: 2px 4px;
   padding: 0;
   list-style: none;
 }
 .actionRequirementCard {
   min-width: 0;
-  padding: 10px 12px;
+  padding: 5px 12px;
   border: 1px solid #dfe5ec;
   border-radius: 16px;
   background: #fff;
@@ -258,8 +258,8 @@
   align-items: center;
   gap: 8px;
   width: 100%;
-  min-height: 32px;
-  padding: 4px 0;
+  min-height: 28px;
+  padding: 2px 0;
   border: 0;
   border-radius: 0;
   background: transparent;
@@ -1524,9 +1524,9 @@ button.actionEvidenceRow:is(:hover, :focus-visible) > span:not(.status) {
 /* A shared lilac surface connects analysis with the assistant shortcut. */
 .workspace {
   --case-ai-animation-state: running;
-  --case-ai-surface: radial-gradient(ellipse at 12% 15%, #dbc9fb99, transparent 55%),
-    radial-gradient(ellipse at 88% 85%, #bed6ff99, transparent 58%),
-    linear-gradient(120deg, #f0eafd, #e9f2ff 55%, #edddfa);
+  --case-ai-surface: radial-gradient(ellipse at 12% 15%, #dacbf833, transparent 55%),
+    radial-gradient(ellipse at 88% 85%, #c9dcff33, transparent 58%),
+    linear-gradient(120deg, #faf9fd, #f7f9fd 55%, #faf7fc);
 }
 @keyframes aiSurfaceFlow {
   from { background-position: 0% 20%; }
@@ -1542,11 +1542,11 @@ button.actionEvidenceRow:is(:hover, :focus-visible) > span:not(.status) {
   min-height: 0;
   margin-left: auto;
   padding: 0;
-  border: 1px solid #d8cdec;
+  border: 1px solid #e5e1ed;
   border-radius: 8px;
   background: var(--case-ai-surface);
   background-size: 200% 200%;
-  color: #6d5597;
+  color: #586171;
   box-shadow: none;
   cursor: pointer;
   animation: aiSurfaceFlow 9s ease-in-out infinite alternate;
@@ -1891,12 +1891,13 @@ button.actionEvidenceRow:is(:hover, :focus-visible) > span:not(.status) {
 .recordContent .finding {
   margin: 12px 0;
   padding: 12px 14px;
-  border-color: #ddd3ef;
+  border-color: #e8e5ef;
   border-radius: 16px;
   background: var(--case-ai-surface);
   background-size: 200% 200%;
   animation: aiSurfaceFlow 12s ease-in-out infinite alternate;
-  color: #4e4166;
+  color: #26313e;
+  box-shadow: 0 2px 8px #232b3d05;
 }
 .insightHeading {
   display: flex;
@@ -1910,7 +1911,7 @@ button.actionEvidenceRow:is(:hover, :focus-visible) > span:not(.status) {
   margin: 0;
   font-size: 13px;
   line-height: 1.5;
-  color: #493a61;
+  color: #26313e;
 }
 .insightHeading .insightTag {
   display: inline-flex;
@@ -1933,7 +1934,7 @@ button.actionEvidenceRow:is(:hover, :focus-visible) > span:not(.status) {
   margin: 6px 0 0;
   font-size: 12px;
   line-height: 1.65;
-  color: #625571;
+  color: #556171;
 }
 .workspace[data-paused="true"] .insightBanner,
 .workspace[data-paused="true"] .finding,
@@ -1980,27 +1981,6 @@ button.actionEvidenceRow:is(:hover, :focus-visible) > span:not(.status) {
   height: 100%;
 }
 .assistantSession[hidden] { display: none; }
-.workspace .actionDocumentLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  max-width: 100%;
-  margin: 2px 0 0;
-  padding: 4px 0;
-  border: 0;
-  background: transparent;
-  color: #2774ce;
-  font-size: 10px;
-  line-height: 1.5;
-  text-align: left;
-  overflow-wrap: anywhere;
-}
-.actionDocumentLink svg { flex-shrink: 0; width: 14px; height: 14px; color: #9ba8b8; }
-.workspace .actionDocumentLink:is(:hover, :focus-visible) {
-  color: #1b5fae;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
 .relatedTaskLink {
   padding: 0;
   border: 0;
@@ -2009,8 +1989,7 @@ button.actionEvidenceRow:is(:hover, :focus-visible) > span:not(.status) {
   font-size: inherit;
   text-align: right;
 }
-.relatedTaskLink:hover,
-.actionDocumentLink:hover { color: #2787f5; }
+.relatedTaskLink:hover { color: #2787f5; }
 
 /* Keep the modal exit reachable above the app on narrow and notched screens. */
 .modalClose {
