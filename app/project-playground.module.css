@@ -63,46 +63,59 @@
   border: 0;
 }
 .playground {
+  --project-columns: 1;
+  display: grid;
+  grid-template-columns: repeat(var(--project-columns), minmax(0, 1fr));
+  align-items: start;
   width: 100%;
-  column-count: 1;
-  column-gap: var(--portfolio-gap, 20px);
-  column-fill: balance;
-  orphans: 1;
-  widows: 1;
+  gap: var(--portfolio-gap, 20px);
   font-size: 0;
   line-height: 0;
+}
+
+.tileContent {
+  display: flow-root;
+  min-width: 0;
+}
+
+/* Normal grid rows keep the first row stable before cards are measured. */
+.playground[data-layout="masonry"] {
+  grid-auto-rows: 1px;
+  row-gap: 0;
+}
+.playground[data-layout="masonry"] > .masonryItem {
+  grid-row-end: span var(--masonry-span, 1);
 }
 
 .masonryItem {
   display: block;
   width: 100%;
-  margin: 0 0 var(--portfolio-gap, 20px);
-  break-inside: avoid;
+  margin: 0;
   font-size: 16px;
   line-height: normal;
 }
 
 @media (min-width: 640px) {
   .playground {
-    column-count: 2;
+    --project-columns: 2;
   }
 }
 
 @media (min-width: 980px) {
   .playground {
-    column-count: 3;
+    --project-columns: 3;
   }
 }
 
 @media (min-width: 1320px) {
   .playground {
-    column-count: 4;
+    --project-columns: 4;
   }
 }
 
 @media (min-width: 1680px) {
   .playground {
-    column-count: 5;
+    --project-columns: 5;
   }
 }
 @media (max-width: 760px) {
@@ -123,14 +136,6 @@
   .filters button {
     transition: none;
   }
-}
-
-/* Anchor the leading desktop cards while keeping each column vertical. */
-@media (min-width: 1320px) {
-  .masonryItem[data-filter="all"]:is([data-piece="case-workspace"], [data-piece="world"], [data-piece="decision"]) { break-before: column; }
-}
-@media (min-width: 1680px) {
-  .masonryItem[data-filter="all"][data-piece="midjourney"] { break-before: column; }
 }
 
 /* Mockups share their masonry column width; spacing belongs to the grid. */

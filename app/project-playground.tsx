@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type ComponentType } from "react";
+import { useLayoutEffect, useRef, useState, type ComponentType } from "react";
 import { NudgeShowcase } from "./mobile-showcase";
 import { AbeamShowcase } from "./desktop-showcase";
 import {
@@ -65,10 +65,58 @@ const filters: { id: Filter; label: string }[] = [
 
 export function ProjectPlayground({ paused }: { paused: boolean }) {
   const [filter, setFilter] = useState<Filter>("all");
+  const playground = useRef<HTMLDivElement>(null);
   const visible =
     filter === "all"
       ? pieces
       : pieces.filter((piece) => piece.category === filter);
+
+  useLayoutEffect(() => {
+    const grid = playground.current;
+    if (!grid) return;
+    const items = Array.from(grid.children) as HTMLDivElement[];
+    let frame = 0;
+
+    function measure() {
+      if (!grid) return;
+      const computed = getComputedStyle(grid);
+      const columns = Number(computed.getPropertyValue("--project-columns"));
+      if (columns === 1) {
+        if (grid.dataset.layout) delete grid.dataset.layout;
+        return;
+      }
+      const gap = Number.parseFloat(computed.columnGap) || 0;
+      if (grid.dataset.layout !== "masonry") grid.dataset.layout = "masonry";
+      // Used track sizes can be fractional at browser zoom levels such as 90%.
+      const rowHeight =
+        Number.parseFloat(getComputedStyle(grid).gridTemplateRows) || 1;
+      // Measure natural card heights, never the space reserved by grid spans.
+      const spans = items.map((item) => {
+        const height = Number.parseFloat(
+          getComputedStyle(item.firstElementChild!).height,
+        );
+        return Math.max(1, Math.ceil((height + gap) / rowHeight));
+      });
+      items.forEach((item, index) => {
+        const span = String(spans[index]);
+        if (item.style.getPropertyValue("--masonry-span") !== span)
+          item.style.setProperty("--masonry-span", span);
+      });
+    }
+
+    measure();
+    const observer = new ResizeObserver(() => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(measure);
+    });
+    observer.observe(grid);
+    items.forEach((item) => observer.observe(item.firstElementChild!));
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(frame);
+    };
+  }, [filter]);
+
   return (
     <div className={styles.gallery}>
       <div className={styles.toolbar}>
@@ -103,6 +151,7 @@ export function ProjectPlayground({ paused }: { paused: boolean }) {
         </span>
       </div>
       <div
+        ref={playground}
         id="project-playground"
         className={styles.playground}
         role="list"
@@ -110,7 +159,9 @@ export function ProjectPlayground({ paused }: { paused: boolean }) {
       >
         {visible.map(({ id, component: Card }) => (
           <div key={id} data-piece={id} data-filter={filter} className={styles.masonryItem} role="listitem">
-            <Card paused={paused} />
+            <div className={styles.tileContent}>
+              <Card paused={paused} />
+            </div>
           </div>
         ))}
       </div>
