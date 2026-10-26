@@ -7,7 +7,6 @@ import {
   useRef,
   useState,
   type FormEvent,
-  type KeyboardEvent,
 } from "react";
 import styles from "./case-assistant-chat.module.css";
 
@@ -222,9 +221,8 @@ export function CaseAssistantChat({
   const logScrollTop = useRef(0);
   const previousContent = useRef({ count: 0, pending: false });
   const unreadContent = useRef(false);
-  const inputRef = useRef<HTMLTextAreaElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const inputId = useId();
-  const hintId = useId();
   const sendTooltipId = useId();
 
   useEffect(() => {
@@ -291,17 +289,6 @@ export function CaseAssistantChat({
   function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     ask(question);
-  }
-
-  function handleInputKey(event: KeyboardEvent<HTMLTextAreaElement>) {
-    if (
-      event.key === "Enter" &&
-      !event.shiftKey &&
-      !event.nativeEvent.isComposing
-    ) {
-      event.preventDefault();
-      ask(question);
-    }
   }
 
   return (
@@ -418,16 +405,15 @@ export function CaseAssistantChat({
           <label htmlFor={inputId} className={styles.srOnly}>
             Ask about this sample case
           </label>
-          <textarea
+          <input
             ref={inputRef}
+            type="text"
+            enterKeyHint="send"
             id={inputId}
             value={question}
             onChange={(event) => setQuestion(event.target.value)}
-            onKeyDown={handleInputKey}
             placeholder="Ask about this case…"
-            aria-describedby={hintId}
             maxLength={2000}
-            rows={2}
           />
           <button
             className={styles.send}
@@ -442,10 +428,6 @@ export function CaseAssistantChat({
             </span>
           </button>
         </div>
-        <p className={styles.composerHint} id={hintId}>
-          <span>Illustrative case context. No live AI connection.</span>
-          <span className={styles.keyHint}>Enter to send</span>
-        </p>
       </form>
     </section>
   );
