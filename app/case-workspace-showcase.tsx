@@ -147,7 +147,7 @@ const workforce = [
     name: "Requirement Ordering",
     role: "Evidence gathering",
     result:
-      "Recorded the evidence requested for this application. Two financial requirements remain outstanding.",
+      "The personal financial statement and medical evidence have been ordered. Receipt is tracked on each requirement.",
     time: "09:24",
   },
   {
@@ -288,13 +288,17 @@ const tasks: CaseTask[] = [
     agent: null,
   },
 ];
-const requirements = [
-  ["Signed application", "Received", "Application Review"],
+type RequirementStatus = "Ordered" | "Received" | "Fulfilled";
+const requirements: [string, RequirementStatus, string][] = [
+  ["Signed application", "Fulfilled", "Application Review"],
   ["Audited financial statements", "Received", "Financial Screening"],
-  ["Personal financial statement", "Outstanding", "Financial Screening"],
+  ["Personal financial statement", "Ordered", "Financial Screening"],
   ["Replacement disclosure", "Received", "You"],
   ["Attending physician statement", "Ordered", "Requirement Ordering"],
 ];
+function isRequirementSatisfied(status: RequirementStatus) {
+  return status === "Received" || status === "Fulfilled";
+}
 const taskActions: TaskActionDefinition[] = [
   {
     title: "Check application completeness",
@@ -531,7 +535,7 @@ function TaskActions({
                         <span>{requirements[index][0]}</span>
                         <Status value={requirements[index][1]} />
                       </button>
-                      {requirements[index][1] === "Received" && (
+                      {isRequirementSatisfied(requirements[index][1]) && (
                         <button
                           className={styles.actionDocumentLink}
                           onClick={() => onDocument(index)}
@@ -880,6 +884,7 @@ function CaseRecordContent({
           <span className={styles.recordType}>TASK · {currentCase.ref}</span>
           <h3>{currentTask.name}</h3>
           <Status value={currentTask.status} />
+          <hr className={styles.taskHeaderDivider} />
           {analysisAgent !== null && (
             <section className={styles.insightBanner} aria-label="AI analysis">
               <header className={styles.insightHeading}>
@@ -952,13 +957,9 @@ function CaseRecordContent({
               </dd>
             </div>
             <div>
-              <dt>
-                {currentRequirement[1] === "Received"
-                  ? "Received"
-                  : "Requested"}
-              </dt>
+              <dt>{currentRequirement[1]}</dt>
               <dd>
-                {currentRequirement[1] === "Received"
+                {isRequirementSatisfied(currentRequirement[1])
                   ? "Today, 09:58"
                   : "Today, 09:24"}
               </dd>
@@ -990,13 +991,15 @@ function CaseRecordContent({
             </div>
           ) : (
             <p className={styles.recordDescription}>
-              {currentRequirement[1] === "Received"
-                ? "Evidence has been received for this requirement. Open the linked file to inspect it in the same case."
-                : "The evidence is still outstanding. The related work stays blocked until this requirement is met."}
+              {currentRequirement[1] === "Fulfilled"
+                ? "This requirement is fulfilled. Its supporting document remains available in the same case."
+                : currentRequirement[1] === "Received"
+                  ? "Evidence has been received for this requirement. Open the linked file to inspect it in the same case."
+                  : "The evidence has been ordered but not received. The related work stays blocked until this requirement is met."}
             </p>
           )}
           <h4 className={styles.sectionTitle}>Evidence</h4>
-          {currentRequirement[1] === "Received" ? (
+          {isRequirementSatisfied(currentRequirement[1]) ? (
             <button
               className={styles.fileLink}
               onClick={() => onDocument(requirement)}
@@ -1232,7 +1235,7 @@ export function CaseWorkspace({
     taskIndex: number = requirementTaskIndices[index],
     caseIndex = selected ?? 0,
   ) {
-    if (requirements[index][1] !== "Received") return;
+    if (!isRequirementSatisfied(requirements[index][1])) return;
     registerRecord("document", caseIndex, taskIndex, index);
   }
   function selectRecord(key: string) {
@@ -1876,7 +1879,9 @@ export function CaseWorkspace({
                                   </td>
                                   <td>
                                     <span className={styles.tableDue}>
-                                      {status === "Received" ? "—" : "Today"}
+                                      {isRequirementSatisfied(status)
+                                        ? "—"
+                                        : "Today"}
                                     </span>
                                   </td>
                                 </tr>

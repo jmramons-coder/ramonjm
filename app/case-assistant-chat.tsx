@@ -109,9 +109,9 @@ function sampleReply(
     return {
       paragraphs: ["The sample case records these evidence states:"],
       points: [
-        "Received: signed application, audited financial statements, and replacement disclosure.",
-        "Outstanding: personal financial statement.",
-        "Ordered: attending physician statement; receipt has not been recorded.",
+        "Fulfilled: signed application, with its supporting document available.",
+        "Received: audited financial statements and replacement disclosure.",
+        "Ordered: personal financial statement and attending physician statement; receipt has not been recorded.",
       ],
       links: [
         {

@@ -147,17 +147,17 @@
 }
 .actionDisclosure {
   overflow: visible;
-  border: 0;
-  background: transparent;
+  border: 1px solid #e4e8ee;
+  border-radius: 16px;
+  background: #fff;
 }
 .actionHeader {
   display: flex;
   align-items: center;
   gap: 8px;
   padding-right: 12px;
-  border: 1px solid #e4e8ee;
-  border-radius: 16px;
-  background: #fff;
+  border: 0;
+  background: transparent;
 }
 .actionTrigger {
   display: grid;
@@ -220,7 +220,7 @@
   overflow: hidden;
 }
 .actionDetails {
-  padding: 12px 14px 0;
+  padding: 12px 14px;
 }
 .actionDescription {
   margin: 0 0 12px;
@@ -1830,6 +1830,14 @@ button.actionEvidenceRow:is(:hover, :focus-visible) > span:not(.status) {
 }
 .activityTimestamp > span:last-child { color: #9aa3af; }
 /* Compact task details keep the action and its evidence in view. */
+.status[data-state="Fulfilled"] {
+  color: #408563;
+  background: #eef8f2;
+}
+.status[data-state="Ordered"] {
+  color: #9b752e;
+  background: #fff7e8;
+}
 .recordPanel .taskRecordContent,
 .modalPanel .taskRecordContent {
   padding-block: 12px 18px;
@@ -1842,6 +1850,16 @@ button.actionEvidenceRow:is(:hover, :focus-visible) > span:not(.status) {
   top: -12px;
   margin: 5px 0;
   padding-block: 0;
+}
+.taskRecordContent > .taskHeaderDivider {
+  height: 0;
+  margin: 16px 0;
+  border: 0;
+  border-top: 1px solid #e8ecf1;
+}
+.taskRecordContent > .taskHeaderDivider + .insightBanner,
+.taskRecordContent > .taskHeaderDivider + .properties {
+  margin-top: 0;
 }
 .taskRecordContent .properties {
   gap: 8px;
