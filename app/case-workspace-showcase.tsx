@@ -520,19 +520,24 @@ function TaskActions({
       </div>
       <div className={styles.actionDisclosure}>
         <div className={styles.actionHeader}>
-          <button
-            className={styles.actionTrigger}
-            aria-expanded={expanded}
-            aria-controls={id}
-            onClick={() => onExpandedChange(!expanded)}
-          >
-            <span className={styles.actionChevron}>
-              <Icon name="arrow" />
-            </span>
+          <div className={styles.actionHeading}>
+            <button
+              type="button"
+              className={styles.actionTrigger}
+              aria-label={`${expanded ? "Collapse" : "Expand"} ${action.title}`}
+              aria-expanded={expanded}
+              aria-controls={id}
+              title={expanded ? "Collapse action" : "Expand action"}
+              onClick={() => onExpandedChange(!expanded)}
+            >
+              <span className={styles.actionChevron}>
+                <Icon name="arrow" />
+              </span>
+            </button>
             <span className={styles.actionIdentity}>
               <strong>{action.title}</strong>
             </span>
-          </button>
+          </div>
           <CaseActionControls
             status={status}
             onStatusChange={onActionStatusChange}

@@ -7,7 +7,7 @@
   min-width: 0;
   min-height: 40px;
   margin: 0;
-  padding: 7px 10px;
+  padding: 8px 12px;
   border: 1px solid #e4e8ee;
   border-radius: 16px;
   background: #fff;
@@ -49,7 +49,7 @@
 
 .status {
   flex-shrink: 0;
-  padding: 3px 7px;
+  padding: 4px 8px;
   border-radius: 6px;
   background: #f3f5f8;
   color: #738092;
@@ -83,7 +83,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  gap: 3px 7px;
+  gap: 4px 8px;
   min-width: 0;
 }
 
@@ -124,7 +124,7 @@
 .record.record:focus-visible,
 .path.path button:focus-visible {
   outline: 2px solid #93add2;
-  outline-offset: 3px;
+  outline-offset: 4px;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -15,7 +15,7 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  gap: 7px;
+  gap: 8px;
   min-height: 34px;
   margin: 0;
   border: 1px solid #dde4ec;
@@ -44,7 +44,7 @@
 }
 .controls .decision,
 .controls .create {
-  padding: 0 13px;
+  padding: 0 12px;
   border-radius: 999px;
 }
 .controls .decision:disabled {
@@ -91,7 +91,7 @@
 .controls .options:focus-visible,
 .controls .popup:focus-visible {
   outline: 2px solid #96bce9;
-  outline-offset: 2px;
+  outline-offset: 4px;
 }
 .controls .popup {
   position: fixed;
@@ -99,7 +99,7 @@
   width: 198px;
   max-width: calc(100vw - 16px);
   margin: 0;
-  padding: 5px;
+  padding: 4px;
   border: 1px solid #e1e6ed;
   border-radius: 12px;
   background: #fff;
@@ -117,7 +117,7 @@
   align-items: center;
   width: 100%;
   min-height: 40px;
-  padding: 10px;
+  padding: 12px;
   border: 0;
   border-radius: 7px;
   background: transparent;
@@ -136,8 +136,8 @@
   position: absolute;
   z-index: 2;
   right: 0;
-  bottom: calc(100% + 7px);
-  padding: 7px 9px;
+  bottom: calc(100% + 8px);
+  padding: 8px;
   border: 1px solid #e7ebef;
   border-radius: 7px;
   background: #fff;
@@ -167,7 +167,7 @@
 }
 @media (max-width: 600px) {
   .controls {
-    gap: 6px;
+    gap: 8px;
   }
   .controls .assignee,
   .controls .options {

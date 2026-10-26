@@ -36,7 +36,7 @@ export function CaseHeaderActions({
     const height =
       popup.getBoundingClientRect().height || (kind === "create" ? 136 : 94);
     popup.style.left = `${Math.max(8, Math.min(rect.right - width, window.innerWidth - width - 8))}px`;
-    popup.style.top = `${rect.bottom + height + 8 > window.innerHeight ? Math.max(8, rect.top - height - 6) : rect.bottom + 6}px`;
+    popup.style.top = `${rect.bottom + height + 8 > window.innerHeight ? Math.max(8, rect.top - height - 8) : rect.bottom + 8}px`;
   }
 
   function close(kind: Popup, restoreFocus = false) {

@@ -2,14 +2,14 @@
   display: flex;
   align-items: center;
   flex-shrink: 0;
-  gap: 5px;
+  gap: 4px;
 }
 .controls .options,
 .controls .statusTrigger {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 7px;
+  gap: 8px;
   min-height: 32px;
   border: 1px solid #e1e6ed;
   border-radius: 8px;
@@ -28,12 +28,13 @@
   stroke: none;
 }
 .controls .options {
+  padding: 0;
   position: relative;
   width: 30px;
   border-color: transparent;
 }
 .controls .statusTrigger {
-  padding: 0 10px;
+  padding: 0 12px;
   border-radius: 999px;
 }
 .controls .options svg,
@@ -70,7 +71,7 @@
 .statusTrigger:focus-visible,
 .popup button:focus-visible {
   outline: 2px solid #96bce9;
-  outline-offset: 2px;
+  outline-offset: 4px;
 }
 .popup {
   position: fixed;
@@ -78,7 +79,7 @@
   width: 190px;
   max-width: calc(100vw - 16px);
   margin: 0;
-  padding: 5px;
+  padding: 4px;
   border: 1px solid #e1e6ed;
   border-radius: 12px;
   background: #fff;
@@ -98,7 +99,7 @@
   gap: 12px;
   width: 100%;
   min-height: 40px;
-  padding: 10px;
+  padding: 12px;
   border: 0;
   border-radius: 7px;
   background: transparent;
@@ -128,9 +129,9 @@
 .tooltip {
   position: absolute;
   z-index: 2;
-  right: -5px;
-  bottom: calc(100% + 6px);
-  padding: 7px 9px;
+  right: -4px;
+  bottom: calc(100% + 8px);
+  padding: 8px;
   border: 1px solid #e7ebef;
   border-radius: 7px;
   background: #fff;

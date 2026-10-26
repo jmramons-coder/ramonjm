@@ -14,7 +14,7 @@
 
 .header {
   flex-shrink: 0;
-  padding: 12px var(--case-panel-inset, 25px) 16px;
+  padding: 12px var(--case-panel-inset, 24px) 16px;
   border-bottom: 1px solid var(--case-panel-divider, #e8ecf1);
   background: var(--case-panel-header-background, #fff);
 }
@@ -29,7 +29,7 @@
 
 .chat .headerTitle {
   position: static;
-  margin: 5px 0;
+  margin: 4px 0;
   padding: 0;
   background: transparent;
   color: #1e2936;
@@ -50,7 +50,7 @@
 .conversation {
   flex: 1;
   min-height: 0;
-  padding: 16px var(--case-panel-inset, 25px) 26px;
+  padding: 16px var(--case-panel-inset, 24px) 24px;
   background: var(--case-panel-background, #fafbfc);
   overflow-y: auto;
   overscroll-behavior: contain;
@@ -59,7 +59,7 @@
 }
 
 .welcome {
-  padding-top: clamp(20px, 8vh, 65px);
+  padding-top: 32px;
   padding-bottom: 12px;
 }
 
@@ -77,7 +77,7 @@
 .welcomeMark {
   width: 28px;
   height: 28px;
-  margin-bottom: 23px;
+  margin-bottom: 24px;
 }
 
 .chat .welcomeMark svg,
@@ -106,7 +106,7 @@
 
 .chat .welcome > p {
   max-width: 285px;
-  margin: 13px 0 27px;
+  margin: 12px 0 28px;
   color: #8793a2;
   font-size: 12px;
   line-height: 1.7;
@@ -121,7 +121,7 @@
   width: fit-content;
   max-width: 100%;
   min-height: 37px;
-  padding: 9px 12px;
+  padding: 8px 12px;
   border: 1px solid #e6eaf0;
   border-radius: 999px;
   background: #fff;
@@ -146,14 +146,14 @@
 .message {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
-  margin-top: 23px;
+  gap: 12px;
+  margin-top: 24px;
   animation: messageEnter 200ms ease-out;
 }
 
 .message[data-role="user"] {
   justify-content: flex-end;
-  margin-top: 17px;
+  margin-top: 16px;
 }
 
 .messageBody {
@@ -164,13 +164,13 @@
 .message[data-role="user"] .messageBody {
   flex: 0 1 auto;
   max-width: 90%;
-  padding: 11px 14px;
+  padding: 12px 16px;
   border-radius: 12px 12px 3px 12px;
   background: #fff;
 }
 
 .chat .messageBody p {
-  margin: 0 0 10px;
+  margin: 0 0 12px;
   color: #5c697a;
   font-size: 14px;
   line-height: 1.8;
@@ -191,8 +191,8 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 100px), 1fr));
   gap: 12px;
-  margin: 14px 0;
-  padding: 13px 14px;
+  margin: 16px 0;
+  padding: 12px 16px;
   border: 1px solid #e6eaf0;
   border-radius: 16px;
   background: #fff;
@@ -203,7 +203,7 @@
 }
 
 .facts dt {
-  margin-bottom: 5px;
+  margin-bottom: 4px;
   color: #8a96a6;
   font-size: 10px;
   line-height: 1.4;
@@ -220,8 +220,8 @@
 
 .chat .records {
   display: grid;
-  gap: 6px;
-  margin: 14px 0 0;
+  gap: 8px;
+  margin: 16px 0 0;
   padding: 0;
   list-style: none;
 }
@@ -233,7 +233,7 @@
 .chat .recordRow {
   display: flex;
   align-items: flex-start;
-  gap: 9px;
+  gap: 8px;
   width: 100%;
   padding: 12px;
   border: 1px solid #e4e9ef;
@@ -260,7 +260,7 @@
   flex: 0 0 15px;
   width: 15px;
   height: 15px;
-  margin-top: 1px;
+  margin-top: 0;
   fill: none;
   stroke: currentColor;
   stroke-width: 1.45;
@@ -293,7 +293,7 @@
 .recordStatus {
   flex-shrink: 0;
   max-width: 78px;
-  padding: 3px 6px;
+  padding: 4px 8px;
   border-radius: 6px;
   background: #f2f4f7;
   color: #7e8a99;
@@ -321,7 +321,7 @@
 
 .aiBadge {
   flex-shrink: 0;
-  padding: 3px 5px;
+  padding: 4px;
   border: 1px solid #e5e3f1;
   border-radius: 6px;
   background: linear-gradient(120deg, #f6f1fc, #f1f5ff);
@@ -333,13 +333,13 @@
 .followUps {
   display: flex;
   flex-wrap: wrap;
-  gap: 7px;
-  margin-top: 15px;
+  gap: 8px;
+  margin-top: 16px;
 }
 
 .chat .followUps button {
   max-width: 100%;
-  padding: 7px 10px;
+  padding: 8px 12px;
   border: 1px solid #dfe6ee;
   border-radius: 999px;
   background: #fff;
@@ -367,8 +367,8 @@
 .pending {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-top: 23px;
+  gap: 12px;
+  margin-top: 24px;
   color: #8a98a9;
   font-size: 11px;
 }
@@ -380,7 +380,7 @@
 .composerArea {
   flex-shrink: 0;
   margin: 0;
-  padding: 13px var(--case-panel-inset, 25px) 18px;
+  padding: 12px var(--case-panel-inset, 24px) 20px;
   border-top: 1px solid var(--case-panel-divider, #e8ecf1);
   background: var(--case-panel-background, #fafbfc);
 }
@@ -389,7 +389,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 7px 7px 7px 12px;
+  padding: 8px 8px 8px 12px;
   border: 1px solid #dee4ec;
   border-radius: 11px;
   background: #fff;
@@ -439,7 +439,7 @@
   flex: 0 0 29px;
   width: 29px;
   height: 29px;
-  padding: 6px;
+  padding: 8px;
   border: 1px solid #263241;
   border-radius: 8px;
   background: #263241;
@@ -482,9 +482,9 @@
 .tooltip {
   position: absolute;
   right: -1px;
-  bottom: calc(100% + 10px);
+  bottom: calc(100% + 12px);
   z-index: 5;
-  padding: 7px 9px;
+  padding: 8px;
   border: 1px solid #e1e6ec;
   border-radius: 6px;
   background: #fff;

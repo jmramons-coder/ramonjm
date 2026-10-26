@@ -1,7 +1,7 @@
 .assignee {
   display: inline-flex;
   align-items: center;
-  gap: 9px;
+  gap: 8px;
   max-width: 100%;
   min-width: 0;
   padding: 0;
@@ -24,7 +24,7 @@ button.assignee:hover .name {
 
 button.assignee:focus-visible {
   outline: 2px solid #a28ccf;
-  outline-offset: 5px;
+  outline-offset: 4px;
 }
 
 .avatar,
@@ -73,14 +73,14 @@ button.assignee:focus-visible {
 
 .specialistLabel {
   display: block;
-  margin-top: 3px;
+  margin-top: 4px;
   color: #9a8aac;
   font-size: 9px;
   line-height: 1.3;
 }
 
 .assignee[data-compact=true] {
-  gap: 7px;
+  gap: 8px;
 }
 
 .assignee[data-compact=true] .avatar,
@@ -96,9 +96,9 @@ button.assignee:focus-visible {
   justify-content: space-between;
   flex-shrink: 0;
   width: 100%;
-  min-height: 69px;
+  min-height: 68px;
   gap: 16px;
-  padding: 15px var(--case-content-inset, 28px);
+  padding: 16px var(--case-content-inset, 28px);
   background: #fff;
 }
 
@@ -109,7 +109,7 @@ button.assignee:focus-visible {
   min-width: 0;
   min-height: 35px;
   gap: 8px;
-  padding: 0 10px;
+  padding: 0 12px;
   border: 1px solid #dfe4eb;
   border-radius: 7px;
   background: #fff;
@@ -217,7 +217,7 @@ button.assignee:focus-visible {
 
 .toolbar .clearSearch:focus-visible {
   outline: 2px solid #9bb8dd;
-  outline-offset: 1px;
+  outline-offset: 4px;
 }
 
 .toolbar .clearSearch:disabled {
@@ -236,10 +236,10 @@ button.assignee:focus-visible {
 
 .tooltip {
   position: absolute;
-  bottom: calc(100% + 9px);
+  bottom: calc(100% + 8px);
   left: 50%;
   z-index: 20;
-  padding: 7px 9px;
+  padding: 8px;
   border: 1px solid #e1e6ec;
   border-radius: 6px;
   background: #fff;
@@ -283,14 +283,14 @@ button.assignee:focus-visible {
 
 @media (max-width: 600px) {
   .toolbar {
-    min-height: 65px;
-    gap: 10px;
-    padding: 14px var(--case-content-inset, 16px);
+    min-height: 64px;
+    gap: 12px;
+    padding: 12px var(--case-content-inset, 16px);
   }
 
   .searchField {
     flex: 1 1 180px;
-    padding-inline: 9px;
+    padding-inline: 12px;
   }
 
   .name {
@@ -298,7 +298,7 @@ button.assignee:focus-visible {
   }
 
   .assignee {
-    gap: 7px;
+    gap: 8px;
   }
 
   .avatar,
