@@ -67,7 +67,7 @@ export function useProjectGridFocus(
       frame = 0;
       const hint = hintRef.current;
       if (!hint) return;
-      const width = hint.offsetWidth || 204;
+      const width = hint.offsetWidth || 148;
       const height = hint.offsetHeight || 72;
       const left = Math.max(16, Math.min(x + 20, innerWidth - width - 16));
       const top = y + height + 40 > innerHeight ? y - height - 24 : y + 24;

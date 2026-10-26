@@ -3,14 +3,14 @@
   inset: auto;
   top: 0;
   left: 0;
-  width: 204px;
+  width: 148px;
   max-width: calc(100vw - 32px);
   margin: 0;
   padding: 0;
   overflow: visible;
   border: 0;
   background: transparent;
-  color: #d6f7ff;
+  color: #ffb15e;
   pointer-events: none;
   user-select: none;
   transform: translate3d(var(--discover-x, 0px), var(--discover-y, 0px), 0);
@@ -25,14 +25,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
   padding: 4px;
   transform: rotate(-4deg);
 }
 
 .caption {
   display: grid;
-  color: #d6f7ff;
+  color: #ffb15e;
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   font-size: 21px;
   font-weight: 950;
@@ -41,67 +40,36 @@
   letter-spacing: -0.045em;
   text-transform: uppercase;
   text-shadow:
-    0 2px 0 #287ab4,
-    0 4px 0 #12517d,
-    0 6px 0 #07334f,
-    0 8px 12px #062b4840;
-  -webkit-text-stroke: 0.3px #a6ddf3;
-}
-
-.loupe {
-  display: block;
-  flex: 0 0 48px;
-  width: 48px;
-  height: 56px;
-  overflow: visible;
-  filter: drop-shadow(0 4px 3px #062b4833);
-  transform: rotate(-10deg);
-  transform-origin: 45% 40%;
+    0 2px 0 #d47830,
+    0 4px 0 #a84c21,
+    0 6px 0 #713518,
+    0 8px 12px #48240840;
+  -webkit-text-stroke: 0.3px #ffd09a;
 }
 
 .hint:popover-open .caption {
-  animation: blueHues 5s ease-in-out infinite;
+  animation: orangeHues 5s ease-in-out infinite;
 }
 
-.hint:popover-open .loupe {
-  animation: searchInvite 3.6s ease-in-out infinite;
-}
-
-@keyframes blueHues {
+@keyframes orangeHues {
   0%,
   100% {
-    color: #d6f7ff;
+    color: #ffb15e;
   }
   45% {
-    color: #a8daff;
+    color: #ff9a45;
   }
   70% {
-    color: #c3edff;
+    color: #ffc47b;
   }
 }
 
-@keyframes searchInvite {
-  0%,
-  60%,
-  100% {
-    transform: translateY(0) rotate(-10deg);
-  }
-  74% {
-    transform: translateY(-3px) rotate(-17deg);
-  }
-  86% {
-    transform: translateY(1px) rotate(-5deg);
-  }
-}
-
-.hint[data-paused="true"] .caption,
-.hint[data-paused="true"] .loupe {
+.hint[data-paused="true"] .caption {
   animation: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hint .caption,
-  .hint .loupe {
+  .hint .caption {
     animation: none;
   }
 }
