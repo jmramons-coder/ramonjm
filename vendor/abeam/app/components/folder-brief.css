@@ -1,0 +1,98 @@
+.product-shell .folder-brief {
+  display: grid;
+  min-width: 0;
+  gap: var(--space-3);
+  padding: 0;
+  margin: 0;
+  color: var(--ink);
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.product-shell .folder-brief > h2 {
+  display: flex;
+  min-height: 44px;
+  align-items: center;
+  margin: 0;
+  font-size: var(--text-base);
+  font-weight: var(--fw-semibold);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-normal);
+}
+
+.product-shell .folder-brief-narrative {
+  display: grid;
+  gap: var(--space-3);
+  max-inline-size: 76ch;
+}
+
+.product-shell .folder-brief :is(p, .folder-brief-action) {
+  margin: 0;
+  font-family: inherit;
+  overflow-wrap: anywhere;
+}
+
+.product-shell .folder-brief-narrative p,
+.product-shell .folder-brief-empty {
+  font-size: var(--text-base);
+  line-height: 1.65;
+}
+
+.product-shell .folder-brief-empty,
+.product-shell .folder-brief-note {
+  max-inline-size: 68ch;
+  color: var(--muted);
+}
+
+.product-shell .folder-brief-note {
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+}
+
+.product-shell .folder-brief-empty-zone .folder-brief-empty {
+  max-inline-size: 42ch;
+  font-size: var(--text-sm);
+  text-align: center;
+}
+
+.product-shell .folder-brief-empty-mark {
+  display: block;
+  flex: 0 0 auto;
+  color: var(--ink-tertiary, var(--muted));
+}
+
+.product-shell .folder-brief-empty-zone .folder-brief-action {
+  display: inline-flex;
+  width: fit-content;
+  max-width: 100%;
+  min-height: 44px;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--brand-contrast);
+  border-radius: var(--radius-md);
+  color: var(--on-solid);
+  background: var(--brand-contrast);
+  font-size: var(--text-sm);
+  font-weight: var(--fw-medium);
+  text-align: center;
+  cursor: pointer;
+}
+
+.product-shell .folder-brief-action svg {
+  display: block;
+  flex: 0 0 auto;
+}
+
+.product-shell .folder-brief-empty-zone .folder-brief-action:hover {
+  border-color: var(--brand-dark);
+  background: var(--brand-dark);
+}
+
+.product-shell .folder-brief-action:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}

@@ -1,0 +1,70 @@
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
+  height: 100dvh;
+  place-items: center;
+  box-sizing: border-box;
+  padding: max(24px, env(safe-area-inset-top)) max(24px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom)) max(24px, env(safe-area-inset-left));
+  overflow: hidden;
+  overscroll-behavior: contain;
+  background: #fff;
+  opacity: 1;
+  transition: opacity 200ms ease;
+}
+
+/* The public page mounts beneath the fade without scrolling or taking focus. */
+html:has(.intro),
+body:has(.intro) {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+.intro[data-exiting="true"] {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.orb {
+  width: clamp(100px, 9vw, 124px);
+  aspect-ratio: 1;
+  animation: sphereBreathe 3.8s ease-in-out infinite;
+}
+
+.intro[data-exiting="true"] .orb {
+  animation-play-state: paused;
+}
+
+.status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  border: 0;
+  white-space: nowrap;
+}
+
+@keyframes sphereBreathe {
+  0%, 100% { opacity: .94; transform: scale(.985); }
+  50% { opacity: 1; transform: scale(1.015); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro {
+    transition: none;
+  }
+
+  .intro .orb {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}

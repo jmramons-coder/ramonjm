@@ -1,0 +1,61 @@
+/* One compact trip snapshot inside Overview. Values and uncertainty
+   remain the captured facts, independent of this presentational treatment. */
+.product-shell .folder-facts {
+  --folder-fact-warning-ink: color-mix(in srgb, var(--status-incertain) 80%, var(--ink));
+  --folder-fact-danger-ink: color-mix(in srgb, var(--status-contradiction) 65%, var(--ink));
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: start;
+  gap: var(--space-4);
+  min-width: 0;
+  margin: 0;
+  padding: var(--space-5);
+  border: 1px solid var(--line-control);
+  border-radius: var(--radius-lg);
+  background: var(--surface-subtle);
+}
+.product-shell .folder-fact { min-width: 0; padding: 0; border: 0; background: transparent; }
+.product-shell .folder-fact dt {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-width: 0;
+  margin: 0 0 var(--space-2);
+  color: var(--ink-secondary);
+  font-size: var(--text-xs);
+  line-height: var(--leading-snug);
+}
+.product-shell .folder-fact dt svg { flex: 0 0 auto; display: block; color: var(--ink-secondary); }
+.product-shell .folder-fact dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.product-shell .folder-fact .folder-fact-value { color: var(--ink-list); font-size: var(--text-md); font-weight: var(--fw-medium); line-height: var(--leading-snug); letter-spacing: var(--tracking-snug); }
+.product-shell .folder-fact .folder-fact-detail { margin-top: var(--space-1); color: var(--ink-secondary); font-size: var(--text-xs); line-height: var(--leading-snug); }
+.product-shell .folder-fact .folder-fact-state { margin-top: var(--space-1); color: var(--folder-fact-warning-ink); font-size: var(--text-2xs); line-height: var(--leading-snug); }
+.product-shell .folder-fact[data-state="manquant"] .folder-fact-value { color: var(--ink-secondary); font-size: var(--text-sm); font-weight: var(--fw-regular); letter-spacing: 0; }
+.product-shell .folder-fact[data-quoted] .folder-fact-value { font-size: var(--text-sm); font-weight: var(--fw-regular); letter-spacing: 0; line-height: var(--leading-normal); }
+.product-shell .folder-fact[data-state="contradiction"] .folder-fact-state { color: var(--folder-fact-danger-ink); }
+.product-shell .folder-fact .folder-fact-date-status { margin-top: var(--space-2); }
+.product-shell .folder-fact[data-state="manquant"] .folder-fact-date-status { margin-top: 0; }
+.product-shell .folder-date-lozenge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  max-width: 100%;
+  padding: var(--space-1) calc(var(--space-1) + 2px);
+  border: 1px solid color-mix(in srgb, var(--status-incertain) 24%, transparent);
+  border-radius: var(--radius-sm);
+  color: var(--folder-fact-warning-ink);
+  background: var(--status-incertain-soft);
+  font-size: var(--text-2xs);
+  font-weight: var(--fw-medium);
+  line-height: var(--leading-snug);
+}
+.product-shell .folder-date-lozenge > svg { display: block; flex: 0 0 13px; }
+.product-shell .folder-date-lozenge > span { min-width: 0; overflow-wrap: normal; }
+@media (max-width: 800px) {
+  .product-shell .folder-facts { gap: var(--space-2); padding: var(--space-3); border-radius: var(--radius-md); }
+  .product-shell .folder-fact dt { gap: var(--space-1); font-size: var(--text-2xs); }
+  .product-shell .folder-fact .folder-fact-value { font-size: var(--text-base); }
+  .product-shell .folder-fact .folder-fact-detail { font-size: var(--text-2xs); }
+  .product-shell .folder-fact[data-state="manquant"] .folder-fact-value,
+  .product-shell .folder-fact[data-quoted] .folder-fact-value { font-size: var(--text-xs); }
+}

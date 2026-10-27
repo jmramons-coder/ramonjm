@@ -1,0 +1,22 @@
+.flight-offer-row { display: grid; width: 100%; min-width: 0; flex: 1; grid-template-columns: 30px minmax(0, 1fr) auto; align-items: center; column-gap: 12px; text-align: left; }
+.flight-offer-visual { display: grid; width: 30px; height: 30px; align-items: center; justify-items: center; color: #668cb2; }
+.flight-offer-visual img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.flight-offer-copy { display: grid; min-width: 0; gap: 3px; }
+.flight-offer-copy strong { min-width: 0; color: #273d54; font-size: 14px; font-weight: 600; line-height: 1.4; overflow-wrap: anywhere; }
+.flight-offer-copy > span { min-width: 0; color: var(--ink-secondary); font-size: 12px; font-weight: 400; line-height: 1.5; overflow-wrap: anywhere; }
+.flight-offer-price { max-width: 125px; color: #273d54; font-size: 16px; font-weight: 650; line-height: 1.35; text-align: right; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; letter-spacing: -.025em; }
+.flight-offer-row.is-compact { grid-template-columns: 24px minmax(0, 1fr) auto; column-gap: 7px; }
+.flight-offer-row.is-compact .flight-offer-visual { width: 24px; height: 24px; }
+.flight-offer-row.is-compact .flight-offer-copy { gap: 2px; }
+.flight-offer-row.is-compact .flight-offer-copy strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 11px; line-height: 1.45; }
+.flight-offer-row.is-compact .flight-offer-copy > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 10px; line-height: 1.45; }
+.flight-offer-row.is-compact .flight-offer-price { max-width: 80px; font-size: 11px; line-height: 1.45; font-weight: 600; }
+@media (max-width: 800px) {
+  .flight-offer-row:not(.is-compact) { row-gap: 3px; }
+  .flight-offer-row:not(.is-compact) .flight-offer-visual { grid-column: 1; grid-row: 1 / 3; }
+  .flight-offer-row:not(.is-compact) .flight-offer-copy { display: contents; }
+  .flight-offer-row:not(.is-compact) .flight-offer-copy strong { grid-column: 2; grid-row: 1; }
+  .flight-offer-row:not(.is-compact) .flight-offer-copy > span { grid-column: 2 / -1; grid-row: 2; }
+  .flight-offer-row:not(.is-compact) .flight-offer-price { grid-column: 3; grid-row: 1; }
+}
+@media (max-width: 380px) { .flight-offer-row:not(.is-compact) { column-gap: 8px; } .flight-offer-row:not(.is-compact) .flight-offer-copy strong { font-size: 13px; } .flight-offer-row:not(.is-compact) .flight-offer-price { max-width: 100px; font-size: 14px; } }

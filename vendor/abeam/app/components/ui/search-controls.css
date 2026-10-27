@@ -1,0 +1,884 @@
+/* Shared search controls. Portal styles deliberately do not depend on .product-shell. */
+.ui-field {
+  display: grid;
+  min-width: 0;
+  align-content: start;
+  gap: 6px;
+  color: var(--ink-control);
+}
+
+.ui-field-label {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 3px 8px;
+  min-width: 0;
+  color: #496079;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.ui-field-hint,
+.ui-field-description {
+  color: var(--ink-secondary);
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.ui-field-description,
+.ui-field-error {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.ui-field-error {
+  color: #9f3641;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.ui-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 0 10px;
+  border: 1px solid var(--line-control);
+  border-radius: var(--radius-control);
+  background: var(--surface-subtle);
+  color: var(--ink-control);
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.4;
+  box-shadow: none;
+  transition: border-color var(--motion-fast) ease, background-color var(--motion-fast) ease, box-shadow var(--motion-fast) ease;
+}
+
+.ui-control:not([data-disabled]):not(:disabled):hover {
+  border-color: #c7d6e7;
+}
+
+.ui-control:focus-within,
+.ui-control[data-focus-within],
+.ui-control[data-focused],
+.ui-control:focus-visible {
+  border-color: var(--brand);
+  outline: none;
+  background: #fff;
+  box-shadow: 0 0 0 3px #2787f51f;
+}
+
+.ui-field[data-invalid] .ui-control,
+.ui-control[data-invalid],
+.ui-control[aria-invalid="true"] {
+  border-color: #bb5d67;
+}
+
+.ui-field[data-invalid] .ui-control:focus-within,
+.ui-control[data-invalid]:focus-within,
+.ui-control[aria-invalid="true"]:focus-visible {
+  box-shadow: 0 0 0 3px #bb5d671a;
+}
+
+.ui-field[data-disabled] .ui-control,
+.ui-control[data-disabled],
+.ui-control:disabled {
+  border-color: #e2e8f0;
+  background: #f5f7fa;
+  color: #8190a1;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.ui-field .ui-control input[data-ui-input],
+.ui-field .ui-control .ui-input {
+  display: block;
+  flex: 1 1 0;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  min-height: 42px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  outline: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  line-height: 1.4;
+  box-shadow: none;
+}
+
+.ui-field .ui-control input[data-ui-input]:focus-visible,
+.ui-field .ui-control .ui-input:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+.ui-input::placeholder,
+.ui-airport-input::placeholder {
+  color: #77899d;
+  opacity: 1;
+}
+
+.ui-control-icon {
+  display: block;
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+  color: #66829f;
+  pointer-events: none;
+}
+
+.ui-control-button,
+.ui-date-trigger,
+.ui-number-button {
+  display: inline-flex;
+  flex: 0 0 36px;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  min-height: 36px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  outline: none;
+  background: transparent;
+  color: #527598;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.ui-control-button:not(:disabled):hover,
+.ui-date-trigger:not(:disabled):hover,
+.ui-number-button:not(:disabled):hover,
+.ui-control-button[data-focus-visible],
+.ui-date-trigger[data-focus-visible],
+.ui-number-button[data-focus-visible] {
+  background: var(--brand-wash);
+  color: var(--brand-contrast);
+}
+
+.ui-field .ui-control :is(.ui-control-button, .ui-date-trigger, .ui-number-button):focus-visible {
+  outline: none;
+  background: #e8f2ff;
+}
+
+.ui-control-button:disabled,
+.ui-date-trigger:disabled,
+.ui-number-button:disabled,
+.ui-control-button[data-disabled],
+.ui-date-trigger[data-disabled],
+.ui-number-button[data-disabled] {
+  color: #8997a8;
+  opacity: .55;
+  cursor: not-allowed;
+}
+
+.ui-date-trigger svg,
+.ui-control-button svg {
+  display: block;
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+}
+
+.ui-airport-control {
+  gap: 6px;
+  padding-inline-end: 3px;
+}
+
+.ui-select-control {
+  justify-content: space-between;
+  text-align: start;
+  cursor: pointer;
+}
+
+.ui-select-value {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ui-select-value[data-placeholder] {
+  color: #77899d;
+}
+
+/* Mobile airport choice uses a real button; this enabled field only supplies
+   the named native validation/FormData value and can never open a keyboard. */
+.ui-airport-native-input[hidden] { display: none !important; }
+.ui-airport-picker-trigger { min-height: 48px; font-size: 16px; }
+.ui-airport-picker-overlay {
+  position: fixed;
+  z-index: 1100;
+  inset: 0;
+  overflow: hidden;
+  background: var(--surface);
+}
+.ui-airport-picker-modal {
+  position: absolute;
+  top: var(--search-viewport-top, 0px);
+  left: var(--search-viewport-left, 0px);
+  width: var(--search-viewport-width, 100%);
+  height: var(--search-viewport-height, var(--visual-viewport-height, 100dvh));
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  outline: none;
+  background: var(--surface);
+  container-type: size;
+}
+.ui-airport-picker-dialog {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  outline: none;
+  background: var(--surface);
+  color: var(--ink-control);
+}
+.ui-airport-picker-header {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 64px;
+  padding: max(8px, env(safe-area-inset-top)) 16px 8px;
+}
+.ui-airport-picker-header h2 { flex: 1 1 0; min-width: 0; margin: 0; font-size: 17px; font-weight: 500; line-height: 1.4; overflow-wrap: anywhere; }
+.ui-airport-picker-close,
+.ui-airport-picker-back,
+.ui-airport-picker-search-action,
+.ui-airport-picker-clear,
+.ui-airport-picker-apply,
+.ui-airport-picker-done {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  margin: 0;
+  padding: 8px 12px;
+  border: 0;
+  border-radius: var(--radius-control);
+  outline: none;
+  background: transparent;
+  color: var(--ink-secondary);
+  font: inherit;
+  font-size: 14px;
+  line-height: 1.4;
+  cursor: pointer;
+}
+.ui-airport-picker-close,
+.ui-airport-picker-back { flex: 0 0 44px; width: 44px; padding: 0; }
+.ui-airport-picker-search { display: grid; flex: 0 0 auto; min-width: 0; gap: 7px; padding: 0 16px 12px; }
+.ui-airport-picker-search-action { justify-content: flex-start; min-height: 48px; color: var(--ink-control); background: var(--surface-recessed); }
+.ui-airport-picker-search-label { color: var(--ink-secondary); font-size: 12px; line-height: 1.4; }
+.ui-airport-picker-search-control { min-height: 48px; font-size: 16px; }
+.ui-airport-picker-input { flex: 1 1 0; min-width: 0; width: 100%; min-height: 46px; margin: 0; padding: 0; border: 0; outline: none; background: transparent; color: inherit; font: inherit; font-size: 16px; line-height: 1.4; }
+.ui-airport-picker-results { flex: 1 1 0; min-width: 0; min-height: 0; overflow: auto; overscroll-behavior: contain; }
+.ui-airport-picker-list { padding: 4px 12px 12px; }
+.ui-airport-picker-option { min-height: 48px; padding-block: 12px; font-size: 15px; }
+.ui-airport-picker-footer { display: flex; flex: 0 0 auto; align-items: center; justify-content: space-between; gap: 12px; padding: 8px 16px max(8px, env(safe-area-inset-bottom)); background: var(--surface); }
+.ui-airport-picker-apply { color: var(--on-solid); background: var(--brand-contrast); }
+.ui-airport-picker-done { color: var(--brand-contrast); background: var(--brand-wash); }
+.ui-airport-picker-close:hover,
+.ui-airport-picker-back:hover,
+.ui-airport-picker-clear:hover { color: var(--brand-contrast); background: var(--brand-wash); }
+.ui-airport-picker-apply:hover { background: var(--brand-dark); }
+.ui-airport-picker-search-action:hover { background: var(--surface-active); }
+.ui-airport-picker-dialog button[data-focus-visible],
+.ui-airport-picker-dialog button:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+.ui-airport-picker-dialog:has(.ui-airport-picker-input:focus) .ui-airport-picker-header { min-height: 48px; padding-block: 2px; }
+.ui-airport-picker-dialog:has(.ui-airport-picker-input:focus) .ui-airport-picker-header h2 { font-size: 15px; }
+.ui-airport-picker-dialog:has(.ui-airport-picker-input:focus) .ui-airport-picker-search { gap: 4px; padding-bottom: 6px; }
+.ui-airport-picker-dialog:has(.ui-airport-picker-input:focus) .ui-airport-picker-footer { padding-block: 4px; }
+.ui-airport-picker-dialog:has(.ui-airport-picker-input:focus) .ui-airport-picker-search-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+@container (max-height: 380px) {
+  .ui-airport-picker-header { min-height: 48px; padding-block: 2px; }
+  .ui-airport-picker-header h2 { font-size: 15px; }
+  .ui-airport-picker-search { gap: 4px; padding-bottom: 6px; }
+  .ui-airport-picker-search-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .ui-airport-picker-footer { padding-block: 4px; }
+}
+
+.ui-number-control {
+  gap: 2px;
+  padding: 3px;
+}
+
+.ui-field .ui-number-control input.ui-number-input[data-ui-input] {
+  min-height: 36px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.ui-date-control {
+  gap: 2px;
+  padding-inline: 8px 3px;
+}
+
+.ui-date-input {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  min-width: 0;
+  min-height: 42px;
+  padding: 0;
+  overflow: hidden;
+  color: inherit;
+  font: inherit;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.ui-date-segment {
+  flex: 0 0 auto;
+  padding: 3px 1px;
+  border-radius: 3px;
+  outline: none;
+  font: inherit;
+  text-align: center;
+}
+
+.ui-date-segment[data-placeholder] {
+  color: #77899d;
+}
+
+.ui-date-segment[data-focused],
+.ui-date-segment[data-focus-visible] {
+  background: #ddecff;
+  color: #135fae;
+  caret-color: transparent;
+}
+
+.ui-date-segment[data-type="literal"] {
+  padding-inline: 0;
+  color: #687d94;
+}
+
+.ui-popover {
+  z-index: 1002;
+  box-sizing: border-box;
+  max-width: calc(100vw - 24px);
+  border: 1px solid #e1e9f3;
+  border-radius: 12px;
+  outline: none;
+  background: #fff;
+  color: var(--ink-control);
+  font-family: inherit;
+  box-shadow: 0 10px 32px #203a581a;
+}
+
+.ui-popover[data-entering] {
+  animation: ui-popover-in var(--motion-fast) ease-out;
+}
+
+.ui-options-popover {
+  width: max(var(--trigger-width, 240px), 240px);
+  max-height: min(360px, calc(100dvh - 32px));
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+
+.ui-options-list,
+.ui-listbox {
+  display: grid;
+  align-content: start;
+  gap: 2px;
+  min-width: 0;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  outline: none;
+}
+
+.ui-option,
+.ui-listbox-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+  min-height: 40px;
+  padding: 8px 10px;
+  border-radius: 7px;
+  outline: none;
+  color: var(--ink-control);
+  font-size: 13px;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.ui-option-label {
+  flex: 1 1 0;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.ui-option-code {
+  flex: 0 0 auto;
+  color: var(--ink-secondary);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+.ui-option-check {
+  flex: 0 0 16px;
+  width: 16px;
+  height: 16px;
+  color: var(--brand-contrast);
+}
+
+.ui-option-check svg {
+  display: block;
+}
+
+.ui-options-empty {
+  display: block;
+  padding: 10px;
+  color: var(--ink-secondary);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.ui-option[data-focused],
+.ui-option[data-selected],
+.ui-listbox-item[data-focused],
+.ui-listbox-item[data-selected] {
+  background: var(--brand-wash);
+  color: #135fae;
+}
+
+.ui-option[data-focus-visible],
+.ui-listbox-item[data-focus-visible] {
+  outline: 2px solid var(--brand);
+  outline-offset: -2px;
+}
+
+.ui-option[data-disabled],
+.ui-listbox-item[data-disabled] {
+  background: transparent;
+  color: #8997a8;
+  cursor: not-allowed;
+}
+
+.ui-date-backdrop,
+.ui-select-backdrop,
+.ui-select-sheet-header {
+  display: none;
+}
+
+.ui-date-popover {
+  width: 320px;
+  max-height: min(540px, calc(100dvh - 32px));
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+
+.ui-date-dialog {
+  min-width: 0;
+  padding: 16px;
+  outline: none;
+}
+
+.ui-calendar {
+  min-width: 0;
+  width: 100%;
+  outline: none;
+}
+
+.ui-calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+  margin-bottom: 14px;
+}
+
+.ui-calendar-month,
+.ui-calendar-year {
+  min-width: 0;
+}
+
+.ui-calendar-month {
+  flex: 1 1 auto;
+}
+
+.ui-calendar-period-trigger,
+.ui-calendar-nav {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  min-height: 36px;
+  gap: 5px;
+  padding: 5px 7px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: #385875;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.ui-calendar-period-trigger {
+  width: 100%;
+}
+
+.ui-calendar-period-trigger svg,
+.ui-calendar-nav svg {
+  display: block;
+  flex: 0 0 16px;
+  width: 16px;
+  height: 16px;
+  color: #66829f;
+}
+
+.ui-calendar-period-trigger:hover,
+.ui-calendar-nav:not(:disabled):hover {
+  background: var(--brand-wash);
+  color: var(--brand-contrast);
+}
+
+.ui-calendar-period-trigger[data-focus-visible],
+.ui-calendar-nav[data-focus-visible],
+.ui-calendar-period-trigger:focus-visible,
+.ui-calendar-nav:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 1px;
+}
+
+.ui-calendar-period-popover {
+  width: 170px;
+  max-height: min(280px, calc(100dvh - 32px));
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+
+.ui-calendar-grid {
+  width: 100%;
+  border: 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+}
+
+.ui-calendar-grid :is(th, td) {
+  padding: 2px;
+  border: 0;
+  background: transparent;
+  text-align: center;
+}
+
+.ui-calendar-grid .ui-calendar-weekday {
+  padding-block: 0 9px;
+  color: var(--ink-secondary);
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.ui-calendar-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 38px;
+  min-height: 38px;
+  margin-inline: auto;
+  border-radius: 8px;
+  outline: none;
+  color: var(--ink-control);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.ui-calendar-cell:not([data-disabled]):not([data-selected]):hover,
+.ui-calendar-cell[data-hovered]:not([data-disabled]):not([data-selected]) {
+  background: var(--brand-wash);
+  color: var(--brand-contrast);
+}
+
+.ui-calendar-cell[data-today]:not([data-selected]) {
+  color: var(--brand-contrast);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.ui-calendar-cell[data-outside-month] {
+  color: #718398;
+}
+
+.ui-calendar-cell[data-selected] {
+  background: var(--brand-contrast);
+  color: #fff;
+}
+
+.ui-calendar-cell[data-disabled],
+.ui-calendar-cell[data-unavailable] {
+  background: transparent;
+  color: #9ba8b7;
+  cursor: not-allowed;
+}
+
+.ui-calendar-cell[data-outside-visible-range] {
+  visibility: hidden;
+}
+
+.ui-calendar-cell[data-focus-visible] {
+  outline: 2px solid var(--brand);
+  outline-offset: 1px;
+}
+
+.ui-calendar-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #edf1f7;
+  background: #fff;
+}
+
+.ui-calendar-clear,
+.ui-calendar-close,
+.ui-select-sheet-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--brand-contrast);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.ui-calendar-clear:hover,
+.ui-select-sheet-close:hover {
+  background: var(--brand-wash);
+}
+
+.ui-calendar-close {
+  background: var(--brand-wash);
+}
+
+.ui-calendar-close:hover {
+  background: #dfedff;
+}
+
+.ui-calendar-clear:disabled,
+.ui-calendar-close:disabled,
+.ui-calendar-clear[data-disabled],
+.ui-calendar-close[data-disabled] {
+  background: transparent;
+  color: #8997a8;
+  opacity: 1;
+  cursor: not-allowed;
+}
+
+.ui-calendar-clear[data-focus-visible],
+.ui-calendar-close[data-focus-visible],
+.ui-select-sheet-close[data-focus-visible],
+.ui-calendar-clear:focus-visible,
+.ui-calendar-close:focus-visible,
+.ui-select-sheet-close:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+@keyframes ui-popover-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes ui-sheet-in {
+  from { opacity: .8; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 800px) {
+  .ui-control {
+    min-height: 48px;
+    font-size: 16px;
+  }
+
+  .ui-field .ui-control input[data-ui-input],
+  .ui-field .ui-control .ui-input,
+  .ui-date-input {
+    min-height: 46px;
+    font-size: 16px;
+  }
+
+  .ui-control-button,
+  .ui-date-trigger,
+  .ui-number-button {
+    flex-basis: 44px;
+    width: 44px;
+    min-height: 44px;
+  }
+
+  .ui-number-control {
+    padding: 1px;
+  }
+
+  .ui-field .ui-number-control input.ui-number-input[data-ui-input] {
+    min-height: 44px;
+  }
+
+  .ui-date-control {
+    padding-inline-end: 1px;
+  }
+
+  .ui-option,
+  .ui-listbox-item {
+    min-height: 44px;
+    padding-block: 10px;
+    font-size: 14px;
+  }
+
+  .ui-airport-popover {
+    max-width: calc(100vw - 24px);
+    max-height: min(320px, calc(100dvh - 32px));
+  }
+
+  .ui-date-backdrop,
+  .ui-select-backdrop {
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    display: block;
+    overflow: hidden;
+    background: #172c4547;
+  }
+
+  /* ModalOverlay supplies dismissal, focus containment, and scroll locking. */
+  .ui-date-popover,
+  .ui-select-popover {
+    position: fixed !important;
+    z-index: 1001;
+    inset: auto 0 0 !important;
+    width: 100% !important;
+    max-width: none;
+    max-height: min(640px, calc(100dvh - env(safe-area-inset-top) - 16px)) !important;
+    margin: 0;
+    border: 0;
+    border-radius: 20px 20px 0 0;
+    outline: none;
+    background: #fff;
+    box-shadow: 0 -12px 40px #203a5814;
+    overscroll-behavior: contain;
+  }
+
+  .ui-date-popover[data-entering],
+  .ui-select-popover[data-entering] {
+    animation: ui-sheet-in var(--motion-enter) ease-out;
+  }
+
+  .ui-date-dialog {
+    max-width: 390px;
+    margin-inline: auto;
+    padding: 20px 16px 0;
+  }
+
+  .ui-calendar-header {
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+
+  .ui-calendar-period-trigger,
+  .ui-calendar-nav {
+    min-width: 44px;
+    min-height: 44px;
+    font-size: 14px;
+  }
+
+  .ui-calendar-cell {
+    max-width: 40px;
+    min-height: 40px;
+    font-size: 14px;
+  }
+
+  .ui-calendar-footer {
+    position: sticky;
+    bottom: 0;
+    padding-bottom: max(16px, env(safe-area-inset-bottom));
+  }
+
+  .ui-select-popover {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .ui-select-sheet-header {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 10px 4px 16px;
+    background: #fff;
+  }
+
+  .ui-select-sheet-title {
+    min-width: 0;
+    margin: 0;
+    color: var(--ink-control);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+  }
+
+  .ui-select-sheet-close {
+    flex-shrink: 0;
+  }
+
+  .ui-select-popover .ui-options-list {
+    min-height: 0;
+    max-height: min(480px, calc(100dvh - env(safe-area-inset-top) - 84px));
+    padding: 6px 12px calc(12px + env(safe-area-inset-bottom));
+    overflow: auto;
+    overscroll-behavior: contain;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ui-control { transition: none; }
+  .ui-popover[data-entering] { animation: none; }
+}
+
+@media (forced-colors: active) {
+  .ui-control { border-color: ButtonBorder; }
+  .ui-control:focus-within,
+  .ui-control:focus-visible { outline: 2px solid Highlight; box-shadow: none; }
+  .ui-calendar-cell[data-selected] { background: Highlight; color: HighlightText; forced-color-adjust: none; }
+  .ui-option[data-focus-visible],
+  .ui-listbox-item[data-focus-visible],
+  .ui-calendar-cell[data-focus-visible] { outline-color: Highlight; }
+}

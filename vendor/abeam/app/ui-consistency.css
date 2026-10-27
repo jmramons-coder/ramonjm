@@ -1,0 +1,126 @@
+/* Authoritative layout and interaction rules shared by all workspace views. */
+.product-shell .folder-mobile-list { display: none; }
+.product-shell .review-sticky-head {
+  --review-back-size: 32px;
+  --review-title-gap: 14px;
+}
+.product-shell .review-sticky-head .review-title-line { gap: var(--review-title-gap); }
+.product-shell .review-sticky-head .review-back-button { width: var(--review-back-size); flex: 0 0 var(--review-back-size); }
+.product-shell .review-sticky-head .review-step-nav {
+  display: flex; flex-flow: row nowrap; justify-content: flex-start; align-items: center;
+  width: calc(100% - var(--review-back-size) - var(--review-title-gap)); max-width: none;
+  margin: 0 0 0 calc(var(--review-back-size) + var(--review-title-gap)); padding: 0; gap: 20px;
+  overflow-x: auto; overscroll-behavior-inline: contain; scrollbar-width: none;
+  border: 0; border-bottom: 1px solid #edf0f4; border-radius: 0;
+}
+.product-shell .review-sticky-head .review-step-nav::-webkit-scrollbar { display: none; }
+.product-shell .review-sticky-head .review-step-nav button {
+  display: inline-flex; width: auto; min-width: 0; flex: 0 0 auto;
+  align-items: center; justify-content: flex-start; flex-direction: row;
+  min-height: 44px; padding: 10px 0; gap: 6px; line-height: 1.2; white-space: nowrap;
+  border-radius: 0; background: transparent; box-shadow: none;
+  color: #6a7b90; border-bottom: 2px solid transparent;
+}
+.product-shell .review-sticky-head .review-step-nav button[aria-pressed="true"] { color: var(--brand-dark); border-bottom-color: var(--brand); }
+.product-shell .review-sticky-head .review-tab-icon { display: flex; flex: 0 0 16px; align-items: center; justify-content: center; width: 16px; height: 16px; margin: 0; padding: 0; }
+.product-shell .review-sticky-head .review-tab-icon svg { display: block; width: 16px; height: 16px; margin: 0; color: currentColor; transform: none; }
+/* The desktop footer itself is the player surface, without a nested card. */
+.product-shell .review-content-grid:not(:has(> .rv-side-shell)) { grid-template-columns: minmax(0, 1fr); }
+.product-shell .review-content-grid > .brief-document { min-width: 0; }
+.product-shell .brief-document.is-transcript-view .conversation-table { width: 100%; max-width: 1180px; min-width: 0; margin-inline: auto; }
+.product-shell .sidebar-settings-button[aria-current="page"] { background: var(--brand-tint); color: var(--brand-dark); }
+.product-shell .email-preview { min-width: 0; }
+.product-shell .email-field input { min-width: 0; }
+.product-shell .client-summary-panel .share-actions { flex-wrap: wrap; }
+.product-shell .home-folder-row:hover, .product-shell .home-conversation-row:hover { transform: none; }
+.product-shell .review-step-nav button, .product-shell .mobile-nav-links button { transition: color var(--motion-interaction) ease, background-color var(--motion-interaction) ease, border-color var(--motion-interaction) ease; }
+@media (min-width: 801px) and (max-width: 1100px) {
+  .product-shell .home-panels { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .product-shell .dashboard-page { padding: 28px 24px 40px; }
+  .product-shell .home-page { padding-top: 28px; }
+  .product-shell .review-page { padding-inline: 24px; --workspace-gutter: 24px; }
+  .product-shell .brief-document.is-transcript-view .conversation-table-header,
+  .product-shell .brief-document.is-transcript-view .conversation-table-row { grid-template-columns: minmax(0, 1fr) 108px 60px 96px; gap: 10px; }
+  .product-shell .conversation-table-title { flex-wrap: wrap; min-width: 0; }
+}
+@media (max-width: 800px) {
+  .product-shell .clients-list-section .folder-mobile-list { display: grid; }
+  .product-shell .review-sticky-head { --review-back-size: 29px; --review-title-gap: 8px; }
+  .product-shell .review-sticky-head .review-step-nav { gap: 16px; }
+  .product-shell .review-sticky-head .review-step-nav button { font-size: 11px; }
+  .product-shell .mobile-nav-links button,
+  .product-shell .mobile-nav-links button.mobile-nav-center-action {
+    display: flex; align-items: center; justify-content: center; flex-direction: row;
+    width: 44px; min-width: 44px; height: 44px; min-height: 44px;
+    margin: 0; padding: 0; gap: 0; border: 0; border-radius: 12px;
+    background: transparent; color: #6a7b90; box-shadow: none;
+  }
+  .product-shell .mobile-nav-links button[aria-current="page"] { background: var(--brand-tint); color: var(--brand-dark); }
+  .product-shell .mobile-nav-links button:hover { background: #f2f6fb; }
+  .product-shell .mobile-nav-links button[aria-current="page"]:hover { background: var(--brand-tint); }
+  .product-shell .mobile-nav-links .mobile-nav-link-icon,
+  .product-shell .mobile-nav-links .mobile-nav-center-icon {
+    display: flex; align-items: center; justify-content: center;
+    width: 20px; height: 20px; min-width: 20px; margin: 0; padding: 0;
+    background: transparent; border: 0; border-radius: 0; box-shadow: none; color: inherit;
+  }
+  .product-shell .mobile-nav-links .mobile-nav-link-icon svg { width: 20px; height: 20px; display: block; margin: 0; color: currentColor; }
+  .product-shell .mobile-nav-center-action:hover .mobile-nav-center-icon { background: transparent; }
+  .product-shell .client-summary-panel .share-actions { justify-content: flex-start; gap: 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .product-shell .review-step-nav button, .product-shell .mobile-nav-links button { transition: none; }
+}
+
+/* Expanded desktop navigation keeps its labels even at tablet widths. */
+@media (min-width: 801px) and (max-width: 1100px) {
+  .product-shell:not(.sidebar-is-collapsed) .workspace-sidebar { align-items: stretch; }
+  .product-shell:not(.sidebar-is-collapsed) .sidebar-new-button { width: 100%; min-height: 40px; justify-content: flex-start; padding: 8px 10px; border-radius: var(--radius-control); }
+  .product-shell:not(.sidebar-is-collapsed) .sidebar-new-button > span,
+  .product-shell:not(.sidebar-is-collapsed) .sidebar-navigation button > span { display: inline-flex; }
+  .product-shell:not(.sidebar-is-collapsed) .sidebar-account-copy { display: grid; }
+  .product-shell:not(.sidebar-is-collapsed) .sidebar-navigation > button { justify-content: flex-start; }
+}
+.product-shell .review-title-copy h1 { overflow-wrap: anywhere; }
+.product-shell .rv-side-shell { background: #fff; }
+.product-shell .rv-side-shell .rv-pane-body { background: #fff; }
+.product-shell .rv-side-shell .rv-side-tabs { border-radius: 0; background: transparent; }
+.product-shell .rv-side-shell .rv-side-tabs button { border-radius: 0; border-bottom: 2px solid transparent; background: transparent; box-shadow: none; }
+.product-shell .rv-side-shell .rv-side-tabs button[aria-selected="true"] { border-bottom-color: var(--brand); color: var(--brand-dark); background: transparent; }
+.product-shell :is(.primary-button, .secondary-button, .rv-recap-empty-action) { border-radius: var(--radius-control); }
+
+.product-shell .workspace-sidebar .sidebar-navigation > button.active { background: var(--brand-tint); color: var(--brand-dark); }
+
+.product-shell .review-content-grid > .rv-side-shell { width: var(--review-side-width, 20vw); min-width: 280px; margin-inline: 0; }
+@media (max-width: 1200px) {
+  .product-shell .review-page { height: auto; block-size: auto; min-height: 100dvh; overflow: visible; }
+  .product-shell .review-content-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; flex: none; height: auto; block-size: auto; overflow: visible; }
+  .product-shell .review-content-grid > .brief-document { block-size: auto; height: auto; min-height: 0; overflow: visible; }
+  .product-shell .review-content-grid > .rv-side-shell { width: 100%; max-width: none; min-width: 0; min-height: 0; block-size: auto; border: 0; border-top: 1px solid #edf0f4; border-radius: 0; }
+  .product-shell .rv-side-shell .rv-side { block-size: auto; min-block-size: 0; }
+  .product-shell .rv-side-resizer { display: none; }
+}
+.product-shell .conversation-table-title > .session-lifecycle-tag { align-self: center; }
+
+.product-shell .search-field:focus-within { border-color: var(--brand); box-shadow: 0 0 0 2px var(--brand-tint); }
+.product-shell .search-field input:focus-visible { outline: none; }
+@media (max-width: 800px) {
+  .product-shell .client-create-page { padding-inline: 20px; }
+  .product-shell .client-create-content { width: 100%; padding: 0; margin-inline: 0; }
+  .product-shell .client-create-footer { padding-block: 0; }
+}
+
+.product-shell .folder-overview { padding-inline: 0; padding-block: 6px 16px; margin-bottom: 20px; }
+.product-shell .folder-overview > header { margin-bottom: 10px; }
+
+.product-shell .conversation-toolbar:has(.conversation-finish) .conversation-entry-controls { flex: 1 1 0; min-width: 44px; }
+.product-shell .conversation-entry-controls .conversation-back { max-width: min(150px, 100%); }
+.product-shell .conversation-capture-state { min-width: 0; overflow: visible; }
+.product-shell .conversation-finish { flex-shrink: 0; }
+.product-shell .review-step-nav button:focus-visible { outline-offset: -2px; }
+.product-shell .rv-side-resizer::after { background: transparent; }
+.product-shell .rv-side-resizer::before { opacity: 0; transition: opacity var(--motion-interaction) ease; }
+.product-shell .rv-side-resizer:hover::before,
+.product-shell .rv-side-resizer:focus-visible::before { opacity: 1; }
+@media (max-width: 1200px) { .product-shell .rv-side-shell .rv-side { border-inline-start: 0; } }
+@media (prefers-reduced-motion: reduce) { .product-shell .rv-side-resizer::before { transition: none; } }

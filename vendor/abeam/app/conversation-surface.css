@@ -1,0 +1,106 @@
+/* One surface through overscroll; only floating controls have their own fill. */
+html:has(.product-shell.view-recording .conversation-workspace),
+body:has(.product-shell.view-recording .conversation-workspace) {
+  background: var(--surface);
+}
+
+.product-shell.view-recording .conversation-workspace {
+  --conversation-surface: var(--surface);
+  background: var(--conversation-surface);
+}
+
+.product-shell.view-recording .conversation-workspace > .conversation-toolbar {
+  width: 100%;
+  border-bottom: 1px solid var(--line-control);
+  background: var(--conversation-surface);
+}
+
+.product-shell.view-recording .conversation-workspace .conversation-main {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+  min-width: 0;
+  min-height: 0;
+  background: var(--conversation-surface);
+}
+
+.product-shell.view-recording .conversation-main > .conversation-scroll-region {
+  position: relative;
+  z-index: 0;
+  grid-area: 1 / 1;
+  min-width: 0;
+  min-height: 0;
+  padding-bottom: calc(var(--conversation-composer-height, 144px) + var(--space-4));
+  scroll-padding-bottom: calc(var(--conversation-composer-height, 144px) + var(--space-4));
+  background: transparent;
+  overscroll-behavior-y: contain;
+}
+
+.product-shell.view-recording .conversation-main > .conversation-composer {
+  position: relative;
+  z-index: 30;
+  grid-area: 1 / 1;
+  align-self: end;
+  width: 100%;
+  min-width: 0;
+  max-width: none;
+  margin: 0;
+  padding: var(--space-2) var(--space-6) calc(var(--space-6) + env(safe-area-inset-bottom));
+  border: 0;
+  background: transparent;
+  isolation: isolate;
+  pointer-events: none;
+}
+
+.product-shell.view-recording .conversation-main > .conversation-composer::before {
+  position: absolute;
+  z-index: -1;
+  inset: calc(-1 * var(--space-9)) 0 0;
+  background: linear-gradient(to bottom, transparent 0%, color-mix(in srgb, var(--conversation-surface) 70%, transparent) 32%, var(--conversation-surface) 76%);
+  content: "";
+  pointer-events: none;
+}
+
+.product-shell.view-recording .conversation-composer > :is(.conversation-suggestion-island, .conversation-input-row, .conversation-engine) {
+  width: min(100%, 800px);
+  min-width: 0;
+  margin-inline: auto;
+  pointer-events: auto;
+}
+
+.product-shell.view-recording .conversation-composer > .conversation-input-row,
+.product-shell.view-recording .conversation-composer .conversation-island-trigger {
+  background: var(--surface);
+  box-shadow: var(--elev-1);
+}
+
+.product-shell.view-recording .conversation-workspace .conversation-pins {
+  border-inline-end: 1px solid var(--line-control);
+  background: var(--conversation-surface);
+}
+
+.product-shell.view-recording .conversation-workspace .conversation-pins-list {
+  background: var(--conversation-surface);
+  overscroll-behavior-y: contain;
+}
+
+@media (max-width: 1000px) {
+  .product-shell.view-recording .conversation-workspace .conversation-pins {
+    border-inline-end: 0;
+    border-bottom: 1px solid var(--line-control);
+  }
+}
+
+@media (max-width: 800px) {
+  .product-shell.view-recording .conversation-main > .conversation-composer {
+    padding-inline: var(--space-3);
+    padding-bottom: calc(var(--space-3) + env(safe-area-inset-bottom));
+  }
+}
+
+@media (max-height: 480px) {
+  .product-shell.view-recording .conversation-main > .conversation-composer {
+    padding-block: var(--space-1) calc(var(--space-2) + env(safe-area-inset-bottom));
+  }
+}

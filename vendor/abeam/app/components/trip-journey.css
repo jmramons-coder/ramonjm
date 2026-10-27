@@ -1,0 +1,620 @@
+.trip-journey {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  color: var(--ink-control);
+  background: var(--surface);
+}
+
+.trip-journey .trip-journey-heading {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--space-2);
+  min-height: 44px;
+  margin: 0 0 var(--space-2);
+}
+
+.trip-journey .trip-journey-heading h2 {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  color: var(--ink-list);
+  font-size: var(--text-md);
+  font-weight: var(--fw-medium);
+  line-height: var(--leading-snug);
+  overflow-wrap: anywhere;
+}
+
+.trip-journey .trip-journey-entry-actions {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.trip-journey .trip-journey-entry-actions {
+  flex-wrap: wrap;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.trip-journey button,
+.trip-journey a,
+.trip-journey-dialog button,
+.trip-journey-dialog input,
+.trip-journey-dialog textarea,
+.trip-journey-dialog select {
+  box-sizing: border-box;
+  font: inherit;
+}
+
+.trip-journey .trip-journey-icon-action,
+.trip-journey .trip-journey-offer-link,
+.trip-journey-dialog .trip-journey-close {
+  display: inline-flex;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-control);
+  color: var(--ink-secondary);
+  background: transparent;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.trip-journey .trip-journey-icon-action:hover:not(:disabled),
+.trip-journey .trip-journey-offer-link:hover,
+.trip-journey-dialog .trip-journey-close:hover:not(:disabled) {
+  color: var(--brand-contrast);
+  background: var(--surface-hover);
+}
+
+.trip-journey .trip-journey-retry,
+.trip-journey .trip-journey-start,
+.trip-journey-dialog .trip-journey-save,
+.trip-journey-dialog .trip-journey-cancel {
+  display: inline-flex;
+  min-width: 0;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  margin: 0;
+  padding: var(--space-2) var(--space-3);
+  border: 0;
+  border-radius: var(--radius-control);
+  font-size: var(--text-sm);
+  font-weight: var(--fw-medium);
+  line-height: var(--leading-snug);
+  cursor: pointer;
+}
+
+.trip-journey .trip-journey-retry {
+  flex: 0 0 auto;
+  align-self: center;
+  color: var(--brand-contrast);
+  background: var(--brand-wash);
+}
+
+.trip-journey .trip-journey-retry:hover:not(:disabled) {
+  background: var(--brand-tint);
+}
+
+.trip-journey .trip-journey-body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+}
+
+.trip-journey .trip-journey-cue,
+.trip-journey .trip-journey-status,
+.trip-journey .trip-journey-error {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: flex-start;
+  gap: var(--space-2);
+  margin: 0 0 var(--space-3);
+  font-size: var(--text-xs);
+  line-height: var(--leading-normal);
+  overflow-wrap: anywhere;
+}
+
+.trip-journey .trip-journey-cue,
+.trip-journey .trip-journey-status {
+  color: var(--ink-secondary);
+}
+
+.trip-journey .trip-journey-cue svg,
+.trip-journey .trip-journey-status svg,
+.trip-journey .trip-journey-error svg {
+  flex: 0 0 14px;
+  margin-top: 2px;
+}
+
+.trip-journey .trip-journey-cue[data-stale] {
+  color: var(--ink-control);
+}
+
+.trip-journey .trip-journey-error,
+.trip-journey-dialog .trip-journey-dialog-error {
+  color: var(--recording-indicator);
+}
+
+.trip-journey .trip-journey-empty {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: safe center;
+  justify-content: safe center;
+  gap: var(--space-3);
+  min-width: 0;
+  min-height: 0;
+  padding: var(--space-6) var(--space-3);
+  text-align: center;
+}
+
+.trip-journey .trip-journey-empty > svg {
+  color: var(--ink-secondary);
+}
+
+.trip-journey .trip-journey-empty p {
+  max-width: 28rem;
+  margin: 0;
+  color: var(--ink-secondary);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+}
+
+.trip-journey .trip-journey-empty .trip-journey-empty-title { color: var(--ink-control); font-weight: var(--fw-medium); }
+.trip-journey .trip-journey-empty .trip-journey-empty-hint { font-size: var(--text-xs); }
+.trip-journey .trip-journey-start { max-width: 100%; color: var(--brand-contrast); background: var(--brand-wash); }
+.trip-journey .trip-journey-start:hover { background: var(--brand-tint); }
+.trip-journey :is(.trip-journey-retry, .trip-journey-start) > svg { flex: 0 0 auto; }
+
+.trip-journey .trip-journey-groups,
+.trip-journey .trip-journey-entries {
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.trip-journey .trip-journey-group + .trip-journey-group {
+  margin-top: var(--space-5);
+}
+
+.trip-journey .trip-journey-phase {
+  margin: 0 0 var(--space-2);
+  color: var(--ink-secondary);
+  font-size: var(--text-xs);
+  font-weight: var(--fw-medium);
+  line-height: var(--leading-snug);
+}
+
+.trip-journey .trip-journey-entry {
+  position: relative;
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  column-gap: var(--space-2);
+  min-width: 0;
+  padding-bottom: var(--space-3);
+}
+
+.trip-journey .trip-journey-entry:not(:last-child)::before {
+  position: absolute;
+  z-index: 0;
+  top: 40px;
+  bottom: -4px;
+  left: 21px;
+  width: 1px;
+  background: var(--line-control);
+  content: "";
+}
+
+.trip-journey .trip-journey-marker {
+  position: relative;
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  color: var(--ink-secondary);
+}
+
+.trip-journey .trip-journey-checkbox {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  cursor: pointer;
+}
+
+.trip-journey .trip-journey-checkbox input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: var(--brand-contrast);
+  cursor: inherit;
+}
+
+.trip-journey .trip-journey-visual {
+  display: flex;
+  width: 34px;
+  height: 34px;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  color: var(--ink-secondary);
+}
+
+.trip-journey .trip-journey-visual img {
+  display: block;
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+.trip-journey .trip-journey-visual[data-hotel] img {
+  width: 34px;
+  height: 34px;
+  object-fit: cover;
+}
+
+.trip-journey .trip-journey-entry-copy {
+  min-width: 0;
+}
+
+.trip-journey .trip-journey-entry-title {
+  display: block;
+  min-width: 0;
+  width: 100%;
+  min-height: 44px;
+  margin: 0;
+  padding: var(--space-2) 0;
+  border: 0;
+  border-radius: var(--radius-sm);
+  color: var(--ink-list);
+  background: transparent;
+  font-size: var(--text-sm);
+  font-weight: var(--fw-medium);
+  line-height: var(--leading-normal);
+  text-align: start;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+}
+
+.trip-journey .trip-journey-entry-title:hover:not(:disabled) {
+  color: var(--brand-contrast);
+}
+
+.trip-journey .trip-journey-entry[data-done] .trip-journey-entry-title {
+  color: var(--ink-secondary);
+  text-decoration: line-through;
+}
+
+.trip-journey .trip-journey-entry-detail,
+.trip-journey .trip-journey-entry-labels {
+  margin: 0;
+  color: var(--ink-secondary);
+  font-size: var(--text-xs);
+  line-height: var(--leading-normal);
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.trip-journey .trip-journey-entry-labels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-2);
+  margin-top: var(--space-1);
+}
+
+.trip-journey .trip-journey-entry-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-1);
+  min-width: 0;
+  margin-top: var(--space-1);
+}
+
+.trip-journey .trip-journey-date-label {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  max-width: 100%;
+  min-width: 0;
+}
+
+.trip-journey .trip-journey-date-certainty {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-full);
+  background: var(--status-incertain-soft);
+  color: var(--ink-control);
+  font-size: var(--text-2xs);
+  font-weight: var(--fw-medium);
+}
+
+.trip-journey .trip-journey-date-certainty > svg {
+  flex: 0 0 auto;
+  color: var(--status-incertain);
+}
+
+.trip-journey .trip-journey-origin {
+  color: var(--ink-secondary);
+  font-size: var(--text-2xs);
+  line-height: var(--leading-normal);
+}
+
+.trip-journey .trip-journey-placeholder {
+  height: 44px;
+  margin: var(--space-2) 0;
+  border-radius: var(--radius-sm);
+  background: var(--surface-recessed);
+  animation: trip-journey-loading 1.8s ease-in-out infinite;
+}
+
+.trip-journey :is(button, a, input):focus-visible,
+.trip-journey-dialog :is(button, input, textarea, select):focus-visible {
+  outline: 2px solid var(--brand-contrast);
+  outline-offset: 2px;
+}
+
+.trip-journey button:disabled,
+.trip-journey-dialog :is(button, input, textarea, select):disabled {
+  opacity: .6;
+  cursor: default;
+}
+
+.trip-journey-dialog {
+  position: fixed;
+  inset: 0;
+  width: min(520px, calc(100% - 32px));
+  max-width: none;
+  max-height: calc(100dvh - 32px);
+  margin: auto;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--line-control);
+  border-radius: var(--radius-xl);
+  color: var(--ink-control);
+  background: var(--surface);
+  box-shadow: var(--elev-3);
+}
+
+.trip-journey-dialog[open] {
+  display: flex;
+  animation: trip-journey-enter var(--motion-enter) ease-out both;
+}
+
+.trip-journey-dialog::backdrop {
+  background: #152d4947;
+  backdrop-filter: blur(3px);
+}
+
+.trip-journey-dialog .trip-journey-close {
+  position: absolute;
+  z-index: 1;
+  top: var(--space-2);
+  right: var(--space-2);
+}
+
+.trip-journey-dialog .trip-journey-form {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  max-height: calc(100dvh - 32px);
+  margin: 0;
+  padding: 0;
+}
+
+.trip-journey-dialog .trip-journey-dialog-heading {
+  flex: 0 0 auto;
+  padding: var(--space-6) 64px var(--space-3) var(--space-6);
+}
+
+.trip-journey-dialog .trip-journey-dialog-heading h2 {
+  margin: 0;
+  color: var(--ink-list);
+  font-size: var(--text-lg);
+  font-weight: var(--fw-medium);
+  line-height: var(--leading-snug);
+  overflow-wrap: anywhere;
+}
+
+.trip-journey-dialog .trip-journey-dialog-heading p {
+  margin: var(--space-2) 0 0;
+  color: var(--ink-secondary);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+}
+
+.trip-journey-dialog .trip-journey-fields {
+  display: grid;
+  flex: 1 1 auto;
+  gap: var(--space-4);
+  min-width: 0;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: var(--space-2) var(--space-6) var(--space-5);
+}
+
+.trip-journey-dialog .trip-journey-field {
+  display: grid;
+  gap: var(--space-2);
+  min-width: 0;
+  margin: 0;
+  color: var(--ink-control);
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+}
+
+.trip-journey-dialog .trip-journey-field > span {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-1);
+}
+
+.trip-journey-dialog .trip-journey-field b {
+  color: var(--recording-indicator);
+  font-weight: inherit;
+}
+
+.trip-journey-dialog .trip-journey-field :is(input, textarea, select) {
+  min-width: 0;
+  width: 100%;
+  min-height: 44px;
+  margin: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--line-control);
+  border-radius: var(--radius-control);
+  color: var(--ink-control);
+  background: var(--surface);
+  font-size: var(--text-input);
+  line-height: var(--leading-snug);
+}
+
+.trip-journey-dialog .trip-journey-field textarea {
+  min-height: 88px;
+  resize: vertical;
+}
+
+.trip-journey-dialog .trip-journey-field :is(input, textarea)::placeholder {
+  color: var(--ink-secondary);
+  opacity: 1;
+}
+
+.trip-journey-dialog .trip-journey-form-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.trip-journey-dialog .trip-journey-bookmark-context {
+  margin: 0;
+  color: var(--ink-secondary);
+  font-size: var(--text-xs);
+  line-height: var(--leading-normal);
+  overflow-wrap: anywhere;
+}
+
+.trip-journey-dialog .trip-journey-dialog-error {
+  margin: 0;
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  overflow-wrap: anywhere;
+}
+
+.trip-journey-dialog .trip-journey-dialog-actions {
+  display: grid;
+  flex: 0 0 auto;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-6) var(--space-6);
+  background: var(--surface);
+}
+
+.trip-journey-dialog .trip-journey-save {
+  color: var(--on-solid);
+  background: var(--brand-contrast);
+}
+
+.trip-journey-dialog .trip-journey-save:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--brand-contrast) 90%, var(--ink-list));
+}
+
+.trip-journey-dialog .trip-journey-cancel {
+  color: var(--ink-control);
+  background: var(--surface-recessed);
+}
+
+.trip-journey-dialog .trip-journey-cancel:hover:not(:disabled) {
+  background: var(--surface-hover);
+}
+
+.trip-journey .trip-journey-spinning,
+.trip-journey-dialog .trip-journey-spinning {
+  flex: 0 0 auto;
+  animation: trip-journey-spin 1.4s linear infinite;
+}
+
+@media (max-width: 800px) {
+  .trip-journey { flex: none; overflow: visible; }
+  .trip-journey .trip-journey-body { flex: none; overflow: visible; overscroll-behavior-y: auto; }
+  .trip-journey .trip-journey-empty { box-sizing: border-box; min-height: 240px; border-radius: var(--radius-lg); background: var(--surface-subtle); }
+}
+
+@media (max-width: 600px) {
+  .trip-journey-dialog {
+    width: calc(100% - 24px);
+    max-height: calc(100dvh - 24px);
+  }
+
+  .trip-journey-dialog .trip-journey-form {
+    max-height: calc(100dvh - 24px);
+  }
+
+  .trip-journey-dialog .trip-journey-dialog-heading {
+    padding-left: var(--space-5);
+  }
+
+  .trip-journey-dialog .trip-journey-fields {
+    padding-inline: var(--space-5);
+  }
+
+  .trip-journey-dialog .trip-journey-dialog-actions {
+    padding-inline: var(--space-5);
+    padding-bottom: max(var(--space-5), env(safe-area-inset-bottom));
+  }
+}
+
+@media (max-width: 380px) {
+  .trip-journey-dialog .trip-journey-form-pair {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@keyframes trip-journey-loading {
+  50% { opacity: .55; }
+}
+
+@keyframes trip-journey-enter {
+  from { opacity: 0; transform: translateY(var(--space-1)); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes trip-journey-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trip-journey-dialog[open],
+  .trip-journey .trip-journey-placeholder,
+  .trip-journey .trip-journey-spinning,
+  .trip-journey-dialog .trip-journey-spinning {
+    animation: none;
+  }
+}

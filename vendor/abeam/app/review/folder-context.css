@@ -1,0 +1,392 @@
+/* The folder context is one flat rail: generated questions or a retained chat. */
+.rv-folder-context .rv-context-panel {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+}
+
+.rv-folder-context .rv-context-panel[hidden] {
+  display: none;
+}
+
+.product-shell .rv-side-shell.rv-folder-context {
+  min-height: 0;
+  border-inline-start: 1px solid var(--line-control);
+  background: var(--surface);
+}
+
+.product-shell .rv-side-shell.rv-folder-context .rv-side {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  border: 0;
+  border-radius: 0;
+  background: var(--surface);
+  box-shadow: none;
+}
+
+.product-shell .rv-folder-context .rv-side-head {
+  position: static;
+  flex: 0 0 auto;
+  padding: var(--space-4);
+  background: var(--surface);
+  backdrop-filter: none;
+}
+
+.product-shell .rv-side-shell.rv-folder-context .rv-side-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-1);
+  margin: 0;
+  padding: var(--space-1);
+  border: 0;
+  border-radius: var(--radius-lg);
+  background: var(--surface-subtle);
+  box-shadow: none;
+}
+
+.product-shell .rv-side-shell.rv-folder-context .rv-side-tabs button {
+  min-height: 44px;
+  padding: var(--space-2);
+  border: 0;
+  border-bottom: 0;
+  border-radius: var(--radius-control);
+  background: transparent;
+  color: var(--ink-secondary);
+  font-size: var(--text-sm);
+  font-weight: var(--fw-medium);
+  box-shadow: none;
+}
+
+.product-shell .rv-side-shell.rv-folder-context .rv-side-tabs button:hover {
+  background: var(--surface-hover);
+  color: var(--ink-control);
+}
+
+.product-shell .rv-side-shell.rv-folder-context .rv-side-tabs button[aria-selected="true"],
+.product-shell .rv-side-shell.rv-folder-context .rv-side-tabs button[aria-selected="true"]:hover {
+  background: var(--surface);
+  color: var(--brand-contrast);
+  box-shadow: none;
+}
+
+.product-shell .rv-side-shell.rv-folder-context .rv-side-tabs button > svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: currentColor;
+}
+
+.product-shell .rv-folder-context .rv-pane-body {
+  min-width: 0;
+  min-height: 0;
+  padding: 0 var(--space-4) var(--space-4);
+  background: var(--surface);
+}
+
+.product-shell .rv-folder-context .rv-clarify > .rv-pane-label {
+  display: none;
+}
+
+.product-shell .rv-folder-context .rv-clarify-list {
+  flex: 1 1 auto;
+  gap: 0;
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+}
+
+.product-shell .rv-folder-context .rv-clarify-list > li {
+  min-width: 0;
+  padding: var(--space-3) 0 var(--space-3) var(--space-4);
+  color: var(--ink-control);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  overflow-wrap: anywhere;
+}
+
+.product-shell .rv-folder-context .rv-clarify-list > li::before {
+  inset-inline-start: 0;
+  inset-block-start: calc(var(--space-3) + var(--space-2));
+  width: var(--space-1);
+  height: var(--space-1);
+  background: var(--brand-contrast);
+}
+
+.product-shell .rv-folder-context .rv-pane-empty {
+  min-block-size: 0;
+  place-content: start;
+  justify-items: start;
+  flex: 0 1 auto;
+  min-height: 0;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4) var(--space-5);
+  text-align: start;
+}
+
+.product-shell .rv-folder-context .rv-pane-empty-mark {
+  width: 20px;
+  height: 20px;
+  color: var(--ink-secondary);
+}
+
+.product-shell .rv-folder-context .rv-pane-empty-mark > svg {
+  width: 18px;
+  height: 18px;
+}
+
+.product-shell .rv-folder-context .rv-pane-empty strong {
+  color: var(--ink-control);
+  font-size: var(--text-sm);
+  font-weight: var(--fw-medium);
+}
+
+.product-shell .rv-folder-context .rv-pane-empty p,
+.product-shell .rv-folder-context .rv-agent-empty p,
+.product-shell .rv-folder-context .rv-agent-empty-hint {
+  max-width: 100%;
+  color: var(--ink-secondary);
+  font-size: var(--text-xs);
+  line-height: var(--leading-normal);
+}
+
+.product-shell .rv-folder-context .rv-context-action {
+  display: inline-flex;
+  align-items: center;
+  justify-self: start;
+  gap: var(--space-2);
+  min-height: 44px;
+  margin: 0;
+  padding: var(--space-1) 0;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--brand-contrast);
+  font: inherit;
+  font-size: var(--text-xs);
+  cursor: pointer;
+}
+
+.product-shell .rv-folder-context .rv-context-action:hover {
+  text-decoration: underline;
+  text-underline-offset: var(--space-1);
+}
+
+.product-shell .rv-folder-context .rv-agent {
+  gap: var(--space-3);
+}
+
+.product-shell .rv-folder-context .rv-agent-thread {
+  flex: 1 1 auto;
+  min-height: 0;
+  min-width: 0;
+  padding-inline-end: var(--space-1);
+  overscroll-behavior-y: contain;
+}
+
+.product-shell .rv-folder-context .rv-agent-msg {
+  flex: 0 0 auto;
+  align-self: flex-start;
+  width: fit-content;
+  max-width: calc(100% - var(--space-4));
+  min-width: 0;
+  margin-inline: 0;
+  padding: var(--space-2) var(--space-3);
+  border: 0;
+  border-radius: var(--radius-lg);
+  background: transparent;
+  box-shadow: none;
+}
+
+.product-shell .rv-folder-context .rv-agent-msg.is-agent {
+  align-self: flex-end;
+  margin-inline: 0;
+  background: var(--surface-subtle);
+}
+
+.product-shell .rv-folder-context .rv-agent-msg.is-nudge {
+  align-self: flex-start;
+  margin-inline: 0;
+  background: transparent;
+}
+
+.product-shell .rv-folder-context .rv-agent-msg.is-failed {
+  border: 0;
+  background: transparent;
+}
+
+.product-shell .rv-folder-context .rv-agent-msg-author {
+  display: block;
+  margin-bottom: var(--space-1);
+  color: var(--ink-secondary);
+  font-size: var(--text-2xs);
+  font-weight: var(--fw-medium);
+  line-height: var(--leading-normal);
+}
+
+.product-shell .rv-folder-context .rv-agent-empty {
+  min-block-size: 0;
+  place-content: start;
+  justify-items: start;
+  text-align: start;
+  min-height: 0;
+  padding: var(--space-3) 0;
+  gap: var(--space-2);
+}
+
+.product-shell .rv-folder-context .rv-agent-msg p {
+  color: var(--ink-control);
+  font-size: var(--text-base);
+}
+
+.product-shell .rv-folder-context .rv-relance-line {
+  color: var(--ink-control);
+  font-size: var(--text-sm);
+}
+
+.product-shell .rv-folder-context .rv-suggested {
+  border: 0;
+  background: transparent;
+}
+
+.product-shell .rv-folder-context .rv-suggested summary {
+  min-height: 44px;
+  padding-inline: 0;
+}
+
+.product-shell .rv-folder-context .rv-suggested-list {
+  max-width: 100%;
+  color: var(--ink-control);
+}
+
+.product-shell .rv-side-shell.rv-folder-context .rv-agent-form {
+  flex: 0 0 auto;
+  position: static;
+  min-height: 54px;
+  gap: var(--space-1);
+  margin: 0;
+  padding: var(--space-1);
+  border: 1px solid var(--line-control);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+}
+
+.product-shell .rv-side-shell.rv-folder-context .rv-agent-form input {
+  min-width: 0;
+  min-height: 44px;
+  padding-inline: var(--space-3);
+  color: var(--ink-control);
+  font-size: var(--text-sm);
+  border: 0;
+  background: transparent;
+}
+
+.product-shell .rv-side-shell.rv-folder-context .rv-agent-form button[type="submit"] {
+  width: 44px;
+  min-width: 44px;
+  height: 44px;
+  min-height: 44px;
+  flex-basis: 44px;
+  border: 0;
+  border-radius: var(--radius-circle);
+  color: var(--on-solid);
+  background: var(--brand-contrast);
+}
+
+.product-shell .rv-side-shell.rv-folder-context .rv-agent-form button[type="submit"]:disabled {
+  color: var(--ink-secondary);
+  background: var(--surface-recessed);
+}
+
+.product-shell .rv-folder-context :is(.rv-side-tabs button, .rv-context-action, .rv-agent-form button, .rv-suggested summary):focus-visible {
+  outline: 2px solid var(--brand-contrast);
+  outline-offset: 2px;
+}
+
+.product-shell .rv-folder-context .rv-context-panel:focus-visible {
+  outline: 2px solid var(--brand-contrast);
+  outline-offset: -2px;
+}
+
+@media (max-width: 1200px) {
+  .product-shell .review-content-grid > .rv-side-shell.rv-folder-context {
+    display: flex;
+    flex: 0 0 auto;
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    height: auto;
+    block-size: auto;
+    min-height: 0;
+    border: 0;
+    border-top: 1px solid var(--line-control);
+  }
+
+  .product-shell .rv-side-shell.rv-folder-context .rv-side {
+    position: static;
+    width: 100%;
+    height: auto;
+    block-size: auto;
+    min-height: 0;
+    max-height: none;
+  }
+
+  .product-shell .rv-folder-context .rv-side-resizer {
+    display: none;
+  }
+
+  .product-shell .rv-folder-context .rv-context-panel {
+    flex: 0 0 auto;
+    height: auto;
+    block-size: auto;
+    min-height: 0;
+  }
+
+  .product-shell .rv-folder-context .rv-agent {
+    height: 420px;
+    max-height: min(520px, 70dvh);
+    min-height: 280px;
+  }
+}
+
+@media (max-width: 800px) {
+  .product-shell .rv-folder-context .rv-side-head {
+    padding-inline: 0;
+  }
+
+  .product-shell .rv-folder-context .rv-pane-body {
+    padding-inline: 0;
+  }
+
+  .product-shell .rv-side-shell.rv-folder-context .rv-agent-form input {
+    font-size: var(--text-input);
+  }
+}
+
+@media (max-height: 480px) and (max-width: 1200px) {
+  .product-shell .rv-folder-context .rv-agent {
+    height: auto;
+    min-height: 0;
+    max-height: none;
+  }
+
+  .product-shell .rv-folder-context .rv-agent-thread {
+    flex: 0 0 auto;
+    max-height: 45dvh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .product-shell .rv-folder-context .rv-side-tabs button,
+  .product-shell .rv-folder-context .rv-side-resizer::before,
+  .product-shell .rv-folder-context .rv-side-resizer::after {
+    transition: none;
+  }
+}

@@ -1,0 +1,55 @@
+.filing-dialog { position: fixed; inset: 0; width: min(560px, calc(100vw - 40px)); max-width: none; max-height: calc(100dvh - 48px); margin: auto; padding: 0; overflow: hidden; border: 1px solid #e4eaf2; border-radius: 18px; color: #26374b; background: #fff; box-shadow: 0 24px 90px #17345330; }
+.filing-dialog[open] { display: flex; flex-direction: column; }
+.filing-dialog::backdrop { background: #142b4a54; backdrop-filter: blur(4px); }
+.filing-dialog :is(button, input) { font-family: inherit; }
+.filing-close { position: absolute; top: 12px; right: 12px; z-index: 1; display: grid; place-items: center; width: 36px; height: 36px; margin: 0; padding: 0; border: 0; border-radius: 8px; color: #6d859d; background: transparent; cursor: pointer; }
+.filing-close:hover { color: #2875c2; background: #edf5fc; }
+.filing-close:active { background: #e4effb; }
+.filing-heading { flex-shrink: 0; padding: 26px 58px 20px 24px; }
+.filing-heading h2 { margin: 0; font-size: 21px; font-weight: 500; line-height: 1.3; letter-spacing: -.025em; }
+.filing-heading p { margin: 7px 0 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #61758c; font-size: 12px; line-height: 1.5; }
+.filing-tabs { flex-shrink: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 0 24px; border-bottom: 1px solid #e8edf4; }
+.filing-tabs button { min-width: 0; min-height: 42px; margin: 0; padding: 9px 10px; border: 0; border-bottom: 2px solid transparent; border-radius: 7px 7px 0 0; color: #62768e; background: transparent; font-size: 13px; cursor: pointer; }
+.filing-tabs button[aria-selected="true"] { border-bottom-color: var(--brand); background: var(--brand-wash); color: #176cc4; }
+.filing-choice-panel { min-width: 0; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 18px 24px 12px; }
+.filing-choice-panel[hidden] { display: none; }
+.filing-search { display: flex; align-items: center; gap: 8px; height: 42px; padding: 0 12px; border: 1px solid #e1e8f0; border-radius: 8px; background: #fff; color: #6d859d; }
+.filing-search > svg { flex: 0 0 16px; }
+.filing-dialog .filing-search input { flex: 1; min-width: 0; width: 100%; height: 100%; min-height: 0; margin: 0; padding: 0; border: 0; border-radius: 0; outline: 0; background: transparent; box-shadow: none; color: #26374b; font-size: 13px; }
+.filing-search:focus-within { outline: 2px solid var(--brand); outline-offset: 2px; }
+.filing-folders { display: grid; gap: 3px; margin: 12px 0 0; padding: 0; list-style: none; }
+.filing-folders > li { min-width: 0; }
+.filing-folder { display: flex; align-items: center; gap: 12px; width: 100%; min-width: 0; min-height: 58px; margin: 0; padding: 10px 8px; border: 0; border-radius: 8px; background: transparent; color: #293e55; text-align: left; cursor: pointer; }
+.filing-folder:hover { background: #f2f7fd; }
+.filing-folder-icon { flex: 0 0 18px; margin: 0; padding: 0; border: 0; border-radius: 0; background: transparent; color: #7188a1; }
+.filing-folder > span { display: grid; flex: 1; gap: 4px; min-width: 0; }
+.filing-folder strong { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 13px; font-weight: 500; line-height: 1.5; }
+.filing-folder small { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #62768b; font-size: 11px; line-height: 1.4; }
+.filing-folder > svg:last-child { flex: 0 0 15px; color: #8194a9; }
+.filing-empty { margin: 20px 4px; color: #62768b; font-size: 13px; line-height: 1.6; }
+.filing-form { display: grid; gap: 18px; }
+.filing-field { display: grid; min-width: 0; gap: 7px; }
+.filing-field > span { display: inline-flex; align-items: baseline; justify-content: flex-start; color: #53677f; font-size: 12px; line-height: 1.5; }
+.filing-field b { margin-left: 2px; color: #bf525a; font-size: 12px; font-weight: 500; }
+.filing-field input { width: 100%; min-width: 0; height: 42px; margin: 0; padding: 9px 11px; border: 1px solid #e1e8f0; border-radius: 8px; background: #fff; color: #26374b; font-size: 13px; box-shadow: none; }
+.filing-field-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.filing-save { min-height: 42px; margin: 2px 0 0; padding: 10px 16px; border: 0; border-radius: 8px; background: var(--brand); color: #fff; font-size: 13px; font-weight: 500; cursor: pointer; }
+.filing-save:hover:not(:disabled) { background: #1678e9; }
+.filing-save:disabled { opacity: .5; cursor: default; }
+.filing-footer { flex-shrink: 0; display: flex; justify-content: flex-end; gap: 8px; padding: 12px 24px 18px; background: #fff; }
+.filing-later { min-height: 36px; margin: 0; padding: 8px 10px; border: 0; border-radius: 8px; background: transparent; color: #61758c; font-size: 12px; cursor: pointer; }
+.filing-later:hover { background: #f2f6fb; color: #236fbe; }
+.filing-dialog :is(button, .filing-field input):focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+@media (max-width: 800px) {
+  .filing-dialog { width: calc(100vw - 24px); max-height: calc(100dvh - 24px); border-radius: 18px; }
+  .filing-close { top: 8px; right: 8px; width: 44px; height: 44px; }
+  .filing-heading { padding: 24px 56px 18px 20px; }
+  .filing-heading h2 { font-size: 20px; }
+  .filing-tabs { margin-inline: 20px; }
+  .filing-tabs button { min-height: 44px; font-size: 12px; }
+  .filing-choice-panel { padding: 16px 20px 12px; }
+  .filing-dialog .filing-search input, .filing-field input { font-size: 16px; }
+  .filing-search, .filing-field input, .filing-save, .filing-later { min-height: 44px; }
+  .filing-field-pair { grid-template-columns: 1fr; }
+  .filing-footer { padding: 8px 20px 14px; }
+}

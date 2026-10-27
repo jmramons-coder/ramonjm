@@ -1,0 +1,91 @@
+/* Wide-screen comfort uses typography and layout, preserving native browser zoom
+   and the viewport coordinates used by sticky, recording and portal surfaces. */
+@media (min-width: 1280px) {
+  .product-shell { font-size: var(--text-base); }
+  .product-shell:not(.sidebar-is-collapsed) { --workspace-sidebar-width: var(--sidebar-width); }
+
+  /* Navigation icons and their wrappers scale together. */
+  .product-shell .workspace-sidebar :is(.sidebar-navigation > button, .sidebar-find, .sidebar-new-button, .sidebar-settings-button) { min-height: 44px; font-size: var(--text-sm); }
+  .product-shell .workspace-sidebar .sidebar-navigation > button { gap: var(--space-3); padding-block: var(--space-2); }
+  .product-shell .workspace-sidebar .sidebar-nav-icon { flex: 0 0 22px; width: 22px; height: 22px; }
+  .product-shell .workspace-sidebar .sidebar-nav-icon > svg { display: block; width: 22px; height: 22px; }
+  .product-shell .workspace-sidebar :is(.sidebar-find, .sidebar-new-button, .sidebar-settings-button) > svg { width: 20px; height: 20px; }
+  .product-shell .workspace-sidebar .sidebar-account-copy strong { font-size: var(--text-sm); }
+  .product-shell .workspace-sidebar .sidebar-account-copy small { font-size: var(--text-xs); }
+
+  /* Activity stays compact while names and supporting details become readable. */
+  .product-shell .home-page .home-welcome h1 { font-size: var(--text-2xl); }
+  .product-shell .home-page .home-welcome > div > span,
+  .product-shell .home-page .home-start-copy p { font-size: var(--text-base); }
+  .product-shell .home-page .home-panels .home-panel-heading h2 { font-size: var(--text-base); }
+  .product-shell .home-page .home-panels :is(.folder-list-name, .home-conversation-title) { font-size: var(--text-sm); }
+  .product-shell .home-page .home-panels :is(.folder-list-tag, .home-conversation-subtitle, .home-conversation-date, .session-lifecycle-tag) { font-size: var(--text-xs); }
+  .product-shell .home-page .home-panels :is(.folder-list-item-compact, .home-conversation-item) { min-height: var(--row-height); }
+  .product-shell .home-page .home-panels :is(.home-list-asset, .home-conversation-asset) { width: 24px; height: 24px; }
+  .product-shell .home-page .home-panels :is(.home-list-asset, .home-conversation-asset) > svg { width: 20px; height: 20px; }
+  .product-shell .home-page .home-panels .folder-list-item-compact { grid-template-columns: 24px minmax(0, 1fr) auto; }
+  .product-shell .home-page .home-panels .home-conversation-item { grid-template-columns: 24px minmax(0, 1fr); }
+  .product-shell .home-page .home-panels .home-research-switch button { min-height: 40px; font-size: var(--text-xs); }
+  .product-shell .home-page .home-panels .home-research-search { flex-basis: 40px; width: 40px; height: 40px; }
+  .product-shell .home-page .home-panels .home-research-row-heading strong { font-size: var(--text-sm); }
+  .product-shell .home-page .home-panels :is(.home-research-row-heading b, .home-research-detail, .home-research-provenance, .home-research-empty p) { font-size: var(--text-xs); }
+
+  /* Folder directory and view navigation keep the existing reading widths. */
+  .product-shell .clients-heading h1,
+  .product-shell .client-create-intro h1 { font-size: var(--text-2xl); }
+  .product-shell .clients-heading p,
+  .product-shell .client-create-intro > span { font-size: var(--text-sm); }
+  .product-shell .clients-list-section .folder-directory thead th { font-size: var(--text-xs); }
+  .product-shell .clients-list-section .folder-directory tbody td { padding-block: var(--space-2); font-size: var(--text-sm); }
+  .product-shell .clients-list-section .folder-directory .folder-directory-open > svg { flex-basis: 20px; width: 20px; height: 20px; }
+  .product-shell .review-page .review-sticky-head .review-step-nav button { min-height: 48px; font-size: var(--text-sm); }
+  .product-shell .review-page .review-sticky-head .review-tab-icon { flex-basis: 20px; width: 20px; height: 20px; }
+  .product-shell .review-page .review-sticky-head .review-tab-icon > svg { width: 20px; height: 20px; }
+
+  /* Legacy fixed sizes use the same scale as the newer token-based components. */
+  .product-shell :is(.primary-button, .secondary-button, .rv-recap-empty-action, .home-start-button) { min-height: 44px; font-size: var(--text-sm); }
+  .product-shell .dashboard-page .search-field { min-height: 44px; }
+  .product-shell .dashboard-page .search-field input { font-size: var(--text-sm); }
+  .product-shell .workspace-empty-state .workspace-empty-state-copy > .ab-empty-title { font-size: var(--text-md); }
+  .product-shell .workspace-empty-state .workspace-empty-state-copy > .ab-empty-text { font-size: var(--text-sm); }
+  .product-shell .workspace-empty-state .workspace-empty-state-action { min-height: 44px; font-size: var(--text-sm); }
+  .product-shell .email-preview .email-field input { min-height: 44px; font-size: var(--text-input); }
+  .product-shell .email-preview textarea { font-size: var(--text-base); }
+  .product-shell .client-create-form .client-form-field > span { font-size: var(--text-sm); }
+  .product-shell .client-create-form .client-form-field :is(input, textarea) { font-size: var(--text-input); }
+  .product-shell .conversation-workspace :is(.conversation-back, .conversation-finish, .conversation-start-label) { font-size: var(--text-sm); }
+  .product-shell .conversation-workspace .conversation-input-row input { font-size: var(--text-input); }
+  .product-shell .conversation-workspace .conversation-capture-state { font-size: var(--text-xs); }
+  .product-shell .flight-offer-row .flight-offer-copy strong { font-size: var(--text-base); }
+  .product-shell .flight-offer-row .flight-offer-copy > span { font-size: var(--text-sm); }
+  .product-shell .flight-offer-row .flight-offer-price { font-size: var(--text-md); }
+  .product-shell .flight-offer-row.is-compact .flight-offer-copy strong,
+  .product-shell .flight-offer-row.is-compact .flight-offer-price { font-size: var(--text-sm); }
+  .product-shell .flight-offer-row.is-compact .flight-offer-price { max-width: 104px; }
+  .product-shell .flight-offer-row.is-compact .flight-offer-copy > span { font-size: var(--text-xs); }
+
+  /* The wider form accommodates larger editable text and paired date fields. */
+  .product-shell .explore-content .explore-layout { grid-template-columns: 336px minmax(0, 1fr); }
+  .product-shell .explore-content .explore-page-heading h1 { font-size: var(--text-2xl); }
+  .product-shell .explore-content :is(.explore-page-heading p, .explore-form-heading h2, .explore-kinds button, .explore-more-options summary, .explore-submit) { font-size: var(--text-sm); }
+  .product-shell .explore-content :is(.explore-form-note, .explore-validation-message, .explore-context-copy > span, .explore-context-facts, .explore-product-section > h3, .explore-list-copy > span, .explore-list-price.is-unavailable, .explore-price-notes, .explore-usage) { font-size: var(--text-xs); }
+  .product-shell .explore-content .explore-context-copy h2 { font-size: var(--text-lg); }
+  .product-shell .explore-content :is(.explore-list-copy strong, .explore-list-price) { font-size: var(--text-sm); }
+  .product-shell .explore-content .explore-empty h3 { font-size: var(--text-base); }
+  .product-shell .explore-content .explore-empty p { font-size: var(--text-sm); }
+  .product-shell .explore-content :is(.explore-submit, .explore-context-action, .explore-empty button) { min-height: 44px; font-size: var(--text-sm); }
+
+  /* Root scoping reaches calendars, menus and drawers rendered in portals. */
+  :root:has(.product-shell) :is(.ui-field-label, .ui-option, .ui-listbox-item, .ui-calendar-period-trigger, .ui-calendar-cell, .ui-calendar-clear, .ui-calendar-close) { font-size: var(--text-sm); }
+  :root:has(.product-shell) :is(.ui-field-hint, .ui-field-description, .ui-field-error, .ui-option-code, .ui-options-empty, .ui-calendar-weekday) { font-size: var(--text-xs); }
+  :root:has(.product-shell) .ui-control { min-height: 48px; font-size: var(--text-input); }
+  :root:has(.product-shell) :is(.ui-calendar-period-trigger, .ui-calendar-nav, .ui-option, .ui-listbox-item) { min-height: 44px; }
+  :root:has(.product-shell) .ui-date-popover { width: 360px; max-width: calc(100vw - var(--space-6)); }
+  :root:has(.product-shell) .ui-calendar-cell { max-width: 44px; min-height: 44px; }
+  :root:has(.product-shell) .filing-dialog :is(.filing-tabs button, .filing-folder strong, .filing-empty, .filing-field > span, .filing-save, .filing-later) { font-size: var(--text-sm); }
+  :root:has(.product-shell) .filing-dialog :is(.filing-heading p, .filing-folder small) { font-size: var(--text-xs); }
+  :root:has(.product-shell) .filing-dialog :is(.filing-search input, .filing-field input) { font-size: var(--text-input); }
+  :root:has(.product-shell) .filing-dialog :is(.filing-search, .filing-field input, .filing-save, .filing-later) { min-height: 44px; }
+  :root:has(.product-shell) .explore-detail-drawer :is(.explore-detail-header > span, .explore-detail-location, .explore-detail-description, .explore-detail-facts dd, .explore-detail-scope p, .explore-detail-amenities li, .explore-detail-flight-route p, .explore-detail-actions a, .explore-detail-copy) { font-size: var(--text-sm); }
+  :root:has(.product-shell) .explore-detail-drawer :is(.explore-detail-provenance, .explore-detail-gallery-nav > span, .explore-detail-flight-route small, .explore-detail-flight-route span, .explore-detail-leg-duration, .explore-detail-leg-label, .explore-detail-hotel-quality, .explore-detail-facts dt, .explore-detail-scope > span, .explore-detail-price > span, .explore-detail-footer p, .explore-detail-footer-inner > span) { font-size: var(--text-xs); }
+}

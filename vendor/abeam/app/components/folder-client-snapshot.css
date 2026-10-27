@@ -1,0 +1,29 @@
+/* Overview owns the trip facts. Only mobile adds the client identity above them. */
+.product-shell .folder-client-snapshot { display: none; }
+
+@media (min-width: 801px) {
+  .product-shell .folder-client-snapshot { display: grid; min-width: 0; }
+  .product-shell .folder-client-snapshot:not([data-has-facts]) { display: none; }
+  .product-shell .folder-client-snapshot .folder-client-snapshot-identity { display: none; }
+}
+
+@media (max-width: 800px) {
+  .product-shell .folder-client-snapshot {
+    display: grid;
+    gap: var(--space-4);
+    min-width: 0;
+    margin: 0;
+    padding: var(--space-4);
+    border: 1px solid var(--line-control);
+    border-radius: var(--radius-lg);
+    background: var(--surface-subtle);
+  }
+  .product-shell .folder-client-snapshot .folder-client-snapshot-identity { display: grid; grid-template-columns: 32px minmax(0, 1fr); align-items: center; gap: var(--space-2); min-width: 0; }
+  .product-shell .folder-client-snapshot .folder-client-snapshot-avatar { display: grid; width: 32px; height: 32px; place-items: center; border: 1px solid var(--brand-line); border-radius: var(--radius-circle); background: var(--brand-wash); color: var(--brand-contrast); font-size: var(--text-xs); font-weight: var(--fw-medium); line-height: 1; }
+  .product-shell .folder-client-snapshot .folder-client-snapshot-avatar > svg { display: block; }
+  .product-shell .folder-client-snapshot .folder-client-snapshot-copy { display: grid; min-width: 0; gap: 0; }
+  .product-shell .folder-client-snapshot .folder-client-snapshot-label { color: var(--ink-secondary); font-size: var(--text-2xs); font-weight: var(--fw-regular); line-height: var(--leading-snug); }
+  .product-shell .folder-client-snapshot .folder-client-snapshot-name { min-width: 0; overflow: hidden; color: var(--ink-list); font-size: var(--text-sm); font-weight: var(--fw-medium); line-height: var(--leading-snug); text-overflow: ellipsis; white-space: nowrap; }
+  .product-shell .folder-client-snapshot .folder-client-snapshot-facts { min-width: 0; }
+  .product-shell .folder-client-snapshot .folder-facts { margin: 0; padding: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
+}

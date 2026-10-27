@@ -1,0 +1,126 @@
+/* Unfiled recordings have conversation chrome, without a folder workspace. */
+.product-shell .unfiled-conversation-page {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  flex-direction: column;
+  overflow: hidden;
+  background: #fff;
+}
+.product-shell .unfiled-conversation-header {
+  position: sticky;
+  z-index: 10;
+  top: var(--workspace-header-height, 0px);
+  flex: 0 0 auto;
+  min-width: 0;
+  padding-block: 6px 12px;
+  background: #fff;
+}
+.product-shell .unfiled-back-link {
+  display: inline-flex;
+  min-height: 36px;
+  align-items: center;
+  margin-bottom: 4px;
+  color: #738297;
+  font-size: 12px;
+  line-height: 1.4;
+  text-decoration: none;
+}
+.product-shell .unfiled-back-link:hover { color: var(--brand-dark); text-decoration: underline; text-underline-offset: 3px; }
+.product-shell .unfiled-heading-row { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; min-width: 0; gap: 4px 18px; }
+.product-shell .unfiled-heading-copy { flex: 1 1 240px; min-width: 0; }
+.product-shell .unfiled-heading-copy h1,
+.product-shell .unfiled-list-heading h1 { margin: 0; color: #25374b; font-size: 22px; font-weight: 500; line-height: 1.35; letter-spacing: -.025em; overflow-wrap: anywhere; }
+.product-shell .unfiled-conversation-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin-top: 7px; color: #738297; font-size: 12px; line-height: 1.5; }
+.product-shell .unfiled-reference { margin-top: 6px; color: #627487; font-size: 10px; line-height: 1.5; }
+.product-shell .unfiled-reference summary { width: fit-content; min-height: 24px; cursor: pointer; }
+.product-shell .unfiled-reference summary:hover { color: #216bb5; }
+.product-shell .unfiled-reference summary:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; border-radius: 3px; }
+.product-shell .unfiled-identifier { display: block; margin: 4px 0 0; color: var(--ink-secondary); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; font-weight: 400; letter-spacing: 0; line-height: 1.5; overflow-wrap: anywhere; }
+.product-shell .unfiled-conversation-meta .session-lifecycle-tag { align-self: center; margin: 0; }
+.product-shell .unfiled-duration { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.product-shell .unfiled-file-action { display: inline-flex; flex: 0 0 auto; min-height: 44px; align-items: center; justify-content: flex-start; margin: 0; padding: 8px 0; border: 0; border-radius: 6px; background: transparent; color: #2675c7; font-size: 12px; font-weight: 500; line-height: 1.5; cursor: pointer; }
+.product-shell .unfiled-file-action:hover { color: #1765b7; text-decoration: underline; text-underline-offset: 3px; }
+.product-shell .unfiled-file-label-compact { display: none; }
+.product-shell .unfiled-heading-actions { display: flex; flex: 0 0 auto; align-items: center; gap: var(--space-2); min-width: 0; }
+.product-shell .unfiled-file-action:disabled { color: var(--ink-secondary); opacity: 1; cursor: default; text-decoration: none; }
+.product-shell .unfiled-delete-action { display: grid; flex: 0 0 44px; width: 44px; height: 44px; min-height: 44px; place-items: center; margin: 0; padding: 0; border: 0; border-radius: var(--radius-control); background: transparent; color: var(--ink-secondary); cursor: pointer; }
+.product-shell .unfiled-delete-action > svg { display: block; }
+.product-shell :is(.unfiled-delete-action, .unfiled-delete-all):hover:not(:disabled) { background: var(--status-contradiction-soft); color: color-mix(in srgb, var(--status-contradiction) 65%, var(--ink-control)); }
+.product-shell :is(.unfiled-delete-action, .unfiled-delete-all):disabled { color: var(--ink-secondary); opacity: 1; cursor: not-allowed; }
+.product-shell :is(.unfiled-delete-action, .unfiled-delete-all)[aria-busy="true"] { cursor: progress; }
+.product-shell .unfiled-audio-slot { min-width: 0; margin-top: 14px; border-top: 1px solid #e7edf4; }
+.product-shell .unfiled-audio-slot .ab-dock { display: grid; width: 100%; min-width: 0; min-height: 56px; grid-template-columns: auto minmax(0, 1fr) auto 48px; align-items: center; gap: 8px; padding: 6px 0; border: 0; border-radius: 0; background: #fff; box-shadow: none; }
+.product-shell .unfiled-audio-slot .ab-dock-title,
+.product-shell .unfiled-audio-slot .ab-dock-speeds { display: none; }
+.product-shell .unfiled-audio-slot .ab-dock-transport { grid-column: 1; grid-row: 1; display: flex; flex-wrap: nowrap; width: auto; gap: 4px; }
+.product-shell .unfiled-audio-slot .ab-dock-transport .ab-icon-button { display: grid; width: 36px; min-width: 36px; height: 36px; min-height: 36px; flex: 0 0 36px; place-items: center; margin: 0; padding: 0; }
+.product-shell .unfiled-audio-slot .ab-dock-scrub { grid-column: 2; grid-row: 1; width: 100%; min-width: 0; height: 44px; min-height: 44px; margin: 0; }
+.product-shell .unfiled-audio-slot .ab-dock-time { grid-column: 3; grid-row: 1; justify-self: end; font-size: 11px; }
+.product-shell .unfiled-audio-slot .ab-dock-speed-select { grid-column: 4; grid-row: 1; display: block; width: 48px; min-width: 0; height: 36px; padding: 0 4px; border: 0; border-radius: 7px; background: #f5f8fc; color: #61758c; font-size: 12px; }
+.product-shell .unfiled-audio-slot .ab-dock-message { grid-column: 1 / -1; color: #718096; font-size: 12px; line-height: 1.6; }
+.product-shell .unfiled-audio-slot .ab-dock[data-state="empty"] > .ab-icon { display: none; }
+.product-shell .unfiled-feedback { margin-top: 8px; color: #718096; font-size: 12px; line-height: 1.6; }
+.product-shell .unfiled-feedback > :first-child { margin-top: 0; }
+.product-shell .unfiled-feedback > :last-child { margin-bottom: 0; }
+.product-shell .unfiled-transcript-slot { flex: 1 1 auto; min-width: 0; min-height: 0; overflow-y: auto; overscroll-behavior-y: contain; padding-block: 8px 24px; scrollbar-gutter: stable; }
+.product-shell .unfiled-transcript-slot > :first-child { margin-top: 0; }
+.product-shell .unfiled-transcript-slot .conversation-detail-transcript { min-height: 0; height: auto; block-size: auto; overflow: visible; padding: 0; }
+.product-shell .unfiled-conversation-list-page { flex: 1 1 auto; min-width: 0; min-height: 0; overflow-y: auto; overscroll-behavior-y: contain; padding-block: 6px 24px; background: #fff; }
+.product-shell .unfiled-list-heading { position: sticky; top: 0; z-index: 10; padding-block: 4px 12px; margin-bottom: 8px; background: #fff; }
+.product-shell .unfiled-conversation-list { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.product-shell .unfiled-conversation-list > li { display: grid; grid-template-columns: minmax(0, 1fr) 15px; align-items: center; gap: 10px; min-width: 0; padding-inline: 12px; border-radius: var(--radius-row); background: var(--surface-subtle); }
+.product-shell .unfiled-conversation-list > li[data-has-delete] { grid-template-columns: minmax(0, 1fr) 44px 15px; }
+.product-shell .unfiled-conversation-list > li:hover { background: var(--surface-hover); }
+.product-shell .unfiled-list-row { display: grid; grid-column: 1 / -1; grid-row: 1; width: 100%; min-width: 0; min-height: 60px; grid-template-columns: 22px minmax(0, 1fr) auto 15px; align-items: center; gap: 10px; padding: 10px 0; border: 0; border-radius: var(--radius-row); color: #2b3f54; background: transparent; text-align: left; cursor: pointer; }
+.product-shell .unfiled-conversation-list > li[data-has-delete] > .unfiled-list-row { grid-template-columns: 22px minmax(0, 1fr) auto 44px 15px; }
+.product-shell .unfiled-conversation-list > li > .unfiled-delete-action { grid-column: -3 / -2; grid-row: 1; z-index: 1; }
+.product-shell .unfiled-list-row:hover { background: transparent; }
+.product-shell .unfiled-list-row:disabled { opacity: 1; cursor: default; }
+.product-shell .unfiled-list-back { display: inline-flex; align-items: center; gap: var(--space-2); min-height: 44px; margin: 0 0 var(--space-1); padding: var(--space-2) 0; border: 0; border-radius: var(--radius-sm); background: transparent; color: var(--ink-secondary); font: inherit; font-size: var(--text-sm); cursor: pointer; }
+.product-shell .unfiled-list-back > svg { display: block; flex-shrink: 0; }
+.product-shell .unfiled-list-back:hover { color: var(--brand-contrast); }
+.product-shell .unfiled-list-heading-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--space-2) var(--space-3); min-width: 0; }
+.product-shell .unfiled-list-heading-row h1 { flex: 1 1 auto; min-width: 0; }
+.product-shell .unfiled-delete-all { display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; gap: var(--space-2); min-width: 44px; min-height: 44px; margin: 0; padding: var(--space-2) var(--space-3); border: 0; border-radius: var(--radius-control); background: transparent; color: var(--ink-secondary); font: inherit; font-size: var(--text-xs); cursor: pointer; }
+.product-shell .unfiled-delete-all > svg { display: block; flex-shrink: 0; }
+.product-shell .unfiled-list-icon { display: grid; width: 22px; height: 22px; place-items: center; color: #7389a1; }
+.product-shell .unfiled-list-copy { display: grid; min-width: 0; gap: 4px; }
+.product-shell .unfiled-list-title-row { display: flex; min-width: 0; align-items: center; justify-content: space-between; gap: 8px; }
+.product-shell .unfiled-list-title-row > strong { min-width: 0; font-size: 13px; font-weight: 500; line-height: 1.5; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.product-shell .unfiled-list-status { display: flex; align-items: center; align-self: center; justify-content: flex-end; min-width: 0; }
+.product-shell .unfiled-list-status .session-lifecycle-tag { flex: 0 0 auto; margin: 0; }
+.product-shell .unfiled-list-meta { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 10px; color: #738297; font-size: 11px; line-height: 1.5; }
+.product-shell .unfiled-list-chevron { grid-column: -2 / -1; display: block; justify-self: end; color: #8194a9; }
+.product-shell .unfiled-list-empty { color: #738297; font-size: 13px; line-height: 1.6; }
+.product-shell :is(.unfiled-back-link, .unfiled-file-action, .unfiled-list-row, .unfiled-transcript-slot, .unfiled-list-back):focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
+.product-shell :is(.unfiled-delete-action, .unfiled-delete-all):focus-visible { outline: 2px solid var(--brand); outline-offset: -3px; }
+
+@media (max-width: 1200px) {
+  .product-shell .unfiled-conversation-page { flex: none; overflow: visible; }
+  .product-shell .unfiled-transcript-slot { flex: none; overflow: visible; }
+  .product-shell .unfiled-conversation-list-page { flex: none; overflow: visible; }
+  .product-shell .unfiled-list-heading { top: var(--workspace-header-height, 0px); }
+}
+@media (max-width: 800px) {
+  .product-shell .unfiled-conversation-header { padding-block: 0 10px; }
+  .product-shell .unfiled-back-link { min-height: 44px; margin-bottom: 2px; }
+  .product-shell .unfiled-heading-copy { flex: 1 1 160px; }
+  .product-shell .unfiled-file-label { display: none; }
+  .product-shell .unfiled-file-label-compact { display: inline; }
+  .product-shell .unfiled-heading-copy h1,
+  .product-shell .unfiled-list-heading h1 { font-size: 20px; }
+  .product-shell .unfiled-conversation-meta { gap: 5px 10px; font-size: 11px; }
+  .product-shell .unfiled-audio-slot { margin-top: 8px; }
+  .product-shell .unfiled-audio-slot .ab-dock { grid-template-columns: 44px minmax(0, 1fr) auto 48px; gap: 6px; }
+  .product-shell .unfiled-audio-slot .ab-dock-transport > button:not(.ab-dock-play) { display: none; }
+  .product-shell .unfiled-audio-slot .ab-dock-transport .ab-dock-play { width: 44px; min-width: 44px; height: 44px; min-height: 44px; flex-basis: 44px; }
+  .product-shell .unfiled-audio-slot .ab-dock-time { font-size: 10px; }
+  .product-shell .unfiled-audio-slot .ab-dock-speed-select { height: 44px; }
+  .product-shell .unfiled-list-heading { margin-bottom: 16px; }
+  .product-shell .unfiled-list-title-row { align-items: flex-start; }
+  .product-shell .unfiled-list-title-row > strong { white-space: normal; overflow: visible; overflow-wrap: anywhere; }
+  .product-shell .unfiled-delete-all { width: 44px; height: 44px; padding: 0; }
+  .product-shell .unfiled-delete-all > span { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; border: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
+}

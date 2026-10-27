@@ -1,0 +1,229 @@
+/* ============================================================================
+   aBeam — couche de tokens (Design Sheet v2, §5)
+   ----------------------------------------------------------------------------
+   Primitives partagées, importées en première ligne de `globals.css`.
+   Les valeurs propres à une vue restent dans sa feuille de style.
+   Les tokens sont globaux : les menus et calendriers portallés les héritent
+   même lorsqu'ils sont rendus hors de `.product-shell`.
+
+   Ordre de lecture :
+     1. Primitives      — marque, surfaces, neutres (valeurs héritées, intactes)
+     2. Typographie     — §5.1 : 9 tailles, plancher 11px, 4 graisses
+     3. Espacement      — §5.2 : échelle 4px
+     4. Rayons          — §5.2 : 5 rayons
+     5. Élévation       — §5.2 : 3 niveaux
+     6. Sémantique      — §5.3 : statuts de champ, types de carte, moments
+     7. Layout          — §5.4 : largeurs, densité de ligne, grille de review
+     8. Compat          — alias legacy consommés par le CSS pré-migration
+     9. Salle live      — §5.3 : variantes sous [data-surface="live"]
+   ========================================================================== */
+
+:root {
+  /* ── 1. Primitives ─────────────────────────────────────────────────────
+     Valeurs reprises telles quelles de l'ancien `:root` de globals.css.
+     Ne pas changer ces hex sans décision de marque explicite. */
+
+  /* Neutral voice-first visual system, requested October 2026. */
+  --font-manrope: "Arial";
+  --font-nunito: "Arial";
+  --brand: #2787f5;
+  --brand-dark: #126fd9;
+  --brand-tint: #e8f2ff;
+  --brand-line: #cfe3fc;
+  --brand-soft: #f1f1f1;
+  --brand-cta: var(--brand);
+  --brand-cta-hover: var(--brand-dark);
+  --brand-contrast: #1769bf;
+  --brand-wash: #edf5ff;
+  --on-solid: #ffffff;
+  --cloud: #f1f1ef;
+  --mint: #e6e6e6;
+  --canvas: #ffffff;
+  --surface: #ffffff;
+  --surface-soft: #f7f7f7;
+  --surface-dark: #191919;
+  --surface-dark-2: #242424;
+  --ink: #171717;
+  --muted: #777777;
+  --soft: #999999;
+  --line: #e7e7e7;
+  --line-strong: #d3d3d3;
+  --app-background: #ffffff;
+  --root-background: var(--app-background);
+
+  /* Surfaces et encres de l'interface compacte : dossiers, activité,
+     recherche et contrôles. Les teintes historiques ci-dessus restent
+     disponibles pour les composants qui les consomment encore. */
+  --surface-subtle: #fbfcfd;
+  --surface-recessed: #f7f9fc;
+  --surface-hover: #f4f8fd;
+  --surface-active: #edf4fc;
+  --ink-list: #293b4e;
+  --ink-secondary: #5c7086;
+  --ink-control: #314862;
+  --line-control: #e2eaf4;
+  --recording-indicator: #bf4c55;
+
+  /* ── 2. Typographie — §5.1 ─────────────────────────────────────────────
+     9 tailles remplacent les 36 tailles fixes + 18 clamp actuels.
+     PLANCHER ABSOLU 11px : 6px / 7px / 8px / 9px / 10px sont interdits. */
+  --text-2xs: 11px;   /* métadonnées seulement : timecode, statut, eyebrow */
+  --text-xs: 12px;    /* labels, chips */
+  --text-sm: 13px;    /* méta de liste, sous-titres */
+  --text-base: 15px;  /* CORPS PAR DÉFAUT : transcript, valeurs de champ, fil agent */
+  --text-input: 16px; /* Champs éditables sur mobile : évite le zoom de Safari au focus. */
+  --text-md: 17px;    /* valeur de champ mise en avant, titre de carte */
+  --text-lg: 20px;    /* titre de section */
+  --text-xl: 24px;    /* titre d'écran */
+  --text-2xl: 30px;   /* titre de dossier */
+  --display: clamp(30px, 3.2vw, 40px); /* landing uniquement — plus jamais 88px */
+
+  /* graisses : 4, pas 16 (le CSS actuel en compte 16 : 600→850) */
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 500;
+  --fw-bold: 600;
+
+  /* interlettrage — plancher §5.1(d) : jamais plus serré que -0.03em */
+  --tracking-tight: -0.03em;  /* titres */
+  --tracking-snug: -0.02em;   /* sous-titres, valeurs mises en avant */
+  --tracking-normal: 0;       /* corps, transcript */
+  --tracking-caps: 0.08em;    /* eyebrows en capitales */
+
+  /* hauteurs de ligne */
+  --leading-tight: 1.15;  /* titres */
+  --leading-snug: 1.35;   /* labels, listes denses */
+  --leading-normal: 1.55; /* corps, transcript */
+
+  /* ── 3. Espacement — §5.2 : échelle 4px ────────────────────────────── */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 32px;
+  --space-8: 40px;
+  --space-9: 56px;
+  --space-10: 72px;
+
+  /* ── 4. Rayons — §5.2 : 5 rayons, pas 29 ───────────────────────────── */
+  --radius-sm: 8px;    /* pastilles, icônes, champs compacts */
+  --radius-md: 12px;   /* boutons, lignes de liste, champs */
+  --radius-lg: 16px;   /* cartes, panneaux */
+  --radius-xl: 24px;   /* modales, îlots, encarts landing */
+  --radius-pill: 999px;
+  /* Forme, pas échelle : un cercle reste un cercle (avatars, points d'état). */
+  --radius-circle: 50%;
+  --radius-control: 9px;
+  --radius-row: 10px;
+
+  /* Durées d'interaction, sans modifier le mouvement des vues existantes. */
+  --motion-fast: 120ms;
+  --motion-interaction: 140ms;
+  --motion-enter: 150ms;
+
+  /* ── 5. Élévation — §5.2 : 3 niveaux ───────────────────────────────── */
+  --elev-1: 0 1px 2px rgba(11, 13, 18, 0.06), 0 1px 3px rgba(11, 13, 18, 0.04);
+  --elev-2: 0 8px 24px rgba(11, 13, 18, 0.08);
+  --elev-3: 0 20px 56px rgba(11, 13, 18, 0.14);
+
+  /* ── 6. Sémantique — §5.3 ──────────────────────────────────────────────
+     Statut de champ : l'atome du produit (loi §8.5, provenance obligatoire).
+     Ces quatre couples portent les valeurs canoniques ; les anciens noms
+     `--success` / `--warning` / `--danger` en sont désormais des alias (§8). */
+  --status-capte: #0f9d78;
+  --status-capte-soft: #e7f8f2;
+  --status-incertain: #ad7413;
+  --status-incertain-soft: #fff4dc;
+  --status-manquant: #667080;
+  --status-manquant-soft: #f2f6fb;
+  --status-contradiction: #ef5a65;
+  --status-contradiction-soft: #fff0f2;
+
+  /* types de carte du feed live */
+  --card-vigie: #ef5a65;   /* la plus prioritaire, exemptée du budget cartes */
+  --card-vols: #2787f5;
+  --card-hotels: #7c5cf0;
+  --card-info: #667080;
+
+  /* marques de moment (T7) */
+  --mark-contrainte: #ef5a65;
+  --mark-budget: #0f9d78;
+  --mark-objection: #ad7413;
+  --mark-decision: #2787f5;
+  --mark-verifier: #7c5cf0;
+
+  /* ── 7. Layout — §5.4 ──────────────────────────────────────────────── */
+  --sidebar-width: 232px;
+  --content-width: 1180px;
+  /* Ligne de liste dense : 56px au lieu des 76-82px actuels. */
+  --row-height: 56px;
+  /* Review 2 colonnes : fin des 35 % de vide à droite. */
+  --review-columns: minmax(0, 1.25fr) minmax(380px, 0.75fr);
+  /* Salle live : feed / rail. */
+  --room-columns: 2fr 1fr;
+
+  /* ── 8. Compat (à supprimer à la fin de W5) ────────────────────────────
+     Ces noms sont encore consommés par le corps de globals.css. Ils pointent
+     vers les tokens sémantiques : même valeur calculée, zéro régression.
+     W5 remplace les `var(--success)` par `var(--status-capte)` puis supprime
+     ce bloc. */
+  --success: var(--status-capte);
+  --success-soft: var(--status-capte-soft);
+  --warning: var(--status-incertain);
+  --warning-soft: var(--status-incertain-soft);
+  --danger: var(--status-contradiction);
+  --danger-soft: var(--status-contradiction-soft);
+  --shadow-soft: 0 20px 60px rgba(17, 24, 39, 0.08);   /* → --elev-3 */
+  --shadow-float: 0 28px 80px rgba(10, 15, 30, 0.18);  /* → --elev-3 */
+}
+
+/* Comfortable reading at native zoom on wide application viewports.
+   Root scope also reaches portaled controls; public pages keep the base scale. */
+@media (min-width: 1280px) {
+  :root:has(.product-shell, .page-skeleton.has-shell) {
+    --text-2xs: 12px;
+    --text-xs: 13px;
+    --text-sm: 15px;
+    --text-base: 17px;
+    --text-input: 17px;
+    --text-md: 19px;
+    --text-lg: 22px;
+    --text-xl: 28px;
+    --text-2xl: 32px;
+    --row-height: 64px;
+    --sidebar-width: 264px;
+  }
+}
+
+/* The live room shares the clean light system. Color remains semantic:
+   captured, uncertain, missing and contradictory information stay distinct. */
+[data-surface="live"] {
+  --canvas: #ffffff;
+  --surface: #ffffff;
+  --surface-soft: #f7f7f7;
+  --ink: #171717;
+  --muted: #777777;
+  --soft: #999999;
+  --line: #e7e7e7;
+  --line-strong: #d3d3d3;
+  --brand: #2787f5;
+  --brand-dark: #126fd9;
+  --brand-soft: #f1f1f1;
+  --app-background: #ffffff;
+  --root-background: #ffffff;
+  --status-capte: #0f8063;
+  --status-capte-soft: #edf7f2;
+  --status-incertain: #946614;
+  --status-incertain-soft: #fff6e3;
+  --status-manquant: #777777;
+  --status-manquant-soft: #f3f3f3;
+  --status-contradiction: #bf4c55;
+  --status-contradiction-soft: #fff0f2;
+  --elev-1: 0 1px 3px #00000005;
+  --elev-2: 0 8px 24px #00000008;
+  --elev-3: 0 20px 56px #00000010;
+  --shadow-soft: var(--elev-2);
+  --shadow-float: var(--elev-3);
+}

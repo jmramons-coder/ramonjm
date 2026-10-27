@@ -1,0 +1,1748 @@
+/* =============================================================================
+ * aBeam — review de dossier (LOTS W5b puis W6b)
+ * Feuille de style des composants de `app/review/*.tsx`. Importée par
+ * `ReviewWorkspace`, jamais par `globals.css` (un autre lot y travaille).
+ *
+ * W6b : les styles de la matrice de champs (compteurs, « À demander », filtres,
+ * grille de champs) ont été SUPPRIMÉS avec l'écran qu'ils habillaient (§6.1bis).
+ * À leur place, la typographie d'un texte qu'on lit : le récap est de la prose.
+ *
+ * RÈGLES TENUES ICI
+ *  · Aucun hex en dur, aucune taille littérale : uniquement les tokens de
+ *    `app/tokens.css` (--text-* --fw-* --space-* --radius-* --elev-* --status-*
+ *    --brand --surface --ink --muted --line) et les nuances dérivées par
+ *    `color-mix()` — donc automatiquement correctes en surface sombre.
+ *  · Plancher de lisibilité 11px (loi 7) : rien sous --text-2xs, le contenu
+ *    utile (valeurs, transcript, fil agent) à --text-base.
+ *  · Scrollbars VISIBLES dans les zones défilantes (§5.4) : on s'appuie sur
+ *    `.ab-scroll-y` de la bibliothèque, on ne masque rien localement.
+ *  · Préfixe `rv-` : aucune collision possible avec les classes de globals.css.
+ * ========================================================================== */
+
+/* ── Grille à deux volets (§5.4, --review-columns) ───────────────────────── */
+
+.rv-panes {
+  display: grid;
+  grid-template-columns: var(--review-columns);
+  gap: var(--space-5);
+  align-items: start;
+}
+
+.review-content-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: var(--space-6);
+}
+
+@media (max-width: 1080px) {
+  .rv-panes {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .review-content-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .review-content-grid > .rv-side-shell {
+    display: none;
+  }
+}
+
+/* ── Brief refresh + docked suggestions ───────────────────────────────────
+ * The brief should feel like a calm workspace, not a placeholder card. The
+ * partner mark stays on the page as the visual anchor, while a newer
+ * conversation gets an explicit, reversible refresh action. Suggestions are
+ * workspace chrome: they sit at the bottom edge and run all the way to the
+ * content boundary instead of looking like another inset card. */
+
+.rv-recap-empty {
+  display: grid;
+  min-block-size: 0;
+  place-content: start;
+  justify-items: start;
+  gap: var(--space-4);
+  padding: var(--space-6) 0;
+  text-align: start;
+}
+
+.rv-recap-empty-mark {
+  width: clamp(56px, 7vw, 76px);
+  height: auto;
+  object-fit: contain;
+}
+
+.rv-recap-empty-copy {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-2);
+  max-inline-size: 34ch;
+}
+
+.rv-recap-empty-copy h2,
+.rv-recap-empty-copy p {
+  margin: 0;
+}
+
+.rv-recap-empty-copy h2 {
+  color: var(--ink);
+  font-size: var(--text-xl);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tracking-tight);
+}
+
+.rv-recap-empty-copy > p:last-child {
+  color: var(--muted);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+}
+
+.rv-recap-empty-action {
+  display: inline-flex;
+  min-block-size: calc(var(--space-8) + var(--space-1));
+  align-items: center;
+  gap: var(--space-2);
+  padding-inline: var(--space-4);
+  color: var(--on-solid);
+  background: var(--brand);
+  border: 1px solid color-mix(in oklab, var(--brand) 70%, var(--line));
+  border-radius: var(--radius-md);
+  font-family: inherit;
+  font-size: var(--text-sm);
+  font-weight: var(--fw-semibold);
+  cursor: pointer;
+  transition: background-color 120ms ease, transform 120ms ease;
+}
+
+.rv-recap-empty-action:hover {
+  background: var(--brand-dark);
+}
+
+.rv-recap-empty-action:active {
+  transform: translateY(1px);
+}
+
+.rv-recap-empty-action:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 3px;
+}
+
+.rv-recap-loading {
+  display: grid;
+  gap: var(--space-5);
+  max-inline-size: 60ch;
+  padding-block: var(--space-6);
+}
+
+.rv-recap-loading-copy {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.rv-recap-loading-copy h2,
+.rv-recap-loading-copy p {
+  margin: 0;
+}
+
+.rv-recap-loading-copy h2 {
+  font-size: var(--text-lg);
+  font-weight: var(--fw-medium);
+}
+
+.rv-recap-loading-copy > p:last-child {
+  font-size: var(--text-sm);
+  color: var(--muted);
+  line-height: var(--leading-normal);
+}
+
+
+.rv-recap-identity {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.rv-recap-mark {
+  width: var(--space-8);
+  height: var(--space-8);
+  object-fit: contain;
+}
+
+.rv-recap-stale {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-block-size: var(--space-10);
+  padding: var(--space-2) var(--space-3);
+  color: var(--ink);
+  background: color-mix(in oklab, var(--brand-tint) 58%, var(--surface));
+  border: 1px solid color-mix(in oklab, var(--brand) 22%, var(--line));
+  border-radius: var(--radius-md);
+}
+
+.rv-recap-stale-mark {
+  display: grid;
+  flex: 0 0 auto;
+  width: var(--space-7);
+  height: var(--space-7);
+  place-items: center;
+  color: var(--brand);
+}
+
+.rv-recap-stale p {
+  flex: 1 1 auto;
+  margin: 0;
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+}
+
+.rv-recap-stale .ab-text-button {
+  flex: 0 0 auto;
+  color: var(--brand-dark);
+  font-size: var(--text-xs);
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+}
+
+.review-content-grid {
+  min-block-size: calc(100dvh - var(--space-10) - var(--space-10));
+}
+
+.review-content-grid > .brief-document:not(.is-transcript-view) .rv-recap {
+  min-block-size: calc(100dvh - 16rem);
+}
+
+.rv-recap > .rv-suggestions-dock {
+  position: sticky;
+  z-index: 4;
+  inset-block-end: 0;
+  width: calc(100% + 88px);
+  margin-inline: -44px;
+  margin-block-start: auto;
+  padding: var(--space-3) 44px max(var(--space-3), env(safe-area-inset-bottom));
+  border-block-start: 1px solid var(--line);
+  background: color-mix(in srgb, var(--surface) 94%, transparent);
+  backdrop-filter: blur(16px);
+}
+
+.rv-suggestions-dock .sg-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin: 0;
+}
+
+.rv-suggestions-dock .sg-heading h3,
+.rv-suggestions-dock .sg-heading span {
+  margin: 0;
+}
+
+.rv-suggestions-dock .sg-feed {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-2);
+}
+
+/* ── Proof rail, same interaction language as the live room ─────────────── */
+
+.review-content-grid > .rv-side-shell {
+  align-self: stretch;
+  min-block-size: calc(100dvh - var(--space-10) - var(--space-10));
+}
+
+.rv-side-shell .rv-side {
+  border: 0;
+  border-inline-start: 1px solid var(--line);
+  border-radius: 0;
+  box-shadow: none;
+  background: var(--surface-soft);
+}
+
+.rv-side-head {
+  position: sticky;
+  z-index: 2;
+  top: 0;
+  padding: var(--space-3);
+  background: color-mix(in srgb, var(--surface) 94%, transparent);
+  backdrop-filter: blur(16px);
+}
+
+.rv-side-tabs {
+  display: grid;
+  flex: 1 1 100%;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-1);
+}
+
+.rv-side-tabs button {
+  display: inline-flex;
+  min-block-size: var(--space-9);
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  min-inline-size: 0;
+  padding-inline: var(--space-2);
+  border-radius: var(--radius-md);
+  font-size: var(--text-2xs);
+  white-space: nowrap;
+}
+
+.rv-side-tabs.rv-side-tabs-two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.rv-side-tabs button.is-active {
+  color: var(--brand-dark);
+  background: var(--brand-soft);
+  border-color: color-mix(in oklab, var(--brand) 26%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--brand) 10%, transparent);
+}
+
+.rv-side .rv-pane-body {
+  flex: 1 1 auto;
+  min-block-size: 0;
+  padding: var(--space-4);
+  overflow: hidden;
+  background: var(--surface-soft);
+}
+
+.rv-side .rv-turns,
+.rv-side .rv-agent-thread,
+.rv-side .rv-clarify-list {
+  min-block-size: 0;
+  padding-inline-end: var(--space-1);
+}
+
+.rv-side .rv-turn {
+  background: var(--surface);
+  border-color: transparent;
+  border-inline-start-width: 3px;
+}
+
+.rv-side .rv-turn:hover,
+.rv-side .rv-turn:focus-visible,
+.rv-side .rv-turn.is-playing {
+  background: var(--brand-soft);
+}
+
+.rv-side .rv-pane-empty {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: var(--space-2);
+  min-block-size: 100%;
+  padding: var(--space-6) var(--space-4);
+  text-align: center;
+}
+
+.rv-side .rv-pane-empty-mark {
+  display: grid;
+  width: var(--space-9);
+  height: var(--space-9);
+  place-items: center;
+  color: var(--brand);
+}
+
+.rv-side .rv-pane-empty strong {
+  color: var(--ink);
+  font-size: var(--text-sm);
+  font-weight: var(--fw-semibold);
+}
+
+.rv-side .rv-pane-empty p,
+.rv-side .rv-agent-empty-hint {
+  max-inline-size: 26ch;
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--text-xs);
+  line-height: var(--leading-normal);
+}
+
+.rv-side .rv-agent {
+  min-block-size: 0;
+}
+
+.rv-side .rv-agent-empty {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: var(--space-2);
+  min-block-size: 100%;
+  padding: var(--space-6) var(--space-3);
+  text-align: center;
+}
+
+.rv-side .rv-agent-empty strong {
+  color: var(--ink);
+  font-size: var(--text-sm);
+  font-weight: var(--fw-semibold);
+}
+
+.rv-side .rv-agent-empty > p {
+  max-inline-size: 28ch;
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--text-xs);
+  line-height: var(--leading-normal);
+}
+
+.rv-side .rv-suggested {
+  flex: 0 0 auto;
+  margin-block-start: 0;
+  margin-block-end: var(--space-2);
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+}
+
+.rv-side .rv-suggested summary {
+  display: flex;
+  min-block-size: var(--space-9);
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding-inline: var(--space-3);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  list-style: none;
+}
+
+.rv-side .rv-suggested summary::-webkit-details-marker {
+  display: none;
+}
+
+.rv-side .rv-suggested summary .ab-icon {
+  color: var(--muted);
+  transition: transform 140ms ease;
+}
+
+.rv-side .rv-suggested[open] summary .ab-icon {
+  transform: rotate(180deg);
+}
+
+.rv-side .rv-suggested-list {
+  position: absolute;
+  z-index: 8;
+  right: -1px;
+  bottom: calc(100% + var(--space-2));
+  left: -1px;
+  max-block-size: min(30svh, 280px);
+  overflow-y: auto;
+  padding: var(--space-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  box-shadow: var(--elev-2);
+}
+
+.rv-side .rv-suggested-item {
+  width: 100%;
+  padding: var(--space-2);
+  font-size: var(--text-xs);
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  text-align: start;
+}
+
+.rv-side .rv-suggested-item:hover:not(:disabled),
+.rv-side .rv-suggested-item:focus-visible {
+  background: var(--brand-soft);
+}
+
+.rv-side .rv-agent-form {
+  position: sticky;
+  z-index: 2;
+  inset-block-end: 0;
+  flex: 0 0 auto;
+  margin-block-start: 0;
+  padding-block-start: 0;
+  border-block-start: 0;
+  background: var(--surface-soft);
+}
+
+.rv-side-resizer::before {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 3px;
+  width: 12px;
+  height: 44px;
+  content: "";
+  transform: translateY(-50%);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  box-shadow: var(--elev-1);
+}
+
+.rv-side-resizer::after {
+  inset-block: 0;
+  left: 9px;
+  width: 2px;
+  background: var(--line);
+}
+
+.rv-side-resizer:hover::after,
+.rv-side-resizer:focus-visible::after {
+  background: var(--brand);
+}
+
+@media (max-width: 1080px) {
+  .review-content-grid {
+    min-block-size: 0;
+  }
+
+  .review-content-grid > .brief-document:not(.is-transcript-view) .rv-recap {
+    min-block-size: 0;
+  }
+
+  .rv-recap > .rv-suggestions-dock {
+    width: calc(100% + 32px);
+    margin-inline: -16px;
+    padding-inline: 16px;
+  }
+}
+
+/* Calm debrief states and a readable proof rail. Keep these scoped to the
+ * review components so the recording room and its mobile dock stay separate. */
+.product-shell .rv-recap-scroll {
+  gap: var(--space-6);
+  padding-block-end: var(--space-6);
+  overflow-wrap: anywhere;
+}
+
+.product-shell .rv-recap-head-line {
+  align-items: center;
+}
+
+.product-shell .rv-recap-identity {
+  min-inline-size: 0;
+}
+
+.product-shell .rv-recap-cadre {
+  padding-inline: 0;
+  color: var(--muted);
+  background: transparent;
+  border-radius: 0;
+  line-height: var(--leading-normal);
+}
+
+.product-shell .rv-claim-tail {
+  display: inline-block;
+  max-inline-size: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.product-shell .rv-next-steps .rv-block-title,
+.product-shell .rv-next-steps .rv-list li::marker {
+  color: var(--brand-dark);
+}
+
+.product-shell .rv-recap-error {
+  min-block-size: 0;
+  align-items: start;
+  padding: var(--space-6) 0;
+  text-align: start;
+}
+
+.product-shell .rv-recap-error .ab-empty-icon {
+  color: var(--status-incertain);
+}
+
+.product-shell .rv-recap-error .ab-empty-text {
+  max-inline-size: 56ch;
+}
+
+.product-shell .rv-recap-empty-action > .ab-icon,
+.product-shell .rv-regen > .ab-icon,
+.product-shell .rv-agent-form > button > svg {
+  display: block;
+  flex: 0 0 auto;
+}
+
+.product-shell .rv-side-shell .rv-side,
+.product-shell .rv-side-shell .rv-pane-body {
+  background: var(--surface);
+}
+
+.product-shell .rv-side-shell :is(.rv-pane-empty, .rv-agent-empty) {
+  min-block-size: 0;
+  place-content: start;
+  justify-items: start;
+  padding: var(--space-5) var(--space-4);
+  text-align: start;
+}
+
+.product-shell .rv-side-shell .rv-agent-empty {
+  padding-inline: 0;
+}
+
+.product-shell .rv-side-shell :is(.rv-pane-empty p, .rv-agent-empty > p, .rv-agent-empty-hint) {
+  max-inline-size: 34ch;
+  font-size: var(--text-sm);
+  overflow-wrap: anywhere;
+}
+
+.product-shell .rv-side-shell .rv-pane-empty-mark {
+  width: var(--space-6);
+  height: var(--space-6);
+}
+
+.product-shell .rv-agent-thread {
+  gap: var(--space-4);
+  overflow-anchor: none;
+}
+
+.product-shell .rv-scope {
+  min-inline-size: 0;
+  background: transparent;
+}
+
+.product-shell .rv-scope .ab-chip {
+  max-inline-size: 100%;
+  min-inline-size: 0;
+  background: var(--brand-tint);
+  border-color: var(--brand-line);
+  color: var(--brand-dark);
+}
+
+.product-shell .rv-scope .ab-chip-label {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.product-shell .rv-agent-msg {
+  padding: var(--space-2) 0;
+  margin-inline: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.product-shell .rv-agent-msg.is-agent {
+  align-self: end;
+  max-inline-size: 92%;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  background: var(--brand-tint);
+}
+
+.product-shell .rv-agent-msg p {
+  font-size: var(--text-sm);
+}
+
+.product-shell .rv-agent-msg.is-failed {
+  color: var(--muted);
+}
+
+.product-shell .rv-agent-retry {
+  min-block-size: calc(var(--space-8) + var(--space-1));
+  gap: var(--space-2);
+  margin-block-start: var(--space-1);
+  padding-inline: 0;
+  color: var(--brand-dark);
+}
+
+.product-shell .rv-relance {
+  margin: 0;
+  padding: var(--space-2) 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.product-shell .rv-relance-line {
+  font-size: var(--text-sm);
+}
+
+.product-shell .rv-side-shell .rv-agent-form {
+  min-block-size: calc(var(--space-8) + var(--space-3));
+  padding: var(--space-1);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+}
+
+.product-shell .rv-side-shell .rv-agent-form input {
+  min-block-size: var(--space-8);
+  padding-inline: var(--space-2);
+  background: transparent;
+}
+
+.product-shell .rv-side-shell .rv-agent-form button[type="submit"] {
+  display: flex;
+  flex: 0 0 var(--space-8);
+  width: var(--space-8);
+  min-width: var(--space-8);
+  height: var(--space-8);
+  min-height: var(--space-8);
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.product-shell .rv-side-shell .rv-agent-form button[type="submit"]:disabled {
+  color: var(--muted);
+  background: var(--surface-soft);
+  opacity: 1;
+}
+
+.rv-loading-mark {
+  animation: rv-loading-turn 1200ms linear infinite;
+}
+
+.rv-recap[data-state="ready"] .rv-recap-head {
+  animation: rv-content-in 160ms ease-out;
+}
+
+@keyframes rv-loading-turn {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes rv-content-in {
+  from { opacity: 0; transform: translateY(var(--space-1)); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 800px) {
+  .product-shell .rv-recap-stale {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .product-shell .rv-recap-stale .ab-text-button {
+    grid-column: 2;
+    justify-self: start;
+    white-space: normal;
+    text-align: start;
+  }
+
+  .product-shell .rv-recap-empty-action {
+    width: auto;
+    max-inline-size: 100%;
+    min-block-size: calc(var(--space-8) + var(--space-1));
+    justify-content: center;
+    font-size: var(--text-sm);
+  }
+
+  .product-shell .rv-side-shell .rv-agent-form input {
+    font-size: var(--space-4);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rv-loading-mark,
+  .rv-recap[data-state="ready"] .rv-recap-head {
+    animation: none;
+  }
+
+  .rv-recap-empty-action,
+  .rv-suggested summary .ab-icon {
+    transition: none;
+  }
+
+  .rv-recap-empty-action:active {
+    transform: none;
+  }
+}
+
+/* ── Volet principal : le récap, en prose ─────────────────────────────────────
+ *
+ * Un texte qu'on lit du coin de l'œil entre deux clients : mesure de ligne
+ * limitée, corps à --text-md pour le résumé (c'est le cœur), --text-base pour les
+ * listes. Aucune boîte, aucun cadre : ce n'est pas une fiche, c'est une note.  */
+
+.rv-recap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  min-inline-size: 0;
+}
+
+.rv-recap-scroll {
+  display: flex;
+  min-inline-size: 0;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.rv-recap-head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.rv-recap-head-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.rv-eyebrow {
+  margin: 0;
+  font-size: var(--text-2xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.rv-regen {
+  gap: var(--space-1);
+  font-size: var(--text-xs);
+  color: var(--muted);
+}
+
+.rv-regen:hover:not(:disabled) {
+  color: var(--brand);
+}
+
+.rv-recap-title {
+  margin: 0;
+  max-inline-size: 34ch;
+  font-size: var(--text-2xl);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--leading-tight);
+  color: var(--ink);
+}
+
+/* Le cadre de lecture (« Première prise de contact ») : il situe, il ne crie
+   pas. Il porte la teinte marque parce qu'il vient de la machine, pas du client. */
+.rv-recap-cadre {
+  margin: 0;
+  align-self: start;
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: var(--fw-medium);
+  color: var(--brand);
+  background: var(--brand-soft);
+  border-radius: var(--radius-pill);
+}
+
+/* A folder dashboard already has a client identity and a trip heading.
+ * Its saved notes are context, not a second document with another title. */
+.product-shell .rv-recap[data-variant="dashboard"] .rv-recap-scroll {
+  gap: var(--space-4);
+}
+
+.product-shell .rv-recap[data-variant="dashboard"] .rv-dashboard-title {
+  margin: 0;
+  color: var(--ink);
+  font-size: var(--text-base);
+  font-weight: var(--fw-semibold);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-normal);
+}
+
+.product-shell .rv-recap[data-variant="dashboard"] .rv-recap-head-line {
+  flex-wrap: nowrap;
+  gap: var(--space-3);
+  margin: 0;
+}
+
+.product-shell .rv-recap[data-variant="dashboard"] .rv-regen {
+  flex: 0 0 auto;
+}
+
+.product-shell .internal-summary .rv-recap[data-variant="dashboard"] .rv-recap-empty {
+  gap: var(--space-3);
+  padding: 0;
+}
+
+.product-shell .rv-recap[data-variant="dashboard"] .rv-recap-empty-copy {
+  gap: var(--space-2);
+}
+
+.product-shell .rv-recap[data-variant="dashboard"] .rv-recap-loading {
+  gap: var(--space-4);
+  padding-block: 0;
+}
+
+.product-shell .rv-recap[data-variant="dashboard"] .rv-recap-error {
+  padding-block: 0;
+}
+
+/* ── Les affirmations ─────────────────────────────────────────────────────── */
+
+.rv-recap-lede {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-inline-size: 68ch;
+}
+
+.rv-claim {
+  margin: 0;
+  font-size: var(--text-md);
+  line-height: var(--leading-normal);
+  color: var(--ink);
+}
+
+/* L'ancre suit la phrase sans la couper : elle reste sur la même ligne que le
+   dernier mot, et n'entraîne jamais un saut de ligne pour elle seule. */
+.rv-claim-inner,
+.rv-claim-inline {
+  display: inline;
+}
+
+/* L'ancre ne se retrouve JAMAIS seule sur une ligne : elle est solidaire du
+   dernier mot de la phrase (voir `RecapPanel`), et ce couple-là ne se coupe pas. */
+.rv-claim-tail {
+  white-space: nowrap;
+}
+
+.rv-claim-anchor {
+  margin-inline-start: var(--space-2);
+  vertical-align: baseline;
+}
+
+/* ── Sections du récap ───────────────────────────────────────────────────── */
+
+.rv-block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  max-inline-size: 68ch;
+}
+
+.rv-block-title {
+  margin: 0;
+  font-size: var(--text-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.rv-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+  padding-inline-start: var(--space-5);
+}
+
+.rv-list li {
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--ink);
+}
+
+.rv-list li::marker {
+  color: var(--line-strong);
+}
+
+/* ── Volet droit : preuve et copilote, même surface ──────────────────────── */
+
+.rv-side {
+  display: flex;
+  flex-direction: column;
+  min-inline-size: 0;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--elev-1);
+  overflow: hidden;
+  position: sticky;
+  /* Le volet reste à l'écran pendant qu'on parcourt le brief ; l'offset laisse
+     passer l'en-tête de l'app. */
+  top: var(--space-6);
+  max-block-size: calc(100vh - var(--space-10) - var(--space-8));
+}
+
+@media (max-width: 1080px) {
+  .rv-side {
+    position: static;
+    max-block-size: none;
+  }
+}
+
+.rv-side-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--line);
+  background: var(--ab-raise, var(--surface-soft));
+}
+
+.rv-side-tabs {
+  display: flex;
+  gap: var(--space-1);
+}
+
+.rv-side-tabs button {
+  min-block-size: var(--space-8);
+  padding-inline: var(--space-3);
+  font-family: inherit;
+  font-size: var(--text-xs);
+  font-weight: var(--fw-semibold);
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: background-color 120ms ease, color 120ms ease;
+}
+
+.rv-side-tabs button:hover {
+  color: var(--ink);
+}
+
+.rv-side-tabs button.is-active {
+  color: var(--brand);
+  background: var(--brand-soft);
+  border-color: color-mix(in oklab, var(--brand) 28%, transparent);
+}
+
+.rv-session-picker {
+  margin-inline-start: auto;
+  min-inline-size: 0;
+}
+
+.rv-session-picker select {
+  max-inline-size: 22ch;
+  min-block-size: var(--space-8);
+  padding-inline: var(--space-2);
+  font-family: inherit;
+  font-size: var(--text-xs);
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+}
+
+.rv-pane-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-block-size: 0;
+  padding: var(--space-3);
+}
+
+/* Étiquette de bloc dans le volet droit. Un libellé, jamais un compteur. */
+.rv-pane-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--text-2xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Le vide, dit une seule fois et sobrement (loi 4). */
+.rv-pane-note {
+  margin: 0;
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  color: var(--muted);
+}
+
+/* ── « À clarifier » : des phrases à régler avec un humain ───────────────── */
+
+.rv-clarify-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+  min-block-size: 0;
+  overflow-y: auto;
+  padding-inline: var(--space-4) var(--space-1);
+  list-style: none;
+}
+
+.rv-clarify-list li {
+  position: relative;
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--ink);
+}
+
+/* Une puce sobre : ni pastille de statut, ni case à cocher — rien à cocher ici,
+   ce sont des choses à demander de vive voix. */
+.rv-clarify-list li::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: calc(-1 * var(--space-3));
+  inset-block-start: calc(var(--space-2) + var(--space-1) / 2);
+  inline-size: var(--space-1);
+  block-size: var(--space-1);
+  border-radius: var(--radius-circle);
+  background: var(--brand);
+}
+
+/* ── Transcript cherchable ───────────────────────────────────────────────── */
+
+.rv-search {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.rv-search-field {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex: 1 1 auto;
+  min-inline-size: 0;
+  padding-inline: var(--space-3);
+  min-block-size: var(--space-8);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  color: var(--muted);
+}
+
+.rv-search-field:focus-within {
+  border-color: var(--brand);
+  color: var(--brand);
+}
+
+.rv-search-field input {
+  flex: 1 1 auto;
+  min-inline-size: 0;
+  font-family: inherit;
+  font-size: var(--text-sm);
+  color: var(--ink);
+  background: transparent;
+  border: 0;
+  outline: none;
+}
+
+.rv-search-count {
+  flex: 0 0 auto;
+  font-size: var(--text-2xs);
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.rv-turns {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-block-size: 0;
+  overflow-y: auto;
+  padding-inline-end: var(--space-1);
+}
+
+.rv-turn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  font-family: inherit;
+  text-align: start;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid transparent;
+  border-inline-start: var(--space-1) solid var(--line-strong);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background-color 120ms ease, border-color 120ms ease;
+}
+
+.rv-turn.is-client {
+  border-inline-start-color: var(--brand);
+}
+
+.rv-turn.is-advisor {
+  border-inline-start-color: var(--line-strong);
+}
+
+.rv-turn.is-note {
+  border-inline-start-color: var(--mark-verifier);
+  background: color-mix(in oklab, var(--mark-verifier) 6%, transparent);
+}
+
+.rv-turn:hover,
+.rv-turn:focus-visible {
+  background: var(--ab-raise, var(--surface-soft));
+  border-color: var(--line);
+}
+
+.rv-turn:focus-visible {
+  outline: var(--ab-focus-ring, 2px) solid var(--brand);
+  outline-offset: 1px;
+}
+
+.rv-turn.is-playing {
+  background: var(--brand-soft);
+  border-color: color-mix(in oklab, var(--brand) 30%, transparent);
+}
+
+.rv-turn-meta {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  font-size: var(--text-2xs);
+  color: var(--muted);
+}
+
+.rv-turn-meta strong {
+  font-weight: var(--fw-semibold);
+  color: var(--ink);
+}
+
+.rv-turn-meta time {
+  font-variant-numeric: tabular-nums;
+}
+
+.rv-turn-text {
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.rv-mark {
+  padding-inline: var(--space-1);
+  border-radius: var(--radius-sm);
+  color: var(--ink);
+  background: var(--status-incertain-soft);
+  box-shadow: inset 0 -2px 0 color-mix(in oklab, var(--status-incertain) 45%, transparent);
+}
+
+/* ── Fil de l'Agent (T4) ─────────────────────────────────────────────────── */
+
+.rv-agent {
+  min-block-size: 0;
+}
+
+.rv-scope {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.rv-scope-note {
+  font-size: var(--text-2xs);
+  color: var(--muted);
+}
+
+.rv-agent-thread {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  flex: 1 1 auto;
+  min-block-size: var(--space-10);
+  overflow-y: auto;
+  padding-inline-end: var(--space-1);
+}
+
+.rv-agent-intro {
+  margin: 0;
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  color: var(--muted);
+}
+
+.rv-agent-msg {
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.rv-agent-msg p {
+  margin: 0;
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--ink);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.rv-agent-msg.is-agent {
+  margin-inline-start: var(--space-6);
+  background: var(--brand-soft);
+  border-color: color-mix(in oklab, var(--brand) 24%, transparent);
+}
+
+.rv-agent-msg.is-nudge {
+  margin-inline-end: var(--space-6);
+  background: var(--ab-raise, var(--surface-soft));
+}
+
+.rv-agent-msg.is-pending p {
+  color: var(--muted);
+}
+
+.rv-suggested {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+/* ── Le nudge de déblocage : UNE phrase, à dire au client (§4) ───────────── */
+
+.rv-relance {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-3);
+  background: var(--ab-raise, var(--surface-soft));
+  border-inline-start: var(--space-1) solid var(--brand);
+  border-radius: var(--radius-md);
+}
+
+/* Ce n'est pas un bouton : rien à cliquer, c'est une réplique. */
+.rv-relance-line {
+  margin: 0;
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--ink);
+}
+
+.rv-suggested-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.rv-suggested-item {
+  padding: var(--space-2) var(--space-3);
+  font-family: inherit;
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+  text-align: start;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+
+.rv-suggested-item:hover:not(:disabled) {
+  color: var(--brand);
+  border-color: var(--brand);
+  border-style: solid;
+}
+
+.rv-suggested-item:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.rv-agent-form {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.rv-agent-form input {
+  flex: 1 1 auto;
+  min-inline-size: 0;
+  min-block-size: var(--space-8);
+  padding-inline: var(--space-3);
+  font-family: inherit;
+  font-size: var(--text-sm);
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+}
+
+.rv-agent-form input:focus-visible {
+  outline: var(--ab-focus-ring, 2px) solid var(--brand);
+  outline-offset: 1px;
+}
+
+/* ── Dock persistant du review ───────────────────────────────────────────── */
+
+/* ── Folder workspace rail ─────────────────────────────────────────────────
+ * The review surface is a document first, with a persistent proof rail beside
+ * it. The rail starts at roughly one fifth of the viewport and can be widened
+ * for a transcript without making the brief itself jump around. */
+.rv-panes {
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--space-6);
+  min-block-size: calc(100dvh - var(--space-8));
+}
+
+.rv-side-shell {
+  position: relative;
+  min-inline-size: 280px;
+  max-inline-size: 45vw;
+  block-size: 100%;
+}
+
+.rv-side-shell .rv-side {
+  position: sticky;
+  top: 0;
+  block-size: 100dvh;
+  max-block-size: none;
+  border-radius: var(--radius-lg);
+}
+
+.rv-side-resizer {
+  position: absolute;
+  z-index: 3;
+  inset-block: 0;
+  left: -10px;
+  inline-size: 20px;
+  cursor: col-resize;
+  touch-action: none;
+}
+
+.rv-side-resizer::after {
+  position: absolute;
+  inset-block: 12%;
+  left: 9px;
+  inline-size: 2px;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  content: "";
+  transition: background-color 140ms ease;
+}
+
+.rv-side-resizer:hover::after,
+.rv-side-resizer:focus-visible::after {
+  background: var(--brand);
+}
+
+.rv-recap > .sg-section {
+  position: sticky;
+  z-index: 2;
+  inset-block-end: 0;
+  margin-block-start: auto;
+  padding-block: var(--space-4) var(--space-3);
+  border-block-start: 1px solid var(--line);
+  background: color-mix(in srgb, var(--surface) 94%, transparent);
+  backdrop-filter: blur(14px);
+}
+
+@media (max-width: 1080px) {
+  .rv-panes {
+    grid-template-columns: minmax(0, 1fr);
+    min-block-size: 0;
+  }
+
+  .rv-side-shell {
+    inline-size: 100% !important;
+    max-inline-size: none;
+  }
+
+  .rv-side-shell .rv-side {
+    position: static;
+    block-size: auto;
+    max-block-size: none;
+  }
+
+  .rv-side-resizer {
+    display: none;
+  }
+}
+
+/* Final rail pass: these rules intentionally come after the legacy review
+ * defaults so the panel shares the live-room edge-to-edge language. */
+@media (min-width: 1081px) {
+  /* The folder is an app viewport, not a document page. Only the recap column
+     is allowed to scroll; the rail and the suggestion dock stay in place. */
+  .review-page {
+    block-size: 100dvh;
+    min-block-size: 0;
+    padding-bottom: 0;
+    overflow: hidden;
+  }
+
+  .review-sticky-head {
+    flex: 0 0 auto;
+  }
+
+  .review-content-grid {
+    flex: 1 1 auto;
+    min-block-size: 0;
+    overflow: visible;
+  }
+
+  .review-content-grid > .brief-document {
+    block-size: 100%;
+    min-block-size: 0;
+    overflow: visible;
+  }
+
+  .review-content-grid > .brief-document:not(.is-transcript-view) {
+    display: flex;
+    margin-block-start: 0;
+    flex-direction: column;
+  }
+
+  .review-content-grid > .brief-document:not(.is-transcript-view) > .internal-summary,
+  .review-content-grid > .brief-document:not(.is-transcript-view) .rv-panes {
+    block-size: 100%;
+    min-block-size: 0;
+  }
+
+  .review-content-grid > .brief-document:not(.is-transcript-view) > .internal-summary {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+  }
+
+  .review-content-grid > .brief-document:not(.is-transcript-view) .rv-panes {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .rv-panes.has-side-panel {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .rv-recap-column {
+    display: flex;
+    min-inline-size: 0;
+    min-block-size: 0;
+    block-size: 100%;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .rv-recap {
+    display: flex;
+    block-size: 100%;
+    min-block-size: 0 !important;
+    gap: 0;
+    overflow: hidden;
+  }
+
+  .rv-recap-scroll {
+    flex: 1 1 auto;
+    min-block-size: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-gutter: stable;
+  }
+
+  .rv-recap-column > .rv-recap {
+    block-size: auto;
+    min-block-size: 0 !important;
+    flex: 1 1 auto;
+  }
+
+  .rv-recap-column > .rv-suggestions-dock {
+    position: relative;
+    inset-block-end: auto;
+    z-index: 4;
+    flex: 0 0 auto;
+    inline-size: 100%;
+    margin: 0;
+    padding: var(--space-3) 0 max(var(--space-3), env(safe-area-inset-bottom));
+    border-block-start: 1px solid var(--line);
+    background: color-mix(in srgb, var(--surface) 96%, transparent);
+    backdrop-filter: blur(16px);
+  }
+
+  .rv-recap-column > .rv-suggestions-dock .sg-rail,
+  .rv-recap-column > .rv-suggestions-dock .sg-feed {
+    inline-size: 100%;
+  }
+
+  .rv-recap > .rv-suggestions-dock {
+    position: relative;
+    inset-block-end: auto;
+    flex: 0 0 auto;
+    width: calc(100% + 44px);
+    margin-inline: -44px 0;
+    padding: var(--space-3) 0 max(var(--space-3), env(safe-area-inset-bottom));
+  }
+
+  .review-content-grid > .rv-side-shell {
+    block-size: 100%;
+    min-block-size: 0;
+    margin-inline-end: -44px;
+  }
+
+  .rv-side-shell .rv-side {
+    block-size: 100%;
+    min-block-size: 0;
+  }
+
+  .rv-side-shell {
+    overflow: visible;
+  }
+
+  .rv-side-resizer {
+    left: -12px;
+    inline-size: 24px;
+    z-index: 20;
+  }
+
+  .rv-side-resizer::before {
+    left: 3px;
+    width: 18px;
+    height: 56px;
+  }
+
+  .rv-side-resizer::after {
+    left: 11px;
+  }
+}
+
+.review-content-grid {
+  gap: 0;
+}
+
+.review-content-grid > .rv-side-shell {
+  align-self: stretch;
+  min-block-size: calc(100dvh - var(--space-10) - var(--space-10));
+}
+
+.rv-recap > .rv-suggestions-dock {
+  z-index: 4;
+  width: calc(100% + 44px);
+  margin-inline: -44px 0;
+  padding: var(--space-3) 0 max(var(--space-3), env(safe-area-inset-bottom));
+}
+
+/* The dock is now a sibling of the recap. Keep its mobile geometry flat too;
+ * the desktop rail pass below adds the viewport-height behavior. */
+.rv-recap-column {
+  min-inline-size: 0;
+}
+
+.rv-recap-column > .rv-suggestions-dock {
+  inline-size: 100%;
+  margin: 0;
+}
+
+.rv-side-shell .rv-side {
+  border: 0;
+  border-inline-start: 1px solid var(--line);
+  border-radius: 0;
+  box-shadow: none;
+  background: var(--surface-soft);
+}
+
+.rv-side-head {
+  position: sticky;
+  z-index: 2;
+  top: 0;
+  padding: var(--space-3) var(--space-4);
+  background: transparent;
+  border-bottom: 0;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.rv-side-tabs {
+  display: grid;
+  width: 100%;
+  flex: 1 1 100%;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-1);
+  padding: var(--space-1);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: rgba(241, 247, 253, 0.86);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.86);
+}
+
+.rv-side-tabs button {
+  display: inline-flex;
+  min-block-size: 36px;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  min-inline-size: 0;
+  padding-inline: var(--space-3);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  color: var(--muted);
+  background: transparent;
+  font-size: var(--text-xs);
+  font-weight: var(--fw-bold);
+  white-space: nowrap;
+  transition: color 150ms ease, background 150ms ease, box-shadow 150ms ease;
+}
+
+.rv-side-tabs button:hover {
+  color: var(--brand-dark);
+  background: color-mix(in oklab, var(--surface) 72%, transparent);
+}
+
+.rv-side-tabs button.is-active {
+  color: var(--brand-dark);
+  background: var(--surface);
+  box-shadow: 0 4px 12px rgba(19, 69, 114, 0.09), inset 0 1px 0 rgba(255, 255, 255, 0.98);
+}
+
+.rv-side-tabs button svg {
+  color: var(--brand);
+}
+
+.rv-side .rv-pane-body {
+  flex: 1 1 auto;
+  min-block-size: 0;
+  padding: var(--space-4);
+  overflow: hidden;
+  background: var(--surface-soft);
+}
+
+.rv-side .rv-turn {
+  background: var(--surface);
+  border-color: transparent;
+  border-inline-start-width: 3px;
+}
+
+.rv-side .rv-turn:hover,
+.rv-side .rv-turn:focus-visible,
+.rv-side .rv-turn.is-playing {
+  background: var(--brand-soft);
+}
+
+.rv-side-resizer::before {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 7px;
+  width: 18px;
+  height: 56px;
+  content: "";
+  transform: translateY(-50%);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  box-shadow: var(--elev-1);
+}
+
+.rv-side-resizer::after {
+  inset-block: 0;
+  left: 15px;
+  width: 2px;
+  background: var(--line);
+}
+
+.rv-side-resizer:hover::after,
+.rv-side-resizer:focus-visible::after {
+  background: var(--brand);
+}
+
+@media (max-width: 1080px) {
+  .review-content-grid {
+    min-block-size: 0;
+  }
+
+  .review-content-grid > .brief-document:not(.is-transcript-view) .rv-recap {
+    min-block-size: 0;
+  }
+
+  .rv-recap > .rv-suggestions-dock {
+    width: calc(100% + 32px);
+    margin-inline: -16px;
+    padding-inline: 16px;
+  }
+}

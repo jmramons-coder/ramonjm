@@ -1,0 +1,99 @@
+.product-shell .sg-card.conversation-offer-card {
+  display: grid;
+  min-width: 0;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: 1px solid var(--line-control);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: none;
+}
+.product-shell .sg-card.conversation-offer-card .conversation-offer-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  min-width: 0;
+  flex-wrap: nowrap;
+}
+.product-shell .conversation-offer-card-header h4 {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  color: var(--ink-control);
+  font-size: var(--text-md);
+  font-weight: var(--fw-medium);
+  line-height: var(--leading-snug);
+  overflow-wrap: anywhere;
+}
+.product-shell .sg-card.conversation-offer-card .conversation-offer-actions {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: var(--space-1);
+  margin: 0;
+}
+.product-shell .sg-card.conversation-offer-card :is(.conversation-offer-link, .conversation-offer-pin) {
+  position: static;
+  display: grid;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  min-height: 44px;
+  place-items: center;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-control);
+  background: transparent;
+  color: var(--ink-secondary);
+  text-decoration: none;
+  cursor: pointer;
+}
+.product-shell .sg-card.conversation-offer-card :is(.conversation-offer-link, .conversation-offer-pin) > svg { display: block; }
+.product-shell .sg-card.conversation-offer-card :is(.conversation-offer-link, .conversation-offer-pin):hover,
+.product-shell .sg-card.conversation-offer-card .conversation-offer-pin[aria-pressed="true"] { background: var(--brand-wash); color: var(--brand-contrast); }
+.product-shell .sg-card.conversation-offer-card :is(.conversation-offer-link, .conversation-offer-pin):focus-visible { outline: 2px solid var(--brand-contrast); outline-offset: -2px; }
+.product-shell .sg-card.conversation-offer-card .sg-subtitle { margin: 0; color: var(--ink-secondary); font-size: var(--text-sm); line-height: var(--leading-normal); overflow-wrap: anywhere; }
+.product-shell .sg-card.conversation-offer-card .conversation-offer-state { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); min-width: 0; }
+.product-shell .sg-card.conversation-offer-card .conversation-offer-state:empty { display: none; }
+.product-shell .sg-card.conversation-offer-card .sg-badge { max-width: 100%; margin: 0; padding: var(--space-1) var(--space-2); border: 0; border-radius: var(--radius-pill); background: var(--brand-wash); color: var(--brand-contrast); font-size: var(--text-2xs); line-height: var(--leading-normal); white-space: normal; overflow-wrap: anywhere; }
+.product-shell .sg-card.conversation-offer-card .sg-flights { display: grid; min-width: 0; gap: var(--space-2); }
+.product-shell .sg-card.conversation-offer-card .conversation-flight-option {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  min-width: 0;
+  gap: var(--space-1);
+  padding: var(--space-3);
+  border: 0;
+  border-radius: var(--radius-control);
+  background: var(--surface-subtle);
+}
+.product-shell .conversation-flight-heading { display: grid; grid-template-columns: 30px minmax(0, 1fr) 44px; align-items: center; gap: var(--space-2); min-width: 0; }
+.product-shell .conversation-flight-heading > strong { min-width: 0; color: var(--ink-control); font-size: var(--text-base); font-weight: var(--fw-medium); overflow-wrap: anywhere; }
+.product-shell .conversation-flight-details { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--space-1) var(--space-3); min-width: 0; }
+.product-shell .conversation-flight-details p { flex: 1 1 12ch; min-width: 0; margin: 0; color: var(--ink-secondary); font-size: var(--text-sm); line-height: var(--leading-normal); white-space: pre-line; overflow-wrap: anywhere; }
+.product-shell .conversation-flight-details > strong { margin-inline-start: auto; max-width: 100%; color: var(--ink-control); font-size: var(--text-md); font-weight: var(--fw-semibold); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.product-shell .sg-card.conversation-offer-card .flight-offer-row { min-width: 0; column-gap: var(--space-3); }
+.product-shell .sg-card.conversation-offer-card .flight-offer-visual { color: var(--ink-secondary); }
+.product-shell .sg-card.conversation-offer-card .flight-offer-copy strong { color: var(--ink-control); font-size: var(--text-base); font-weight: var(--fw-medium); }
+.product-shell .sg-card.conversation-offer-card .flight-offer-copy > span { color: var(--ink-secondary); font-size: var(--text-sm); white-space: pre-line; }
+.product-shell .sg-card.conversation-offer-card .flight-offer-price { color: var(--ink-control); font-size: var(--text-md); font-weight: var(--fw-semibold); }
+.product-shell .conversation-flight-note { min-width: 0; margin: 0; color: var(--ink-secondary); font-size: var(--text-xs); line-height: var(--leading-normal); white-space: pre-line; overflow-wrap: anywhere; }
+.product-shell .sg-card.conversation-offer-card .sg-hotels { grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: var(--space-4); min-width: 0; }
+.product-shell .sg-card.conversation-offer-card .conversation-hotel-option { min-width: 0; gap: var(--space-2); }
+.product-shell .conversation-hotel-placeholder { display: grid; height: 100%; place-items: center; color: var(--brand-contrast); background: linear-gradient(135deg, var(--brand-wash), var(--surface-subtle)); }
+.product-shell .conversation-hotel-heading { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); min-width: 0; }
+.product-shell .conversation-hotel-heading > strong { min-width: 0; color: var(--ink-control); font-size: var(--text-base); font-weight: var(--fw-medium); overflow-wrap: anywhere; }
+.product-shell .conversation-hotel-rating { display: inline-flex; align-items: center; gap: var(--space-1); min-width: 0; color: var(--ink-control); font-size: var(--text-xs); overflow-wrap: anywhere; }
+.product-shell .conversation-hotel-rating svg { display: block; flex: 0 0 auto; color: var(--ink-secondary); }
+.product-shell .conversation-hotel-detail { min-width: 0; margin: 0; color: var(--ink-secondary); font-size: var(--text-sm); line-height: var(--leading-normal); white-space: pre-line; overflow-wrap: anywhere; }
+.product-shell .sg-card.conversation-offer-card .sg-hotel-strip { grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); }
+.product-shell .conversation-offer-provider { color: var(--ink-secondary); font-size: var(--text-2xs); line-height: var(--leading-normal); overflow-wrap: anywhere; }
+@media (max-width: 800px) {
+  .product-shell .sg-card.conversation-offer-card { padding: var(--space-3); gap: var(--space-2); }
+  .product-shell .sg-card.conversation-offer-card .conversation-offer-card-header { gap: var(--space-1); }
+  .product-shell .conversation-offer-card-header h4 { font-size: var(--text-base); }
+  .product-shell .sg-card.conversation-offer-card .conversation-flight-option { padding: var(--space-3) var(--space-2); }
+}

@@ -1,0 +1,733 @@
+.folder-conversations {
+  --fc-reading-width: 1040px;
+  display: grid;
+  flex: 1 1 0;
+  grid-template-columns: clamp(280px, 26%, 320px) minmax(0, 1fr);
+  width: 100%;
+  height: auto;
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: transparent;
+}
+
+.product-shell .review-page.review-conversations > .review-content-grid.review-conversations {
+  display: flex;
+  flex: 1 1 0;
+  align-items: stretch;
+  min-width: 0;
+  min-height: 0;
+  min-block-size: 0;
+  height: auto;
+  block-size: auto;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.product-shell .review-content-grid.review-conversations > .brief-document:has(> .folder-conversations) {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  width: 100%;
+  max-width: none;
+  height: auto;
+  block-size: auto;
+  min-width: 0;
+  min-height: 0;
+  min-block-size: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.product-shell .review-page.review-conversations {
+  container-name: folder-conversation-page;
+  container-type: size;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  height: var(--folder-conversation-page-height, calc(100dvh - var(--workspace-header-height) - var(--workspace-nav-height)));
+  block-size: var(--folder-conversation-page-height, calc(100dvh - var(--workspace-header-height) - var(--workspace-nav-height)));
+  min-height: 0;
+  min-block-size: 0;
+  padding-block: 0;
+  overflow: hidden;
+}
+
+.product-shell .review-page.review-conversations > .review-sticky-head {
+  flex: 0 0 auto;
+}
+
+.fc-recordings {
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+  border-inline-end: 1px solid var(--line-control);
+}
+
+.folder-conversations > .fc-recordings[hidden] { display: none; }
+.fc-recording-chevron { display: none; flex: 0 0 auto; align-self: center; color: var(--ink-secondary); }
+
+.fc-recording-list {
+  display: grid;
+  flex: 1 1 auto;
+  align-content: start;
+  gap: var(--space-1);
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  padding: var(--space-4) var(--space-3) var(--space-4) 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  list-style: none;
+  overscroll-behavior: contain;
+}
+
+.fc-recording {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  gap: var(--space-1);
+  padding-inline-end: var(--space-1);
+  border-radius: var(--radius-md);
+  background: transparent;
+  transition: background-color var(--motion-interaction) ease;
+}
+
+.fc-recording:hover {
+  background: var(--surface-subtle);
+}
+
+.fc-recording[data-active] {
+  background: var(--brand-tint);
+}
+
+.fc-recording-select {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: flex-start;
+  gap: var(--space-2);
+  min-width: 0;
+  min-height: 64px;
+  margin: 0;
+  padding: var(--space-3);
+  border: 0;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--ink-control);
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+
+.fc-recording-icon {
+  display: block;
+  flex-shrink: 0;
+  margin-block-start: var(--space-1);
+  color: var(--ink-secondary);
+}
+
+.fc-recording[data-active] .fc-recording-icon {
+  color: var(--brand-contrast);
+}
+
+.fc-recording-copy {
+  display: grid;
+  flex: 1 1 auto;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.fc-recording-title {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  gap: var(--space-1) var(--space-2);
+  min-width: 0;
+}
+
+.fc-recording-title strong {
+  flex: 1 1 0;
+  min-width: 0;
+  color: var(--ink-control);
+  font-size: var(--text-sm);
+  font-weight: var(--fw-medium);
+  line-height: var(--leading-normal);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fc-recording-title > .session-lifecycle-tag {
+  flex-shrink: 0;
+  max-width: 100%;
+}
+
+.fc-recording:has(.fc-recording-resume):has(.fc-delete) .fc-recording-title {
+  flex-wrap: wrap;
+}
+
+.fc-recording:has(.fc-recording-resume):has(.fc-delete) .fc-recording-title strong {
+  flex-basis: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+/* Opaque semantic pills stay readable inside the selected blue row. Lifecycle
+   labels and the conditions that choose them still come from the parent. */
+.product-shell .folder-conversations .fc-recording .session-lifecycle-tag {
+  display: inline-flex;
+  align-items: center;
+  align-self: center;
+  min-height: 20px;
+  margin: 0;
+  padding: calc(var(--space-1) / 2) calc(var(--space-1) + var(--space-1) / 2);
+  border: 1px solid color-mix(in srgb, var(--ink-control) 14%, var(--status-manquant-soft));
+  border-radius: var(--radius-pill);
+  background: var(--status-manquant-soft);
+  color: var(--ink-control);
+  font-size: var(--text-2xs);
+  font-weight: var(--fw-medium);
+  line-height: var(--leading-snug);
+  white-space: nowrap;
+  opacity: 1;
+}
+
+.product-shell .folder-conversations .fc-recording .session-lifecycle-tag:is([data-state="processing"], [data-state="en_cours"]) {
+  border-color: color-mix(in srgb, var(--brand-contrast) 25%, var(--brand-wash));
+  background: var(--brand-wash);
+  color: var(--brand-contrast);
+}
+
+.product-shell .folder-conversations .fc-recording .session-lifecycle-tag[data-state="interrompue"] {
+  border-color: color-mix(in srgb, var(--status-incertain) 35%, var(--status-incertain-soft));
+  background: var(--status-incertain-soft);
+  color: color-mix(in srgb, var(--status-incertain) 65%, var(--ink-control));
+}
+
+.fc-recording:has(.fc-recording-resume):has(.fc-delete) .fc-recording-title > .session-lifecycle-tag {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.fc-recording-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-2);
+  min-width: 0;
+  color: var(--ink-secondary);
+  font-size: var(--text-xs);
+  line-height: var(--leading-normal);
+  font-variant-numeric: tabular-nums;
+}
+
+.fc-recording-meta time {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.fc-recording-resume {
+  display: grid;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--brand-contrast);
+  cursor: pointer;
+}
+
+.fc-recording-resume:hover {
+  background: var(--brand-tint);
+}
+
+.fc-recording-resume:disabled {
+  color: var(--ink-secondary);
+  cursor: default;
+}
+
+.fc-recording-resume > svg {
+  display: block;
+}
+
+.fc-recording-select:disabled {
+  opacity: 1;
+  cursor: default;
+}
+
+.fc-delete {
+  display: grid;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  min-height: 44px;
+  place-items: center;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-control);
+  background: transparent;
+  color: var(--ink-secondary);
+  cursor: pointer;
+}
+
+.fc-delete > svg {
+  display: block;
+}
+
+.fc-delete:hover:not(:disabled) {
+  background: var(--status-contradiction-soft);
+  color: color-mix(in srgb, var(--status-contradiction) 65%, var(--ink-control));
+}
+
+.fc-delete:disabled {
+  opacity: 1;
+  cursor: not-allowed;
+}
+
+.fc-delete[aria-busy="true"] {
+  cursor: progress;
+}
+
+.folder-conversations :is(.fc-recording-select, .fc-recording-resume, .fc-back, .fc-delete):focus-visible {
+  outline: 2px solid var(--brand-contrast);
+  outline-offset: -3px;
+}
+
+.fc-detail {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.fc-detail-header {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-1) var(--space-3);
+  min-width: 0;
+  width: 100%;
+  max-width: calc(var(--fc-reading-width) + 2 * var(--space-5));
+  align-self: center;
+  padding: var(--space-4) var(--space-5) var(--space-3);
+}
+
+.fc-detail-header:has(> .fc-delete) {
+  padding-block: var(--space-2);
+}
+
+.fc-detail-heading-copy {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: baseline;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-1) var(--space-3);
+  min-width: 0;
+}
+
+.fc-detail-header h2 {
+  min-width: 0;
+  margin: 0;
+  color: var(--ink-control);
+  font-size: var(--text-base);
+  font-weight: var(--fw-medium);
+  line-height: var(--leading-normal);
+  overflow-wrap: anywhere;
+  outline: none;
+}
+
+.fc-detail-header time {
+  color: var(--ink-secondary);
+  font-size: var(--text-xs);
+  line-height: var(--leading-normal);
+}
+
+.fc-transcript {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  width: 100%;
+  max-width: calc(var(--fc-reading-width) + 2 * var(--space-5));
+  align-self: center;
+  padding: 0 var(--space-5) var(--space-4);
+  overflow: hidden;
+}
+
+.fc-transcript:not(:has(> .rv-pane-body)) {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.folder-conversations .fc-transcript > .rv-pane-body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  overflow: hidden;
+  background: transparent;
+}
+
+.folder-conversations .fc-transcript .rv-search {
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.folder-conversations .fc-transcript .rv-search-field {
+  flex-basis: 200px;
+}
+
+.folder-conversations .fc-transcript .rv-search-field input {
+  font-size: var(--text-base);
+}
+
+.folder-conversations .fc-transcript .rv-turns {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.fc-player {
+  flex: 0 0 auto;
+  min-width: 0;
+  padding: var(--space-3) var(--space-5);
+  border-top: 1px solid var(--line-control);
+  background: var(--surface);
+}
+
+.fc-player > * {
+  width: 100%;
+  max-width: var(--fc-reading-width);
+  margin-inline: auto;
+}
+
+.product-shell .fc-player > .ab-dock {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) auto 48px;
+  align-items: center;
+  gap: var(--space-1);
+  min-width: 0;
+  width: 100%;
+  max-width: var(--fc-reading-width);
+  margin: 0 auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.product-shell .fc-player .ab-dock-title,
+.product-shell .fc-player .ab-dock-speeds,
+.product-shell .fc-player .ab-dock-transport > button:not(.ab-dock-play) {
+  display: none;
+}
+
+.product-shell .fc-player .ab-dock-transport {
+  grid-column: 1;
+  grid-row: 1;
+  width: 44px;
+  min-width: 0;
+  gap: 0;
+}
+
+.product-shell .fc-player .ab-dock-play {
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  min-height: 44px;
+  margin: 0;
+  padding: 0;
+}
+
+.product-shell .fc-player .ab-dock-scrub {
+  grid-column: 2;
+  grid-row: 1;
+  width: 100%;
+  min-width: 0;
+  height: 44px;
+  min-height: 44px;
+  margin: 0;
+}
+
+.product-shell .fc-player .ab-dock-time {
+  grid-column: 3;
+  grid-row: 1;
+  font-size: var(--text-2xs);
+  white-space: nowrap;
+}
+
+.product-shell .fc-player .ab-dock-speed-select {
+  display: block;
+  grid-column: 4;
+  grid-row: 1;
+  width: 48px;
+  min-width: 0;
+  height: 44px;
+  min-height: 44px;
+  padding: 0 var(--space-1);
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: var(--surface-subtle);
+  color: var(--ink-control);
+  font: inherit;
+  font-size: var(--text-xs);
+}
+
+.product-shell .fc-player .ab-dock-message {
+  grid-column: 1 / -1;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.folder-conversation-audio-note {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0;
+  color: var(--ink-secondary);
+  font-size: var(--text-xs);
+  line-height: var(--leading-normal);
+  overflow-wrap: anywhere;
+}
+
+.fc-player > .folder-conversation-audio-note {
+  margin-inline: auto;
+}
+
+.fc-player .folder-conversation-audio-note > button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  padding-inline: var(--space-3);
+  margin-inline-start: auto;
+}
+
+.fc-detail-empty,
+.folder-conversations.fc-empty {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: safe center;
+  justify-content: safe center;
+  min-width: 0;
+  min-height: 0;
+  padding: var(--space-5);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.fc-back {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: var(--space-2);
+  align-self: flex-start;
+  min-height: 44px;
+  margin: var(--space-1) var(--space-3) 0;
+  padding: var(--space-2) var(--space-1);
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--ink-secondary);
+  font: inherit;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+
+.fc-back > svg {
+  display: block;
+  flex-shrink: 0;
+}
+
+.fc-back:hover {
+  color: var(--brand-contrast);
+}
+
+@media (min-width: 801px) and (max-width: 1080px) {
+  .folder-conversations {
+    grid-template-columns: clamp(240px, 30%, 280px) minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 800px) {
+  /* Only an opened transcript owns the viewport and anchored playback footer.
+     Browsing recordings uses ordinary document scrolling. */
+  html:has(.product-shell .review-page.review-conversations[data-conversation-detail-open]),
+  body:has(.product-shell .review-page.review-conversations[data-conversation-detail-open]),
+  .product-shell:has(.review-page.review-conversations[data-conversation-detail-open]) {
+    height: 100dvh;
+    min-height: 0;
+    overflow-y: hidden;
+    overscroll-behavior-y: none;
+    background: var(--surface);
+  }
+
+  .product-shell .review-page.review-conversations {
+    max-height: var(--folder-conversation-page-height, calc(100dvh - var(--workspace-header-height) - var(--workspace-nav-height)));
+    padding-block: 0;
+  }
+  /* The transcript has its own bounded scroll regions. Its header is a normal
+     nonshrinking row, without a second offset for the app header above it. */
+  .product-shell .review-page.review-conversations[data-conversation-detail-open] > .review-sticky-head { position: relative; top: 0; }
+
+  .product-shell .review-page.review-conversations > .review-content-grid.review-conversations {
+    width: calc(100% + 2 * var(--workspace-gutter));
+    margin-inline: calc(-1 * var(--workspace-gutter));
+    margin-block: 0;
+    padding: 0;
+  }
+
+  .product-shell .review-page.review-conversations:not([data-conversation-detail-open]) {
+    container-type: normal;
+    height: auto;
+    block-size: auto;
+    max-height: none;
+    min-height: calc(100dvh - var(--workspace-header-height));
+    min-block-size: calc(100dvh - var(--workspace-header-height));
+    padding-block-end: calc(var(--space-6) + var(--workspace-nav-height));
+    overflow: visible;
+  }
+
+  .product-shell .review-page.review-conversations:not([data-conversation-detail-open]) > .review-sticky-head {
+    position: sticky;
+    top: var(--workspace-header-height);
+  }
+
+  .product-shell .review-page.review-conversations:not([data-conversation-detail-open]) > .review-content-grid.review-conversations,
+  .product-shell .review-page.review-conversations:not([data-conversation-detail-open]) .brief-document:has(> .folder-conversations),
+  .product-shell .review-page.review-conversations:not([data-conversation-detail-open]) .folder-conversations,
+  .product-shell .review-page.review-conversations:not([data-conversation-detail-open]) .fc-recordings {
+    display: block;
+    flex: none;
+    height: auto;
+    block-size: auto;
+    min-height: 0;
+    min-block-size: 0;
+    overflow: visible;
+  }
+
+  .product-shell .review-page.review-conversations:not([data-conversation-detail-open]) .fc-recording-list {
+    flex: none;
+    height: auto;
+    overflow: visible;
+  }
+  .product-shell .review-page.review-conversations:not([data-conversation-detail-open]) .fc-recording {
+    scroll-margin-block-start: calc(var(--workspace-header-height) + 2 * var(--space-9));
+    scroll-margin-block-end: calc(var(--workspace-nav-height) + var(--space-3));
+  }
+
+
+  .folder-conversations {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr);
+  }
+
+  .fc-recordings {
+    border: 0;
+  }
+
+  .folder-conversations .fc-recording-list {
+    padding: var(--space-3) var(--workspace-gutter);
+    scrollbar-width: none;
+  }
+
+  .folder-conversations .fc-recording-list::-webkit-scrollbar,
+  .folder-conversations .fc-transcript::-webkit-scrollbar,
+  .folder-conversations .fc-detail-empty::-webkit-scrollbar,
+  .folder-conversations.fc-empty::-webkit-scrollbar,
+  .folder-conversations .fc-transcript .rv-turns::-webkit-scrollbar { display: none; }
+
+  .folder-conversations .fc-detail-empty,
+  .folder-conversations.fc-empty { scrollbar-width: none; }
+
+  .fc-recording-select { padding: var(--space-2); }
+  .fc-recording-chevron { display: block; }
+  .fc-recording-meta { flex-wrap: nowrap; }
+  .fc-recording-meta time { flex: 1 1 auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .fc-recording-meta > span { flex: 0 0 auto; }
+
+  .folder-conversations[data-detail-open] > .fc-recordings {
+    display: none;
+  }
+
+  .fc-detail {
+    animation: fc-detail-enter var(--motion-enter) ease both;
+  }
+
+  .fc-detail-header {
+    flex-wrap: nowrap;
+    gap: var(--space-2);
+    min-height: 44px;
+    padding: var(--space-1) var(--workspace-gutter);
+  }
+
+  .fc-detail-header:has(> .fc-delete) { padding-block: var(--space-1); }
+  .fc-detail-heading-copy { display: grid; flex: 1 1 auto; gap: 0; min-width: 0; }
+  .fc-detail-header h2 { overflow: hidden; font-size: var(--text-sm); text-overflow: ellipsis; white-space: nowrap; }
+  .fc-detail-header time { min-width: 0; overflow: hidden; font-size: var(--text-2xs); text-overflow: ellipsis; white-space: nowrap; }
+  .fc-back { flex: 0 0 44px; align-self: center; justify-content: center; width: 44px; height: 44px; margin: 0; padding: 0; }
+  .fc-back > span { display: none; }
+
+  .fc-transcript {
+    padding-inline: var(--workspace-gutter);
+    padding-bottom: 0;
+  }
+
+  .folder-conversations .fc-transcript { scrollbar-width: none; }
+
+  .folder-conversations .fc-transcript .rv-search { flex-wrap: nowrap; margin: 0; padding-block: var(--space-1) var(--space-2); }
+  .folder-conversations .fc-transcript .rv-search-field { flex: 1 1 auto; min-width: 0; }
+  .folder-conversations .fc-transcript .rv-search-field input { font-size: var(--text-input); }
+  .folder-conversations .fc-transcript .rv-turns { scrollbar-width: none; }
+
+  .fc-player {
+    padding: var(--space-1) var(--workspace-gutter);
+  }
+
+  /* Use the measured page box, including keyboard changes, for short layouts. */
+  @container folder-conversation-page (max-height: 320px) {
+    .product-shell .review-page.review-conversations[data-conversation-detail-open] > .review-sticky-head > .review-step-nav { display: none; }
+  }
+}
+
+@keyframes fc-detail-enter {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fc-recording {
+    transition: none;
+  }
+
+  .fc-detail {
+    animation: none;
+  }
+}

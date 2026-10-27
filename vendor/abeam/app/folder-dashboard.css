@@ -1,0 +1,174 @@
+/* Folder identity, navigation, and context share one reading edge. */
+.product-shell .review-sticky-head { --review-back-size: 0px; --review-title-gap: 0px; padding-block: 0; border-bottom: 1px solid var(--line); }
+.product-shell .review-back-action { width: fit-content; max-width: 100%; min-width: 0; margin: 0; text-align: left; text-decoration: none; }
+.product-shell .review-back-action svg { display: block; flex-shrink: 0; }
+.product-shell .review-back-action span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.product-shell .review-back-action:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
+.product-shell .review-sticky-head .review-header { align-items: flex-end; padding-block: 6px 8px; }
+.product-shell .review-sticky-head .review-title-copy { gap: 2px; }
+.product-shell .review-sticky-head .review-title-copy h1 { max-width: 100%; font-size: 24px; line-height: 1.3; white-space: normal; overflow: visible; overflow-wrap: anywhere; text-overflow: clip; }
+.product-shell .review-sticky-head .review-step-nav {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  overflow: hidden;
+  border-bottom: 0;
+}
+.product-shell .review-sticky-head .review-step-nav button { width: 100%; min-width: 0; justify-content: center; padding: 10px var(--space-2); gap: 6px; color: var(--ink-secondary); text-align: center; }
+.product-shell .review-tab-label { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.product-shell .review-tab-count {
+  display: inline-grid;
+  flex: 0 0 auto;
+  min-width: var(--space-5);
+  height: var(--space-5);
+  place-items: center;
+  padding-inline: var(--space-1);
+  border-radius: var(--radius-pill);
+  background: var(--brand-wash);
+  color: var(--brand-contrast);
+  font-size: var(--text-2xs);
+  font-weight: var(--fw-medium);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  white-space: nowrap;
+}
+/* Mobile keeps document scrolling; desktop has a reading pane and journey rail. */
+.product-shell .review-page.review-overview {
+  --folder-processing-height: 0px;
+  --folder-sticky-top: 0px;
+  height: 100dvh;
+  block-size: 100dvh;
+  min-height: 0;
+  min-block-size: 0;
+  padding-block-end: var(--space-8);
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-padding-block-start: calc(var(--folder-sticky-top) + var(--folder-processing-height) + var(--space-9));
+}
+.product-shell .review-overview > .review-processing-head {
+  position: sticky;
+  z-index: 51;
+  top: var(--folder-sticky-top);
+  flex: 0 0 auto;
+  width: calc(100% + 2 * var(--workspace-gutter));
+  min-width: 0;
+  margin-inline: calc(-1 * var(--workspace-gutter));
+}
+.product-shell .review-overview > .review-sticky-head {
+  flex: 0 0 auto;
+  position: sticky;
+  top: calc(var(--folder-sticky-top) + var(--folder-processing-height));
+  padding-inline: max(var(--workspace-gutter), calc((100% - var(--content-width)) / 2 + var(--workspace-gutter)));
+  border-bottom-color: var(--line-control);
+  background: var(--surface);
+  box-shadow: none;
+}
+.product-shell .review-overview > .review-sticky-head .review-step-nav { width: 100%; max-width: 30rem; margin-inline: 0; }
+.product-shell .review-overview > .review-content-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-6);
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: var(--content-width);
+  height: auto;
+  block-size: auto;
+  margin-inline: auto;
+  padding-block: var(--space-7) 0;
+  overflow: visible;
+}
+.product-shell .review-overview > .review-content-grid > .brief-document {
+  flex: none;
+  width: 100%;
+  height: auto;
+  block-size: auto;
+  padding: 0;
+  overflow: visible;
+  scrollbar-gutter: auto;
+}
+.product-shell .review-overview .review-content-grid :is(button, a, input, textarea, summary) { scroll-margin-block-start: calc(var(--folder-sticky-top) + var(--folder-processing-height) + var(--space-9)); }
+.product-shell .review-content-grid > .brief-document > .internal-summary.folder-dashboard { display: flex; flex: none; flex-direction: column; gap: 24px; block-size: auto; min-block-size: 0; }
+.product-shell .review-followup .client-summary-panel:has(> .folder-followup-empty) {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: center;
+  min-block-size: min(420px, 45svh);
+}
+.product-shell .review-followup .folder-followup-empty {
+  width: 100%;
+  max-width: 36rem;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  margin: 0;
+  padding: var(--space-6) var(--space-4);
+  text-align: center;
+}
+.product-shell .folder-followup-empty .workspace-empty-state-copy { max-width: 28rem; }
+.product-shell .folder-followup-empty .workspace-empty-state-icon {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border: 0;
+  border-radius: var(--radius-circle);
+  background: var(--brand-tint);
+  color: var(--brand-contrast);
+}
+.product-shell .folder-followup-empty .workspace-empty-state-icon > svg { width: 24px; height: 24px; }
+.product-shell .folder-followup-empty .workspace-empty-state-action { margin: 0; }
+@media (min-width: 801px) {
+  /* The same centered folder frame contains identity, tabs and every view. */
+  .product-shell.view-review .review-page.folder-page {
+    width: calc(100% - var(--workspace-sidebar-width));
+    max-width: calc(var(--content-width) + 2 * var(--workspace-gutter));
+    margin-left: calc(var(--workspace-sidebar-width) + max(0px, (100% - var(--workspace-sidebar-width) - var(--content-width) - 2 * var(--workspace-gutter)) / 2));
+    margin-right: 0;
+    /* The reading panes below own clipping; the quiet tab divider can reach
+       the workspace edges without widening any content or scroll region. */
+    overflow: visible;
+  }
+  .product-shell.view-review .review-page.folder-page > .review-sticky-head { border-bottom-color: transparent; }
+  .product-shell.view-review .review-page.folder-page > .review-sticky-head::after {
+    position: absolute;
+    bottom: -1px;
+    left: calc((100% - 100vw + var(--workspace-sidebar-width)) / 2);
+    width: calc(100vw - var(--workspace-sidebar-width));
+    height: 1px;
+    background: var(--line-control);
+    pointer-events: none;
+    content: "";
+  }
+  .product-shell .review-page.review-overview { padding-inline: var(--workspace-gutter); padding-block-end: 0; overflow: hidden; }
+  .product-shell .review-page.review-overview > .review-header.folder-header { flex: 0 0 auto; max-width: none; margin-inline: 0; }
+  .product-shell .review-page.review-overview > .review-sticky-head { flex: 0 0 auto; padding-inline: var(--workspace-gutter); }
+  .product-shell .review-page.review-overview > .review-sticky-head .review-step-nav { max-width: 34rem; }
+  .product-shell .review-page.review-overview > .review-content-grid { flex: 1 1 0; grid-template-columns: minmax(0, 7fr) minmax(260px, 3fr); align-items: stretch; gap: 0; width: calc(100% + 2 * var(--workspace-gutter)); max-width: none; height: auto; block-size: auto; min-height: 0; min-block-size: 0; margin-inline: calc(-1 * var(--workspace-gutter)); padding: 0; overflow: hidden; }
+  .product-shell .review-page.review-overview > .review-content-grid > .brief-document { height: 100%; block-size: 100%; min-height: 0; min-block-size: 0; margin: 0; padding: var(--space-7) var(--workspace-gutter) var(--space-8); border: 0; border-radius: 0; overflow-x: hidden; overflow-y: auto; scrollbar-width: none; }
+  .product-shell .review-page.review-overview > .review-content-grid > .brief-document::-webkit-scrollbar { display: none; }
+  .product-shell .review-page.review-overview > .review-content-grid > .brief-document:focus-visible { outline: 2px solid var(--brand-line); outline-offset: -2px; }
+  .product-shell .review-page.review-overview > .review-content-grid > .folder-journey-rail { display: flex; flex-direction: column; height: 100%; block-size: 100%; min-height: 0; min-block-size: 0; margin: 0; padding: var(--space-6); border-block-start: 0; border-inline-start: 1px solid var(--line-control); border-radius: 0; background: var(--surface-subtle); overflow: hidden; }
+  .product-shell .review-page.review-overview > .review-content-grid > .folder-journey-rail > .trip-journey { flex: 1 1 auto; min-height: 0; min-block-size: 0; background: transparent; }
+  .product-shell .review-sticky-head .review-header { padding-block-start: 32px; padding-block-end: 12px; }
+  .product-shell .review-sticky-head .review-title-copy h1 { font-weight: 500; letter-spacing: -.025em; }
+  .product-shell .review-sticky-head .review-step-nav { width: calc(100% + 24px); max-width: 34rem; margin-inline: -12px; }
+  .product-shell .review-sticky-head .review-step-nav .review-tab-count { display: inline-grid; flex-shrink: 0; }
+  .product-shell .review-sticky-head .review-step-nav button { padding-inline: 12px; border-radius: var(--radius-control) var(--radius-control) 0 0; font-weight: 500; }
+  .product-shell .review-sticky-head .review-step-nav button[aria-pressed="true"] { background: var(--brand-wash); color: var(--brand-contrast); }
+  .product-shell .review-sticky-head .review-step-nav button:hover:not([aria-pressed="true"]) { background: #f5f8fc; }
+}
+@media (max-width: 800px) {
+  .product-shell .review-page > .review-sticky-head { position: sticky; top: var(--workspace-header-height); }
+  .product-shell .review-page.review-overview { --folder-sticky-top: var(--workspace-header-height); --folder-identity-height: calc(var(--space-8) + var(--space-5)); height: auto; block-size: auto; min-height: calc(100dvh - var(--workspace-header-height)); padding-block-end: calc(var(--space-6) + var(--workspace-nav-height)); overflow: visible; }
+  .product-shell .review-overview > .review-header.folder-header.review-header--overview { position: sticky; top: calc(var(--folder-sticky-top) + var(--folder-processing-height)); z-index: 50; }
+  .product-shell .review-overview > .review-sticky-head { top: calc(var(--folder-sticky-top) + var(--folder-processing-height) + var(--folder-identity-height)); }
+  .product-shell .review-overview > .review-sticky-head .review-step-nav { max-width: none; }
+  .product-shell .review-overview > .review-content-grid { padding-block-start: var(--space-6); }
+  .product-shell .review-back-action { min-height: 44px; }
+  .product-shell .review-sticky-head .review-header { padding-block: 0 6px; }
+  .product-shell .review-sticky-head .review-title-copy h1 { font-size: 20px; }
+  .product-shell .review-sticky-head .review-step-nav { grid-template-columns: minmax(0, .95fr) minmax(0, 1.6fr) minmax(0, 1fr); }
+  .product-shell .review-sticky-head .review-step-nav button { gap: 4px; padding-inline: var(--space-1); }
+  .product-shell .review-content-grid > .brief-document > .folder-dashboard { gap: 22px; }
+}

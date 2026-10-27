@@ -42,3 +42,11 @@ next-env.d.ts
 /work/
 
 /private-media/
+
+# Isolated native aBeam frontend build output
+/vendor/abeam/.next/
+/vendor/abeam/out/
+/vendor/abeam/node_modules
+/vendor/abeam/next-env.d.ts
+/vendor/abeam/tsconfig.tsbuildinfo
+/public/embed/abeam/

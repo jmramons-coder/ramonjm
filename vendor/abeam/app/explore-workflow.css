@@ -1,0 +1,8 @@
+.product-shell .sidebar-navigation button.active .sidebar-nav-explore { background: transparent; }
+.product-shell .sg-flights li { flex-wrap: wrap; }
+.product-shell .sg-flights .flight-offer-row { flex-basis: 100%; }
+.product-shell .sg-flights .sg-card-action { margin-left: auto; }
+@media (max-width: 800px) {
+  .product-shell .mobile-nav-links[data-modules="4"] { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; }
+  .product-shell .mobile-nav-links[data-modules="4"] > button { min-width: 0; min-height: 44px; justify-self: center; }
+}

@@ -1,0 +1,5 @@
+/* Clarification and the folder copilot share their contextual rail. */
+.product-shell .rv-clarify-single { display: flex; flex: 1 1 auto; min-height: 0; flex-direction: column; }
+.product-shell .client-form-field > span { justify-content: flex-start; gap: 0; }
+.product-shell .client-form-field > span > svg { margin-inline-end: 6px; }
+.product-shell .client-form-field > span > b { flex: 0 0 auto; margin-inline-start: 2px; color: #bf525a; font-weight: 500; }

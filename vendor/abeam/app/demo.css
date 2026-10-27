@@ -1,0 +1,2 @@
+.demo-loading { display: grid; place-items: center; min-height: 100dvh; background: #f9fafc; color: #65778b; font: 14px system-ui, sans-serif; }
+body[data-demo-paused="true"] *, body[data-demo-paused="true"] *::before, body[data-demo-paused="true"] *::after { animation-play-state: paused !important; }

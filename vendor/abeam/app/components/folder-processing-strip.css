@@ -1,0 +1,56 @@
+.folder-processing-strip {
+  container-name: folder-processing;
+  container-type: inline-size;
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: var(--space-2);
+  box-sizing: border-box;
+  inline-size: 100%;
+  min-inline-size: 0;
+  min-block-size: var(--space-7);
+  padding: var(--space-1) var(--workspace-gutter, var(--space-5));
+  border-block-end: 1px solid var(--brand-line);
+  background: var(--brand-wash);
+  color: var(--ink-secondary);
+  font-size: var(--text-xs);
+  line-height: var(--leading-snug);
+}
+
+/* The header already spans the canvas; compensate only its reading gutters. */
+.product-shell .review-sticky-head > .folder-processing-strip {
+  inline-size: calc(100% + 2 * var(--workspace-gutter));
+  margin-inline: calc(-1 * var(--workspace-gutter));
+}
+
+.folder-processing-strip-spinner {
+  display: grid;
+  flex: 0 0 var(--space-3);
+  inline-size: var(--space-3);
+  block-size: var(--space-3);
+  place-items: center;
+  color: var(--brand-contrast);
+  animation: folder-processing-strip-spin 1.7s linear infinite;
+}
+.folder-processing-strip-spinner > svg { display: block; inline-size: 100%; block-size: 100%; }
+.folder-processing-phase { flex: 1 1 auto; min-inline-size: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.folder-processing-count { flex: 0 0 auto; min-inline-size: var(--space-5); min-block-size: var(--space-5); box-sizing: border-box; padding-inline: var(--space-1); border-radius: var(--radius-pill); background: var(--brand-tint); color: var(--brand-contrast); font-size: var(--text-2xs); line-height: var(--space-5); text-align: center; font-variant-numeric: tabular-nums; }
+.folder-processing-context { display: none; flex: 0 0 auto; color: var(--ink-secondary); font-size: var(--text-2xs); white-space: nowrap; }
+.folder-processing-checkpoints { display: none; flex: 0 0 auto; align-items: center; gap: var(--space-3); min-inline-size: 0; margin: 0; padding: 0; list-style: none; }
+.folder-processing-checkpoints > li { display: flex; align-items: center; gap: var(--space-1); min-inline-size: 0; color: var(--ink-secondary); font-size: var(--text-2xs); white-space: nowrap; }
+.folder-processing-checkpoints > li > svg { display: block; flex: 0 0 var(--space-3); color: var(--brand-contrast); }
+
+/* Available canvas space, rather than viewport width, decides the extra detail. */
+@media (min-width: 801px) {
+  @container folder-processing (min-width: 760px) {
+    .folder-processing-checkpoints { display: flex; }
+  }
+  @container folder-processing (min-width: 960px) {
+    .folder-processing-context { display: block; }
+  }
+}
+
+@keyframes folder-processing-strip-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .folder-processing-strip-spinner { animation: none; }
+}

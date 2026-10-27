@@ -1,0 +1,156 @@
+/* A quiet directory with consistent cell typography and explicit sorting. */
+@media (min-width: 801px) {
+  .product-shell .clients-list-section .folder-directory {
+    width: 100%;
+    max-width: 1180px;
+    min-width: 0;
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 0 6px;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+  .product-shell .clients-list-section .folder-directory th {
+    padding: 0 12px 2px;
+    border: 0;
+    background: transparent;
+    color: #61758c;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.5;
+    text-align: left;
+  }
+  .product-shell .clients-list-section .folder-directory th:first-child { padding-left: 38px; }
+  .product-shell .clients-list-section .folder-sort-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    width: max-content;
+    max-width: 100%;
+    min-width: 0;
+    min-height: 44px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition: color var(--motion-interaction) ease;
+  }
+  .product-shell .clients-list-section .folder-sort-button > span {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .product-shell .clients-list-section .folder-sort-button > svg {
+    display: block;
+    flex: 0 0 14px;
+    width: 14px;
+    height: 14px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: var(--ink-secondary);
+    stroke-width: 1.7;
+    opacity: .7;
+  }
+  .product-shell .clients-list-section .folder-sort-button:hover,
+  .product-shell .clients-list-section .folder-sort-button.is-active { color: var(--ink-list); }
+  .product-shell .clients-list-section .folder-sort-button:hover > svg { opacity: 1; }
+  .product-shell .clients-list-section .folder-sort-button.is-active > svg { color: var(--brand-contrast); opacity: 1; }
+  .product-shell .clients-list-section .folder-sort-button:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
+  .product-shell .clients-list-section .folder-directory :is(th, td) + :is(th, td) { border-left: 0; }
+  .product-shell .clients-list-section .folder-directory tbody tr,
+  .product-shell .clients-list-section .folder-directory tbody tr:hover,
+  .product-shell .clients-list-section .folder-directory tbody tr:focus-within { background: transparent; }
+  .product-shell .clients-list-section .folder-directory td {
+    min-width: 0;
+    padding: 4px 12px;
+    border: 0;
+    background: var(--surface-subtle);
+    color: #52677e;
+    font-size: 12px;
+    line-height: 1.5;
+    vertical-align: middle;
+    transition: background-color var(--motion-interaction) ease;
+  }
+  .product-shell .clients-list-section .folder-directory td:first-child { border-radius: var(--radius-row) 0 0 var(--radius-row); }
+  .product-shell .clients-list-section .folder-directory td:last-child { border-radius: 0 var(--radius-row) var(--radius-row) 0; }
+  .product-shell .clients-list-section .folder-directory tbody tr:hover > td,
+  .product-shell .clients-list-section .folder-directory tbody tr:focus-within > td { background: var(--surface-hover); }
+  .product-shell .clients-list-section .folder-directory-open {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    min-width: 0;
+    min-height: 44px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .product-shell .clients-list-section .folder-directory-open > svg {
+    flex: 0 0 18px;
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: #6c7e92;
+  }
+  .product-shell .clients-list-section .folder-directory-open > span { flex: 1; min-width: 0; }
+  .product-shell .clients-list-section .folder-directory-open strong {
+    display: block;
+    min-width: 0;
+    overflow: hidden;
+    color: inherit;
+    font: inherit;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .product-shell .clients-list-section .folder-directory-open:focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+  }
+  .product-shell .clients-list-section .folder-directory-contact > span {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .product-shell .clients-list-section .folder-directory-count { font-variant-numeric: tabular-nums; }
+  .product-shell .clients-list-section .folder-directory-date { white-space: nowrap; }
+}
+
+/* The separate mobile list keeps its current layout and uses the same quiet tint. */
+.product-shell .clients-list-section .folder-mobile-list .folder-list-item { background: var(--surface-subtle); }
+.product-shell .clients-list-section .folder-mobile-list .folder-list-item:hover,
+.product-shell .clients-list-section .folder-mobile-list .folder-list-item:focus-visible { background: var(--surface-hover); }
+.product-shell .clients-list-section .folder-mobile-list .folder-list-item:active { background: var(--surface-active); }
+@media (min-width: 801px) and (max-width: 1000px) {
+  .product-shell .clients-list-section .folder-directory th:first-child { width: 34%; }
+  .product-shell .clients-list-section .folder-directory th:nth-child(2) { width: 21%; }
+  .product-shell .clients-list-section .folder-directory th:nth-child(3) { width: 116px; }
+  .product-shell .clients-list-section .folder-directory-date { white-space: normal; overflow-wrap: anywhere; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .product-shell .clients-list-section .folder-directory td,
+  .product-shell .clients-list-section .folder-sort-button { transition: none; }
+}

@@ -1,0 +1,220 @@
+.offer-bookmarks {
+  display: grid;
+  align-content: start;
+  gap: var(--space-2);
+  min-width: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.offer-bookmark {
+  --bookmark-actions-width: 0px;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  border: 1px solid var(--line-control);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+}
+.offer-bookmark[data-action-count="1"] { --bookmark-actions-width: 44px; }
+.offer-bookmark[data-action-count="2"] { --bookmark-actions-width: 88px; }
+.offer-bookmark-header { position: relative; min-width: 0; }
+.offer-bookmark .offer-bookmark-toggle {
+  position: relative;
+  display: grid;
+  gap: var(--space-1);
+  width: 100%;
+  min-width: 0;
+  min-height: 52px;
+  margin: 0;
+  padding: var(--space-1) var(--space-2) var(--space-2);
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink-control);
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+.offer-bookmark-heading {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 0;
+  min-height: 44px;
+  padding-inline-end: calc(var(--bookmark-actions-width) + 40px);
+}
+.offer-bookmark-heading-copy { display: grid; gap: 1px; min-width: 0; }
+.offer-bookmark-context-title {
+  display: -webkit-box;
+  min-width: 0;
+  overflow: hidden;
+  color: var(--ink-control);
+  font-size: var(--text-sm);
+  font-weight: var(--fw-medium);
+  line-height: var(--leading-snug);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.offer-bookmark-avatar {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border-radius: var(--radius-sm);
+  background: var(--brand-wash);
+  color: var(--brand-contrast);
+}
+.offer-bookmark-metadata {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1) var(--space-2);
+  min-width: 0;
+  color: var(--ink-secondary);
+  font-size: var(--text-2xs);
+  line-height: var(--leading-normal);
+  overflow-wrap: anywhere;
+}
+.offer-bookmark-metadata-part { display: inline-flex; align-items: center; gap: var(--space-1); min-width: 0; max-width: 100%; }
+.offer-bookmark-metadata-part > svg { display: block; flex: 0 0 auto; color: var(--ink-secondary); }
+.offer-bookmark-metadata-part > span { min-width: 0; }
+.offer-bookmark-hotel-preview { display: flex; flex: 1 1 100%; align-items: center; gap: var(--space-2); min-width: 0; }
+.offer-bookmark-hotel-preview > .offer-bookmark-item-preview { flex: 1 1 auto; }
+.offer-bookmark-hotel-preview > .offer-bookmark-rating { flex: 0 1 auto; }
+.offer-bookmark-context-subtitle { min-width: 0; }
+.offer-bookmark-context-certainty {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-width: 0;
+  max-width: 100%;
+  padding: 1px var(--space-1);
+  border-radius: var(--radius-sm);
+  background: var(--status-incertain-soft);
+  color: var(--ink-control);
+  font-size: var(--text-2xs);
+  line-height: var(--leading-snug);
+  overflow-wrap: anywhere;
+}
+.offer-bookmark-context-certainty > svg { display: block; flex: 0 0 auto; color: var(--status-incertain); }
+.offer-bookmark-actions { position: absolute; top: var(--space-1); right: 44px; display: flex; flex-wrap: nowrap; align-items: center; min-width: 0; }
+.offer-bookmark-chevron { position: absolute; top: 18px; right: 14px; display: block; color: var(--ink-secondary); transition: transform var(--motion-interaction) ease; }
+.offer-bookmark[data-expanded] .offer-bookmark-chevron { transform: rotate(180deg); }
+
+.offer-bookmark-link,
+.offer-bookmark-remove,
+.offer-bookmark-menu-button {
+  display: grid;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  min-height: 44px;
+  box-sizing: border-box;
+  place-items: center;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--ink-secondary);
+  text-decoration: none;
+  cursor: pointer;
+}
+.offer-bookmark :is(.offer-bookmark-link, .offer-bookmark-remove) > svg { display: block; }
+.offer-bookmark :is(.offer-bookmark-link, .offer-bookmark-remove, .offer-bookmark-toggle, .offer-bookmark-item-toggle):hover { background: var(--surface-hover); color: var(--brand-contrast); }
+.offer-bookmark :is(.offer-bookmark-link, .offer-bookmark-remove, .offer-bookmark-toggle, .offer-bookmark-item-toggle):focus-visible { outline: 2px solid var(--brand-contrast); outline-offset: -3px; }
+.offer-bookmark-content { min-width: 0; }
+.offer-bookmark-content[hidden], .offer-bookmark-item-content[hidden] { display: none; }
+.offer-bookmark-search-context { display: grid; gap: var(--space-1); min-width: 0; padding: var(--space-2) var(--space-3); }
+.offer-bookmark-search-context p { min-width: 0; margin: 0; color: var(--ink-secondary); font-size: var(--text-xs); line-height: var(--leading-normal); overflow-wrap: anywhere; }
+.offer-bookmark-items { display: grid; min-width: 0; margin: 0; padding: 0; list-style: none; }
+.offer-bookmark-items > li { min-width: 0; border-block-start: 1px solid var(--line-control); }
+.offer-bookmark-item { min-width: 0; }
+.offer-bookmark-item-header { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; min-width: 0; }
+.offer-bookmark .offer-bookmark-item-toggle,
+.offer-bookmark-item-summary {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr) 14px;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 0;
+  min-height: 64px;
+  box-sizing: border-box;
+  margin: 0;
+  padding: var(--space-2);
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--ink-control);
+  font: inherit;
+  text-align: start;
+}
+.offer-bookmark .offer-bookmark-item-toggle { cursor: pointer; }
+.offer-bookmark-item-summary { grid-template-columns: 32px minmax(0, 1fr); }
+.offer-bookmark-item-visual { display: grid; justify-self: center; width: 32px; height: 32px; place-items: center; color: var(--brand-contrast); }
+.offer-bookmark-item-visual img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.offer-bookmark-item-visual.is-hotel { overflow: hidden; border-radius: var(--radius-sm); }
+.offer-bookmark-item-visual.is-hotel img { object-fit: cover; }
+.offer-bookmark-heading .offer-bookmark-item-visual.is-hotel { width: 32px; height: 36px; }
+.offer-bookmark-item-copy { display: grid; gap: 0; min-width: 0; }
+.offer-bookmark-item-copy strong,
+.offer-bookmark-item-preview { display: block; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.offer-bookmark-item-copy strong { color: var(--ink-control); font-size: var(--text-xs); font-weight: var(--fw-medium); line-height: var(--leading-snug); }
+.offer-bookmark-item-preview { color: var(--ink-secondary); font-size: var(--text-2xs); line-height: var(--leading-normal); }
+.offer-bookmark-item-price { min-width: 0; color: var(--ink-control); font-size: var(--text-xs); font-weight: var(--fw-medium); line-height: var(--leading-normal); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.offer-bookmark-rating { display: flex; align-items: center; gap: var(--space-1); min-width: 0; color: var(--ink-secondary); font-size: var(--text-2xs); line-height: var(--leading-normal); }
+.offer-bookmark-rating > svg { display: block; flex: 0 0 auto; }
+.offer-bookmark-rating > span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.offer-bookmark-item-actions { display: flex; flex-wrap: nowrap; align-items: center; min-width: 0; }
+.offer-bookmark-item-chevron { display: block; color: var(--ink-secondary); transition: transform var(--motion-interaction) ease; }
+.offer-bookmark-item[data-expanded] .offer-bookmark-item-chevron { transform: rotate(180deg); }
+.offer-bookmark-item-content { display: grid; gap: var(--space-2); min-width: 0; padding: 0 var(--space-3) var(--space-3); }
+.offer-bookmark-item[data-content-only] .offer-bookmark-item-content { padding-block-start: var(--space-3); }
+.offer-bookmark-item-detail,
+.offer-bookmark-item-note,
+.offer-bookmark-unavailable { min-width: 0; margin: 0; color: var(--ink-secondary); font-size: var(--text-xs); line-height: var(--leading-normal); white-space: pre-line; overflow-wrap: anywhere; }
+.offer-bookmark-item-note { display: flex; align-items: start; gap: var(--space-1); color: var(--ink-control); }
+.offer-bookmark-item-note > svg { display: block; flex: 0 0 auto; margin-block-start: 2px; }
+.offer-bookmark-content-actions { display: flex; justify-content: flex-end; align-items: center; min-width: 0; }
+.offer-bookmark-unavailable { padding: var(--space-3); border-top: 1px solid var(--line-control); }
+
+.offer-bookmark-legs { min-width: 0; }
+.offer-bookmark-legs h4 { display: flex; align-items: center; gap: var(--space-1); margin: 0 0 var(--space-2); color: var(--ink-control); font-size: var(--text-xs); font-weight: var(--fw-medium); }
+.offer-bookmark-legs h4 > svg { display: block; flex: 0 0 auto; color: var(--ink-secondary); }
+.offer-bookmark-legs ol { display: grid; gap: var(--space-3); min-width: 0; margin: 0; padding: 0 0 0 var(--space-3); border-inline-start: 1px solid var(--brand-line); list-style: none; }
+.offer-bookmark-legs li { min-width: 0; }
+.offer-bookmark-leg-airline { min-width: 0; margin: 0 0 var(--space-2); color: var(--ink-control); font-size: var(--text-xs); line-height: var(--leading-normal); overflow-wrap: anywhere; }
+.offer-bookmark-leg-route { display: grid; grid-template-columns: minmax(0, 1fr) 14px minmax(0, 1fr); align-items: center; gap: var(--space-2); min-width: 0; }
+.offer-bookmark-leg-route > svg { color: var(--ink-secondary); }
+.offer-bookmark-leg-endpoint { display: grid; gap: 1px; min-width: 0; color: var(--ink-control); font-size: var(--text-xs); line-height: var(--leading-normal); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.offer-bookmark-leg-endpoint:last-child { text-align: end; }
+.offer-bookmark-leg-endpoint strong { font-weight: var(--fw-medium); }
+.offer-bookmark-leg-endpoint small { color: var(--ink-secondary); font-size: var(--text-2xs); }
+.offer-bookmark-leg-duration { display: flex; align-items: center; gap: var(--space-1); margin: var(--space-2) 0 0; color: var(--ink-secondary); font-size: var(--text-2xs); }
+.offer-bookmark-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-1); min-width: 0; }
+.offer-bookmark-gallery[data-count="1"] { grid-template-columns: minmax(0, 1fr); }
+.offer-bookmark-gallery img { display: block; width: 100%; height: auto; max-height: 120px; aspect-ratio: 16 / 10; object-fit: cover; border-radius: var(--radius-sm); }
+
+.offer-bookmark-menu-button:hover,
+.offer-bookmark-menu-button[data-pressed] { background: var(--brand-tint); color: var(--brand-contrast); }
+.offer-bookmark-menu-button[data-disabled] { opacity: .45; cursor: default; }
+.offer-bookmark-menu-button:focus-visible,
+.offer-bookmark-menu-button[data-focus-visible] { outline: 2px solid var(--brand); outline-offset: -3px; }
+.offer-bookmark-menu-popover { z-index: 160; max-width: calc(100vw - 32px); padding: var(--space-1); border: 1px solid var(--line-control); border-radius: var(--radius-md); background: var(--surface); box-shadow: var(--elev-3); }
+.offer-bookmark-menu { min-width: 190px; outline: none; }
+.offer-bookmark-menu [role="menuitem"] { display: flex; align-items: center; gap: var(--space-2); min-height: 44px; padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm); color: var(--ink-control); font-size: var(--text-sm); cursor: pointer; outline: none; }
+.offer-bookmark-menu [role="menuitem"][data-focused] { background: var(--brand-tint); color: var(--brand-contrast); }
+
+.offer-bookmarks-empty { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-2); min-width: 0; padding: var(--space-6) var(--space-3); color: var(--ink-secondary); text-align: center; }
+.offer-bookmarks-empty h3 { margin: 0; color: var(--ink-control); font-size: var(--text-sm); font-weight: var(--fw-medium); }
+.offer-bookmarks-empty p { max-width: 36ch; margin: 0; font-size: var(--text-xs); line-height: var(--leading-normal); overflow-wrap: anywhere; }
+
+@media (prefers-reduced-motion: reduce) {
+  .offer-bookmark-chevron, .offer-bookmark-item-chevron { transition: none; }
+}

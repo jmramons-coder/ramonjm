@@ -1,0 +1,57 @@
+/* The inner edge belongs to this left-hand rail; the conversation surface owns its divider. */
+.conversation-bookmark-resizer {
+  display: none;
+}
+
+@media (min-width: 1001px) {
+  .conversation-workspace .conversation-body > .conversation-pins.conversation-bookmark-rail {
+    position: relative;
+    flex: 0 0 var(--conversation-bookmark-width, 330px);
+    width: var(--conversation-bookmark-width, 330px);
+    min-width: 0;
+    min-height: 0;
+    max-width: min(45%, calc(100% - 420px));
+  }
+
+  .conversation-bookmark-rail .conversation-bookmark-resizer {
+    position: absolute;
+    z-index: 40;
+    inset-block: 0;
+    inset-inline-end: -8px;
+    display: block;
+    width: 16px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: none;
+    background: transparent;
+    cursor: col-resize;
+    touch-action: none;
+    user-select: none;
+  }
+
+  .conversation-bookmark-rail .conversation-bookmark-resizer::after {
+    position: absolute;
+    inset-block: var(--space-3);
+    left: calc(50% - 1px);
+    width: 2px;
+    border-radius: var(--radius-pill);
+    background: var(--brand-contrast);
+    opacity: 0;
+    content: "";
+    pointer-events: none;
+    transition: opacity var(--motion-interaction) ease;
+  }
+
+  .conversation-bookmark-rail .conversation-bookmark-resizer:hover::after,
+  .conversation-bookmark-rail .conversation-bookmark-resizer:focus-visible::after,
+  .conversation-bookmark-rail[data-resizing="true"] .conversation-bookmark-resizer::after {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .conversation-bookmark-rail .conversation-bookmark-resizer::after {
+    transition: none;
+  }
+}

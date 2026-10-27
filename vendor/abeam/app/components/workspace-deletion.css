@@ -1,0 +1,261 @@
+.workspace-deletion-dialog {
+  position: fixed;
+  inset: 0;
+  width: min(460px, calc(100% - 32px));
+  box-sizing: border-box;
+  min-width: 0;
+  min-height: 0;
+  max-width: none;
+  max-height: calc(100dvh - 32px);
+  margin: auto;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--line-control);
+  border-radius: var(--radius-xl);
+  color: var(--ink-control);
+  background: var(--surface);
+  box-shadow: var(--elev-3);
+}
+
+.workspace-deletion-dialog[open] {
+  display: flex;
+  flex-direction: column;
+  animation: workspace-deletion-enter var(--motion-enter) ease-out both;
+}
+
+.workspace-deletion-dialog::backdrop {
+  background: #152d4947;
+  backdrop-filter: blur(3px);
+}
+
+.workspace-deletion-dialog button {
+  font: inherit;
+  cursor: pointer;
+}
+
+.workspace-deletion-header {
+  display: grid;
+  flex: 0 0 auto;
+  grid-template-columns: 24px minmax(0, 1fr) 44px;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 0;
+  padding: var(--space-4) var(--space-6) var(--space-1);
+}
+
+.workspace-deletion-dialog .workspace-deletion-close {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-control);
+  color: var(--ink-secondary);
+  background: transparent;
+}
+
+.workspace-deletion-dialog .workspace-deletion-close:hover:not(:disabled) {
+  color: var(--brand-contrast);
+  background: var(--surface-hover);
+}
+
+.workspace-deletion-content {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scroll-padding-block-end: var(--space-4);
+  padding: 0 var(--space-6) var(--space-4);
+}
+
+.workspace-deletion-mark {
+  display: flex;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  color: var(--recording-indicator);
+}
+
+.workspace-deletion-header h2 {
+  min-width: 0;
+  margin: 0;
+  color: var(--ink-list);
+  font-size: var(--text-lg);
+  font-weight: var(--fw-medium);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-snug);
+  overflow-wrap: anywhere;
+}
+
+.workspace-deletion-context {
+  margin: var(--space-2) 0 0;
+  color: var(--ink-control);
+  font-size: var(--text-sm);
+  font-weight: var(--fw-medium);
+  line-height: var(--leading-normal);
+  overflow-wrap: anywhere;
+}
+
+.workspace-deletion-description {
+  margin: var(--space-3) 0 0;
+  color: var(--ink-secondary);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  overflow-wrap: anywhere;
+}
+
+.workspace-deletion-acknowledgement {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  min-width: 0;
+  min-height: 44px;
+  margin: var(--space-4) 0 0;
+  padding-block: var(--space-2);
+  color: var(--ink-control);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  cursor: pointer;
+}
+
+.workspace-deletion-acknowledgement > input {
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+  margin: 1px 0 0;
+  accent-color: var(--brand-contrast);
+  cursor: inherit;
+}
+
+.workspace-deletion-acknowledgement > span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.workspace-deletion-acknowledgement:has(input:disabled) {
+  opacity: .6;
+  cursor: default;
+}
+
+.workspace-deletion-error {
+  margin: var(--space-3) 0 0;
+  color: var(--recording-indicator);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  overflow-wrap: anywhere;
+}
+
+.workspace-deletion-status {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: var(--space-3) 0 0;
+  color: var(--ink-secondary);
+  font-size: var(--text-xs);
+  line-height: var(--leading-normal);
+}
+
+.workspace-deletion-status > svg {
+  flex: 0 0 14px;
+  animation: workspace-deletion-spin 1.4s linear infinite;
+}
+
+.workspace-deletion-actions {
+  position: sticky;
+  z-index: 1;
+  bottom: 0;
+  display: grid;
+  flex: 0 0 auto;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2);
+  min-width: 0;
+  padding: var(--space-2) var(--space-6) var(--space-6);
+  border: 0;
+  background: var(--surface);
+}
+
+.workspace-deletion-dialog .workspace-deletion-actions button {
+  min-width: 0;
+  min-height: 44px;
+  margin: 0;
+  padding: var(--space-3);
+  border: 0;
+  border-radius: var(--radius-control);
+  font-size: var(--text-sm);
+  font-weight: var(--fw-medium);
+  line-height: var(--leading-snug);
+  transition: background-color var(--motion-interaction) ease, color var(--motion-interaction) ease;
+}
+
+.workspace-deletion-dialog .workspace-deletion-cancel {
+  color: var(--ink-control);
+  background: var(--surface-recessed);
+}
+
+.workspace-deletion-dialog .workspace-deletion-cancel:hover:not(:disabled) {
+  background: var(--surface-hover);
+}
+
+.workspace-deletion-dialog .workspace-deletion-confirm {
+  color: var(--on-solid);
+  background: var(--recording-indicator);
+}
+
+.workspace-deletion-dialog .workspace-deletion-confirm:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--recording-indicator) 90%, var(--ink-list));
+}
+
+.workspace-deletion-dialog button:disabled {
+  opacity: .55;
+  cursor: default;
+}
+
+.workspace-deletion-dialog :is(button, input):focus-visible {
+  outline: 2px solid var(--brand-contrast);
+  outline-offset: 2px;
+}
+
+@media (max-width: 600px) {
+  .workspace-deletion-dialog {
+    width: calc(100% - 24px);
+    max-height: calc(100dvh - 24px);
+  }
+
+  .workspace-deletion-header {
+    padding-inline: var(--space-5);
+  }
+
+  .workspace-deletion-content {
+    padding-inline: var(--space-5);
+  }
+
+  .workspace-deletion-actions {
+    padding-inline: var(--space-5);
+    padding-bottom: max(var(--space-5), env(safe-area-inset-bottom));
+  }
+}
+
+@keyframes workspace-deletion-enter {
+  from { opacity: 0; transform: translateY(var(--space-1)); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes workspace-deletion-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .workspace-deletion-dialog[open],
+  .workspace-deletion-status > svg {
+    animation: none;
+  }
+
+  .workspace-deletion-dialog .workspace-deletion-actions button {
+    transition: none;
+  }
+}

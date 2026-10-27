@@ -1,0 +1,75 @@
+/* Folder title and actions share a compact, consistent reading edge. */
+.product-shell .review-header.folder-header:is(.review-header--overview, .review-header--compact) {
+  display: block;
+  min-width: 0;
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: var(--space-7) 0 var(--space-6);
+  border: 0;
+  border-radius: 0;
+  background: var(--surface);
+  box-shadow: none;
+}
+
+.product-shell .review-header.folder-header .folder-header-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: "back back" "client client" "identity actions";
+  align-items: center;
+  gap: var(--space-2) var(--space-5);
+  min-width: 0;
+}
+
+.product-shell .review-header.folder-header .review-header-copy { grid-area: identity; min-width: 0; }
+.product-shell .review-header.folder-header .review-title-copy { min-width: 0; }
+.product-shell .review-header.folder-header .folder-header-client { grid-area: client; display: flex; align-items: center; gap: var(--space-2); min-width: 0; margin: 0; padding: 0; color: var(--ink-secondary); font-size: var(--text-sm); font-weight: var(--fw-regular); line-height: var(--leading-snug); }
+.product-shell .review-header.folder-header .folder-header-client > svg { display: block; flex: 0 0 auto; }
+.product-shell .review-header.folder-header .folder-header-client > span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.product-shell .review-header.folder-header:is(.review-header--overview, .review-header--compact) .review-title-copy h1 {
+  min-width: 0;
+  max-width: 100%;
+  margin: 0;
+  color: var(--ink-list);
+  font-size: clamp(var(--text-2xl), 2.6vw, calc(var(--text-2xl) + var(--space-2)));
+  font-weight: var(--fw-medium);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  white-space: normal;
+  overflow-wrap: anywhere;
+  outline: none;
+}
+
+.product-shell .review-header.folder-header .review-back-action { grid-area: back; display: inline-flex; align-items: center; gap: var(--space-2); width: fit-content; min-width: 0; min-height: 44px; max-width: 100%; margin: 0; padding: var(--space-1) 0; border: 0; border-radius: var(--radius-sm); background: transparent; color: var(--ink-secondary); font: inherit; font-size: var(--text-sm); line-height: var(--leading-snug); text-align: start; text-decoration: none; cursor: pointer; }
+.product-shell .review-header.folder-header .review-back-action > svg { display: block; flex: 0 0 auto; }
+.product-shell .review-header.folder-header .review-back-action:hover { color: var(--brand-contrast); }
+
+.product-shell .review-header.folder-header .review-header-actions { grid-area: actions; display: flex; flex: 0 0 auto; flex-wrap: nowrap; align-items: center; justify-content: flex-end; justify-self: end; gap: var(--space-2); width: auto; min-width: 0; margin: 0; }
+
+.product-shell .review-header.folder-header .review-start-button { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); min-width: 0; min-height: 44px; margin: 0; padding: var(--space-2) var(--space-4); border: 0; border-radius: var(--radius-control); background: var(--brand-contrast); color: var(--on-solid); box-shadow: none; font: inherit; font-size: var(--text-sm); font-weight: var(--fw-medium); line-height: var(--leading-snug); cursor: pointer; }
+.product-shell .review-header.folder-header .review-start-button:hover { background: var(--brand-dark); }
+.product-shell .review-header.folder-header .review-start-button .button-asset-icon { display: flex; flex: 0 0 19px; width: 19px; height: 19px; min-width: 0; align-items: center; justify-content: center; }
+.product-shell .review-header.folder-header .review-start-button .workspace-icon { display: block; width: 19px; height: 19px; margin: 0; transform: none; }
+.product-shell .review-header.folder-header .folder-header-action-label { min-width: 0; }
+.product-shell .review-header.folder-header .folder-header-delete { display: grid; flex: 0 0 44px; width: 44px; height: 44px; min-height: 44px; place-items: center; margin: 0; padding: 0; border: 0; border-radius: var(--radius-control); background: transparent; color: var(--ink-secondary); cursor: pointer; }
+.product-shell .review-header.folder-header .folder-header-delete > svg { display: block; }
+.product-shell .review-header.folder-header .folder-header-delete:hover:not(:disabled) { background: var(--surface-hover); color: var(--ink-control); }
+.product-shell .review-header.folder-header .folder-header-delete:disabled { opacity: .5; cursor: default; }
+.product-shell .review-header.folder-header :is(.review-back-action, .review-start-button, .folder-header-delete):focus-visible { outline: 2px solid var(--brand-contrast); outline-offset: 2px; }
+
+/* One mobile folder toolbar is shared by all three tabs and recording detail. */
+@media (max-width: 800px) {
+  .product-shell .review-page .review-header.folder-header:is(.review-header--overview, .review-header--compact) { padding-block: var(--space-2); }
+  .product-shell .review-page .review-header.folder-header:is(.review-header--overview, .review-header--compact) .folder-header-layout { grid-template-columns: 44px minmax(0, 1fr) auto; grid-template-areas: "back identity actions"; align-items: center; gap: var(--space-2); }
+  .product-shell .review-page .review-header.folder-header .review-title-copy { display: block; }
+  .product-shell .review-page .review-header.folder-header .folder-header-client { display: none; }
+  .product-shell .review-page .review-header.folder-header:is(.review-header--overview, .review-header--compact) .review-title-copy h1 { margin: 0; font-size: var(--text-md); line-height: var(--leading-snug); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .product-shell .review-page .review-header.folder-header .review-back-action { display: grid; width: 44px; height: 44px; place-items: center; margin: 0; padding: 0; }
+  .product-shell .review-page .review-header.folder-header .review-back-action > span { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .product-shell .review-page .review-header.folder-header .review-header-actions { justify-self: end; gap: var(--space-1); padding: 0; }
+  .product-shell .review-page .review-header.folder-header .review-start-button { flex: 0 0 44px; width: 44px; height: 44px; min-height: 44px; padding: 0; gap: 0; }
+  .product-shell .review-page .review-header.folder-header .review-start-button .folder-header-action-label { display: none; }
+}

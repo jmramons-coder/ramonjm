@@ -1,0 +1,183 @@
+/* Keep the caller's scroll boundary; only the transcript's reading treatment changes. */
+.rv-transcript-chat.rv-pane-body {
+  width: 100%;
+  max-inline-size: var(--fc-reading-width, 54rem);
+  min-width: 0;
+  min-height: 0;
+  margin-inline: auto;
+}
+
+.rv-transcript-chat .rv-search {
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.rv-transcript-chat .rv-search .rv-search-field {
+  min-height: 44px;
+  border-radius: var(--radius-control);
+  color: var(--ink-secondary);
+  background: var(--surface);
+  border-color: var(--line-control);
+}
+
+.rv-transcript-chat .rv-search .rv-search-field:focus-within {
+  color: var(--brand-contrast);
+  border-color: var(--brand-contrast);
+  box-shadow: 0 0 0 1px var(--brand-contrast);
+}
+
+.rv-transcript-chat .rv-search .rv-search-field input {
+  min-width: 0;
+  margin: 0;
+  color: var(--ink-control);
+  box-shadow: none;
+}
+
+.rv-transcript-chat .rv-search-count {
+  color: var(--ink-secondary);
+  font-size: var(--text-2xs);
+}
+
+.rv-transcript-chat.rv-pane-body .rv-turns.rv-chat-thread {
+  align-items: stretch;
+  gap: var(--space-3);
+  min-width: 0;
+  padding: var(--space-1) var(--space-1) var(--space-3);
+}
+
+/* Specificity also protects bubbles from legacy full-row and unfiled row rules. */
+.rv-transcript-chat .rv-turn.rv-chat-message[data-speaker] {
+  --transcript-bubble: var(--surface-recessed);
+  display: flex;
+  flex: 0 0 auto;
+  align-self: flex-start;
+  flex-direction: column;
+  width: fit-content;
+  max-width: min(88%, 40rem);
+  min-width: 0;
+  min-height: 44px;
+  gap: var(--space-1);
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 0;
+  border-inline-start: 0;
+  border-radius: var(--radius-lg);
+  color: var(--ink-control);
+  background: var(--transcript-bubble);
+  box-shadow: none;
+  font: inherit;
+  text-align: start;
+  transition: none;
+}
+
+.rv-transcript-chat .rv-turn.rv-chat-message[data-speaker="advisor"] {
+  --transcript-bubble: var(--brand-wash);
+  align-self: flex-end;
+}
+
+.rv-transcript-chat .rv-turn.rv-chat-message[data-speaker="conversation"] {
+  --transcript-bubble: var(--surface-subtle);
+  align-self: center;
+}
+
+.rv-transcript-chat .rv-turn.rv-chat-message[data-kind="private-note"] {
+  --transcript-bubble: var(--surface-subtle);
+  align-self: center;
+  border: 1px solid var(--line-control);
+  border-radius: var(--radius-md);
+}
+
+.rv-transcript-chat button.rv-turn.rv-chat-message[data-speaker] {
+  cursor: pointer;
+}
+
+.rv-transcript-chat article.rv-turn.rv-chat-message[data-speaker] {
+  cursor: auto;
+}
+
+.rv-transcript-chat .rv-turn.rv-chat-message[data-speaker]:hover,
+.rv-transcript-chat .rv-turn.rv-chat-message[data-speaker].is-playing {
+  color: var(--ink-control);
+  background: var(--transcript-bubble);
+  border-color: var(--line-control);
+  box-shadow: none;
+}
+
+.rv-transcript-chat button.rv-turn.rv-chat-message[data-speaker]:hover {
+  box-shadow: inset 0 0 0 1px var(--line-control);
+}
+
+.rv-transcript-chat button.rv-turn.rv-chat-message[data-speaker]:focus-visible {
+  outline: 2px solid var(--brand-contrast);
+  outline-offset: 2px;
+  box-shadow: none;
+}
+
+.rv-transcript-chat .rv-chat-message .rv-turn-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  min-width: 0;
+  gap: var(--space-1) var(--space-2);
+  color: var(--ink-secondary);
+  font-size: var(--text-2xs);
+  line-height: var(--leading-snug);
+}
+
+.rv-transcript-chat .rv-chat-message .rv-turn-meta strong {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-width: 0;
+  color: var(--ink-secondary);
+  font-weight: var(--fw-medium);
+  overflow-wrap: anywhere;
+}
+
+.rv-transcript-chat .rv-chat-message .rv-turn-meta :is(time, .rv-chat-playing) {
+  flex: 0 0 auto;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.rv-transcript-chat .rv-chat-playing {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  color: var(--brand-contrast);
+}
+
+.rv-transcript-chat .rv-turn-meta svg {
+  display: block;
+  flex: 0 0 auto;
+  color: currentColor;
+}
+
+.rv-transcript-chat .rv-turn.rv-chat-message .rv-turn-text {
+  min-width: 0;
+  color: var(--ink-control);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.rv-transcript-chat .rv-chat-message .rv-mark {
+  padding: 0;
+  border-radius: 2px;
+  color: var(--ink-control);
+  background: var(--brand-tint);
+  box-shadow: none;
+}
+
+@media (max-width: 800px) {
+  .rv-transcript-chat .rv-search .rv-search-field input {
+    font-size: var(--text-input);
+  }
+
+  .rv-transcript-chat .rv-turn.rv-chat-message[data-speaker] {
+    max-width: 94%;
+    padding: var(--space-2) var(--space-3);
+  }
+}
