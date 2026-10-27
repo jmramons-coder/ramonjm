@@ -5,7 +5,7 @@ import { CaseWorkspaceFrame } from "./workspace-frame";
 
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
-  title: "Microsoft · Case management | Ramon JM",
+  title: "Equisoft · Case management | Ramon JM",
   robots: { index: false, follow: false, noarchive: true },
 };
 
