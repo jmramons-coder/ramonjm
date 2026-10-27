@@ -23,6 +23,7 @@ export function DesktopProjectCard({
   onOpen,
   children,
   companion,
+  brand,
 }: {
   name: string;
   title: ReactNode;
@@ -36,6 +37,7 @@ export function DesktopProjectCard({
   onOpen: (bounds: DesktopCardBounds) => void;
   children: ReactNode;
   companion?: ReactNode;
+  brand?: ReactNode;
 }) {
   return (
     <article
@@ -69,7 +71,7 @@ export function DesktopProjectCard({
       }}
     >
       <header className={styles.copy}>
-        <span className={styles.name}>{name}</span>
+        <span className={styles.name}>{brand ?? name}</span>
         <h2>{title}</h2>
         <p>{detail}</p>
       </header>

@@ -28,6 +28,12 @@
   --scene-top: #252128;
   --scene-muted: #c7bab6;
 }
+.card[data-tone="case"] {
+  --scene-glow: #187bd5;
+  --scene-floor: #104b86;
+  --scene-top: #0d2341;
+  --scene-muted: #aeccea;
+}
 .card[data-tone="decision"] {
   --scene-glow: #7c9eae;
   --scene-floor: #314451;

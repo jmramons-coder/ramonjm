@@ -1,0 +1,60 @@
+.dialog {
+  position: fixed;
+  inset: 0;
+  display: none;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 80px 24px 24px;
+  overflow: hidden;
+  border: 0;
+  background: transparent;
+}
+.dialog[open] { display: grid; place-items: center; }
+.dialog::backdrop { background: #14223870; backdrop-filter: blur(24px) saturate(.75); }
+.brand { position: fixed; top: 24px; left: 24px; z-index: 2; color: #fff; font-size: 18px; }
+.close {
+  position: fixed;
+  z-index: 2;
+  top: 20px;
+  right: 24px;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #ffffff55;
+  border-radius: 50%;
+  color: white;
+  background: #ffffff16;
+  backdrop-filter: blur(16px);
+  cursor: pointer;
+  transition: background 160ms;
+}
+.close:hover { background: #ffffff30; }
+.close:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
+.close svg { width: 20px; height: 20px; stroke: currentColor; stroke-width: 1.5; }
+.panel {
+  position: relative;
+  width: min(1440px, 100%);
+  height: min(850px, calc(100dvh - 104px));
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid #ffffff55;
+  border-radius: 16px;
+  background: #0c386d;
+  box-shadow: 0 24px 80px #061a3e38;
+  animation: settle 360ms cubic-bezier(.22,1,.36,1);
+}
+.frame { display: block; width: 100%; height: 100%; border: 0; opacity: 0; transition: opacity 160ms; }
+.panel[data-ready="true"] .frame { opacity: 1; }
+.loading { position: absolute; inset: 0; display: grid; place-items: center; color: #d6e9ff; font-size: 13px; }
+@keyframes settle { from { opacity: 0; transform: translateY(12px) scale(.99); } to { opacity: 1; transform: none; } }
+@media (max-width: 600px) {
+  .dialog { padding: 72px 8px 8px; }
+  .panel { height: calc(100dvh - 80px); border-radius: 16px; }
+  .brand { left: 16px; top: 24px; font-size: 16px; }
+  .close { right: 16px; top: 16px; }
+}
+@media (prefers-reduced-motion: reduce) { .panel { animation: none; } .frame, .close { transition: none; } }
