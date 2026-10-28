@@ -29,7 +29,6 @@ import { DecisionArtworkShowcase } from "./decision-art-showcase";
 import { BusterShowcase } from "./buster-showcase";
 
 import { CaseWorkspaceShowcase } from "./case-workspace-showcase";
-import { ProjectDiscoverHint } from "./project-discover-hint";
 import { useProjectGridFocus } from "./use-project-grid-focus";
 
 type Filter = "all" | "products" | "studio" | "archive";
@@ -68,8 +67,7 @@ const filters: { id: Filter; label: string }[] = [
 export function ProjectPlayground({ paused }: { paused: boolean }) {
   const [filter, setFilter] = useState<Filter>("all");
   const playground = useRef<HTMLDivElement>(null);
-  const discoverHint = useRef<HTMLDivElement>(null);
-  const { hintVisible, resetFocus } = useProjectGridFocus(playground, discoverHint);
+  const { resetFocus } = useProjectGridFocus(playground);
   const visible =
     filter === "all"
       ? pieces
@@ -172,7 +170,6 @@ export function ProjectPlayground({ paused }: { paused: boolean }) {
           </div>
         ))}
       </div>
-      <ProjectDiscoverHint elementRef={discoverHint} visible={hintVisible} paused={paused} />
     </div>
   );
 }

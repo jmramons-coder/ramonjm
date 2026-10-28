@@ -171,7 +171,7 @@ export function NextPlayerShowcase({ paused }: { paused: boolean }) {
             setOrigin({ left, top, width, height });
           }}
         >
-          <span className={styles.hint} data-discovery-hint>View artwork</span>
+          <span className={styles.hint}>View artwork</span>
         </button>
       </article>
       {origin && (

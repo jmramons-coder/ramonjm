@@ -89,11 +89,6 @@
   transition: none;
 }
 
-.playground[data-discovery-hint-visible] :global([data-discovery-hint]) {
-  opacity: 0;
-  visibility: hidden;
-}
-
 /* Normal grid rows keep the first row stable before cards are measured. */
 .playground[data-layout="masonry"] {
   grid-auto-rows: 1px;

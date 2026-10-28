@@ -1,13 +1,11 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState, type RefObject } from "react";
+import { useCallback, useEffect, useRef, type RefObject } from "react";
 
 /** Pointer tracking stays outside React so the live project previews keep playing. */
 export function useProjectGridFocus(
   gridRef: RefObject<HTMLDivElement | null>,
-  hintRef: RefObject<HTMLDivElement | null>,
 ) {
-  const [hintVisible, setHintVisible] = useState(false);
   const resetRef = useRef<() => void>(() => {});
   const resetFocus = useCallback(() => resetRef.current(), []);
 
@@ -17,26 +15,11 @@ export function useProjectGridFocus(
 
     const mouse = matchMedia("(any-hover: hover) and (any-pointer: fine)");
     let active: HTMLElement | null = null;
-    let hintShown = false;
-    let frame = 0;
-    let x = 0;
-    let y = 0;
-
-    function showHint(visible: boolean) {
-      visible = visible && Boolean(hintRef.current?.showPopover);
-      if (visible === hintShown) return;
-      hintShown = visible;
-      grid!.toggleAttribute("data-discovery-hint-visible", visible);
-      setHintVisible(visible);
-    }
 
     function clear() {
       active?.removeAttribute("data-focus-active");
       active = null;
       grid!.removeAttribute("data-grid-focus");
-      showHint(false);
-      cancelAnimationFrame(frame);
-      frame = 0;
     }
 
     function tileFor(target: EventTarget | null) {
@@ -63,18 +46,6 @@ export function useProjectGridFocus(
         && grid!.contains(opener) ? opener : null;
     }
 
-    function positionHint() {
-      frame = 0;
-      const hint = hintRef.current;
-      if (!hint) return;
-      const width = hint.offsetWidth || 148;
-      const height = hint.offsetHeight || 72;
-      const left = Math.max(16, Math.min(x + 20, innerWidth - width - 16));
-      const top = y + height + 40 > innerHeight ? y - height - 24 : y + 24;
-      hint.style.setProperty("--discover-x", `${left}px`);
-      hint.style.setProperty("--discover-y", `${Math.max(16, top)}px`);
-    }
-
     function pointer(event: PointerEvent) {
       if (event.pointerType !== "mouse" || !mouse.matches || document.querySelector("dialog[open]")) {
         clear();
@@ -86,12 +57,6 @@ export function useProjectGridFocus(
         return;
       }
       activate(tile, "pointer");
-      x = event.clientX;
-      y = event.clientY;
-      const discover = Boolean(openerFor(event.target));
-      if (discover && !hintShown) positionHint();
-      showHint(discover);
-      if (discover && !frame) frame = requestAnimationFrame(positionHint);
     }
 
     function focus(event: FocusEvent) {
@@ -99,7 +64,6 @@ export function useProjectGridFocus(
       const tile = tileFor(event.target);
       if (tile && event.target instanceof Element && event.target.matches(":focus-visible")) {
         activate(tile, "keyboard");
-        showHint(false);
       }
     }
 
@@ -138,8 +102,6 @@ export function useProjectGridFocus(
       resetRef.current = () => {};
       active?.removeAttribute("data-focus-active");
       grid.removeAttribute("data-grid-focus");
-      grid.removeAttribute("data-discovery-hint-visible");
-      cancelAnimationFrame(frame);
       grid.removeEventListener("pointerover", pointer);
       grid.removeEventListener("pointermove", pointer);
       grid.removeEventListener("pointerleave", clear);
@@ -153,7 +115,7 @@ export function useProjectGridFocus(
       document.removeEventListener("keydown", key);
       mouse.removeEventListener("change", clear);
     };
-  }, [gridRef, hintRef]);
+  }, [gridRef]);
 
-  return { hintVisible, resetFocus };
+  return { resetFocus };
 }
