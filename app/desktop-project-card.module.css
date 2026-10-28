@@ -239,6 +239,75 @@
 .card[data-open="true"] {
   visibility: hidden;
 }
+.mobileNotice { display: none; }
+@media (max-width: 639px) {
+  .card:is([data-tone="abeam"], [data-tone="case"]) {
+    height: min(400px, 105vw, 65svh);
+    max-height: 400px;
+    aspect-ratio: auto;
+  }
+  .card:is([data-tone="abeam"], [data-tone="case"]) .copy {
+    padding: 24px 24px 0;
+  }
+  .card:is([data-tone="abeam"], [data-tone="case"]) .name {
+    margin-bottom: 12px;
+    font-size: 11px;
+  }
+  .card:is([data-tone="abeam"], [data-tone="case"]) .copy h2 {
+    max-width: 100%;
+    font-size: clamp(24px, 7.6cqw, 32px);
+    line-height: 1.08;
+  }
+  .card:is([data-tone="abeam"], [data-tone="case"]) .copy p {
+    margin-top: 12px;
+    font-size: 10px;
+    line-height: 1.4;
+  }
+  .card:is([data-tone="abeam"], [data-tone="case"]) .stage {
+    top: max(44%, 144px);
+  }
+  .card[data-tone="abeam"] .companion {
+    width: min(26%, 100px);
+    right: 16px;
+    bottom: 12px;
+  }
+  .card[data-desktop-only="true"] .open { display: none; }
+  .mobileNotice {
+    position: absolute;
+    z-index: 5;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: linear-gradient(150deg, #0b1b304d, #06182c99);
+    color: #fff;
+    backdrop-filter: blur(3px);
+  }
+  .mobileNotice > span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 16px 20px;
+    border: 1px solid #ffffff66;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #ffffff30, #ffffff12);
+    box-shadow: 0 8px 24px #06132626;
+    font-size: 14px;
+    font-weight: 550;
+    line-height: 1.4;
+    white-space: nowrap;
+  }
+  .mobileNotice svg {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+}
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   .card:not([data-paused="true"]):is(:hover, :focus-within) .window {
     transform: translateY(-7px) rotateX(3deg) rotateY(-3deg) rotateZ(-1deg);

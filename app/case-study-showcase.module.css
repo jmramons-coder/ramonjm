@@ -58,3 +58,7 @@
   .close { right: 16px; top: 16px; }
 }
 @media (prefers-reduced-motion: reduce) { .panel { animation: none; } .frame, .close { transition: none; } }
+@media (max-width: 639px) {
+  .panel { height: min(400px, 65svh); }
+  .frame, .loading { display: none; }
+}

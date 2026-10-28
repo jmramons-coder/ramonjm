@@ -314,6 +314,13 @@
   }
 }
 
+@media (max-width: 639px) {
+  .introFeatured {
+    height: min(400px, 105vw, 65svh);
+    max-height: 400px;
+  }
+}
+
 /* Keep the beginning of the work visible below the desktop introduction. */
 @media (min-width: 1101px) {
   .introBoard {

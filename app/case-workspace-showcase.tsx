@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { DesktopProjectCard } from "./desktop-project-card";
+import { DesktopProjectCard, DesktopVisitNotice } from "./desktop-project-card";
 import { CaseStudyPreview } from "./case-study-preview";
 import { EquisoftBrand } from "./equisoft-brand";
 import styles from "./case-study-showcase.module.css";
@@ -63,6 +63,7 @@ function WorkspaceDialog({ open, paused, onClose }: {
         {!ready && <span className={styles.loading} role="status">Loading project…</span>}
         <iframe ref={frame} src="/case-workspace" title="Equisoft case management project"
           className={styles.frame} onLoad={() => setReady(true)} />
+        <DesktopVisitNotice />
       </div>
     </dialog>
   );
@@ -80,6 +81,7 @@ export function CaseWorkspaceShowcase({ paused }: { paused: boolean }) {
         title={<>Agent-first.<br /><em>Data in context.</em></>}
         detail="Case management · People + AI specialists"
         tone="case"
+        desktopOnly
         label="Equisoft case management workspace"
         openLabel="Explore Equisoft case management"
         opener={opener}
