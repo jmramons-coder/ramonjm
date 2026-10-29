@@ -3310,3 +3310,20 @@ a:focus-visible {
   --mockup-phone-border: 0;
   --mockup-phone-shadow: none;
 }
+
+/* Shared by the introduction and project masonry; native scrolling stays untouched. */
+[data-scroll-motion] > [data-scroll-visible] > [data-scroll-layer] {
+  transform: translate3d(0, var(--scroll-offset, 0px), 0);
+  will-change: transform;
+}
+body:has(dialog[open]) [data-scroll-layer],
+body:has([aria-modal="true"]:not([aria-hidden="true"])) [data-scroll-layer] {
+  transform: none !important;
+  will-change: auto !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-scroll-motion] > [data-scroll-visible] > [data-scroll-layer] {
+    transform: none;
+    will-change: auto;
+  }
+}

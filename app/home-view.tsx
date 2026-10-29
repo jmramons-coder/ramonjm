@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { SiteHeader } from "./site-header";
 import { ProjectPlayground } from "./project-playground";
 import {
@@ -11,12 +11,15 @@ import {
   LocationCard,
 } from "./personal-bento";
 import { FeaturedPresentation } from "./featured-presentation";
+import { useProjectGridMotion } from "./use-project-grid-motion";
 import styles from "./home-view.module.css";
 
 type PortfolioTheme = "light" | "dark";
 
 export function HomeView({ initialTheme }: { initialTheme: PortfolioTheme }) {
   const [theme, setTheme] = useState(initialTheme);
+  const intro = useRef<HTMLElement>(null);
+  useProjectGridMotion(intro, false, "intro", "intro");
 
   useEffect(() => {
     const meta = document.querySelector<HTMLMetaElement>(
@@ -137,6 +140,7 @@ export function HomeView({ initialTheme }: { initialTheme: PortfolioTheme }) {
         >
           <section
             id="portfolio-intro"
+            ref={intro}
             className={styles.introBoard}
             aria-label="Introduction and featured work"
           >

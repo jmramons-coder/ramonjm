@@ -16,9 +16,10 @@ function advance(spring: Spring, target: number, dt: number) {
 
 /** Scroll keeps its native behavior; only the visible previews absorb a little momentum. */
 export function useProjectGridMotion(
-  gridRef: RefObject<HTMLDivElement | null>,
+  gridRef: RefObject<HTMLElement | null>,
   paused: boolean,
   resetKey: string,
+  variant: "projects" | "intro" = "projects",
 ) {
   useEffect(() => {
     const grid = gridRef.current;
@@ -36,6 +37,7 @@ export function useProjectGridMotion(
     let scrollVelocity = 0;
     let maxScroll = 0;
     let mobile = false;
+    let layout = "";
 
     function scrollPosition() {
       return Math.max(0, Math.min(maxScroll, window.scrollY));
@@ -60,31 +62,38 @@ export function useProjectGridMotion(
     }
 
     function measure() {
-      reset();
       mobile = window.innerWidth < 640;
       maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
-      previousY = scrollPosition();
       // Masonry auto-placement can move an item to a different track; measure its actual column.
-      const tracks = [...new Set(items.map((item) => Math.round(item.offsetLeft)))].sort((a, b) => a - b);
+      const positions = items.map((item) => Math.round(item.offsetLeft));
+      const nextLayout = `${mobile}:${grid!.clientWidth}:${positions.join(",")}`;
+      // Browser bars resize a phone's viewport during a gesture. Keep the springs alive.
+      if (layout === nextLayout) return;
+      reset();
+      layout = nextLayout;
+      const tracks = [...new Set(positions)].sort((a, b) => a - b);
+      const gains = variant === "intro" ? [0.9, 1.1, 1, 1.15] : [0.85, 1.25, 0.95, 1.45, 1.1];
       columns = tracks.map((_, index) => ({
         position: 0, velocity: 0,
-        stiffness: (mobile ? 220 : 160) + index * 8,
-        damping: mobile ? 22 : 16 + (index % 3),
-        gain: [0.78, 1.06, 0.9, 1.16, 0.84][index % 5],
+        stiffness: mobile ? 190 : 170,
+        damping: mobile ? 14 : 12,
+        gain: tracks.length === 1 ? 1 : gains[index % gains.length],
       }));
-      tiles = items.map((element, index) => ({
-        element,
-        content: element.firstElementChild as HTMLElement,
-        column: columns[tracks.indexOf(Math.round(element.offsetLeft))],
-        position: 0, velocity: 0,
-        stiffness: 220 + (index % 4) * 12,
-        damping: mobile ? 24 : 17 + (index % 3),
-        gain: mobile ? 0.06 : 0.08 + (index % 4) * 0.025,
-      }));
+      tiles = items.map((element, index) => {
+        const content = element.firstElementChild as HTMLElement;
+        content.dataset.scrollLayer = "";
+        return {
+          element, content,
+          column: columns[tracks.indexOf(positions[index])],
+          position: 0, velocity: 0,
+          stiffness: 220 + (index % 4) * 12,
+          damping: 15 + (index % 3),
+          gain: mobile ? 0.06 : 0.06 + (index % 4) * 0.015,
+        };
+      });
     }
 
     function scheduleMeasure() {
-      reset();
       cancelAnimationFrame(measureFrame);
       measureFrame = requestAnimationFrame(measure);
     }
@@ -101,9 +110,19 @@ export function useProjectGridMotion(
       if (Math.abs(delta) > window.innerHeight * 1.5) { reset(); return; }
       const velocity = clamp(delta / dt, 3000);
       scrollVelocity += (velocity - scrollVelocity) * (1 - Math.exp(-18 * dt));
-      const target = clamp(scrollVelocity * (mobile ? 0.007 : 0.014), mobile ? 10 : 24);
+      const target = clamp(scrollVelocity * (mobile ? 0.024 : 0.035), mobile ? 24 : 36);
       let moving = Math.abs(scrollVelocity) > 1;
-      for (const column of columns) moving = advance(column, target * column.gain, dt) || moving;
+      for (const column of columns) {
+        // Respond immediately to the gesture, then carry it into a soft rebound.
+        column.velocity += clamp(delta, 180) * (mobile ? 1.2 : 1.6) * column.gain;
+        column.velocity = clamp(column.velocity, 600);
+        moving = advance(column, target * column.gain, dt) || moving;
+        const limit = mobile ? 26 : 52;
+        if (Math.abs(column.position) > limit) {
+          column.position = clamp(column.position, limit);
+          if (column.velocity * column.position > 0) column.velocity = 0;
+        }
+      }
 
       grid!.dataset.scrollMotion = "";
       for (const tile of tiles) {
@@ -112,8 +131,11 @@ export function useProjectGridMotion(
           tile.velocity = 0;
           continue;
         }
+        tile.velocity += clamp(delta, 180) * tile.gain;
         moving = advance(tile, target * tile.gain, dt) || moving;
-        const offset = clamp(tile.column.position + tile.position, mobile ? 12 : 30);
+        // Keep vertical neighbors apart while their shared column absorbs most of the movement.
+        tile.position = clamp(tile.position, mobile ? 1.5 : 3);
+        const offset = tile.column.position + tile.position;
         tile.content.style.setProperty("--scroll-offset", `${offset.toFixed(2)}px`);
       }
       if (moving) frame = requestAnimationFrame(tick);
@@ -164,6 +186,7 @@ export function useProjectGridMotion(
       visibility.disconnect();
       resize.disconnect();
       items.forEach((item) => item.removeAttribute("data-scroll-visible"));
+      tiles.forEach((tile) => tile.content.removeAttribute("data-scroll-layer"));
       window.removeEventListener("scroll", scroll);
       window.removeEventListener("resize", scheduleMeasure);
       window.removeEventListener("blur", reset);
@@ -171,5 +194,5 @@ export function useProjectGridMotion(
       grid.removeEventListener("click", beforeOpen, true);
       preference.removeEventListener("change", reset);
     };
-  }, [gridRef, paused, resetKey]);
+  }, [gridRef, paused, resetKey, variant]);
 }

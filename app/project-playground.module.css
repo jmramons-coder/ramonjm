@@ -79,11 +79,6 @@
   transition: filter 240ms ease;
 }
 
-.playground[data-scroll-motion] > .masonryItem[data-scroll-visible] > .tileContent {
-  transform: translate3d(0, var(--scroll-offset, 0px), 0);
-  will-change: transform;
-}
-
 .playground[data-grid-focus] > .masonryItem:not([data-focus-active]) > .tileContent {
   filter: grayscale(1);
 }
@@ -155,10 +150,6 @@
   .filters button,
   .tileContent {
     transition: none;
-  }
-  .playground[data-scroll-motion] > .masonryItem[data-scroll-visible] > .tileContent {
-    transform: none;
-    will-change: auto;
   }
 }
 
