@@ -96,6 +96,7 @@
   text-decoration: none;
 }
 .brand img { display: block; flex-shrink: 0; border-radius: 7px; }
+.dialog[data-theme="dark"] .brand img { filter: invert(1); }
 
 .tabs {
   position: fixed;
