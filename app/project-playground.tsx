@@ -31,6 +31,7 @@ import { BusterShowcase } from "./buster-showcase";
 import { CaseWorkspaceShowcase } from "./case-workspace-showcase";
 import { useProjectGridFocus } from "./use-project-grid-focus";
 import { TracerWebsiteShowcase } from "./tracer-website-showcase";
+import { useProjectGridMotion } from "./use-project-grid-motion";
 
 type Filter = "all" | "products" | "studio" | "archive";
 const pieces: {
@@ -70,6 +71,7 @@ export function ProjectPlayground({ paused, theme }: { paused: boolean; theme: "
   const [filter, setFilter] = useState<Filter>("all");
   const playground = useRef<HTMLDivElement>(null);
   const { resetFocus } = useProjectGridFocus(playground);
+  useProjectGridMotion(playground, paused, filter);
   const visible =
     filter === "all"
       ? pieces

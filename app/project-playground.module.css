@@ -79,13 +79,21 @@
   transition: filter 240ms ease;
 }
 
+.playground[data-scroll-motion] > .masonryItem[data-scroll-visible] > .tileContent {
+  transform: translate3d(0, var(--scroll-offset, 0px), 0);
+  will-change: transform;
+}
+
 .playground[data-grid-focus] > .masonryItem:not([data-focus-active]) > .tileContent {
   filter: grayscale(1);
 }
 
 /* Expanded native dialogs must never inherit a preview's filter or containing block. */
-:global(body:has(dialog[open])) .tileContent {
+:global(body:has(dialog[open])) .tileContent,
+:global(body:has([aria-modal="true"]:not([aria-hidden="true"]))) .tileContent {
   filter: none !important;
+  transform: none !important;
+  will-change: auto !important;
   transition: none;
 }
 
@@ -147,6 +155,10 @@
   .filters button,
   .tileContent {
     transition: none;
+  }
+  .playground[data-scroll-motion] > .masonryItem[data-scroll-visible] > .tileContent {
+    transform: none;
+    will-change: auto;
   }
 }
 
