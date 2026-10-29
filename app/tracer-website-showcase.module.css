@@ -98,11 +98,18 @@
 .brand img { display: block; flex-shrink: 0; border-radius: 7px; }
 .dialog[data-theme="dark"] .brand img { filter: invert(1); }
 
-.tabs {
+.controls {
   position: fixed;
   z-index: 2;
   top: max(20px, env(safe-area-inset-top));
   left: 50%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: calc(100% - 24px);
+  transform: translateX(-50%);
+}
+.tabs {
   display: flex;
   gap: 3px;
   padding: 4px;
@@ -110,7 +117,6 @@
   border-radius: 999px;
   background: var(--gallery-control);
   backdrop-filter: blur(16px);
-  transform: translateX(-50%);
 }
 .tabs button {
   min-height: 36px;
@@ -127,6 +133,24 @@
 }
 .tabs [aria-selected="true"] { background: var(--gallery-selected); opacity: 1; }
 .tabs button:hover { opacity: 1; }
+.visit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 46px;
+  padding: 0 16px;
+  border: 1px solid var(--gallery-border);
+  border-radius: 999px;
+  background: var(--gallery-control);
+  backdrop-filter: blur(16px);
+  color: var(--gallery-text);
+  font-size: 12px;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.visit:hover { border-color: var(--gallery-text); }
+.visit svg { width: 16px; height: 16px; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
 
 .panel {
   width: min(1440px, 100%);
@@ -171,14 +195,15 @@
   cursor: pointer;
 }
 .close svg { width: 20px; height: 20px; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; }
-.close:focus-visible, .tabs button:focus-visible, .brand:focus-visible { outline: 2px solid #8bb5ff; outline-offset: 3px; }
+.close:focus-visible, .tabs button:focus-visible, .brand:focus-visible, .visit:focus-visible { outline: 2px solid #8bb5ff; outline-offset: 3px; }
 
 @media (max-width: 640px) {
   .dialog { padding: max(124px, calc(env(safe-area-inset-top) + 112px)) 12px max(18px, env(safe-area-inset-bottom)); }
   .brand { top: max(22px, env(safe-area-inset-top)); left: max(18px, env(safe-area-inset-left)); font-size: 16px; }
   .close { top: max(16px, env(safe-area-inset-top)); right: max(18px, env(safe-area-inset-right)); }
-  .tabs { top: max(72px, calc(env(safe-area-inset-top) + 60px)); }
-  .tabs button { min-height: 32px; padding-inline: 17px; }
+  .controls { top: max(72px, calc(env(safe-area-inset-top) + 60px)); }
+  .tabs button { min-height: 32px; padding-inline: 12px; font-size: 11px; }
+  .visit { min-height: 42px; padding-inline: 12px; font-size: 11px; }
   .panel { border-radius: 12px; }
 }
 

@@ -223,27 +223,42 @@ function WebsiteGallery({
         <img src="/tracer/app-icon.png" alt="" width={28} height={28} />
         <span>Tracer</span>
       </a>
-      <div
-        className={styles.tabs}
-        role="tablist"
-        aria-label="Tracer website pages"
-        onKeyDown={navigateTabs}
-      >
-        {pages.map((item) => (
-          <button
-            key={item.id}
-            id={`${id}-${item.id}-tab`}
-            type="button"
-            role="tab"
-            aria-selected={page === item.id}
-            aria-controls={`${id}-${item.id}-panel`}
-            tabIndex={page === item.id ? 0 : -1}
-            data-page={item.id}
-            onClick={() => onPage(item.id)}
-          >
-            {item.label}
-          </button>
-        ))}
+      <div className={styles.controls}>
+        <div
+          className={styles.tabs}
+          role="tablist"
+          aria-label="Tracer website pages"
+          onKeyDown={navigateTabs}
+        >
+          {pages.map((item) => (
+            <button
+              key={item.id}
+              id={`${id}-${item.id}-tab`}
+              type="button"
+              role="tab"
+              aria-selected={page === item.id}
+              aria-controls={`${id}-${item.id}-panel`}
+              tabIndex={page === item.id ? 0 : -1}
+              data-page={item.id}
+              onClick={() => onPage(item.id)}
+            >
+              {item.label}
+            </button>
+          ))}
+        </div>
+        <a
+          className={styles.visit}
+          href={`https://tracersecurity.ca/${page === "labs" ? "labs" : ""}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Visit Tracer ${page === "labs" ? "Labs" : "website"} (opens in a new tab)`}
+        >
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="12" cy="12" r="9" />
+            <path d="M3 12h18M12 3c3 3.5 3 14.5 0 18-3-3.5-3-14.5 0-18Z" />
+          </svg>
+          Visit website
+        </a>
       </div>
       <div className={styles.panel}>
         {pages.map((item) => (
