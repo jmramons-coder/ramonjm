@@ -30,12 +30,13 @@ import { BusterShowcase } from "./buster-showcase";
 
 import { CaseWorkspaceShowcase } from "./case-workspace-showcase";
 import { useProjectGridFocus } from "./use-project-grid-focus";
+import { TracerWebsiteShowcase } from "./tracer-website-showcase";
 
 type Filter = "all" | "products" | "studio" | "archive";
 const pieces: {
   id: string;
   category: Exclude<Filter, "all">;
-  component: ComponentType<{ paused: boolean }>;
+  component: ComponentType<{ paused: boolean; theme: "light" | "dark" }>;
 }[] = [
   { id: "abeam", category: "products", component: AbeamShowcase },
   { id: "nudge-stickers", category: "studio", component: NudgeStickers },
@@ -43,6 +44,7 @@ const pieces: {
   { id: "case-workspace", category: "products", component: CaseWorkspaceShowcase },
   { id: "cryptocroc", category: "products", component: CryptoDesktopShowcase },
   { id: "tracer-brand", category: "studio", component: TracerBrandCard },
+  { id: "tracer-website", category: "studio", component: TracerWebsiteShowcase },
   { id: "shakepay", category: "products", component: ShakepayCleanShowcase },
   { id: "decision-art", category: "studio", component: DecisionArtworkShowcase },
   { id: "world", category: "products", component: BusterShowcase },
@@ -64,7 +66,7 @@ const filters: { id: Filter; label: string }[] = [
   { id: "archive", label: "Archive" },
 ];
 
-export function ProjectPlayground({ paused }: { paused: boolean }) {
+export function ProjectPlayground({ paused, theme }: { paused: boolean; theme: "light" | "dark" }) {
   const [filter, setFilter] = useState<Filter>("all");
   const playground = useRef<HTMLDivElement>(null);
   const { resetFocus } = useProjectGridFocus(playground);
@@ -165,7 +167,7 @@ export function ProjectPlayground({ paused }: { paused: boolean }) {
         {visible.map(({ id, component: Card }) => (
           <div key={id} data-piece={id} data-filter={filter} className={styles.masonryItem} role="listitem">
             <div className={styles.tileContent}>
-              <Card paused={paused} />
+              <Card paused={paused} theme={theme} />
             </div>
           </div>
         ))}
