@@ -172,11 +172,17 @@ function CryptoPreview({
       onClick={(event) => {
         if (event.target === event.currentTarget) void close();
       }}
+      onKeyDown={(event) => {
+        if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+          event.preventDefault();
+          onIndex((index + (event.key === "ArrowRight" ? 1 : 2)) % 3);
+        }
+      }}
     >
       <div
         ref={panel}
-        onPointerDown={artwork ? swipe.onPointerDown : undefined}
-        onPointerUp={artwork ? swipe.onPointerUp : undefined}
+        onPointerDown={swipe.onPointerDown}
+        onPointerUp={swipe.onPointerUp}
         className={styles.panel}
         data-artwork={artwork}
         style={
@@ -185,16 +191,7 @@ function CryptoPreview({
           } as CSSProperties
         }
       >
-        {artwork ? (
-          <Visual artwork index={index} />
-        ) : (
-          <iframe
-            className={styles.liveSite}
-            src="https://crypto-inheritance.xyz/"
-            title="CryptoCroc interactive website"
-            referrerPolicy="strict-origin-when-cross-origin"
-          />
-        )}
+        <Visual artwork={artwork} index={index} />
       </div>
       <header className={styles.brand}>
         <Image
@@ -235,6 +232,15 @@ function CryptoPreview({
           </button>
         </nav>
       )}
+      {!artwork && (
+        <nav className={`${styles.plannerNavigation} ${styles.modalPlannerNavigation}`} aria-label="CryptoCroc screens">
+          {["Holdings", "Beneficiaries", "Practice"].map((label, screen) => (
+            <button key={label} type="button" aria-pressed={index === screen} onClick={() => onIndex(screen)}>
+              {label}
+            </button>
+          ))}
+        </nav>
+      )}
       <button
         type="button"
         className={styles.close}
@@ -258,7 +264,7 @@ function CryptoClean({
 }) {
   const opener = useRef<HTMLButtonElement>(null);
   const [origin, setOrigin] = useState<Bounds | null>(null);
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(artwork ? 0 : 1);
   const swipe = useSwipe(index, setIndex);
   return (
     <>
