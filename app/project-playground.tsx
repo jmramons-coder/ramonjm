@@ -69,6 +69,9 @@ const filters: { id: Filter; label: string }[] = [
 
 export function ProjectPlayground({ paused, theme }: { paused: boolean; theme: "light" | "dark" }) {
   const [filter, setFilter] = useState<Filter>("all");
+  const gallery = useRef<HTMLDivElement>(null);
+  const workHeader = useRef<HTMLDivElement>(null);
+  const filterTop = useRef<number | null>(null);
   const playground = useRef<HTMLDivElement>(null);
   const { resetFocus } = useProjectGridFocus(playground);
   useProjectGridMotion(playground, paused, filter);
@@ -111,6 +114,12 @@ export function ProjectPlayground({ paused, theme }: { paused: boolean; theme: "
     }
 
     measure();
+    if (filterTop.current !== null && gallery.current) {
+      // Start the new results at the same screen position, including when the bar is pinned.
+      const top = gallery.current.getBoundingClientRect().top + window.scrollY - filterTop.current;
+      filterTop.current = null;
+      window.scrollTo({ top: Math.max(0, top), behavior: "instant" });
+    }
     const observer = new ResizeObserver(() => {
       cancelAnimationFrame(frame);
       frame = requestAnimationFrame(measure);
@@ -124,30 +133,34 @@ export function ProjectPlayground({ paused, theme }: { paused: boolean; theme: "
   }, [filter]);
 
   return (
-    <div className={styles.gallery}>
-      <div className={styles.toolbar}>
-        <div
-          className={styles.filters}
-          role="group"
-          aria-label="Filter portfolio work"
-        >
-          {filters.map((item) => (
-            <button
-              key={item.id}
-              type="button"
-              aria-pressed={filter === item.id}
-              aria-controls="project-playground"
-              onClick={() => {
-                resetFocus();
-                setFilter(item.id);
-              }}
-            >
-              {item.label}
-              <span>
-                {item.id === "all"
-                  ? pieces.length
-                  : pieces.filter((piece) => piece.category === item.id).length}
-              </span>
+    <div ref={gallery} className={styles.gallery}>
+      <div ref={workHeader} className={styles.workHeader}>
+        <h2 id="projects-title">Selected work</h2>
+        <div className={styles.toolbar}>
+          <div
+            className={styles.filters}
+            role="group"
+            aria-label="Filter portfolio work"
+          >
+            {filters.map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                aria-pressed={filter === item.id}
+                aria-controls="project-playground"
+                onClick={() => {
+                  if (filter === item.id) return;
+                  filterTop.current = workHeader.current?.getBoundingClientRect().top ?? null;
+                  resetFocus();
+                  setFilter(item.id);
+                }}
+              >
+                {item.label}
+                <span>
+                  {item.id === "all"
+                    ? pieces.length
+                    : pieces.filter((piece) => piece.category === item.id).length}
+                </span>
             </button>
           ))}
         </div>
@@ -158,6 +171,7 @@ export function ProjectPlayground({ paused, theme }: { paused: boolean; theme: "
             : filters.find((item) => item.id === filter)?.label.toLowerCase()}
           .
         </span>
+        </div>
       </div>
       <div
         ref={playground}

@@ -168,9 +168,6 @@ export function HomeView({ initialTheme }: { initialTheme: PortfolioTheme }) {
             aria-labelledby="projects-title"
             className={styles.stage}
           >
-            <div className={styles.projectsHeading}>
-              <h2 id="projects-title">Selected work</h2>
-            </div>
             <ProjectPlayground paused={false} theme={theme} />
           </section>
           <footer className={styles.footer}>

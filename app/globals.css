@@ -3164,6 +3164,7 @@ a:focus-visible {
 :root:has([data-portfolio-theme]) {
   --portfolio-width: 1920px;
   --portfolio-gutter: 20px;
+  --portfolio-header-height: 68px;
   --portfolio-radius: 20px;
   --portfolio-gap: 20px;
   --max-width: var(--portfolio-width);
@@ -3277,8 +3278,14 @@ a:focus-visible {
 :root:has([data-portfolio-theme]) .cv-contact-link:hover { background: var(--portfolio-control-hover); color: var(--portfolio-text); }
 :root:has([data-portfolio-theme]) .cv-drawer-scroll { scrollbar-color: var(--portfolio-border) transparent; }
 :root:has([data-portfolio-theme]) :is(.header-action, .contact-menu-list a, .cv-drawer-close, .cv-contact-link):focus-visible { outline: 2px solid var(--portfolio-focus); outline-offset: 3px; }
+@media (min-width: 761px) {
+  :root:has([data-portfolio-theme]) { --portfolio-gutter: 32px; }
+}
+@media (min-width: 1024px) {
+  :root:has([data-portfolio-theme]) { --portfolio-gutter: 60px; }
+}
 @media (max-width: 760px) {
-  :root:has([data-portfolio-theme]) { --portfolio-gutter: 20px; --portfolio-gap: 12px; }
+  :root:has([data-portfolio-theme]) { --portfolio-gutter: 20px; --portfolio-gap: 12px; --portfolio-header-height: 64px; }
   :root:has([data-portfolio-theme]) .site-header { min-height: 64px; padding-top: 10px; padding-bottom: 10px; }
   :root:has([data-portfolio-theme]) .header-actions { gap: 6px; }
   :root:has([data-portfolio-theme]) .header-action { min-height: 38px; padding: 0 12px; font-size: 12px; }
