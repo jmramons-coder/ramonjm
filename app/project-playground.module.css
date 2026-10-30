@@ -6,11 +6,7 @@
   min-height: calc(100svh - var(--portfolio-header-height, 68px));
 }
 .workHeader {
-  position: sticky;
-  top: var(--portfolio-header-height, 68px);
-  z-index: 30;
   padding: 24px 0 20px;
-  background: var(--page);
 }
 .workHeader h2 {
   margin: 0 0 12px;
