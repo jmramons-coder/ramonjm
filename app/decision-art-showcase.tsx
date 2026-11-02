@@ -4,12 +4,12 @@ import Image from "next/image";
 import {
   useEffect,
   useRef,
-  useState,
   type CSSProperties,
   type RefObject,
 } from "react";
 import styles from "./decision-art-showcase.module.css";
 import { DesktopProjectCard } from "./desktop-project-card";
+import { useProjectOrigin } from "./project-routes";
 
 type Bounds = { left: number; top: number; width: number; height: number };
 
@@ -169,7 +169,7 @@ function GlassPreview({
 
 function DecisionPiece({ paused, piece }: { paused: boolean; piece: Piece }) {
   const opener = useRef<HTMLButtonElement>(null);
-  const [origin, setOrigin] = useState<Bounds | null>(null);
+  const [origin, setOrigin] = useProjectOrigin(opener);
   return (
     <>
       {piece === "tablet" ? (

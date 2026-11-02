@@ -11,6 +11,7 @@ import {
   type MutableRefObject,
 } from "react";
 import styles from "./tracer-website-showcase.module.css";
+import { useProjectOpen } from "./project-routes";
 
 type Theme = "light" | "dark";
 type Page = "landing" | "labs";
@@ -318,7 +319,7 @@ export function TracerWebsiteShowcase({
 }) {
   const opener = useRef<HTMLButtonElement>(null);
   const positions = useRef<Record<Page, number>>({ landing: 0, labs: 0 });
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useProjectOpen();
   const [page, setPage] = useState<Page>("landing");
   const [hovered, setHovered] = useState(false);
   const [focused, setFocused] = useState(false);

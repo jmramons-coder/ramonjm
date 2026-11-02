@@ -9,6 +9,7 @@ import {
   type RefObject,
 } from "react";
 import { DesktopProjectCard } from "./desktop-project-card";
+import { useProjectOrigin } from "./project-routes";
 import styles from "./crypto-clean-showcase.module.css";
 type Bounds = { left: number; top: number; width: number; height: number };
 const planner = [
@@ -263,7 +264,7 @@ function CryptoClean({
   artwork?: boolean;
 }) {
   const opener = useRef<HTMLButtonElement>(null);
-  const [origin, setOrigin] = useState<Bounds | null>(null);
+  const [origin, setOrigin] = useProjectOrigin(opener);
   const [index, setIndex] = useState(artwork ? 0 : 1);
   const swipe = useSwipe(index, setIndex);
   return (

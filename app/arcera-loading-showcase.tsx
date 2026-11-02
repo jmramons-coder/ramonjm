@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type RefObject } from "react";
 import { ArceraExploration } from "./arcera-exploration";
+import { useProjectOrigin } from "./project-routes";
 import caseStyles from "./arcera-exploration.module.css";
 import styles from "./arcera-loading-showcase.module.css";
 
@@ -101,7 +102,7 @@ export function ArceraLoadingShowcase({ paused }: { paused: boolean }) {
   const video = useRef<HTMLVideoElement>(null);
   const [position, setPosition] = useState(0);
   const opener = useRef<HTMLButtonElement>(null);
-  const [origin, setOrigin] = useState<Bounds | null>(null);
+  const [origin, setOrigin] = useProjectOrigin(opener);
   return (
     <>
       <article className={styles.card} aria-label="Arcera Rise Daily video artwork" data-paused={paused}>

@@ -32,6 +32,8 @@ import { CaseWorkspaceShowcase } from "./case-workspace-showcase";
 import { useProjectGridFocus } from "./use-project-grid-focus";
 import { TracerWebsiteShowcase } from "./tracer-website-showcase";
 import { useProjectGridMotion } from "./use-project-grid-motion";
+import { ProjectRoute, useActiveProject } from "./project-routes";
+import { getProjectById } from "./project-links";
 
 type Filter = "all" | "products" | "studio" | "archive";
 const pieces: {
@@ -69,13 +71,17 @@ const filters: { id: Filter; label: string }[] = [
 
 export function ProjectPlayground({ paused, theme }: { paused: boolean; theme: "light" | "dark" }) {
   const [filter, setFilter] = useState<Filter>("all");
+  const activeProject = useActiveProject();
+  const selectedPiece = pieces.find((piece) => piece.id === activeProject?.id);
+  // History can reopen a project outside the last selected category.
+  const effectiveFilter = selectedPiece && filter !== "all" && selectedPiece.category !== filter ? "all" : filter;
   const playground = useRef<HTMLDivElement>(null);
   const { resetFocus } = useProjectGridFocus(playground);
-  useProjectGridMotion(playground, paused, filter);
+  useProjectGridMotion(playground, paused, effectiveFilter);
   const visible =
-    filter === "all"
+    effectiveFilter === "all"
       ? pieces
-      : pieces.filter((piece) => piece.category === filter);
+      : pieces.filter((piece) => piece.category === effectiveFilter);
 
   useLayoutEffect(() => {
     const grid = playground.current;
@@ -121,7 +127,7 @@ export function ProjectPlayground({ paused, theme }: { paused: boolean; theme: "
       observer.disconnect();
       cancelAnimationFrame(frame);
     };
-  }, [filter]);
+  }, [effectiveFilter]);
 
   return (
     <div className={styles.gallery}>
@@ -137,7 +143,7 @@ export function ProjectPlayground({ paused, theme }: { paused: boolean; theme: "
               <button
                 key={item.id}
                 type="button"
-                aria-pressed={filter === item.id}
+                aria-pressed={effectiveFilter === item.id}
                 aria-controls="project-playground"
                 onClick={() => {
                   if (filter === item.id) return;
@@ -156,9 +162,9 @@ export function ProjectPlayground({ paused, theme }: { paused: boolean; theme: "
           </div>
           <span className={styles.srOnly} role="status">
             Showing {visible.length}{" "}
-            {filter === "all"
+            {effectiveFilter === "all"
               ? "pieces"
-              : filters.find((item) => item.id === filter)?.label.toLowerCase()}
+              : filters.find((item) => item.id === effectiveFilter)?.label.toLowerCase()}
             .
           </span>
         </div>
@@ -171,9 +177,11 @@ export function ProjectPlayground({ paused, theme }: { paused: boolean; theme: "
         aria-label="Selected projects and design studies"
       >
         {visible.map(({ id, component: Card }) => (
-          <div key={id} data-piece={id} data-filter={filter} className={styles.masonryItem} role="listitem">
+          <div key={id} data-piece={id} data-project={getProjectById(id)?.slug} data-filter={effectiveFilter} className={styles.masonryItem} role="listitem">
             <div className={styles.tileContent}>
-              <Card paused={paused} theme={theme} />
+              <ProjectRoute id={id}>
+                <Card paused={paused} theme={theme} />
+              </ProjectRoute>
             </div>
           </div>
         ))}

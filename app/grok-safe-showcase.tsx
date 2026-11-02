@@ -8,10 +8,11 @@ import {
   type GrokScenarioHandle,
 } from "./grok-safe-scenario";
 import listStyles from "./home.module.css";
+import { useProjectOpen } from "./project-routes";
 import styles from "./grok-safe-showcase.module.css";
 
 export function GrokSafeShowcase({ paused }: { paused: boolean }) {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useProjectOpen();
   const [startTime, setStartTime] = useState(0);
   const video = useRef<GrokScenarioHandle>(null);
   const opener = useRef<HTMLButtonElement>(null);

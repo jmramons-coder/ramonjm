@@ -7,6 +7,7 @@ import {
   type PhoneScenarioMedia,
 } from "./grok-safe-scenario";
 import { NudgeStoreGallery } from "./nudge-store-gallery";
+import { useProjectOpen, useProjectOrigin } from "./project-routes";
 import styles from "./grok-safe-showcase.module.css";
 
 const nudgeMedia: PhoneScenarioMedia = {
@@ -19,11 +20,11 @@ const nudgeMedia: PhoneScenarioMedia = {
 };
 
 export function NudgePhoneShowcase({ paused }: { paused: boolean }) {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useProjectOpen();
   const [position, setPosition] = useState(0);
-  const [origin, setOrigin] = useState({ left: 0, top: 0, width: 270, height: 586 });
   const playback = useRef<GrokScenarioHandle>(null);
   const opener = useRef<HTMLButtonElement>(null);
+  const [origin, setOrigin] = useProjectOrigin(opener);
 
   function close(time: number) {
     playback.current?.seek(time);
@@ -43,7 +44,7 @@ export function NudgePhoneShowcase({ paused }: { paused: boolean }) {
           onInspect={(time) => { const rect = opener.current?.parentElement?.getBoundingClientRect(); if (rect) setOrigin({ left: rect.left, top: rect.top, width: rect.width, height: rect.height }); setPosition(time); setOpen(true); }}
         />
       </article>
-      {open && <NudgeStoreGallery origin={origin} paused={paused} initialTime={position} opener={opener} onClose={close} />}
+      {open && origin && <NudgeStoreGallery origin={origin} paused={paused} initialTime={position} opener={opener} onClose={close} />}
     </>
   );
 }

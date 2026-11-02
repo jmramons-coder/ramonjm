@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { DesktopProjectCard } from "./desktop-project-card";
+import { useProjectOpen } from "./project-routes";
 import styles from "./abeam-mobile-showcase.module.css";
 
 function WorkspaceDialog({ open, close }: { open: boolean; close: () => void }) {
@@ -87,12 +88,13 @@ function WorkspaceDialog({ open, close }: { open: boolean; close: () => void }) 
 
 export function AbeamMobileShowcase({ paused }: { paused: boolean }) {
   const opener = useRef<HTMLButtonElement>(null);
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useProjectOpen();
   const [visited, setVisited] = useState(false);
   const close = useCallback(() => {
+    setVisited(true);
     setOpen(false);
     requestAnimationFrame(() => opener.current?.focus({ preventScroll: true }));
-  }, []);
+  }, [setOpen]);
   return (
     <>
       <DesktopProjectCard name="aBeam"
@@ -107,7 +109,7 @@ export function AbeamMobileShowcase({ paused }: { paused: boolean }) {
           alt="aBeam’s desktop travel workspace. Open to explore the working app."
           width={1440} height={960} unoptimized draggable={false} />
       </DesktopProjectCard>
-      {visited && <WorkspaceDialog open={open} close={close} />}
+      {(visited || open) && <WorkspaceDialog open={open} close={close} />}
     </>
   );
 }

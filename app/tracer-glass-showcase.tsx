@@ -1,11 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { ProcessGallery } from "./tracer-process-showcase";
+import { useProjectOrigin } from "./project-routes";
 import styles from "./tracer-glass-showcase.module.css";
-
-type Bounds = { left: number; top: number; width: number; height: number };
 
 function Artwork() {
   return (
@@ -18,7 +17,7 @@ function Artwork() {
 
 export function TracerGlassShowcase({ paused }: { paused: boolean }) {
   const opener = useRef<HTMLButtonElement>(null);
-  const [origin, setOrigin] = useState<Bounds | null>(null);
+  const [origin, setOrigin] = useProjectOrigin(opener);
   return (
     <>
       <article className={styles.card} aria-label="Tracer glass identity artwork" data-paused={paused}>

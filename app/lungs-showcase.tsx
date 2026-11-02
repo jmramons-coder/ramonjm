@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useId, useRef, useState, type CSSProperties, type PointerEvent, type RefObject } from "react";
 import styles from "./lungs-showcase.module.css";
+import { useProjectOrigin } from "./project-routes";
 type Bounds = { left: number; top: number; width: number; height: number };
 const currency = new Intl.NumberFormat("en-CA", {
   style: "currency",
@@ -133,7 +134,7 @@ export function LungsShowcase({ paused }: { paused: boolean }) {
   const opener = useRef<HTMLButtonElement>(null);
   const card = useRef<HTMLElement>(null);
   const [progress, setProgress] = useState(50);
-  const [origin, setOrigin] = useState<Bounds | null>(null);
+  const [origin, setOrigin] = useProjectOrigin(opener);
   const wasOpen = useRef(false);
   useEffect(() => {
     if (origin) {

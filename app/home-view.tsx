@@ -12,11 +12,13 @@ import {
 } from "./personal-bento";
 import { FeaturedPresentation } from "./featured-presentation";
 import { useProjectGridMotion } from "./use-project-grid-motion";
+import { ProjectRoutesProvider } from "./project-routes";
+import { getProjectBySlug } from "./project-links";
 import styles from "./home-view.module.css";
 
 type PortfolioTheme = "light" | "dark";
 
-export function HomeView({ initialTheme }: { initialTheme: PortfolioTheme }) {
+export function HomeView({ initialTheme, initialProject = null }: { initialTheme: PortfolioTheme; initialProject?: string | null }) {
   const [theme, setTheme] = useState(initialTheme);
   const intro = useRef<HTMLElement>(null);
   useProjectGridMotion(intro, false, "intro", "intro");
@@ -41,6 +43,7 @@ export function HomeView({ initialTheme }: { initialTheme: PortfolioTheme }) {
   useEffect(() => {
     let frame = 0;
     const followHash = () => {
+      if (getProjectBySlug(new URLSearchParams(window.location.search).get("project"))) return;
       if (!window.location.hash || window.location.hash === "#top") return;
       let targetId: string;
       try {
@@ -68,6 +71,7 @@ export function HomeView({ initialTheme }: { initialTheme: PortfolioTheme }) {
       if (!target) return;
       window.cancelAnimationFrame(frame);
       frame = window.requestAnimationFrame(() => {
+        if (getProjectBySlug(new URLSearchParams(window.location.search).get("project"))) return;
         target.scrollIntoView({ block: "start", behavior: "instant" });
         if (targetId === "playground-content") {
           target.focus({ preventScroll: true });
@@ -117,6 +121,7 @@ export function HomeView({ initialTheme }: { initialTheme: PortfolioTheme }) {
   );
 
   return (
+    <ProjectRoutesProvider initialProject={initialProject}>
     <div className={styles.shell} data-portfolio-theme={theme}>
       <a className="skip-link" href="#playground-content">
         Skip to content
@@ -178,5 +183,6 @@ export function HomeView({ initialTheme }: { initialTheme: PortfolioTheme }) {
         </main>
       </div>
     </div>
+    </ProjectRoutesProvider>
   );
 }

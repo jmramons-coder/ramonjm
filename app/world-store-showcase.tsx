@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, type RefObject } from "react";
+import { useProjectOrigin } from "./project-routes";
 import styles from "./world-store-showcase.module.css";
 
 const screens = [
@@ -94,7 +95,7 @@ function StoreGallery({ initial, origin, opener, paused, onClose }: { initial: n
 export function WorldStoreShowcase({ paused }: { paused: boolean }) {
   const opener = useRef<HTMLButtonElement>(null);
   const [selected, setSelected] = useState(4);
-  const [origin, setOrigin] = useState<Bounds | null>(null);
+  const [origin, setOrigin] = useProjectOrigin(opener);
   useEffect(() => {
     const element = opener.current;
     if (!element || origin) return;

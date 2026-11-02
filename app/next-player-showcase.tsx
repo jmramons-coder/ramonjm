@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState, type RefObject } from "react";
+import { useEffect, useRef, type RefObject } from "react";
+import { useProjectOrigin } from "./project-routes";
 import styles from "./next-player-showcase.module.css";
 
 const artwork = "/showcase/editorial/nextplayer-handoff.webp";
@@ -120,7 +121,7 @@ function NextPlayerPreview({
 export function NextPlayerShowcase({ paused }: { paused: boolean }) {
   const opener = useRef<HTMLButtonElement>(null);
   const stage = useRef<HTMLDivElement>(null);
-  const [origin, setOrigin] = useState<Bounds | null>(null);
+  const [origin, setOrigin] = useProjectOrigin(opener);
   const hasOpened = useRef(false);
 
   useEffect(() => {

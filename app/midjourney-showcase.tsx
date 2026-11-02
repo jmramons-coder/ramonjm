@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type CSSProperties, type RefObject } from "react";
 import styles from "./midjourney-showcase.module.css";
+import { useProjectOrigin } from "./project-routes";
 
 type Bounds = { left: number; top: number; width: number; height: number };
 
@@ -100,7 +101,7 @@ export function MidjourneyShowcase({ paused }: { paused: boolean }) {
   const video = useRef<HTMLVideoElement>(null);
   const [position, setPosition] = useState(0);
   const opener = useRef<HTMLButtonElement>(null);
-  const [origin, setOrigin] = useState<Bounds | null>(null);
+  const [origin, setOrigin] = useProjectOrigin(opener);
   return (
     <>
       <article className={styles.card} aria-label="Midjourney video artwork" data-paused={paused}>

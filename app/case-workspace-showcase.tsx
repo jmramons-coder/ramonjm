@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { DesktopProjectCard, DesktopVisitNotice } from "./desktop-project-card";
 import { CaseStudyPreview } from "./case-study-preview";
 import { EquisoftBrand } from "./equisoft-brand";
+import { useProjectOpen } from "./project-routes";
 import styles from "./case-study-showcase.module.css";
 
 function WorkspaceDialog({ open, paused, onClose }: {
@@ -70,7 +71,7 @@ function WorkspaceDialog({ open, paused, onClose }: {
 }
 
 export function CaseWorkspaceShowcase({ paused }: { paused: boolean }) {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useProjectOpen();
   const [visited, setVisited] = useState(false);
   const opener = useRef<HTMLButtonElement>(null);
   return (
@@ -91,7 +92,8 @@ export function CaseWorkspaceShowcase({ paused }: { paused: boolean }) {
       >
         <CaseStudyPreview cover />
       </DesktopProjectCard>
-      {visited && <WorkspaceDialog open={open} paused={paused} onClose={() => {
+      {(visited || open) && <WorkspaceDialog open={open} paused={paused} onClose={() => {
+        setVisited(true);
         setOpen(false);
         requestAnimationFrame(() => opener.current?.focus({ preventScroll: true }));
       }} />}

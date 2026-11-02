@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import { useEffect, useRef, useState, type RefObject } from "react";
+import { useEffect, useRef, type RefObject } from "react";
+import { useProjectOrigin } from "./project-routes";
 import styles from "./shakepay-clean-showcase.module.css";
 
 const ShakepayStudyContent = dynamic(() =>
@@ -276,7 +277,7 @@ function ShakepayExploration({
 export function ShakepayCleanShowcase({ paused }: { paused: boolean }) {
   const opener = useRef<HTMLButtonElement>(null);
   const wasOpen = useRef(false);
-  const [origin, setOrigin] = useState<Bounds | null>(null);
+  const [origin, setOrigin] = useProjectOrigin(opener);
 
   useEffect(() => {
     if (!origin && wasOpen.current)

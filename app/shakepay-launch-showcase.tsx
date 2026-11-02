@@ -8,6 +8,7 @@ import {
   type PhoneScenarioMedia,
 } from "./grok-safe-scenario";
 import styles from "./grok-safe-showcase.module.css";
+import { useProjectOpen } from "./project-routes";
 
 const launchMedia: PhoneScenarioMedia = {
   name: "Shakepay launch",
@@ -20,7 +21,7 @@ const launchMedia: PhoneScenarioMedia = {
 };
 
 export function ShakepayLaunchShowcase({ paused }: { paused: boolean }) {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useProjectOpen();
   const [position, setPosition] = useState(0);
   const playback = useRef<GrokScenarioHandle>(null);
   const opener = useRef<HTMLButtonElement>(null);
